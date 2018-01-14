@@ -91,6 +91,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		log();
 	}
 
 	@Override
@@ -109,7 +110,14 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		
+		/*
+         * Note that the DriveWithJoyStick command is activated automatically in
+         * DriveTrain.initDefaultCommand()
+         */
+		
 		Scheduler.getInstance().run();
+		log();
 	}
 
 	/**
@@ -117,5 +125,11 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void testPeriodic() {
+		log();
+	}
+	
+	private void log() {
+		// For example:
+		// SmartDashboard.putNumber("Shooter Speed", shooter.getRPM());
 	}
 }

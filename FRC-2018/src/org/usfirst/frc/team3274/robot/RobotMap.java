@@ -19,6 +19,60 @@ public class RobotMap {
 	// public static int leftMotor = 1;
 	// public static int rightMotor = 2;
 
+	////////////////////////////////////////////////
+	///////////// JOYSTICK AXIS ////////////////////
+	////////////////////////////////////////////////
+
+	// xbox controller
+	public static final int XBOX_LEFT_Y_AXIS = 1;
+	public static final int XBOX_RIGHT_X_AXIS = 4;
+
+	// flight stick
+	public static final int FLIGHT_STICK_FORWARD_AXIS = 1;
+	public static final int FLIGHT_STICK_THROTTLE_AXIS = 2;
+
+	////////////////////////////////////////////////
+	//////////// CAN TALONS BELOW HERE//////////////
+	////////////////////////////////////////////////
+
+	// Four wheels
+	public static final int FRONT_LEFT_MOTOR = 1;
+	public static final int FRONT_RIGHT_MOTOR = 2;
+	public static final int REAR_LEFT_MOTOR = 3;
+	public static final int REAR_RIGHT_MOTOR = 4;
+	public static final int LEFT_MOTOR = 5;
+	public static final int RIGHT_MOTOR = 6;
+
+	////////////////////////////////////////////////
+	/////////////// DIO's BELOW HERE////////////////
+	////////////////////////////////////////////////
+
+	// two input ports for each encoder
+	public static final int[] RIGHT_ENCODER = { 4, 5 };
+	public static final int[] LEFT_ENCODER = { 0, 1 };
+	// Touchless Encoder (the second channel is irrelevant)
+	public static final int[] TL_ENCODER = { 8, 9 };
+
+	////////////////////////////////////////////////
+	/////////////// PWM's BELOW HERE////////////////
+	////////////////////////////////////////////////
+
+
+	////////////////////////////////////////////////
+	/////////////// PCM's BELOW HERE////////////////
+	////////////////////////////////////////////////
+	
+
+	public static int shifterForward = 3;
+	public static int shifterReverse = 4;
+	public static int gearForward = 6;
+	public static int gearReverse = 7;
+
+	////////////////////////////////////////////////
+	////////////// Relays BELOW HERE////////////////
+	////////////////////////////////////////////////
+
+
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:
 	// public static int rangefinderPort = 1;
