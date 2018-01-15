@@ -14,6 +14,8 @@ import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.RobotMap;
 import org.usfirst.frc.team3274.robot.commands.DriveWithJoystick;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 /**
  * The DriveTrain subsystem controls the robot's chassis and reads in
  * information about it's speed and position.
@@ -31,12 +33,12 @@ public class DriveTrain extends Subsystem
     public static final double WHEEL_DIAMETER = 4.0;
 
     // Four wheels
-    SpeedController _frontLeftMotor = new CANTalon(RobotMap.FRONT_LEFT_MOTOR);
-    SpeedController _frontRightMotor = new CANTalon(RobotMap.FRONT_RIGHT_MOTOR);
-    SpeedController _rearLeftMotor = new CANTalon(RobotMap.REAR_LEFT_MOTOR);
-    SpeedController _rearRightMotor = new CANTalon(RobotMap.REAR_RIGHT_MOTOR);
-    SpeedController _leftSlave = new CANTalon(RobotMap.LEFT_MOTOR);
-    SpeedController _rightSlave = new CANTalon(RobotMap.RIGHT_MOTOR);
+    TalonSRX _frontLeftMotor = new TalonSRX(RobotMap.FRONT_LEFT_MOTOR);
+    TalonSRX _frontRightMotor = new TalonSRX(RobotMap.FRONT_RIGHT_MOTOR);
+    TalonSRX _rearLeftMotor = new TalonSRX(RobotMap.REAR_LEFT_MOTOR);
+    TalonSRX _rearRightMotor = new TalonSRX(RobotMap.REAR_RIGHT_MOTOR);
+    TalonSRX _leftSlave = new TalonSRX(RobotMap.LEFT_MOTOR);
+    TalonSRX _rightSlave = new TalonSRX(RobotMap.RIGHT_MOTOR);
 
     private RobotDrive drive;
     private Encoder rightEncoder = new Encoder(RobotMap.RIGHT_ENCODER[0],
@@ -47,9 +49,9 @@ public class DriveTrain extends Subsystem
     public DriveTrain()
     {
         // make these two motors mirror other motors
-        ((CANTalon) _leftSlave).changeControlMode(TalonControlMode.Follower);
+        _leftSlave.changeControlMode(TalonControlMode.Follower);
         _leftSlave.set(RobotMap.FRONT_LEFT_MOTOR);
-        ((CANTalon) _rightSlave).changeControlMode(TalonControlMode.Follower);
+        _rightSlave.changeControlMode(TalonControlMode.Follower);
         _rightSlave.set(RobotMap.FRONT_RIGHT_MOTOR);
         /*
          * About 'Casting' variables In the code above, we have defined the
