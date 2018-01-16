@@ -61,13 +61,13 @@ public class DriveTrain extends Subsystem
          */
         // Configure drive motors
         LiveWindow.addActuator("DriveTrain", "Front Left CIM",
-                (CANTalon) _frontLeftMotor);
+                _frontLeftMotor);
         LiveWindow.addActuator("DriveTrain", "Front Right CIM",
-                (CANTalon) _frontRightMotor);
+                _frontRightMotor);
         LiveWindow.addActuator("DriveTrain", "Back Left CIM",
-                (CANTalon) _rearLeftMotor);
+                _rearLeftMotor);
         LiveWindow.addActuator("DriveTrain", "Back Right CIM",
-                (CANTalon) _rearRightMotor);
+                _rearRightMotor);
 
         // Configure the RobotDrive.
         drive = new RobotDrive((CANTalon) _frontLeftMotor,
