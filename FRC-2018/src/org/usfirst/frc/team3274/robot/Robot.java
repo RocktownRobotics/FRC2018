@@ -13,11 +13,11 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team3274.robot.OI.ControllerSetup;
 import org.usfirst.frc.team3274.robot.commands.ExampleCommand;
 import org.usfirst.frc.team3274.robot.subsystems.DrivePneumatics;
 import org.usfirst.frc.team3274.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3274.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team3274.robot.subsystems.RobotCompressor;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,10 +31,11 @@ public class Robot extends TimedRobot {
 
 	public static final DrivePneumatics kDrivePneumatics = new DrivePneumatics();
 	public static final DriveTrain kDriveTrain = new DriveTrain();
+	public static final RobotCompressor kCompressor = new RobotCompressor();
 	public static OI m_oi;
 
-	Command m_autonomousCommand;
-	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	private Command m_autonomousCommand;
+	private SendableChooser<Command> m_chooser = new SendableChooser<>();
 
 	/**
 	 * This function is run when the robot is first started up and should be used

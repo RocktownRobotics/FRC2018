@@ -56,17 +56,17 @@ public class OI {
 	/** The first joystick. Has to be an xbox controller. **/
 	private Joystick xbox01 = new Joystick(0); // set to ID 1
 	private JoystickButton a = new JoystickButton(xbox01, RobotMap.XBOX_A_BUTTON);
-	JoystickButton b = new JoystickButton(xbox01, RobotMap.XBOX_B_BUTTON);
-	JoystickButton x = new JoystickButton(xbox01, RobotMap.XBOX_X_BUTTON);
-	JoystickButton y = new JoystickButton(xbox01, RobotMap.XBOX_Y_BUTTON);
-	JoystickButton lBumper = new JoystickButton(xbox01, RobotMap.XBOX_L_BUMPER_BUTTON);
-	JoystickButton rBumper = new JoystickButton(xbox01, RobotMap.XBOX_R_BUMPER_BUTTON);
-	JoystickButton up = new JoystickButton(xbox01, RobotMap.XBOX_UP_BUTTON);
-	JoystickButton down = new JoystickButton(xbox01, RobotMap.XBOX_DOWN_BUTTON);
-	JoystickButton left = new JoystickButton(xbox01, RobotMap.XBOX_LEFT_BUTTON);
-	JoystickButton right = new JoystickButton(xbox01, RobotMap.XBOX_RIGHT_BUTTON);
-	JoystickButton start = new JoystickButton(xbox01, RobotMap.XBOX_START_BUTTON);
-	JoystickButton back = new JoystickButton(xbox01, RobotMap.XBOX_BACK_BUTTON);
+	private JoystickButton b = new JoystickButton(xbox01, RobotMap.XBOX_B_BUTTON);
+	private JoystickButton x = new JoystickButton(xbox01, RobotMap.XBOX_X_BUTTON);
+	private JoystickButton y = new JoystickButton(xbox01, RobotMap.XBOX_Y_BUTTON);
+	private JoystickButton lBumper = new JoystickButton(xbox01, RobotMap.XBOX_L_BUMPER_BUTTON);
+	private JoystickButton rBumper = new JoystickButton(xbox01, RobotMap.XBOX_R_BUMPER_BUTTON);
+	private JoystickButton up = new JoystickButton(xbox01, RobotMap.XBOX_UP_BUTTON);
+	private JoystickButton down = new JoystickButton(xbox01, RobotMap.XBOX_DOWN_BUTTON);
+	private JoystickButton left = new JoystickButton(xbox01, RobotMap.XBOX_LEFT_BUTTON);
+	private JoystickButton right = new JoystickButton(xbox01, RobotMap.XBOX_RIGHT_BUTTON);
+	private JoystickButton start = new JoystickButton(xbox01, RobotMap.XBOX_START_BUTTON);
+	private JoystickButton back = new JoystickButton(xbox01, RobotMap.XBOX_BACK_BUTTON);
 
 	/**
 	 * Create an OI with a specified controller setup.

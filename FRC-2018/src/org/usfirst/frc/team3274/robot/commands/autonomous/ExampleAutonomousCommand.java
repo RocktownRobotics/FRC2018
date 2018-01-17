@@ -9,6 +9,10 @@ public class ExampleAutonomousCommand extends CommandGroup {
 	 * 90 degrees.
 	 */
 	public ExampleAutonomousCommand() {
+		// make sure robot is in low gear
 		addSequential(new ShiftDownForTime());
+
+		// addSequential(new DriveForward(3));
+		// addSequential(new TurnRobot(-90));
 	}
 }

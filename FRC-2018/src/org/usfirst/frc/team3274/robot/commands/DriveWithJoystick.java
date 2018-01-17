@@ -1,11 +1,8 @@
 package org.usfirst.frc.team3274.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-
-import org.usfirst.frc.team3274.robot.OI;
 import org.usfirst.frc.team3274.robot.Robot;
-import org.usfirst.frc.team3274.robot.RobotMap;
-import org.usfirst.frc.team3274.robot.subsystems.DriveTrain;;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * This command allows xbox joystick to drive the robot. It is always running
