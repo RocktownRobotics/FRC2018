@@ -7,6 +7,10 @@
 
 package org.usfirst.frc.team3274.robot;
 
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -40,5 +44,78 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 
+	/** +- 0, dead zone for joystick input **/
 	public static final double JOYSTICK_DEADZONE = 0.1;
+
+	// this is an enum. its like creating a class called ControllerSetup, where the
+	// only values can be SINGLE_XBOX_CONTROLLER or DUAL_XBOX_CONTROLLER
+	public enum ControllerSetup {
+		SINGLE_XBOX_CONTROLLER, DUAL_XBOX_CONTROLLER
+	};
+
+	/** The first joystick. Has to be an xbox controller. **/
+	private Joystick xbox01 = new Joystick(0); // set to ID 1
+	private JoystickButton a = new JoystickButton(xbox01, RobotMap.XBOX_A_BUTTON);
+	JoystickButton b = new JoystickButton(xbox01, RobotMap.XBOX_B_BUTTON);
+	JoystickButton x = new JoystickButton(xbox01, RobotMap.XBOX_X_BUTTON);
+	JoystickButton y = new JoystickButton(xbox01, RobotMap.XBOX_Y_BUTTON);
+	JoystickButton lBumper = new JoystickButton(xbox01, RobotMap.XBOX_L_BUMPER_BUTTON);
+	JoystickButton rBumper = new JoystickButton(xbox01, RobotMap.XBOX_R_BUMPER_BUTTON);
+	JoystickButton up = new JoystickButton(xbox01, RobotMap.XBOX_UP_BUTTON);
+	JoystickButton down = new JoystickButton(xbox01, RobotMap.XBOX_DOWN_BUTTON);
+	JoystickButton left = new JoystickButton(xbox01, RobotMap.XBOX_LEFT_BUTTON);
+	JoystickButton right = new JoystickButton(xbox01, RobotMap.XBOX_RIGHT_BUTTON);
+	JoystickButton start = new JoystickButton(xbox01, RobotMap.XBOX_START_BUTTON);
+	JoystickButton back = new JoystickButton(xbox01, RobotMap.XBOX_BACK_BUTTON);
+
+	/**
+	 * Create an OI with a specified controller setup.
+	 * 
+	 * @param setup
+	 *            the ControllerSetup to use. Can be a single controller, multiple
+	 *            controllers, etc.
+	 */
+	public OI(ControllerSetup setup) {
+		if (setup == ControllerSetup.SINGLE_XBOX_CONTROLLER) {
+			initSingleXboxControllerSetup();
+		} else if (setup == ControllerSetup.DUAL_XBOX_CONTROLLER) {
+			initDualXboxControllerSetup();
+		} else {
+			// code here should never be reached
+		}
+	}
+
+	private void initSingleXboxControllerSetup() {
+		// assign commands to buttons and stuff here (described at top of this class)
+
+		// Keep in mind that joystick stuff is handled by the drive train already, so
+		// you only have to deal with button presses here.
+	}
+
+	private void initDualXboxControllerSetup() {
+		// assign commands to buttons and stuff here (described at top of this class)
+
+		// Keep in mind that joystick stuff is handled by the drive train already, so
+		// you only have to deal with button presses here.
+	}
+
+	/**
+	 * Causes the first xbox controller to rumble.
+	 */
+	public void rumbleXbox01(boolean rumble) {
+		if (rumble) {
+			this.xbox01.setRumble(RumbleType.kLeftRumble, 1);
+		} else {
+			this.xbox01.setRumble(RumbleType.kLeftRumble, 0);
+		}
+	}
+
+	/**
+	 * Returns the first xbox controller.
+	 * 
+	 * @return
+	 */
+	public Joystick getXbox01() {
+		return xbox01;
+	}
 }

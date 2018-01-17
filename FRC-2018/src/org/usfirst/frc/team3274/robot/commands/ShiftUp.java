@@ -4,39 +4,33 @@ import org.usfirst.frc.team3274.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ShiftUp extends Command
-{
-    public ShiftUp()
-    {
-        requires(Robot.drivepneumatics);
-    }
+public class ShiftUp extends Command {
+	public ShiftUp() {
+		requires(Robot.kDrivePneumatics);
+	}
 
-    /**
-     * Called just before this Command runs the first time.
-     */
-    @Override
-    protected void initialize()
-    {
-        Robot.drivepneumatics.StartHighGear();
-    }
+	/**
+	 * Called just before this Command runs the first time.
+	 */
+	@Override
+	protected void initialize() {
+		Robot.kDrivePneumatics.StartHighGear();
+	}
 
-    @Override
-    protected void execute()
-    {
+	@Override
+	protected void execute() {
 
-    }
+	}
 
-    @Override
-    protected boolean isFinished()
-    {
+	@Override
+	protected boolean isFinished() {
 
-        return false;
-    }
+		return false;
+	}
 
-    @Override
-    protected void end()
-    {
-        Robot.drivepneumatics.stop();
-    }
+	@Override
+	protected void end() {
+		Robot.kDrivePneumatics.stop();
+	}
 
 }

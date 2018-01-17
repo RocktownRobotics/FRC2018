@@ -118,7 +118,7 @@ public class DriveTrain extends Subsystem {
 	 * side forward with another stick.
 	 * 
 	 * @param joy
-	 *            PS3 style joystick to use as the input for tank drive.
+	 *            Xbox controller to use as the input for tank drive.
 	 */
 	public void tankDrive(Joystick joy) {
 		this.tankDrive(joy.getRawAxis(-RobotMap.XBOX_LEFT_Y_AXIS),

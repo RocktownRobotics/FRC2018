@@ -32,6 +32,25 @@ public class RobotMap {
 	public static final int FLIGHT_STICK_THROTTLE_AXIS = 2;
 
 	////////////////////////////////////////////////
+	///////////// JOYSTICK BUTTONS /////////////////
+	////////////////////////////////////////////////
+
+	// xbox controller
+	
+	public static final int XBOX_A_BUTTON = 1;
+	public static final int XBOX_B_BUTTON = 2;
+	public static final int XBOX_X_BUTTON = 3;
+	public static final int XBOX_Y_BUTTON = 4;
+	public static final int XBOX_L_BUMPER_BUTTON = 5;
+	public static final int XBOX_R_BUMPER_BUTTON = 6;
+	public static final int XBOX_START_BUTTON = 7;
+	public static final int XBOX_BACK_BUTTON = 8;
+	public static final int XBOX_UP_BUTTON = 13;
+	public static final int XBOX_DOWN_BUTTON = 14;
+	public static final int XBOX_LEFT_BUTTON = 15;
+	public static final int XBOX_RIGHT_BUTTON = 16;
+
+	////////////////////////////////////////////////
 	//////////// CAN TALONS BELOW HERE//////////////
 	////////////////////////////////////////////////
 
