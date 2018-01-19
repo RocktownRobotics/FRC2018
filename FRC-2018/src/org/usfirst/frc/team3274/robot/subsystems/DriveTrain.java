@@ -10,10 +10,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team3274.robot.OI;
 import org.usfirst.frc.team3274.robot.RobotMap;
 import org.usfirst.frc.team3274.robot.commands.DriveWithJoystick;
+import org.usfirst.frc.team3274.robot.util.PIDTalonSRX;
 import org.usfirst.frc.team3274.robot.util.TalonSRXGroup;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 /**
  * The DriveTrain subsystem controls the robot's chassis and reads in
@@ -36,9 +36,9 @@ public class DriveTrain extends Subsystem {
 
 	// "rightMotor" and "leftMotor" are
 	// actually all three motors on the side but should act as one
-	private TalonSRX _rightMotor = new TalonSRXGroup(RobotMap.REAR_RIGHT_MOTOR,
+	private PIDTalonSRX _rightMotor = new TalonSRXGroup(RobotMap.REAR_RIGHT_MOTOR,
 			RobotMap.FRONT_RIGHT_MOTOR, RobotMap.RIGHT_MOTOR);
-	private TalonSRX _leftMotor = new TalonSRXGroup(RobotMap.FRONT_LEFT_MOTOR,
+	private PIDTalonSRX _leftMotor = new TalonSRXGroup(RobotMap.FRONT_LEFT_MOTOR,
 			RobotMap.REAR_LEFT_MOTOR, RobotMap.LEFT_MOTOR);
 
 	private Encoder rightEncoder = new Encoder(RobotMap.RIGHT_ENCODER[0], RobotMap.RIGHT_ENCODER[1],
