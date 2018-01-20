@@ -1,13 +1,15 @@
 package org.usfirst.frc.team3274.robot.util;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 /**
  * A group of TalonSRX motors.
  * 
  * @author AJ Snarr
  */
-public class TalonSRXGroup extends PIDTalonSRX {
+public class TalonSRXGroup extends WPI_TalonSRX {
 
-	private PIDTalonSRX[] motors;
+	private WPI_TalonSRX[] motors;
 
 	/**
 	 * Creates a group with the given motors.
@@ -27,13 +29,13 @@ public class TalonSRXGroup extends PIDTalonSRX {
 		super(portNums[0]);
 
 		// initialize all other motors given
-		this.motors = new PIDTalonSRX[portNums.length - 1];
+		this.motors = new WPI_TalonSRX[portNums.length - 1];
 		for (int i = 1; i < portNums.length; i++) {
-			motors[i - 1] = new PIDTalonSRX(portNums[i]);
+			motors[i - 1] = new WPI_TalonSRX(portNums[i]);
 		}
 
 		// make every motor become a slave to the first motor
-		for (PIDTalonSRX mot : this.motors) {
+		for (WPI_TalonSRX mot : this.motors) {
 			mot.follow(this);
 		}
 	}

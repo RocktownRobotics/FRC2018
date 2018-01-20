@@ -6,17 +6,7 @@ THINGS NEEDING DOING
 		
 	Add you name under Authors if you did something.
 	
-PIDTALONSRX
 
-	NOTES
-	
-		None... yet
-	
-	FUNCTIONS
-	
-		PIDTalonSRX is a TalonSRX that uses PID loops... hence PIDTalonSRX....
-		
-		Allows use of percentages for output control... I think
 	
 TALONSRXGROUP
 	
@@ -26,7 +16,7 @@ TALONSRXGROUP
 	
 	FUNCTIONS
 	
-		Allows grouping of multiple PIDTalonSRX motors into a single unit
+		Allows grouping of multiple WPI_TalonSRX motors into a single unit
 	
 		Slaves all secondary motors to the first motor. This means that anything manipulating the primary motor
 		will also run the secondary motors in the exact same manner.
