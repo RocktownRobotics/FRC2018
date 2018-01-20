@@ -3,10 +3,20 @@ package org.usfirst.frc.team3274.robot.commands.autonomous;
 import org.usfirst.frc.team3274.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * @Author Ian McGary
+ * A command. That drives. Forward. Hence the name DriveForward.
+ */
+
 public class DriveForward extends Command {
 
 	private double targetDistance;
 
+	/**
+	 * creates a new DriveForward command that drives the targetDistance.
+	 * 
+	 * @param targetDistance Distance to be traveled, in feet... hopefully....
+	 */
 	public DriveForward(double targetDistance) {
 		requires(Robot.kDriveTrain);
 
