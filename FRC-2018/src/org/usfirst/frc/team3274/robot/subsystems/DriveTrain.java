@@ -3,6 +3,7 @@ package org.usfirst.frc.team3274.robot.subsystems;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -32,6 +33,11 @@ public class DriveTrain extends Subsystem {
 	/** In inches **/
 	public static final double WHEEL_DIAMETER = 4.0;
 
+	/** PID Controller coefficients. **/
+	public static final double P_VAL = 1;
+	public static final double I_VAL = 1;
+	public static final double D_VAL = 1;
+
 	private boolean isSniperMode;
 
 	// "rightMotor" and "leftMotor" are
@@ -41,16 +47,29 @@ public class DriveTrain extends Subsystem {
 	private PIDTalonSRX _leftMotor = new TalonSRXGroup(RobotMap.FRONT_LEFT_MOTOR,
 			RobotMap.REAR_LEFT_MOTOR, RobotMap.LEFT_MOTOR);
 
-	private Encoder rightEncoder = new Encoder(RobotMap.RIGHT_ENCODER[0], RobotMap.RIGHT_ENCODER[1],
+	private Encoder _rightEncoder = new Encoder(RobotMap.RIGHT_ENCODER[0],
+			RobotMap.RIGHT_ENCODER[1], true, EncodingType.k4X);
+	private Encoder _leftEncoder = new Encoder(RobotMap.LEFT_ENCODER[0], RobotMap.LEFT_ENCODER[1],
 			true, EncodingType.k4X);
-	private Encoder leftEncoder = new Encoder(RobotMap.LEFT_ENCODER[0], RobotMap.LEFT_ENCODER[1],
-			true, EncodingType.k4X);
+
+	// Right side PID Loop motor control
+	private PIDController _rightPIDLoop = new PIDController(P_VAL, I_VAL, D_VAL, _rightEncoder,
+			_rightMotor);
+
+	// Left side PID motor control
+	private PIDController _leftPIDLoop = new PIDController(P_VAL, I_VAL, D_VAL, _leftEncoder,
+			_leftMotor);
+
+	// Creates Setpoints for the PID Loops. See Line 276-277. Note that 1 is likely
+	// not the desired value.
+	double rightSetPoint = 1;
+	double leftSetPoint = 1;
 
 	public DriveTrain() {
 
 		// Configure encoders
-		rightEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
-		leftEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
+		_rightEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
+		_leftEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
 
 		isSniperMode = true;
 
@@ -58,8 +77,8 @@ public class DriveTrain extends Subsystem {
 		distancePerPulse = (WHEEL_DIAMETER/* in */ * Math.PI)
 				/ (ENCODER_PULSES_PER_REVOLUTION * 12.0/* in/ft */);
 
-		rightEncoder.setDistancePerPulse(distancePerPulse);
-		leftEncoder.setDistancePerPulse(distancePerPulse);
+		_rightEncoder.setDistancePerPulse(distancePerPulse);
+		_leftEncoder.setDistancePerPulse(distancePerPulse);
 	}
 
 	/**
@@ -167,11 +186,11 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public int getLeftRotations() {
-		return this.leftEncoder.getRaw();
+		return this._leftEncoder.getRaw();
 	}
 
 	public int getRightRotations() {
-		return this.rightEncoder.getRaw();
+		return this._rightEncoder.getRaw();
 	}
 
 	/**
@@ -196,8 +215,8 @@ public class DriveTrain extends Subsystem {
 	 * Resets encoders to start tracking distance driven from a certain point.
 	 */
 	public void resetEncoders() {
-		rightEncoder.reset();
-		leftEncoder.reset();
+		_rightEncoder.reset();
+		_leftEncoder.reset();
 	}
 
 	/**
@@ -209,7 +228,7 @@ public class DriveTrain extends Subsystem {
 	public double getDistanceDriven() {
 		double dist;
 
-		dist = (rightEncoder.getDistance() + leftEncoder.getDistance()) / 2;
+		dist = (_rightEncoder.getDistance() + _leftEncoder.getDistance()) / 2;
 
 		return dist;
 	}
@@ -220,7 +239,7 @@ public class DriveTrain extends Subsystem {
 	 * @return
 	 */
 	public double getLeftDistance() {
-		return leftEncoder.getDistance();
+		return _leftEncoder.getDistance();
 	}
 
 	/**
@@ -229,7 +248,7 @@ public class DriveTrain extends Subsystem {
 	 * @return
 	 */
 	public double getRightDistance() {
-		return rightEncoder.getDistance();
+		return _rightEncoder.getDistance();
 	}
 
 	/**
@@ -237,7 +256,7 @@ public class DriveTrain extends Subsystem {
 	 *         drivetrain.
 	 */
 	public Encoder getLeftEncoder() {
-		return leftEncoder;
+		return _leftEncoder;
 	}
 
 	/**
@@ -245,7 +264,28 @@ public class DriveTrain extends Subsystem {
 	 *         drivetrain.
 	 */
 	public Encoder getRightEncoder() {
-		return rightEncoder;
+		return _rightEncoder;
+
+	}
+
+	/**
+	 * Enables the PID Loop motor controls.
+	 */
+	public void enablePID() {
+		_leftPIDLoop.enable();
+		_rightPIDLoop.enable();
+		_rightPIDLoop.setSetpoint(rightSetPoint);
+		_leftPIDLoop.setSetpoint(leftSetPoint);
+
+	}
+
+	/**
+	 * Disables the PID Loop motor controls.
+	 */
+
+	public void disablePID() {
+		_leftPIDLoop.disable();
+		_rightPIDLoop.disable();
 	}
 
 	//
