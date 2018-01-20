@@ -139,5 +139,7 @@ public class Robot extends TimedRobot {
 	private void log() {
 		// For example:
 		// SmartDashboard.putNumber("Shooter Speed", shooter.getRPM());
+		SmartDashboard.putNumber("leftEncoder", kDriveTrain.getLeftDistance());
+		SmartDashboard.putNumber("rightEncoder", kDriveTrain.getRightDistance());
 	}
 }
