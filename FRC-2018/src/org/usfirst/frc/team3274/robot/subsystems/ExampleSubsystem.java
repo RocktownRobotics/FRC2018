@@ -5,6 +5,10 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+
+//Ideally, you should create a new section in Documentation and Help regarding whatever new subsystem
+//you presumably copied this to make. If you didn't copy this as a base for a new subsystem, ignore this
+//comment
 package org.usfirst.frc.team3274.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;

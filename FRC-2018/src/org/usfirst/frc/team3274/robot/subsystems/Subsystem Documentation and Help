@@ -1,0 +1,74 @@
+Author: Ian McGary
+
+THINGS NEEDING DOING
+
+	Check this document for accuracy... Grammar nazism welcom.
+
+	Add your name under Authors if yo changed something
+
+DRIVETRAIN
+
+	NOTES
+	
+		Right Motor power needs to be set to the negative of whatever Left Motor is to drive in a straight line. 
+	
+		Positive Left Motor power (and negative right motor power) results in the robot driving "forward", irrelevant as that declaration is....
+	
+	FUNCTIONS
+	
+		Declares the number of Encoder pulses per wheel rotation
+		
+		Assigns:
+			Sniper Mode Modifier
+			Wheel Diameter
+			P, I, and D ratios for PID loop motor controls
+			Setpoints for PID loop motor controls
+			
+		Limits motor power to a range between -1 and 1, since that is their maximum value in either direction
+		
+		Assigns a Controller Deadzone (deadband)
+		
+		Slaves Side Motors into Left and Right motor groups, to be controlled as a single motor despite being
+		three motors each
+		
+		Creates Snipermode (When active, reduces movement speed to allow finer control)
+		
+		Creates PID Loops for motor control
+		
+		Sets a default command (Tank Drive w/ XBOX style controller)
+		
+		Creates code for Tank Driving and Sniper Mode
+		
+		Creates functions to get Left and Right Encoder values, and a function to get the average of the two
+		
+		Creates a stop function
+		
+		Creates functions to enable and disable PID loops with assigned setpoint variables.
+
+DRIVEPNEUMATICS
+
+	NOTES
+	
+	None... yet.
+	
+	FUNCTIONS
+	
+	Creates functions to shift gears w/ pneumatics
+	
+	Creates a function to deactivate the pneumatics
+
+ROBOTCOMPRESSOR
+
+	NOTES
+	
+	None... yet.
+	
+	FUNCTIONS
+	
+	Creates a Compressor object
+	
+	Creates Start and Stop functions for the compressor
+
+EXAMPLESUBSYSTEM
+
+It's an example... it exists solely to be copypasta'd as an aid in creating new subsystems.
