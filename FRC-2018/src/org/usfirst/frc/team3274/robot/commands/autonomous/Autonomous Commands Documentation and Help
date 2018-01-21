@@ -6,14 +6,24 @@ THINGS NEEDING DOING
 	
 	Add your name under Authors if you changed something
 	
-	Check that this document is accurat.... grammar nazism welcome
+	Check that this document is accurate... grammatical corrections, welcome
+	
+	Fix DriveForward to reset the encoder values when called/initialized
 	
 DRIVEFORWARD
 
 	NOTES
 	
+		Is intended to accept a targetDistance in feet. This needs testing.
+		
+		Encoders need to be reset when initialized.
+	
 	FUNCTIONS
 
+		When called with a targetDistance variable, enables Left and Right PID loops until targetDistance is 
+		reached
+		
+		Drives forward in a straight line
 
 SHIFTDOWNFORTIME
 

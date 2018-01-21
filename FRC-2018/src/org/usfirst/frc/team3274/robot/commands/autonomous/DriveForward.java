@@ -19,6 +19,7 @@ public class DriveForward extends Command {
 	 */
 	public DriveForward(double targetDistance) {
 		requires(Robot.kDriveTrain);
+		this.targetDistance = targetDistance;
 
 	}
 

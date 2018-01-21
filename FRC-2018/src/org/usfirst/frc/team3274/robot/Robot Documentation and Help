@@ -3,24 +3,44 @@ Author: Ian McGary
 THINGS NEEDING DOING
 
 	Finish this document
-	Check this document for accurate... grammar nazism welcome
+	Check this document. For accuracy... grammatical corrections welcome.
 	Add your name under Authors if you changed something
 
 OI
 
 	NOTES
 	
+		Remarkably thorough comments within the class
+	
 	FUNCTIONS
-
+	
+		This class is the glue that binds the controls on the physical operator
+ * interface to the commands and command groups that allow control of the robot.
+ 
+ 		Establishes control layouts and assigns all the various commands to a button or set of buttons or 
+ 		joysticks or whatever is chosen
 
 ROBOT
 
 	NOTES
 	
+		None... yet
+	
 	FUNCTIONS
+	
+		Contains the functions that regulate the robot's operation. Triggers the Autonomous, Initialize, and TeleOp
+		stages, etc.
+		
+		Contains the Log command, that transmits information to the Driver Station.
 
 ROBOTMAP
 
 	NOTES
 	
+		None... yet
+	
 	FUNCTIONS
+	
+		Sets the I/O port numbers and names for all the things. For example, declares that whatever is on port #2
+		is the Front Right Motor. This means that the rest of the code references Front Right Motor instead of
+		Port #2, and makes it easy to switch the motor to another port.
