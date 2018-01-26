@@ -27,6 +27,7 @@ public class DriveForward extends Command {
 	protected void initialize() {
 		// enable PID loop and run the motors to drive forward.
 		Robot.kDriveTrain.enablePID();
+		Robot.kDriveTrain.resetEncoders();
 	}
 
 	@Override

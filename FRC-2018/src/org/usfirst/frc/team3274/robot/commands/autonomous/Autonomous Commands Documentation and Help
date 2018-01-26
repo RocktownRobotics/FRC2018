@@ -16,7 +16,7 @@ DRIVEFORWARD
 	
 		Is intended to accept a targetDistance in feet. This needs testing.
 		
-		Encoders need to be reset when initialized.
+		Encoders need to be reset when initialized. (Should be done now)
 	
 	FUNCTIONS
 
