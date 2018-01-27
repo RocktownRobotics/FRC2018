@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveForward extends Command {
 
 	public static final double NORMAL_SPEED = 0.2;
-	public static final double SLOW_SPEED = 0.13;
+	public static final double SLOW_SPEED = 0.1;
 
 	public static final double SLOW_DISTANCE = 1; // offset in ft
 

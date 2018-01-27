@@ -94,7 +94,7 @@ public class Robot extends TimedRobot {
 		// m_autonomousCommand.start();
 		// }
 
-		new DriveForward(4).start();
+		new DriveForward(6).start();
 	}
 
 	/**

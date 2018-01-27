@@ -25,7 +25,7 @@ import com.kauailabs.navx.frc.AHRS;
  */
 public class DriveTrain extends Subsystem {
 
-	public static final int ENCODER_PULSES_PER_REVOLUTION = 1400;
+	public static final double ENCODER_PULSES_PER_REVOLUTION = 1343;
 
 	/**
 	 * Normal power is multiplied by this value when in enter sniper mode. Greater
