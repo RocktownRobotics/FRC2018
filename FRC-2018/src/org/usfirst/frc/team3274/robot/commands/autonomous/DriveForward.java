@@ -12,11 +12,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveForward extends Command {
 
 	public static final double NORMAL_SPEED = 0.2;
-	public static final double SLOW_SPEED = 0.1;
+	public static final double SLOW_SPEED = 0.13;
 
 	public static final double SLOW_DISTANCE = 1; // offset in ft
-
-	public static double offsetAngle = 0;
 
 	private double targetDistance;
 
@@ -34,40 +32,32 @@ public class DriveForward extends Command {
 
 	@Override
 	protected void initialize() {
-		this.offsetAngle = Robot.kDriveTrain.getYaw();
+		Robot.kDriveTrain.resetYaw();
 	}
 
 	@Override
 	protected void execute() {
 
-		double gyroError = Robot.kDriveTrain.getYaw() - offsetAngle;
+		double determinedSpeed;
+
+		if (Robot.kDriveTrain.getDistanceDriven() < targetDistance - SLOW_DISTANCE) {
+			determinedSpeed = NORMAL_SPEED;
+
+		} else {
+			determinedSpeed = SLOW_SPEED;
+		}
+
+		// no offset needed in error because it is determined at beginning.
+		double gyroError = Robot.kDriveTrain.getYaw();
 		double gyroTurn = gyroError * Robot.kDriveTrain.Gyro_KP;
 
-		gyroTurn = equalize(gyroTurn);
+		double leftPower = determinedSpeed - gyroTurn;
+		double rightPower = determinedSpeed + gyroTurn;
 
-		double leftPowerRaw = NORMAL_SPEED - gyroTurn;
-		double rightPowerRaw = NORMAL_SPEED + gyroTurn;
+		SmartDashboard.putNumber("leftRaw", leftPower);
+		SmartDashboard.putNumber("rightRaw", rightPower);
 
-		double leftPower;
-		double rightPower;
-
-		leftPower = -leftPowerRaw;
-		rightPower = rightPowerRaw;
-
-		SmartDashboard.putNumber("leftRaw", leftPowerRaw);
-		SmartDashboard.putNumber("rightRaw", rightPowerRaw);
-
-		Robot.kDriveTrain.tankDrive(leftPower, rightPower, false);
-	}
-
-	/**
-	 * Takes a number in degrees and converts it to power.
-	 * 
-	 * @param rawPower
-	 * @return
-	 */
-	private double equalize(double rawPower) {
-		return ((rawPower % 360) + 360) % 360;
+		Robot.kDriveTrain.tankDrive(-leftPower, rightPower, false);
 	}
 
 	@Override

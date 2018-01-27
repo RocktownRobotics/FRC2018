@@ -25,7 +25,7 @@ import com.kauailabs.navx.frc.AHRS;
  */
 public class DriveTrain extends Subsystem {
 
-	public static final int ENCODER_PULSES_PER_REVOLUTION = 256;
+	public static final int ENCODER_PULSES_PER_REVOLUTION = 1400;
 
 	/**
 	 * Normal power is multiplied by this value when in enter sniper mode. Greater
@@ -37,7 +37,7 @@ public class DriveTrain extends Subsystem {
 	public static final double WHEEL_DIAMETER = 4.0;
 
 	/** PID Controller coefficients. **/
-	public static final double Gyro_KP = .1;
+	public static final double Gyro_KP = .01;
 
 	private boolean isSniperMode;
 
@@ -268,5 +268,13 @@ public class DriveTrain extends Subsystem {
 	 */
 	public double getYaw() {
 		return navX.getYaw();
+	}
+
+	/**
+	 * Resets Gyro Yaw to 0.
+	 */
+
+	public void resetYaw() {
+		navX.zeroYaw();
 	}
 }

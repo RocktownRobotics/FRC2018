@@ -18,6 +18,7 @@ public class DriveForwardLegacy extends Command {
 
 	@Override
 	protected void initialize() {
+
 	}
 
 	@Override
