@@ -160,8 +160,8 @@ public class DriveTrain extends Subsystem {
 	 *            account for false input from joysticks.
 	 */
 	public void tankDrive(double leftPower, double rightPower, boolean applyDeadband) {
-		double lJoyStickVal = 0.0;
-		double rJoyStickVal = 0.0;
+		double lJoyStickVal = leftPower;
+		double rJoyStickVal = rightPower;
 
 		if (applyDeadband) {
 			lJoyStickVal = applyDeadband(leftPower, OI.JOYSTICK_DEADZONE);
