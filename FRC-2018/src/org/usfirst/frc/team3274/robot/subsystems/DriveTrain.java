@@ -1,10 +1,12 @@
 package org.usfirst.frc.team3274.robot.subsystems;
 
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSourceType;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -15,6 +17,7 @@ import org.usfirst.frc.team3274.robot.util.TalonSRXGroup;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.kauailabs.navx.frc.AHRS;
 
 /**
  * The DriveTrain subsystem controls the robot's chassis and reads in
@@ -34,36 +37,23 @@ public class DriveTrain extends Subsystem {
 	public static final double WHEEL_DIAMETER = 4.0;
 
 	/** PID Controller coefficients. **/
-	public static final double P_VAL = 1;
-	public static final double I_VAL = 1;
-	public static final double D_VAL = 1;
+	public static final double Gyro_KP = .1;
 
 	private boolean isSniperMode;
 
 	// "rightMotor" and "leftMotor" are
 	// actually all three motors on the side but should act as one
-	private WPI_TalonSRX _rightMotor = new TalonSRXGroup(RobotMap.REAR_RIGHT_MOTOR,
-			RobotMap.FRONT_RIGHT_MOTOR, RobotMap.RIGHT_MOTOR);
-	private WPI_TalonSRX _leftMotor = new TalonSRXGroup(RobotMap.FRONT_LEFT_MOTOR,
-			RobotMap.REAR_LEFT_MOTOR, RobotMap.LEFT_MOTOR);
+	private WPI_TalonSRX _rightMotor = new TalonSRXGroup(RobotMap.REAR_RIGHT_MOTOR, RobotMap.FRONT_RIGHT_MOTOR,
+			RobotMap.RIGHT_MOTOR);
+	private WPI_TalonSRX _leftMotor = new TalonSRXGroup(RobotMap.FRONT_LEFT_MOTOR, RobotMap.REAR_LEFT_MOTOR,
+			RobotMap.LEFT_MOTOR);
 
-	private Encoder _rightEncoder = new Encoder(RobotMap.RIGHT_ENCODER[0],
-			RobotMap.RIGHT_ENCODER[1], true, EncodingType.k4X);
-	private Encoder _leftEncoder = new Encoder(RobotMap.LEFT_ENCODER[0], RobotMap.LEFT_ENCODER[1],
-			true, EncodingType.k4X);
+	private Encoder _rightEncoder = new Encoder(RobotMap.RIGHT_ENCODER[0], RobotMap.RIGHT_ENCODER[1], true,
+			EncodingType.k4X);
+	private Encoder _leftEncoder = new Encoder(RobotMap.LEFT_ENCODER[0], RobotMap.LEFT_ENCODER[1], true,
+			EncodingType.k4X);
 
-	// Right side PID Loop motor control
-	private PIDController _rightPIDLoop = new PIDController(P_VAL, I_VAL, D_VAL, _rightEncoder,
-			_rightMotor);
-
-	// Left side PID motor control
-	private PIDController _leftPIDLoop = new PIDController(P_VAL, I_VAL, D_VAL, _leftEncoder,
-			_leftMotor);
-
-	// Creates Setpoints for the PID Loops. See Line 276-277. Note that 1 is likely
-	// not the desired value.
-	double rightSetPoint = 1;
-	double leftSetPoint = 1;
+	private AHRS navX;
 
 	public DriveTrain() {
 
@@ -71,14 +61,20 @@ public class DriveTrain extends Subsystem {
 		_rightEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
 		_leftEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
 
-		isSniperMode = true;
+		isSniperMode = false;
 
 		double distancePerPulse; // in feet
-		distancePerPulse = (WHEEL_DIAMETER/* in */ * Math.PI)
-				/ (ENCODER_PULSES_PER_REVOLUTION * 12.0/* in/ft */);
+		distancePerPulse = (WHEEL_DIAMETER/* in */ * Math.PI) / (ENCODER_PULSES_PER_REVOLUTION * 12.0/* in/ft */);
 
 		_rightEncoder.setDistancePerPulse(distancePerPulse);
 		_leftEncoder.setDistancePerPulse(distancePerPulse);
+
+		// configure navX
+		try {
+			navX = new AHRS(SerialPort.Port.kUSB);
+		} catch (RuntimeException ex) {
+			DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), true);
+		}
 	}
 
 	/**
@@ -135,8 +131,7 @@ public class DriveTrain extends Subsystem {
 	 *            Xbox controller to use as the input for tank drive.
 	 */
 	public void tankDrive(Joystick joy) {
-		this.tankDrive(joy.getRawAxis(-RobotMap.XBOX_LEFT_Y_AXIS),
-				joy.getRawAxis(-RobotMap.XBOX_RIGHT_X_AXIS));
+		this.tankDrive(joy.getRawAxis(-RobotMap.XBOX_LEFT_Y_AXIS), joy.getRawAxis(-RobotMap.XBOX_RIGHT_X_AXIS));
 	}
 
 	/**
@@ -269,30 +264,9 @@ public class DriveTrain extends Subsystem {
 	}
 
 	/**
-	 * Enables the PID Loop motor controls.
+	 * @return The current angle of the drivetrain.
 	 */
-	public void enablePID() {
-		_leftPIDLoop.enable();
-		_rightPIDLoop.enable();
-		_rightPIDLoop.setSetpoint(rightSetPoint);
-		_leftPIDLoop.setSetpoint(leftSetPoint);
-
+	public double getYaw() {
+		return navX.getYaw();
 	}
-
-	/**
-	 * Disables the PID Loop motor controls.
-	 */
-
-	public void disablePID() {
-		_leftPIDLoop.disable();
-		_rightPIDLoop.disable();
-	}
-
-	//
-	// /**
-	// * @return The current angle of the drivetrain.
-	// */
-	// public double getAngle() {
-	// return gyro.getAngle();
-	// }
 }

@@ -14,6 +14,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team3274.robot.commands.ExampleCommand;
+import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForward;
+import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForwardLegacy;
 import org.usfirst.frc.team3274.robot.subsystems.DrivePneumatics;
 import org.usfirst.frc.team3274.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3274.robot.subsystems.ExampleSubsystem;
@@ -32,7 +34,7 @@ public class Robot extends TimedRobot {
 	public static final DrivePneumatics kDrivePneumatics = new DrivePneumatics();
 	public static final DriveTrain kDriveTrain = new DriveTrain();
 	public static final RobotCompressor kCompressor = new RobotCompressor();
-	public static OI m_oi;
+	// public static OI m_oi;
 
 	private Command m_autonomousCommand;
 	private SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -43,7 +45,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
-		m_oi = new OI(OI.ControllerSetup.SINGLE_XBOX_CONTROLLER);
+		// m_oi = new OI(OI.ControllerSetup.SINGLE_XBOX_CONTROLLER);
 		m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
@@ -88,9 +90,11 @@ public class Robot extends TimedRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.start();
-		}
+		// if (m_autonomousCommand != null) {
+		// m_autonomousCommand.start();
+		// }
+
+		new DriveForwardLegacy(4).start();
 	}
 
 	/**
@@ -141,5 +145,7 @@ public class Robot extends TimedRobot {
 		// SmartDashboard.putNumber("Shooter Speed", shooter.getRPM());
 		SmartDashboard.putNumber("leftEncoder", kDriveTrain.getLeftDistance());
 		SmartDashboard.putNumber("rightEncoder", kDriveTrain.getRightDistance());
+
+		SmartDashboard.putNumber("gyro_yaw", kDriveTrain.getYaw());
 	}
 }

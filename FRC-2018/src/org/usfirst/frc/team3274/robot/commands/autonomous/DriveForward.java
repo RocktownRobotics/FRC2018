@@ -2,60 +2,82 @@ package org.usfirst.frc.team3274.robot.commands.autonomous;
 
 import org.usfirst.frc.team3274.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * @Author Ian McGary
- * A command. That drives. Forward. Hence the name DriveForward.
+ * @Author Ian McGary A command. That drives. Forward. Hence the name
+ *         DriveForward.
  */
 
 public class DriveForward extends Command {
+
+	public static final double NORMAL_SPEED = 0.2;
+	public static final double SLOW_SPEED = 0.1;
+
+	public static final double SLOW_DISTANCE = 1; // offset in ft
+
+	public static double offsetAngle = 0;
 
 	private double targetDistance;
 
 	/**
 	 * creates a new DriveForward command that drives the targetDistance.
 	 * 
-	 * @param targetDistance Distance to be traveled, in feet... hopefully....
+	 * @param targetDistance
+	 *            Distance to be traveled, in feet... hopefully....
 	 */
 	public DriveForward(double targetDistance) {
 		requires(Robot.kDriveTrain);
 		this.targetDistance = targetDistance;
-
-	}
-
-	@Override
-	protected void initialize() {
-		// enable PID loop and run the motors to drive forward.
-		Robot.kDriveTrain.enablePID();
 		Robot.kDriveTrain.resetEncoders();
 	}
 
 	@Override
+	protected void initialize() {
+		this.offsetAngle = Robot.kDriveTrain.getYaw();
+	}
+
+	@Override
 	protected void execute() {
-		// PIDLoop runs everything in the background on a separate thread, thus this is
-		// superfluous and empty.
+
+		double gyroError = Robot.kDriveTrain.getYaw() - offsetAngle;
+		double gyroTurn = gyroError * Robot.kDriveTrain.Gyro_KP;
+
+		gyroTurn = equalize(gyroTurn);
+
+		double leftPowerRaw = NORMAL_SPEED - gyroTurn;
+		double rightPowerRaw = NORMAL_SPEED + gyroTurn;
+
+		double leftPower;
+		double rightPower;
+
+		leftPower = -leftPowerRaw;
+		rightPower = rightPowerRaw;
+
+		SmartDashboard.putNumber("leftRaw", leftPowerRaw);
+		SmartDashboard.putNumber("rightRaw", rightPowerRaw);
+
+		Robot.kDriveTrain.tankDrive(leftPower, rightPower, false);
+	}
+
+	/**
+	 * Takes a number in degrees and converts it to power.
+	 * 
+	 * @param rawPower
+	 * @return
+	 */
+	private double equalize(double rawPower) {
+		return ((rawPower % 360) + 360) % 360;
 	}
 
 	@Override
 	protected void end() {
-		// turn everything off.
-		Robot.kDriveTrain.disablePID();
+		Robot.kDriveTrain.tankDrive(0, 0, false);
 	}
 
 	@Override
 	protected boolean isFinished() {
-		// Ends the command after target distance is achieved.
-		if (targetDistance <= Robot.kDriveTrain.getDistanceDriven())
-			return false;
-		else
-			return true;
-
-		/*
-		 * Alternatively, simply return "targetDistance >=
-		 * Robot.kDriveTrain.getDistanceDriven()", since targetDistance >=
-		 * Robot.kDriveTrain.getDistanceDriven() is a boolean. Either works, the one
-		 * used is easier to read.
-		 */
+		return Robot.kDriveTrain.getDistanceDriven() >= targetDistance;
 	}
 
 }
