@@ -3,6 +3,7 @@ package org.usfirst.frc.team3274.robot.commands.autonomous;
 import org.usfirst.frc.team3274.robot.Robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -15,7 +16,7 @@ public class TurnRobot extends Command {
 
 	public static final double TURN_POWER = 0.3;
 
-	public static final double SLOW_TURN_POWER = 0.15;
+	public static final double SLOW_TURN_POWER = 0.12;
 	public static final double SLOW_ANGLE = 35;
 
 	private double turnAngle;
@@ -30,12 +31,11 @@ public class TurnRobot extends Command {
 	public TurnRobot(double targetAngle) {
 		requires(Robot.kDriveTrain);
 		this.turnAngle = targetAngle;
-		Robot.kDriveTrain.resetYaw();
 	}
 
 	@Override
 	protected void initialize() {
-		DriverStation.reportWarning("init", false);
+		DriverStation.reportWarning("initTurn", false);
 		Robot.kDriveTrain.resetYaw();
 	}
 
@@ -48,7 +48,7 @@ public class TurnRobot extends Command {
 
 		double unscaledPower;
 
-		System.out.println("exe");
+		System.out.println("exe_turn");
 		if (Math.abs(Robot.kDriveTrain.getYaw()) >= (Math.abs(turnAngle) - SLOW_ANGLE)) {
 			unscaledPower = SLOW_TURN_POWER;
 		} else {
@@ -76,7 +76,7 @@ public class TurnRobot extends Command {
 	@Override
 	protected void end() {
 		Robot.kDriveTrain.tankDrive(0, 0, false);
-		DriverStation.reportWarning("end", false);
+		DriverStation.reportWarning("endTurn", false);
 	}
 
 	@Override

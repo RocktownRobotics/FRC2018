@@ -1,6 +1,8 @@
 package org.usfirst.frc.team3274.robot.commands.autonomous;
 
 import org.usfirst.frc.team3274.robot.Robot;
+
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -27,17 +29,20 @@ public class DriveForward extends Command {
 	public DriveForward(double targetDistance) {
 		requires(Robot.kDriveTrain);
 		this.targetDistance = targetDistance;
-		Robot.kDriveTrain.resetEncoders();
 	}
 
 	@Override
 	protected void initialize() {
 		Robot.kDriveTrain.resetYaw();
+		Robot.kDriveTrain.resetEncoders();
+		DriverStation.reportWarning("initDriveForward", false);
 	}
 
 	@Override
 	protected void execute() {
 
+		System.out.println("exe_driveforward");
+		
 		double determinedSpeed;
 
 		if (Robot.kDriveTrain.getDistanceDriven() < targetDistance - SLOW_DISTANCE) {
@@ -60,6 +65,8 @@ public class DriveForward extends Command {
 	@Override
 	protected void end() {
 		Robot.kDriveTrain.tankDrive(0, 0, false);
+		Robot.kDriveTrain.resetYaw();
+		DriverStation.reportWarning("endDriveForward", false);
 	}
 
 	@Override

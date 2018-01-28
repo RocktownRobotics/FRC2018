@@ -8,10 +8,10 @@ public class TestAuto extends CommandGroup {
 	 * WE DIDN'T BREAK ANYTHING
 	 */
 	public TestAuto() {
-		
-	
 
-		 addSequential(new DriveForward(3));
-		 addSequential(new TurnRobot(90));
+		addSequential(new DriveForward(22));
+		addSequential(new TurnRobot(90));
+		addSequential(new DriveForward(3));
+		addSequential(new TurnRobot(-90));
 	}
 }

@@ -9,8 +9,10 @@ import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team3274.robot.OI;
+import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.RobotMap;
 import org.usfirst.frc.team3274.robot.commands.DriveWithJoystick;
 import org.usfirst.frc.team3274.robot.util.TalonSRXGroup;
@@ -212,6 +214,20 @@ public class DriveTrain extends Subsystem {
 	public void resetEncoders() {
 		_rightEncoder.reset();
 		_leftEncoder.reset();
+
+		double time = 0;
+
+		// wait for encoders to finish resetting
+		while (Robot.itself.isEnabled() && Math.abs(_rightEncoder.getDistance()) > 0.15
+				&& Math.abs(_leftEncoder.getDistance()) > 0.15) {
+
+			Timer.delay(0.01);
+
+			SmartDashboard.putNumber("leftEncoder", this.getLeftDistance());
+			SmartDashboard.putNumber("rightEncoder", this.getRightDistance());
+			;
+			SmartDashboard.putNumber("encoder_reset_seconds", time += 0.01);
+		}
 	}
 
 	/**
@@ -275,6 +291,16 @@ public class DriveTrain extends Subsystem {
 	 */
 
 	public void resetYaw() {
+
+		double time = 0;
+
 		navX.zeroYaw();
+
+		// wait for yaw to reset fully
+		while (Robot.itself.isEnabled() && Math.abs(this.getYaw()) > 0.8) {
+			Timer.delay(0.01);
+			SmartDashboard.putNumber("gyro_yaw", this.getYaw());
+			SmartDashboard.putNumber("gyro_reset_seconds", time += 0.01);
+		}
 	}
 }

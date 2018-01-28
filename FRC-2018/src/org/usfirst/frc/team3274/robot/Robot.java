@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team3274.robot.commands.ExampleCommand;
+import org.usfirst.frc.team3274.robot.commands.autonomous.TestAuto;
 import org.usfirst.frc.team3274.robot.commands.autonomous.TurnRobot;
 import org.usfirst.frc.team3274.robot.subsystems.DrivePneumatics;
 import org.usfirst.frc.team3274.robot.subsystems.DriveTrain;
@@ -35,6 +36,9 @@ public class Robot extends TimedRobot {
 	public static final RobotCompressor kCompressor = new RobotCompressor();
 	// public static OI m_oi;
 
+	// for checking when the robot is running
+	public static Robot itself;
+
 	private Command m_autonomousCommand;
 	private SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -48,6 +52,8 @@ public class Robot extends TimedRobot {
 		m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
+
+		Robot.itself = this;
 	}
 
 	/**
@@ -92,8 +98,8 @@ public class Robot extends TimedRobot {
 		// if (m_autonomousCommand != null) {
 		// m_autonomousCommand.start();
 		// }
-	
-		new TurnRobot(-90).start();
+
+		new TestAuto().start();
 	}
 
 	/**
