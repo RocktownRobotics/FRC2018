@@ -14,9 +14,8 @@ DRIVEFORWARD
 
 	NOTES
 	
-		Is intended to accept a targetDistance in feet. This needs testing.
+		Is intended to accept a targetDistance in feet.
 		
-		Encoders need to be reset when initialized. (Should be done now)
 	
 	FUNCTIONS
 
@@ -24,6 +23,18 @@ DRIVEFORWARD
 		reached
 		
 		Drives forward in a straight line
+		
+TURNROBOT
+
+	NOTES
+	
+		Accepts a targetAngle, in degrees
+		
+		Positive targetAngle turns right, negatives turn left. Don't go over 180 degrees either way
+		
+	FUNCTIONS
+	
+		It... turns the robot.... That's way it's called Turn Robot....
 
 SHIFTDOWNFORTIME
 

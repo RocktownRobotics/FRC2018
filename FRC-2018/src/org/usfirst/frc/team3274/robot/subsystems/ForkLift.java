@@ -22,18 +22,12 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
 /**
- * The DriveTrain subsystem controls the robot's chassis and reads in
- * information about it's speed and position.
+ * The DriveTrain subsystem controls the robot's forklift assembly
  */
-public class DriveTrain extends Subsystem {
+public class ForkLift extends Subsystem {
 
 	public static final double ENCODER_PULSES_PER_REVOLUTION = 1343;
 
-	/**
-	 * Normal power is multiplied by this value when in enter sniper mode. Greater
-	 * than 0 and less than 1.
-	 */
-	private static final double SNIPER_MODE_MULTIPLIER = 0.5;
 
 	/** In inches **/
 	public static final double WHEEL_DIAMETER = 6.0;
@@ -57,7 +51,7 @@ public class DriveTrain extends Subsystem {
 
 	private AHRS navX;
 
-	public DriveTrain() {
+	public ForkLift() {
 
 		// Configure encoders
 		_rightEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
