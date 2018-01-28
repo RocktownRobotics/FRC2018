@@ -8,7 +8,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ClawPistons extends Subsystem {
 	private Solenoid reverseShifter = new Solenoid(RobotMap.shifterReverse);
 	private Solenoid forwardShifter = new Solenoid(RobotMap.shifterForward);
+	
+	private boolean clawClosed;
+	
 
+	
 	// DoubleSolenoid gearShifter = new DoubleSolenoid(RobotMap.shifterForward,
 	// RobotMap.shifterReverse);
 	//
@@ -16,6 +20,18 @@ public class ClawPistons extends Subsystem {
 	// // May need to switch lowGear and HighGear values (kForward/kReverse)
 	// DoubleSolenoid.Value lowGear = DoubleSolenoid.Value.kForward;
 	// DoubleSolenoid.Value highGear = DoubleSolenoid.Value.kReverse;
+
+	public Solenoid getReverseShifter() {
+		return reverseShifter;
+	}
+
+	public Solenoid getForwardShifter() {
+		return forwardShifter;
+	}
+
+	public boolean isClawClosed() {
+		return clawClosed;
+	}
 
 	public ClawPistons() {
 		// LiveWindow.addActuator("DrivePnumatics", "GearShifter", gearShifter);

@@ -10,8 +10,8 @@ THINGS NEEDING DOING
 	
 	ClawPistons need to become more than copypasta from DrivePneumatics
 	
-	ClawPistons need to get a IsClawClosed Boolean for Forklift to work properly
-	
+	ClawPistons needs to get open and close commands that set IsClawClosed to true or false
+
 	ForkLift TeleOp functions need to be made.
 	
 	Forklift needs a default command

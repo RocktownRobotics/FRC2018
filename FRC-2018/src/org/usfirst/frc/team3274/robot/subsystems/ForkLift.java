@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * 
+ * Controls all DC motors and encoders for the forklift assembly
  */
 public class ForkLift extends Subsystem {
 
@@ -39,10 +39,10 @@ public class ForkLift extends Subsystem {
 	 *            be handled in the eject code.
 	 * 
 	 * @param thrustTime
-	 *            the time to run the ejection motors
+	 *            the time to run the ejection motors, in seconds
 	 */
 	public void eject(double ejectSpeed, double thrustTime) {
-if(IsClawClosed = true) {
+if(Robot.kClawPistons.isClawClosed() == true) {
 		this.leftClaw.set(ejectSpeed);
 		this.rightClaw.set(ejectSpeed);
 		Timer.delay(thrustTime);
