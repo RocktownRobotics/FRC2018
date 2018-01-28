@@ -22,6 +22,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
 /**
+ * 
+ * @author Ian McGary
  * The DriveTrain subsystem controls the robot's forklift assembly
  */
 public class ForkLift extends Subsystem {
@@ -32,56 +34,31 @@ public class ForkLift extends Subsystem {
 	/** In inches **/
 	public static final double WHEEL_DIAMETER = 6.0;
 
-	/** PID Controller coefficients. **/
-	public static final double Gyro_KP = .01;
 
-	private boolean isSniperMode;
 
-	// "rightMotor" and "leftMotor" are
-	// actually all three motors on the side but should act as one
-	private WPI_TalonSRX _rightMotor = new TalonSRXGroup(RobotMap.REAR_RIGHT_MOTOR, RobotMap.FRONT_RIGHT_MOTOR,
-			RobotMap.RIGHT_MOTOR);
-	private WPI_TalonSRX _leftMotor = new TalonSRXGroup(RobotMap.FRONT_LEFT_MOTOR, RobotMap.REAR_LEFT_MOTOR,
-			RobotMap.LEFT_MOTOR);
+	// creates _liftMotor group, running both forklift belt motors as one motor.
+	private WPI_TalonSRX _liftMotor = new TalonSRXGroup(RobotMap.LIFT_MOTOR_LEFT, RobotMap.LIFT_MOTOR_RIGHT);
 
-	private Encoder _rightEncoder = new Encoder(RobotMap.RIGHT_ENCODER[0], RobotMap.RIGHT_ENCODER[1], true,
-			EncodingType.k4X);
-	private Encoder _leftEncoder = new Encoder(RobotMap.LEFT_ENCODER[0], RobotMap.LEFT_ENCODER[1], true,
+	private Encoder _liftEncoder = new Encoder(RobotMap.LIFT_ENCODER[0], RobotMap.LIFT_ENCODER[1], true,
 			EncodingType.k4X);
 
-	private AHRS navX;
 
 	public ForkLift() {
 
 		// Configure encoders
-		_rightEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
-		_leftEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
+		_liftEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
 
-		isSniperMode = false;
 
 		double distancePerPulse; // in feet
 		distancePerPulse = (WHEEL_DIAMETER/* in */ * Math.PI) / (ENCODER_PULSES_PER_REVOLUTION * 12.0/* in/ft */);
 
-		_rightEncoder.setDistancePerPulse(distancePerPulse);
-		_leftEncoder.setDistancePerPulse(distancePerPulse);
+		_liftEncoder.setDistancePerPulse(distancePerPulse);
 
 		// configure navX
-		try {
-			navX = new AHRS(SerialPort.Port.kUSB);
-		} catch (RuntimeException ex) {
-			DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), true);
-		}
+	
 	}
 
-	/**
-	 * When other commands aren't using the drivetrain, allow tank drive with the
-	 * joystick.
-	 */
-	@Override
-	public void initDefaultCommand() {
-		setDefaultCommand(new DriveWithJoystick());
-	}
-
+	
 	/**
 	 * Limit motor values to the -1.0 to +1.0 range.
 	 */
@@ -124,10 +101,10 @@ public class ForkLift extends Subsystem {
 	 * side forward with another stick.
 	 * 
 	 * @param joy
-	 *            Xbox controller to use as the input for tank drive.
+	 *            Xbox controller to use as the input for lift control.
 	 */
-	public void tankDrive(Joystick joy) {
-		this.tankDrive(joy.getRawAxis(-RobotMap.XBOX_LEFT_Y_AXIS), joy.getRawAxis(-RobotMap.XBOX_RIGHT_X_AXIS));
+	public void LiftControl(Joystick joy) {
+		this.LiftControl(joy.getRawAxis(-RobotMap.XBOX_RIGHT_Y_AXIS));
 	}
 
 	/**
@@ -139,8 +116,8 @@ public class ForkLift extends Subsystem {
 	 * @param rightAxis
 	 *            right stick y-axis (or power between -1 and 1)
 	 */
-	public void tankDrive(double leftAxis, double rightAxis) {
-		tankDrive(-leftAxis, -rightAxis, true);
+	public void LiftControl(double ControlStick) {
+		LiftControl(-ControlStick);
 	}
 
 	/**
@@ -164,11 +141,6 @@ public class ForkLift extends Subsystem {
 			rJoyStickVal = applyDeadband(rightPower, OI.JOYSTICK_DEADZONE);
 		}
 
-		// used for fine movements
-		if (isSniperMode) {
-			lJoyStickVal *= SNIPER_MODE_MULTIPLIER;
-			rJoyStickVal *= SNIPER_MODE_MULTIPLIER;
-		}
 
 		_leftMotor.set(ControlMode.PercentOutput, lJoyStickVal);
 		_rightMotor.set(ControlMode.PercentOutput, rJoyStickVal);
@@ -184,16 +156,7 @@ public class ForkLift extends Subsystem {
 		return this._rightEncoder.getRaw();
 	}
 
-	/**
-	 * Used to enable or disable sniper mode. Sniper mode makes the robot more
-	 * sensitive to actions from the driver.
-	 * 
-	 * @param isEnabled
-	 *            whether or not sniper mode is enabled
-	 */
-	public void setSniperMode(boolean isEnabled) {
-		this.isSniperMode = isEnabled;
-	}
+
 
 	/**
 	 * Stop the drivetrain from moving.

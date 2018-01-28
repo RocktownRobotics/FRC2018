@@ -13,19 +13,28 @@ package org.usfirst.frc.team3274.robot;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
+
 public class RobotMap {
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
 	// public static int leftMotor = 1;
 	// public static int rightMotor = 2;
 
+	/**
+	 * ProxyPort is simply a zero variable that serves as the port number for all
+	 * the things that don't actually exist, like the forklift. Delete when these
+	 * things are installed.
+	 */
+	public final static int ProxyPort = 0;
+
 	////////////////////////////////////////////////
 	///////////// JOYSTICK AXIS ////////////////////
 	////////////////////////////////////////////////
 
-	// xbox controller
+	// xbox controller, LIFTCON controls forklift and should be on a second controller, or a button
 	public static final int XBOX_LEFT_Y_AXIS = 1;
 	public static final int XBOX_RIGHT_X_AXIS = 4;
+	public static final int XBOX_RIGHT_Y_AXIS_LIFTCON = ProxyPort;
 
 	// flight stick
 	public static final int FLIGHT_STICK_FORWARD_AXIS = 1;
@@ -36,7 +45,7 @@ public class RobotMap {
 	////////////////////////////////////////////////
 
 	// xbox controller
-	
+
 	public static final int XBOX_A_BUTTON = 1;
 	public static final int XBOX_B_BUTTON = 2;
 	public static final int XBOX_X_BUTTON = 3;
@@ -61,6 +70,8 @@ public class RobotMap {
 	public static final int REAR_RIGHT_MOTOR = 4;
 	public static final int LEFT_MOTOR = 5;
 	public static final int RIGHT_MOTOR = 6;
+	public static final int LIFT_MOTOR_LEFT = ProxyPort;
+	public static final int LIFT_MOTOR_RIGHT = ProxyPort;
 
 	////////////////////////////////////////////////
 	/////////////// DIO's BELOW HERE////////////////
@@ -69,6 +80,7 @@ public class RobotMap {
 	// two input ports for each encoder
 	public static final int[] RIGHT_ENCODER = { 4, 5 };
 	public static final int[] LEFT_ENCODER = { 0, 1 };
+	public static final int[] LIFT_ENCODER = { ProxyPort, ProxyPort };
 	// Touchless Encoder (the second channel is irrelevant)
 	public static final int[] TL_ENCODER = { 8, 9 };
 
