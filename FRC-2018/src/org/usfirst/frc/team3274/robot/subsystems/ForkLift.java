@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * 
@@ -41,13 +42,17 @@ public class ForkLift extends Subsystem {
 	 *            the time to run the ejection motors
 	 */
 	public void eject(double ejectSpeed, double thrustTime) {
-
+if(IsClawClosed = true) {
 		this.leftClaw.set(ejectSpeed);
 		this.rightClaw.set(ejectSpeed);
 		Timer.delay(thrustTime);
 		this.leftClaw.set(0);
 		this.rightClaw.set(0);
+}
 
+else {
+System.out.println("Ejection failed due to open claw");
+}
 	}
 
 	public void initDefaultCommand() {
