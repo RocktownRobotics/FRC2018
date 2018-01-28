@@ -40,8 +40,7 @@ public class TurnRobot extends Command {
 	}
 
 	/**
-	 * Turns, left or right based on the turnAngle variable, and ends the command if
-	 * the desired angle is reached(or exceeded)
+	 * Turns, left or right based on the turnAngle variable.
 	 */
 	@Override
 	protected void execute() {
