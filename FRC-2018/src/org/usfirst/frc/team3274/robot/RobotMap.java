@@ -72,6 +72,8 @@ public class RobotMap {
 	public static final int RIGHT_MOTOR = 6;
 	public static final int LIFT_MOTOR_LEFT = ProxyPort;
 	public static final int LIFT_MOTOR_RIGHT = ProxyPort;
+	public static final int CLAW_MOTOR_LEFT = ProxyPort;
+	public static final int CLAW_MOTOR_RIGHT = ProxyPort;
 
 	////////////////////////////////////////////////
 	/////////////// DIO's BELOW HERE////////////////

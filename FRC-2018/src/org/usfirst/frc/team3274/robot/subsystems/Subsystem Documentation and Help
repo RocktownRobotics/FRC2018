@@ -12,6 +12,10 @@ THINGS NEEDING DOING
 	
 	ForkLift TeleOp functions need to be made.
 	
+	Forklift needs a default command
+	
+	Forklift.eject needs to have it's negative multipliers determined and set...
+	
 CLAWPISTONS
 	
 FORKLIFT
@@ -19,6 +23,9 @@ FORKLIFT
 	NOTES
 	
 	FUNCTIONS
+
+		Eject. Takes a EjectSpeed and thrustTime. Spends thrustTime seconds to throw a cube out of the forklift
+		at ejectSpeed power.
 
 DRIVETRAIN
 
