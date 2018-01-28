@@ -23,15 +23,38 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * Controls all DC motors and encoders for the forklift assembly
  */
 public class ForkLift extends Subsystem {
-
+	
+	public static final double ENCODER_PULSES_PER_REVOLUTION = 1343;
+	public static final double WHEEL_DIAMETER = 4.0; // in inches
+	
 	// sets the left and right forklift motors to be together...
 	private WPI_TalonSRX _liftMotors = new TalonSRXGroup(RobotMap.LIFT_MOTOR_LEFT, RobotMap.LIFT_MOTOR_RIGHT);
 
 	private Encoder _liftEncoder = new Encoder(RobotMap.LIFT_ENCODER[0], RobotMap.LIFT_ENCODER[1], true,
 			EncodingType.k4X);
+	
+	public ForkLift() {
+		double distancePerPulse; // in feet
+		distancePerPulse = (WHEEL_DIAMETER/* in */ * Math.PI) / (ENCODER_PULSES_PER_REVOLUTION * 12.0/* in/ft */);
+
+		_liftEncoder.setDistancePerPulse(distancePerPulse);
+	}
 
 	public void setStartPositions() {
 		_liftEncoder.reset();
+	}
+	public double getLiftHeight() {
+		return _liftEncoder.getDistance();
+	}
+	
+	
+	/**
+	 * 
+	 * @param power
+	 * 		desired motor power
+	 */
+	public void setLiftPower(double power) {
+		_liftMotors.set(power);
 	}
 
 	public void initDefaultCommand() {
