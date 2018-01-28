@@ -54,9 +54,6 @@ public class DriveForward extends Command {
 		double leftPower = determinedSpeed - gyroTurn;
 		double rightPower = determinedSpeed + gyroTurn;
 
-		SmartDashboard.putNumber("leftRaw", leftPower);
-		SmartDashboard.putNumber("rightRaw", rightPower);
-
 		Robot.kDriveTrain.tankDrive(-leftPower, rightPower, false);
 	}
 

@@ -14,8 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team3274.robot.commands.ExampleCommand;
-import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForward;
-import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForwardLegacy;
+import org.usfirst.frc.team3274.robot.commands.autonomous.TurnRobot;
 import org.usfirst.frc.team3274.robot.subsystems.DrivePneumatics;
 import org.usfirst.frc.team3274.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3274.robot.subsystems.ExampleSubsystem;
@@ -93,8 +92,8 @@ public class Robot extends TimedRobot {
 		// if (m_autonomousCommand != null) {
 		// m_autonomousCommand.start();
 		// }
-
-		new DriveForward(6).start();
+	
+		new TurnRobot(-90).start();
 	}
 
 	/**
