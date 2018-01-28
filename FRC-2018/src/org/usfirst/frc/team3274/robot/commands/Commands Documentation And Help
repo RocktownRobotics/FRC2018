@@ -5,6 +5,9 @@ THINGS NEEDING DOING
 	Finish this document
 	Check this document for accuracy... Grammatical corrections welcome
 	Add your name under Authors if you changed something
+	
+	Create a SetHeight(targetHeight) that moves the Claw to the targetHeight (this is a Forklift command, not a Claw
+	command BTW)
 
 
 EJECT
