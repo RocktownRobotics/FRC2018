@@ -7,7 +7,7 @@ import org.usfirst.frc.team3274.robot.Robot;
 
 
 /**
- * An example command.  You can replace me with your own command.
+ * An example command.  You can replace me with your own command. I did....
  */
 
 public class Eject extends Command {

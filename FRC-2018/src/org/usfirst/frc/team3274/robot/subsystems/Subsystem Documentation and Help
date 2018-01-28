@@ -6,19 +6,25 @@ THINGS NEEDING DOING
 
 	Add your name under Authors if you changed something
 	
-	ForkLift needs to become a thing
 	
-	ClawPistons need to become more than copypasta from DrivePneumatics
+	Claw needs to become more than copypasta from DrivePneumatics
 	
-	ClawPistons needs to get open and close commands that set IsClawClosed to true or false
+	Claw needs to get open and close commands that set IsClawClosed to true or false
 
 	ForkLift TeleOp functions need to be made.
 	
 	Forklift needs a default command
 	
-	Forklift.eject needs to have it's negative multipliers determined and set...
 	
-CLAWPISTONS
+CLAW
+	
+	NOTES
+	
+	FUNCTIONS
+	
+		Eject. Takes a EjectSpeed. Throws a cube out of the forklift
+		at ejectSpeed power.
+	
 	
 FORKLIFT
 
@@ -26,8 +32,6 @@ FORKLIFT
 	
 	FUNCTIONS
 
-		Eject. Takes a EjectSpeed and thrustTime. Spends thrustTime seconds to throw a cube out of the forklift
-		at ejectSpeed power.
 
 DRIVETRAIN
 
