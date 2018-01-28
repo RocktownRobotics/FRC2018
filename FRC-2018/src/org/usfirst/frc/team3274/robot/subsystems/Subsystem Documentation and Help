@@ -15,6 +15,9 @@ THINGS NEEDING DOING
 	
 	Forklift needs a default command
 	
+	Claw.eject needs to have it's negative  multipliers on the motor powers set... 
+	can't be done until the Claw actually exists...
+	
 	
 CLAW
 	
