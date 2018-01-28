@@ -24,37 +24,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class ForkLift extends Subsystem {
 
-	private WPI_TalonSRX leftClaw = new WPI_TalonSRX(RobotMap.CLAW_MOTOR_LEFT);
-	private WPI_TalonSRX rightClaw = new WPI_TalonSRX(RobotMap.CLAW_MOTOR_RIGHT);
-
-	// sets the left and right forklift motors to be together...
-	private WPI_TalonSRX _liftMotors = new TalonSRXGroup(RobotMap.LIFT_MOTOR_LEFT, RobotMap.LIFT_MOTOR_RIGHT);
 
 	private Encoder _liftEncoder = new Encoder(RobotMap.LIFT_ENCODER[0], RobotMap.LIFT_ENCODER[1], true,
 			EncodingType.k4X);
 
-	/**
-	 * @param ejectSpeed
-	 *            the motor power at which the cube should be ejected. Between 0 and 1, the negatives, if any, will
-	 *            be handled in the eject code.
-	 * 
-	 * @param thrustTime
-	 *            the time to run the ejection motors, in seconds
-	 */
-	public void eject(double ejectSpeed, double thrustTime) {
-if(Robot.kClawPistons.isClawClosed() == true) {
-		this.leftClaw.set(ejectSpeed);
-		this.rightClaw.set(ejectSpeed);
-		Timer.delay(thrustTime);
-		this.leftClaw.set(0);
-		this.rightClaw.set(0);
-}
 
-else {
-System.out.println("Ejection failed due to open claw");
-}
-	}
-
+	
+	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
