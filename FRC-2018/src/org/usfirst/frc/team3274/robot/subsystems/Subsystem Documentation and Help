@@ -35,6 +35,7 @@ FORKLIFT
 	
 	FUNCTIONS
 
+		setStartPosition. Resets lift encoder, setting base positions for (re)SetHeight
 
 DRIVETRAIN
 

@@ -18,9 +18,7 @@ public class Claw extends Subsystem {
 	private WPI_TalonSRX leftClaw = new WPI_TalonSRX(RobotMap.CLAW_MOTOR_LEFT);
 	private WPI_TalonSRX rightClaw = new WPI_TalonSRX(RobotMap.CLAW_MOTOR_RIGHT);
 
-	// sets the left and right forklift motors to be together...
-	private WPI_TalonSRX _liftMotors = new TalonSRXGroup(RobotMap.LIFT_MOTOR_LEFT, RobotMap.LIFT_MOTOR_RIGHT);
-
+	
 	
 	
 	/**
