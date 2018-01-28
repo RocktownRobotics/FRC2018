@@ -18,6 +18,8 @@ THINGS NEEDING DOING
 	Claw.eject needs to have it's negative  multipliers on the motor powers set... 
 	can't be done until the Claw actually exists...
 	
+	Ensure getLiftHeight uses the proper wheel diameter... I doubt it does
+	
 	
 CLAW
 	
@@ -36,6 +38,8 @@ FORKLIFT
 	FUNCTIONS
 
 		setStartPosition. Resets lift encoder, setting base positions for (re)SetHeight
+		
+		getLiftHeight. Returns the height above StartPosition of the forklift assembly
 
 DRIVETRAIN
 

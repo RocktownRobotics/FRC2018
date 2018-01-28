@@ -10,6 +10,17 @@ THINGS NEEDING DOING
 	
 	Fix DriveForward to reset the encoder values when called/initialized
 	
+	
+RESETHEIGHT
+
+	NOTES
+		
+		None... yet
+		
+	FUNCTIONS
+	
+		Moves the forklift Claw down until it reaches the base height (0, floor level, presumably)
+	
 DRIVEFORWARD
 
 	NOTES
