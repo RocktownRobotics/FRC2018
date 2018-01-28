@@ -24,13 +24,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class ForkLift extends Subsystem {
 
+	// sets the left and right forklift motors to be together...
+	private WPI_TalonSRX _liftMotors = new TalonSRXGroup(RobotMap.LIFT_MOTOR_LEFT, RobotMap.LIFT_MOTOR_RIGHT);
 
 	private Encoder _liftEncoder = new Encoder(RobotMap.LIFT_ENCODER[0], RobotMap.LIFT_ENCODER[1], true,
 			EncodingType.k4X);
 
+	public void setStartPositions() {
+		_liftEncoder.reset();
+	}
 
-	
-	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
