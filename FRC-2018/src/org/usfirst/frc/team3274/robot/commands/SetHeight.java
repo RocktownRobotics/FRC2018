@@ -35,8 +35,8 @@ public class SetHeight extends Command {
 	protected void initialize() {
 		
 		if(targetHeight < 0) {
-			this.end();
 			System.out.println("SetHeight failed due to negative value");
+			this.end();
 			
 		if(targetHeight > 42) {
 			targetHeight = 42;
