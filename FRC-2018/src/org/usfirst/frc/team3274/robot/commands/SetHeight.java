@@ -33,6 +33,14 @@ public class SetHeight extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
+		
+		if(targetHeight < 0) {
+			this.end();
+			
+		if(targetHeight > 42) {
+			targetHeight = 42;
+		}
+		}
 	
 	}
 
