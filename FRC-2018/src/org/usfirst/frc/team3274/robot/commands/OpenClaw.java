@@ -11,20 +11,20 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team3274.robot.Robot;
 
 /**
- * An example command.  You can replace me with your own command.
+ * An example command. You can replace me with your own command.
  */
 public class OpenClaw extends Command {
 	public OpenClaw() {
 		requires(Robot.kClaw);
-		
 	}
+
 	private boolean clawStatus;
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
 		this.clawStatus = Robot.kClaw.isClawClosed();
-		if(this.clawStatus = false) {
+		if (this.clawStatus = false) {
 			System.out.println("Claw already open");
 			this.end();
 		}
@@ -40,10 +40,9 @@ public class OpenClaw extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		if(this.clawStatus = true) {
-		return false;
-		}
-		else {
+		if (this.clawStatus = true) {
+			return false;
+		} else {
 			return true;
 		}
 	}
