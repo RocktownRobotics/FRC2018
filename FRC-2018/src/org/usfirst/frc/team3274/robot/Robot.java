@@ -14,9 +14,9 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team3274.robot.AutoCommandGroups.TestAuto;
 import org.usfirst.frc.team3274.robot.commands.ExampleCommand;
 import org.usfirst.frc.team3274.robot.commands.autonomous.TurnRobot;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.TestAuto;
 import org.usfirst.frc.team3274.robot.subsystems.Claw;
 import org.usfirst.frc.team3274.robot.subsystems.DrivePneumatics;
 import org.usfirst.frc.team3274.robot.subsystems.DriveTrain;
