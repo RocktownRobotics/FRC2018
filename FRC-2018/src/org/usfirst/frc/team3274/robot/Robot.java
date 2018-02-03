@@ -110,13 +110,12 @@ public class Robot extends TimedRobot {
 		// how to get game type from driver station
 		// game data is either: "LLL", "RRR", "LRL", "RLR"
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
-		if (gameData.charAt(0) == 'L') {
-			// left auto code here
+		if (gameData.equals("LLL")) {
+			// one auto code here
 		} else {
-			// right auto code here
+			// another auto code here
 		}
-		
-		
+
 	}
 
 	/**
