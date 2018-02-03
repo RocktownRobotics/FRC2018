@@ -1,4 +1,4 @@
-package autoCommandGroups;
+package org.usfirst.frc.team3274.robot.AutoCommandGroups;
 
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
 

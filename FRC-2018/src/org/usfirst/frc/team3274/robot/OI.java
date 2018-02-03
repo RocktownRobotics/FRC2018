@@ -9,6 +9,8 @@ package org.usfirst.frc.team3274.robot;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
+//import edu.wpi.first.wpilibj.Joystick.Axis;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
@@ -54,19 +56,20 @@ public class OI {
 	};
 
 	/** The first joystick. Has to be an xbox controller. **/
-	private Joystick xbox01 = new Joystick(0); // set to ID 1
-	private JoystickButton a = new JoystickButton(xbox01, RobotMap.XBOX_A_BUTTON);
-	private JoystickButton b = new JoystickButton(xbox01, RobotMap.XBOX_B_BUTTON);
-	private JoystickButton x = new JoystickButton(xbox01, RobotMap.XBOX_X_BUTTON);
-	private JoystickButton y = new JoystickButton(xbox01, RobotMap.XBOX_Y_BUTTON);
-	private JoystickButton lBumper = new JoystickButton(xbox01, RobotMap.XBOX_L_BUMPER_BUTTON);
-	private JoystickButton rBumper = new JoystickButton(xbox01, RobotMap.XBOX_R_BUMPER_BUTTON);
-	private JoystickButton up = new JoystickButton(xbox01, RobotMap.XBOX_UP_BUTTON);
-	private JoystickButton down = new JoystickButton(xbox01, RobotMap.XBOX_DOWN_BUTTON);
-	private JoystickButton left = new JoystickButton(xbox01, RobotMap.XBOX_LEFT_BUTTON);
-	private JoystickButton right = new JoystickButton(xbox01, RobotMap.XBOX_RIGHT_BUTTON);
-	private JoystickButton start = new JoystickButton(xbox01, RobotMap.XBOX_START_BUTTON);
-	private JoystickButton back = new JoystickButton(xbox01, RobotMap.XBOX_BACK_BUTTON);
+	public Joystick xbox0 = new Joystick(0); // set to ID 1
+	private JoystickButton a = new JoystickButton(xbox0, RobotMap.XBOX_A_BUTTON);
+	private JoystickButton b = new JoystickButton(xbox0, RobotMap.XBOX_B_BUTTON);
+	private JoystickButton x = new JoystickButton(xbox0, RobotMap.XBOX_X_BUTTON);
+	private JoystickButton y = new JoystickButton(xbox0, RobotMap.XBOX_Y_BUTTON);
+	private JoystickButton lBumper = new JoystickButton(xbox0, RobotMap.XBOX_L_BUMPER_BUTTON);
+	private JoystickButton rBumper = new JoystickButton(xbox0, RobotMap.XBOX_R_BUMPER_BUTTON);
+	private JoystickButton up = new JoystickButton(xbox0, RobotMap.XBOX_UP_BUTTON);
+	private JoystickButton down = new JoystickButton(xbox0, RobotMap.XBOX_DOWN_BUTTON);
+	private JoystickButton left = new JoystickButton(xbox0, RobotMap.XBOX_LEFT_BUTTON);
+	private JoystickButton right = new JoystickButton(xbox0, RobotMap.XBOX_RIGHT_BUTTON);
+	private JoystickButton start = new JoystickButton(xbox0, RobotMap.XBOX_START_BUTTON);
+	private JoystickButton back = new JoystickButton(xbox0, RobotMap.XBOX_BACK_BUTTON);
+	private JoystickButton leftY = new JoystickButton(xbox0, RobotMap.XBOX_LEFT_Y_AXIS);
 
 	/**
 	 * Create an OI with a specified controller setup.
@@ -104,9 +107,9 @@ public class OI {
 	 */
 	public void rumbleXbox01(boolean rumble) {
 		if (rumble) {
-			this.xbox01.setRumble(RumbleType.kLeftRumble, 1);
+			this.xbox0.setRumble(RumbleType.kLeftRumble, 1);
 		} else {
-			this.xbox01.setRumble(RumbleType.kLeftRumble, 0);
+			this.xbox0.setRumble(RumbleType.kLeftRumble, 0);
 		}
 	}
 
@@ -116,6 +119,6 @@ public class OI {
 	 * @return
 	 */
 	public Joystick getXbox01() {
-		return xbox01;
+		return xbox0;
 	}
 }
