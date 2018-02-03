@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team3274.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -105,6 +106,17 @@ public class Robot extends TimedRobot {
 		// }
 
 		new TestAuto().start();
+
+		// how to get game type from driver station
+		// game data is either: "LLL", "RRR", "LRL", "RLR"
+		String gameData = DriverStation.getInstance().getGameSpecificMessage();
+		if (gameData.charAt(0) == 'L') {
+			// left auto code here
+		} else {
+			// right auto code here
+		}
+		
+		
 	}
 
 	/**
