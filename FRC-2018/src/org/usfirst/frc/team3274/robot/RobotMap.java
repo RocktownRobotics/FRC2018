@@ -117,6 +117,4 @@ public class RobotMap {
 	////////////////////////////////////////////////
 	
 	public static final SPI.Port NAVX_PORT = SPI.Port.kMXP;
-	//this... is why our programmers need to PAY ATTENTION TO WHAT THEY ARE DOING!!!! Though TBH, I wasn't there and shouldn't judge.
-	//Also, it's broken. Somebody should fix it.
 }
