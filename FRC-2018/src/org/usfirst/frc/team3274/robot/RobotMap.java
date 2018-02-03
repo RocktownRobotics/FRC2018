@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team3274.robot;
 
+import edu.wpi.first.wpilibj.SPI;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -31,7 +33,8 @@ public class RobotMap {
 	///////////// JOYSTICK AXIS ////////////////////
 	////////////////////////////////////////////////
 
-	// xbox controller, LIFTCON controls forklift and should be on a second controller, or a button
+	// xbox controller, LIFTCON controls forklift and should be on a second
+	// controller, or a button
 	public static final int XBOX_LEFT_Y_AXIS = 1;
 	public static final int XBOX_RIGHT_X_AXIS = 4;
 	public static final int XBOX_RIGHT_Y_AXIS_LIFTCON = ProxyPort;
@@ -108,4 +111,12 @@ public class RobotMap {
 	// number and the module. For example you with a rangefinder:
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
+
+	////////////////////////////////////////////////
+	//////////// Misc. PORTS BELOW HERE/////////////
+	////////////////////////////////////////////////
+	
+	public static final SPI.Port NAVX_PORT = SPI.Port.kMXP;
+	//this... is why our programmers need to PAY ATTENTION TO WHAT THEY ARE DOING!!!! Though TBH, I wasn't there and shouldn't judge.
+	//Also, it's broken. Somebody should fix it.
 }
