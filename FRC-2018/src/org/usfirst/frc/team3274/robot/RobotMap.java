@@ -98,6 +98,7 @@ public class RobotMap {
 	public static int shifterReverse = 4;
 	public static int gearForward = 6;
 	public static int gearReverse = 7;
+	public static int clawPiston = ProxyPort;
 
 	////////////////////////////////////////////////
 	////////////// Relays BELOW HERE////////////////

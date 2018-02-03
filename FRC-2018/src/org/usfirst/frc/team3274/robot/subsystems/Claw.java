@@ -17,10 +17,8 @@ public class Claw extends Subsystem {
 
 	private WPI_TalonSRX leftClaw = new WPI_TalonSRX(RobotMap.CLAW_MOTOR_LEFT);
 	private WPI_TalonSRX rightClaw = new WPI_TalonSRX(RobotMap.CLAW_MOTOR_RIGHT);
+	private Solenoid clawPistons = new Solenoid(RobotMap.clawPiston);
 
-	
-	
-	
 	/**
 	 * @param ejectSpeed
 	 *            the motor power at which the cube should be ejected. Between 0 and
@@ -34,7 +32,7 @@ public class Claw extends Subsystem {
 		if (Robot.kClaw.isClawClosed() == true) {
 			this.leftClaw.set(ejectSpeed);
 			this.rightClaw.set(ejectSpeed);
-			
+
 		}
 
 		else {
@@ -49,12 +47,8 @@ public class Claw extends Subsystem {
 	// DoubleSolenoid.Value lowGear = DoubleSolenoid.Value.kForward;
 	// DoubleSolenoid.Value highGear = DoubleSolenoid.Value.kReverse;
 
-	public Solenoid getReverseShifter() {
-		return reverseShifter;
-	}
-
-	public Solenoid getForwardShifter() {
-		return forwardShifter;
+	public Solenoid getclawPiston() {
+		return clawPistons;
 	}
 
 	public boolean isClawClosed() {
@@ -65,34 +59,21 @@ public class Claw extends Subsystem {
 		// LiveWindow.addActuator("DrivePnumatics", "GearShifter", gearShifter);
 	}
 
-	public void StartLowGear() {
-		reverseShifter.set(true);
-		// gearShifter.set(lowGear);
-	}
+	public void OpenClaw() {
+		clawPistons.set(false);
+}
 
-	public void StartHighGear() {
-		forwardShifter.set(true);
-		// gearShifter.set(highGear);
+	public void CloseClaw() {
+		clawPistons.set(true);
 	}
-
-	public void ShiftGears() {
-		// if (gearShifter.get() == lowGear)
-		// {
-		// StartHighGear();
-		// } else if (gearShifter.get() == highGear)
-		// {
-		// StartLowGear();
-		// }
-	}
-
+	
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
 	}
 
 	public void stop() {
-		forwardShifter.set(false);
-		reverseShifter.set(false);
+		clawPistons.set(false);
 
 		// gearShifter.set(off);
 	}
@@ -101,7 +82,5 @@ public class Claw extends Subsystem {
 	 * 
 	 * @return -1 for low and 1 for high
 	 */
-	public boolean getCurrentGear() {
-		return forwardShifter.get() == true;
-	}
+
 }
