@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team3274.robot.commands.ExampleCommand;
-import org.usfirst.frc.team3274.robot.commands.autonomous.TestAuto;
 import org.usfirst.frc.team3274.robot.commands.autonomous.TurnRobot;
 import org.usfirst.frc.team3274.robot.subsystems.Claw;
 import org.usfirst.frc.team3274.robot.subsystems.DrivePneumatics;
@@ -23,6 +22,8 @@ import org.usfirst.frc.team3274.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3274.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team3274.robot.subsystems.ForkLift;
 import org.usfirst.frc.team3274.robot.subsystems.RobotCompressor;
+
+import autoCommandGroups.TestAuto;
 
 /**
  * The VM is configured to automatically run this class, and to call the

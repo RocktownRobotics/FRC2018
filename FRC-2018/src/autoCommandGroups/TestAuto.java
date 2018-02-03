@@ -1,4 +1,7 @@
-package org.usfirst.frc.team3274.robot.commands.autonomous;
+package autoCommandGroups;
+
+import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForward;
+import org.usfirst.frc.team3274.robot.commands.autonomous.TurnRobot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
