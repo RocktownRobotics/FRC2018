@@ -25,6 +25,17 @@ Middle Position to Right Startpoint
 	addSequential(new DriveForward(10));
 	addSequential(new TurnTobot(-90));
 	addSequential(new DriveForward(4);
+	
+Middle Position to Exchange to Auto Line
+
+	addSequential(new DriveForward(1));
+	addParallel(new DeployClaw());
+	addSequential(new TurnRobot(-90)
+	addSequential(new DriveForward(4));
+	addSequential(new TurnRobot(-90));
+	addSequential(new DriveForward(0.5));
+	addSequential(new Eject());
+	addSequential(new DriveBackward(7));
 
 Right Position to Left Startpoint
 
@@ -39,3 +50,33 @@ Right Position to Right Startpoint
 	addSequential(new DriveForward(8));
 	
 Left Startpoint to Left Scale
+
+	addSequential(new DriveForward(13));
+	addParallel(new DeployClaw());
+	addParallel(new SetHeight(40, 5));
+	addSequential(new TurnRobot(45));
+	addSequential(new Eject());
+	
+Left Startpoint to Left Switch
+
+	addSequential(new DriveForward(3));
+	addParallel(new DeployClaw());
+	addParallel(new SetHeight(20, 5));
+	addSequential(new TurnRobot(90));
+	addSequential(new Eject());
+
+Right Startpoint to Right Scale
+
+	addSequential(new DriveForward(13));
+	addParallel(new DeployClaw());
+	addParallel(new SetHeight(40, 5));
+	addSequential(new TurnRobot(-45));
+	addSequential(new Eject());
+
+Right Startpoint to Right Scale
+
+	addSequential(new DriveForward(3));
+	addParallel(new DeployClaw());
+	addParallel(new SetHeight(20, 5));
+	addSequential(new TurnRobot(-90));
+	addSequential(new Eject());
