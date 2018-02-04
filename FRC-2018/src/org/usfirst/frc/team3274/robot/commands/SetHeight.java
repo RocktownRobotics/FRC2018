@@ -42,7 +42,7 @@ public class SetHeight extends Command {
 			if (targetHeight > maxHeight) {
 				targetHeight = maxHeight;
 				System.out.println(
-						"Robot had to change the target height because it was too big.It's all the driver's fault...");
+						"Robot had to change the target height because it was too big. It's all the driver's fault...");
 			}
 		}
 
@@ -78,7 +78,7 @@ public class SetHeight extends Command {
 				return false;
 			} else {
 				System.out.println(
-						"Forklift is at desired height. Well, close enough.Anyway, SetHeightcommand ending succesfully...");
+						"Forklift is at desired height. Well, close enough. Anyway, SetHeightcommand ending succesfully...");
 
 				return true;
 			}
@@ -95,5 +95,6 @@ public class SetHeight extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
+		System.out.println("The robot's attempts to move the forklift were interrupted.");
 	}
 }
