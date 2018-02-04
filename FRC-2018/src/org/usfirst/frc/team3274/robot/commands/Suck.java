@@ -49,7 +49,7 @@ public class Suck extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		System.out.println("The robot sucked, but now it isn't");
+		System.out.println("The robot was sucking, but no longer");
 		Robot.kClaw.eject(0);
 	}
 
