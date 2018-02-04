@@ -1,0 +1,39 @@
+Left Position to Left Startpoint
+
+	addSequential(new DriveForward(8));
+
+Left Position to Right Startpoint
+
+	addSequential(new DriveForward(4));
+	addSequential(new TurnRobot(-90));
+	addSequential(new DriveForward(21));
+	addSequential(new TurnRobot(90));
+	addSequential(new DriveForward(4));
+
+Middle Position to Left Startpoint
+
+	addSequential(new DriveForward(4));
+	addSequential(new TurnRobot(-90));
+	addSequential(new DriveForward(10));
+	addSequential(new TurnTobot(90));
+	addSequential(new DriveForward(4);
+
+Middle Position to Right Startpoint
+
+	addSequential(new DriveForward(4));
+	addSequential(new TurnRobot(90));
+	addSequential(new DriveForward(10));
+	addSequential(new TurnTobot(-90));
+	addSequential(new DriveForward(4);
+
+Right Position to Left Startpoint
+
+	addSequential(new DriveForward(4));
+	addSequential(new TurnRobot(-90));
+	addSequential(new DriveForward(21));
+	addSequential(new TurnRobot(90));
+	addSequential(new DriveForward(4));
+
+Right Position to Right Startpoint
+
+	addSequential(new DriveForward(8));

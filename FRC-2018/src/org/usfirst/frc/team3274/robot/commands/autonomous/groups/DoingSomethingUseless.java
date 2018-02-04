@@ -16,7 +16,7 @@ public class DoingSomethingUseless extends CommandGroup {
 	public DoingSomethingUseless() {
 		// make sure robot is in low gear
 		addSequential(new ShiftDownForTime());
-		addSequential(new DeployClaw());
+		addParallel(new DeployClaw());
 		addSequential(new DriveForward(10));
 		addParallel(new SetHeight(25, 5));
 		addSequential(new Eject());
