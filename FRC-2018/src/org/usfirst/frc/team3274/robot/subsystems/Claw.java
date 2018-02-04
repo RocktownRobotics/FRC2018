@@ -14,10 +14,12 @@ public class Claw extends Subsystem {
 	private Solenoid forwardShifter = new Solenoid(RobotMap.shifterForward);
 
 	private boolean clawClosed;
+	private boolean clawDeployed;
 
 	private WPI_TalonSRX leftClaw = new WPI_TalonSRX(RobotMap.CLAW_MOTOR_LEFT);
 	private WPI_TalonSRX rightClaw = new WPI_TalonSRX(RobotMap.CLAW_MOTOR_RIGHT);
 	private Solenoid clawPistons = new Solenoid(RobotMap.clawPiston);
+	private WPI_TalonSRX DeployMotor = new WPI_TalonSRX(RobotMap.DEPLOY_MOTOR);
 
 	/**
 	 * @param ejectSpeed
@@ -39,6 +41,31 @@ public class Claw extends Subsystem {
 			System.out.println("Ejection failed due to open claw");
 		}
 	}
+	
+	public void deploy(double deployPower) {
+		if (Robot.kClaw.isClawDeployed()) {
+			System.out.println("Claw already deployed");
+
+		}
+		
+		else {
+			this.DeployMotor.set(deployPower);
+
+		}
+	}
+	
+	public void retract(double retractPower) {
+		if (Robot.kClaw.isClawDeployed()) {
+			this.DeployMotor.set(-retractPower);
+
+		}
+		
+		else {
+			System.out.println("Claw already retracted");
+
+
+		}
+	}
 	// DoubleSolenoid gearShifter = new DoubleSolenoid(RobotMap.shifterForward,
 	// RobotMap.shifterReverse);
 	//
@@ -53,6 +80,10 @@ public class Claw extends Subsystem {
 
 	public boolean isClawClosed() {
 		return clawClosed;
+	}
+	
+	public boolean isClawDeployed() {
+		return clawDeployed;
 	}
 
 	public Claw() {

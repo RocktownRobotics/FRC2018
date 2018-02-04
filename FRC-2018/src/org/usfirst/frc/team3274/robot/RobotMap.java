@@ -77,6 +77,7 @@ public class RobotMap {
 	public static final int LIFT_MOTOR_RIGHT = ProxyPort;
 	public static final int CLAW_MOTOR_LEFT = ProxyPort;
 	public static final int CLAW_MOTOR_RIGHT = ProxyPort;
+	public static final int DEPLOY_MOTOR = ProxyPort;
 
 	////////////////////////////////////////////////
 	/////////////// DIO's BELOW HERE////////////////
@@ -86,6 +87,7 @@ public class RobotMap {
 	public static final int[] RIGHT_ENCODER = { 4, 5 };
 	public static final int[] LEFT_ENCODER = { 0, 1 };
 	public static final int[] LIFT_ENCODER = { ProxyPort, ProxyPort };
+	public static final int[] DEPLOY_ENCODER = {ProxyPort, ProxyPort};
 	// Touchless Encoder (the second channel is irrelevant)
 	public static final int[] TL_ENCODER = { 8, 9 };
 
