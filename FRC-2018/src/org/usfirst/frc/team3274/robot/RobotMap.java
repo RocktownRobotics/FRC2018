@@ -36,6 +36,8 @@ public class RobotMap {
 	// xbox controller, LIFTCON controls forklift and should be on a second
 	// controller, or a button
 	public static final int XBOX_LEFT_Y_AXIS = 1;
+	public static final int XBOX_LEFT_X_AXIS = 2;// THIS IS A GUESS, CHECK VALUE
+	public static final int XBOX_RIGHT_Y_AXIS = 3;// THIS IS A GUESS, CHECK VALUE
 	public static final int XBOX_RIGHT_X_AXIS = 4;
 	public static final int XBOX_RIGHT_Y_AXIS_LIFTCON = ProxyPort;
 

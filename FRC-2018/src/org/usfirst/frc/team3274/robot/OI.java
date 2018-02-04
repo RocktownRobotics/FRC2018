@@ -69,8 +69,11 @@ public class OI {
 	private JoystickButton right = new JoystickButton(xbox0, RobotMap.XBOX_RIGHT_BUTTON);
 	private JoystickButton start = new JoystickButton(xbox0, RobotMap.XBOX_START_BUTTON);
 	private JoystickButton back = new JoystickButton(xbox0, RobotMap.XBOX_BACK_BUTTON);
-	private JoystickButton leftY = new JoystickButton(xbox0, RobotMap.XBOX_LEFT_Y_AXIS);
-
+	
+	private double leftY = xbox0.getRawAxis(RobotMap.XBOX_LEFT_Y_AXIS);
+	private double leftX = xbox0.getRawAxis(RobotMap.XBOX_LEFT_X_AXIS);
+	private double rightY = xbox0.getRawAxis(RobotMap.XBOX_RIGHT_Y_AXIS);
+	private double rightX = xbox0.getRawAxis(RobotMap.XBOX_RIGHT_X_AXIS);
 	/**
 	 * Create an OI with a specified controller setup.
 	 * 
