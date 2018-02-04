@@ -37,3 +37,5 @@ Right Position to Left Startpoint
 Right Position to Right Startpoint
 
 	addSequential(new DriveForward(8));
+	
+Left Startpoint to Left Scale
