@@ -60,5 +60,6 @@ public class Delay extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
+		System.out.println("Something got in the way of the sitting about");
 	}
 }

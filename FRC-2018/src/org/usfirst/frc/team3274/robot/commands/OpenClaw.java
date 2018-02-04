@@ -58,5 +58,6 @@ public class OpenClaw extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
+		System.out.println("Failed: Claw open was interrupted");
 	}
 }
