@@ -6,7 +6,10 @@ import org.usfirst.frc.team3274.robot.util.TalonSRXGroup;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Claw extends Subsystem {
@@ -15,6 +18,11 @@ public class Claw extends Subsystem {
 
 	private boolean clawClosed;
 	private boolean clawDeployed;
+
+	public static final int ENCODER_PULSES_PER_REVOLUTION = 1343;
+
+	private Encoder _deployEncoder = new Encoder(RobotMap.DEPLOY_ENCODER[0], RobotMap.DEPLOY_ENCODER[1], true,
+			EncodingType.k4X);
 
 	private WPI_TalonSRX leftClaw = new WPI_TalonSRX(RobotMap.CLAW_MOTOR_LEFT);
 	private WPI_TalonSRX rightClaw = new WPI_TalonSRX(RobotMap.CLAW_MOTOR_RIGHT);
@@ -41,30 +49,29 @@ public class Claw extends Subsystem {
 			System.out.println("Ejection failed due to open claw");
 		}
 	}
-	
-	public void deploy(double deployPower) {
-		if (Robot.kClaw.isClawDeployed()) {
-			System.out.println("Claw already deployed");
 
-		}
-		
-		else {
-			this.DeployMotor.set(deployPower);
-
-		}
+	public int getDeployRotations() {
+		return this._deployEncoder.getRaw();
 	}
-	
+
+	public int getDeployAngle() {
+		return this.getDeployRotations() * 360 / this.ENCODER_PULSES_PER_REVOLUTION;
+	}
+
+	public void resetDeploy() {
+		this._deployEncoder.reset();
+	}
+
+	public void deploy(double deployPower) {
+
+		this.DeployMotor.set(deployPower);
+
+	}
+
 	public void retract(double retractPower) {
-		if (Robot.kClaw.isClawDeployed()) {
-			this.DeployMotor.set(-retractPower);
 
-		}
-		
-		else {
-			System.out.println("Claw already retracted");
+		this.DeployMotor.set(-retractPower);
 
-
-		}
 	}
 	// DoubleSolenoid gearShifter = new DoubleSolenoid(RobotMap.shifterForward,
 	// RobotMap.shifterReverse);
@@ -81,7 +88,7 @@ public class Claw extends Subsystem {
 	public boolean isClawClosed() {
 		return clawClosed;
 	}
-	
+
 	public boolean isClawDeployed() {
 		return clawDeployed;
 	}
@@ -92,12 +99,12 @@ public class Claw extends Subsystem {
 
 	public void OpenClaw() {
 		clawPistons.set(false);
-}
+	}
 
 	public void CloseClaw() {
 		clawPistons.set(true);
 	}
-	
+
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
