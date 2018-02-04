@@ -25,6 +25,7 @@ public class Suck extends Command {
 		this.launchPower = 0.5;
 		this.thrustTime = 0.5;
 		this.ejectStartTime = Timer.getMatchTime();
+		System.out.println("The robot sucks");
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -40,6 +41,7 @@ public class Suck extends Command {
 		if (ejectStartTime + thrustTime <= Timer.getMatchTime()) {
 			return false;
 		} else {
+			System.out.println("The robot sucked to our satisfaction");
 			return true;
 		}
 	}
@@ -47,6 +49,7 @@ public class Suck extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
+		System.out.println("The robot sucked, but now it isn't");
 		Robot.kClaw.eject(0);
 	}
 

@@ -23,9 +23,10 @@ public class CloseClaw extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
+		System.out.println("Closing Claw");
 		this.clawClosed = Robot.kClaw.isClawClosed();
 		if(this.clawClosed = true) {
-			System.out.println("Claw already closed");
+			System.out.println("Failed: Claw already closed. Blame the driver.");
 			this.end();
 		}
 	}
@@ -44,6 +45,7 @@ public class CloseClaw extends Command {
 		return false;
 		}
 		else {
+			System.out.println("Claw succesfully closed");
 			return true;
 		}
 	}

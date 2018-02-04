@@ -15,6 +15,7 @@ public class ShiftUp extends Command {
 	@Override
 	protected void initialize() {
 		Robot.kDrivePneumatics.StartHighGear();
+		System.out.println("Shifting up");
 	}
 
 	@Override
@@ -31,6 +32,7 @@ public class ShiftUp extends Command {
 	@Override
 	protected void end() {
 		Robot.kDrivePneumatics.stop();
+		System.out.println("No longer shifting up");
 	}
 
 }

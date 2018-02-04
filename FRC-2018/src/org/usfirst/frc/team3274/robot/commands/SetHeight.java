@@ -33,15 +33,16 @@ public class SetHeight extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
+		System.out.println("Setting Forklift height");
 		maxHeight = 42;
 		if (targetHeight < 0) {
-			System.out.println("SetHeight failed due to negative value");
+			System.out.println("Failed: negative target height value");
 			this.end();
 
 			if (targetHeight > maxHeight) {
 				targetHeight = maxHeight;
 				System.out.println(
-						"SetHeight automatically changed to highest tolerable value due to too-large targetHeight.");
+						"Robot had to change the target height because it was too big.It's all the driver's fault...");
 			}
 		}
 
@@ -76,6 +77,9 @@ public class SetHeight extends Command {
 			if (Robot.kForkLift.getLiftHeight() < targetHeight - tolerableProximity) {
 				return false;
 			} else {
+				System.out.println(
+						"Forklift is at desired height. Well, close enough.Anyway, SetHeightcommand ending succesfully...");
+
 				return true;
 			}
 		}

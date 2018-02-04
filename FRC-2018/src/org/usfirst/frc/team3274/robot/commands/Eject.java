@@ -18,6 +18,7 @@ public class Eject extends Command {
 	public Eject() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.kClaw);
+		System.out.println("Ejecting Cube");
 	}
 
 
@@ -44,6 +45,7 @@ public class Eject extends Command {
 		return false;
 	}
 		else{
+			System.out.println("Robot has ejected it's cube. Robot has nothing. Robot is lonely, and wants another cube to throw at something.");
 		return true;
 	}
 	}

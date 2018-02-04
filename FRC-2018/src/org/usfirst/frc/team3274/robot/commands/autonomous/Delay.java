@@ -31,6 +31,7 @@ public class Delay extends Command {
 	protected void initialize() {
 		
 		this.startTime = Timer.getMatchTime();
+		System.out.println("Just... wasting time....");
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -45,6 +46,7 @@ public class Delay extends Command {
 		return false;
 		}
 		else {
+			System.out.println("Robot is tired of waiting");
 			return true;
 		}
 	}

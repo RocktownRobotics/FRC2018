@@ -12,6 +12,7 @@ public class ShiftDown extends Command {
 	@Override
 	protected void initialize() {
 		Robot.kDrivePneumatics.StartLowGear();
+		System.out.println("Shifting down");
 	}
 
 	@Override
@@ -21,6 +22,7 @@ public class ShiftDown extends Command {
 
 	@Override
 	protected void end() {
+		System.out.println("No longer shifting down");
 		Robot.kDrivePneumatics.stop();
 	}
 

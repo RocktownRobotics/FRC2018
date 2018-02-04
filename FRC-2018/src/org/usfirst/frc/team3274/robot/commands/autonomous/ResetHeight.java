@@ -15,6 +15,7 @@ public class ResetHeight extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
+		System.out.println("Lowering Lift");
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -40,6 +41,7 @@ public class ResetHeight extends Command {
 		return false;
 		}
 		else {
+			System.out.println("Forklift Lowered");
 			return true;
 		}
 	}
@@ -47,11 +49,13 @@ public class ResetHeight extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
+	Robot.kForkLift.setLiftPower(0);
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
+		System.out.println("Forklift Reset Interrupted");
 	}
 }

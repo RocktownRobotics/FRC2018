@@ -36,6 +36,7 @@ public class DriveForward extends Command {
 		Robot.kDriveTrain.resetYaw();
 		Robot.kDriveTrain.resetEncoders();
 		DriverStation.reportWarning("initDriveForward", false);
+		System.out.println("Driving Forwards");
 	}
 
 	@Override
@@ -67,6 +68,7 @@ public class DriveForward extends Command {
 		Robot.kDriveTrain.tankDrive(0, 0, false);
 		Robot.kDriveTrain.resetYaw();
 		DriverStation.reportWarning("endDriveForward", false);
+		System.out.println("No longer driving forwards");
 	}
 
 	@Override

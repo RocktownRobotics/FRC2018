@@ -37,6 +37,7 @@ public class TurnRobot extends Command {
 	protected void initialize() {
 		DriverStation.reportWarning("initTurn", false);
 		Robot.kDriveTrain.resetYaw();
+		System.out.println("Turning...");
 	}
 
 	/**
@@ -76,6 +77,7 @@ public class TurnRobot extends Command {
 	protected void end() {
 		Robot.kDriveTrain.tankDrive(0, 0, false);
 		DriverStation.reportWarning("endTurn", false);
+		System.out.println("No longer turning");
 	}
 
 	@Override

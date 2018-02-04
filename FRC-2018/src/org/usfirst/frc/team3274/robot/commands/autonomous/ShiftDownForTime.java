@@ -26,11 +26,14 @@ public class ShiftDownForTime extends Command {
 		this.timeToReach = Timer.getMatchTime() + WAIT_TIME;
 
 		Robot.kDrivePneumatics.StartLowGear();
+		
+		System.out.println("Shifting down for a while...");
 	}
 
 	@Override
 	protected boolean isFinished() {
 		if (Timer.getMatchTime() >= this.timeToReach) {
+			System.out.println("Done shifting for now");
 			return true;
 		}
 		return false;

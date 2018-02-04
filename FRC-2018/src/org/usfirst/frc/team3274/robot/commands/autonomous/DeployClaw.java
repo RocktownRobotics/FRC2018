@@ -62,5 +62,6 @@ public class DeployClaw extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
+		System.out.println("Claw Deployment interrupted");
 	}
 }
