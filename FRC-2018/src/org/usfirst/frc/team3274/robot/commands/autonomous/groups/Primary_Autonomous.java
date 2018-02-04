@@ -3,6 +3,7 @@ package org.usfirst.frc.team3274.robot.commands.autonomous.groups;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Primary_Autonomous extends CommandGroup {
 
@@ -11,10 +12,9 @@ public class Primary_Autonomous extends CommandGroup {
 	 * 90 degrees.
 	 */
 	public Primary_Autonomous() {
+
 		// make sure robot is in low gear
 		addSequential(new ShiftDownForTime());
 
-		// addSequential(new DriveForward(3));
-		// addSequential(new TurnRobot(-90));
 	}
 }
