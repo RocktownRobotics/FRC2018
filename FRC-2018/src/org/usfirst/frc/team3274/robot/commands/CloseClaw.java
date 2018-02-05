@@ -13,12 +13,15 @@ import org.usfirst.frc.team3274.robot.Robot;
 /**
  * An example command.  You can replace me with your own command.
  */
+
+
 public class CloseClaw extends Command {
+	private boolean clawClosed;
+
 	public CloseClaw() {
 		requires(Robot.kClaw);
 		
 	}
-	private boolean clawClosed;
 
 	// Called just before this Command runs the first time
 	@Override
@@ -59,5 +62,6 @@ public class CloseClaw extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
+		System.out.println("The robot's claw closing was interrupted");
 	}
 }
