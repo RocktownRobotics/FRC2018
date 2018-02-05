@@ -66,10 +66,6 @@ public class TurnRobot extends Command {
 			rightPower = unscaledPower;
 		}
 
-		SmartDashboard.putNumber("leftRaw2", leftPower);
-		SmartDashboard.putNumber("rightRaw2", rightPower);
-		SmartDashboard.putNumber("turnGoal", turnAngle);
-
 		Robot.kDriveTrain.tankDrive(-leftPower, rightPower, false);
 	}
 
