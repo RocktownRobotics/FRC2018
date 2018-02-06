@@ -6,8 +6,8 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class DrivePneumatics extends Subsystem {
-	private Solenoid reverseShifter = new Solenoid(RobotMap.shifterReverse);
-	private Solenoid forwardShifter = new Solenoid(RobotMap.shifterForward);
+	private Solenoid reverseShifter = new Solenoid(RobotMap.SHIFTER_REVERSE);
+	private Solenoid forwardShifter = new Solenoid(RobotMap.SHIFTER_FORWARD);
 
 	// DoubleSolenoid gearShifter = new DoubleSolenoid(RobotMap.shifterForward,
 	// RobotMap.shifterReverse);
