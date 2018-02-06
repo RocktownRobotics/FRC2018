@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Claw extends Subsystem {
-	private Solenoid reverseShifter = new Solenoid(RobotMap.shifterReverse);
-	private Solenoid forwardShifter = new Solenoid(RobotMap.shifterForward);
+	private Solenoid reverseShifter = new Solenoid(RobotMap.SHIFTER_REVERSE);
+	private Solenoid forwardShifter = new Solenoid(RobotMap.SHIFTER_FORWARD);
 
 	private boolean clawClosed;
 	private boolean clawDeployed;
@@ -26,7 +26,7 @@ public class Claw extends Subsystem {
 
 	private WPI_TalonSRX leftClaw = new WPI_TalonSRX(RobotMap.CLAW_MOTOR_LEFT);
 	private WPI_TalonSRX rightClaw = new WPI_TalonSRX(RobotMap.CLAW_MOTOR_RIGHT);
-	private Solenoid clawPistons = new Solenoid(RobotMap.clawPiston);
+	private Solenoid clawPistons = new Solenoid(RobotMap.CLAW_PISTON);
 	private WPI_TalonSRX DeployMotor = new WPI_TalonSRX(RobotMap.DEPLOY_MOTOR);
 
 	/**

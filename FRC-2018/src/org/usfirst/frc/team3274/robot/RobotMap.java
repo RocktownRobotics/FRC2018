@@ -27,7 +27,7 @@ public class RobotMap {
 	 * the things that don't actually exist, like the forklift. Delete when these
 	 * things are installed.
 	 */
-	public final static int ProxyPort = 0;
+	public final static int PROXY_PORT = -1;
 
 	////////////////////////////////////////////////
 	///////////// JOYSTICK AXIS ////////////////////
@@ -39,7 +39,6 @@ public class RobotMap {
 	public static final int XBOX_LEFT_X_AXIS = 2;// THIS IS A GUESS, CHECK VALUE
 	public static final int XBOX_RIGHT_Y_AXIS = 3;// THIS IS A GUESS, CHECK VALUE
 	public static final int XBOX_RIGHT_X_AXIS = 4;
-	public static final int XBOX_RIGHT_Y_AXIS_LIFTCON = ProxyPort;
 
 	// flight stick
 	public static final int FLIGHT_STICK_FORWARD_AXIS = 1;
@@ -69,43 +68,48 @@ public class RobotMap {
 	////////////////////////////////////////////////
 
 	// Four wheels
-	public static final int FRONT_LEFT_MOTOR = 1;
-	public static final int FRONT_RIGHT_MOTOR = 2;
-	public static final int REAR_LEFT_MOTOR = 3;
-	public static final int REAR_RIGHT_MOTOR = 4;
-	public static final int LEFT_MOTOR = 5;
-	public static final int RIGHT_MOTOR = 6;
-	public static final int LIFT_MOTOR_LEFT = ProxyPort;
-	public static final int LIFT_MOTOR_RIGHT = ProxyPort;
-	public static final int CLAW_MOTOR_LEFT = ProxyPort;
-	public static final int CLAW_MOTOR_RIGHT = ProxyPort;
-	public static final int DEPLOY_MOTOR = ProxyPort;
+	public static final int FRONT_LEFT_MOTOR = PROXY_PORT;
+	public static final int FRONT_RIGHT_MOTOR = PROXY_PORT;
+	public static final int REAR_LEFT_MOTOR = PROXY_PORT;
+	public static final int REAR_RIGHT_MOTOR = PROXY_PORT;
+	public static final int LEFT_MOTOR = PROXY_PORT;
+	public static final int RIGHT_MOTOR = PROXY_PORT;
 
 	////////////////////////////////////////////////
 	/////////////// DIO's BELOW HERE////////////////
 	////////////////////////////////////////////////
 
+	// Limit Switches
+	public static final int UPPER_RIGHT_LIMIT_SWITCH = PROXY_PORT;
+	public static final int UPPER_LEFT_LIMIT_SWITCH = PROXY_PORT;
+	public static final int LOWER_RIGHT_LIMIT_SWITCH = PROXY_PORT;
+	public static final int LOWER_LEFT_LIMIT_SWITCH = PROXY_PORT;
+
 	// two input ports for each encoder
-	public static final int[] RIGHT_ENCODER = { 4, 5 };
-	public static final int[] LEFT_ENCODER = { 0, 1 };
-	public static final int[] LIFT_ENCODER = { ProxyPort, ProxyPort };
-	public static final int[] DEPLOY_ENCODER = {ProxyPort, ProxyPort};
-	// Touchless Encoder (the second channel is irrelevant)
-	public static final int[] TL_ENCODER = { 8, 9 };
+	public static final int[] RIGHT_ENCODER = { PROXY_PORT, PROXY_PORT };
+	public static final int[] LEFT_ENCODER = { PROXY_PORT, PROXY_PORT };
+	public static final int[] LIFT_ENCODER = { PROXY_PORT, PROXY_PORT };
+	public static final int[] DEPLOY_ENCODER = { PROXY_PORT, PROXY_PORT };
 
 	////////////////////////////////////////////////
 	/////////////// PWM's BELOW HERE////////////////
 	////////////////////////////////////////////////
 
+	public static final int LIFT_MOTOR_LEFT = PROXY_PORT;
+	public static final int LIFT_MOTOR_RIGHT = PROXY_PORT;
+	public static final int CLAW_MOTOR_LEFT = PROXY_PORT;
+	public static final int CLAW_MOTOR_RIGHT = PROXY_PORT;
+	public static final int DEPLOY_MOTOR = PROXY_PORT;
+
 	////////////////////////////////////////////////
 	/////////////// PCM's BELOW HERE////////////////
 	////////////////////////////////////////////////
 
-	public static int shifterForward = 3;
-	public static int shifterReverse = 4;
-	public static int gearForward = 6;
-	public static int gearReverse = 7;
-	public static int clawPiston = ProxyPort;
+	public static final int SHIFTER_FORWARD = PROXY_PORT;
+	public static final int SHIFTER_REVERSE = PROXY_PORT;
+	public static final int GEAR_FORWARD = PROXY_PORT;
+	public static final int GEAR_REVERSE = PROXY_PORT;
+	public static final int CLAW_PISTON = PROXY_PORT;
 
 	////////////////////////////////////////////////
 	////////////// Relays BELOW HERE////////////////
@@ -119,6 +123,6 @@ public class RobotMap {
 	////////////////////////////////////////////////
 	//////////// Misc. PORTS BELOW HERE/////////////
 	////////////////////////////////////////////////
-	
+
 	public static final SPI.Port NAVX_PORT = SPI.Port.kMXP;
 }
