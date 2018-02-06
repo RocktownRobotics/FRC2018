@@ -1,6 +1,11 @@
 package org.usfirst.frc.team3274.robot.commands.autonomous.groups;
 
+import org.usfirst.frc.team3274.robot.commands.DeployClaw;
+import org.usfirst.frc.team3274.robot.commands.Eject;
+import org.usfirst.frc.team3274.robot.commands.SetHeight;
+import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForward;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
+import org.usfirst.frc.team3274.robot.commands.autonomous.TurnRobot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -11,10 +16,12 @@ public class LeftStartToScale extends CommandGroup {
 	 * 90 degrees.
 	 */
 	public LeftStartToScale() {
-		// make sure robot is in low gear
-		addSequential(new ShiftDownForTime());
-
-		// addSequential(new DriveForward(3));
-		// addSequential(new TurnRobot(-90));
+		
+		System.out.println("Robot moving to Scale");
+		addSequential(new DriveForward(13));
+		addParallel(new DeployClaw());
+		addParallel(new SetHeight(40, 5));
+		addSequential(new TurnRobot(45));
+		addSequential(new Eject());
 	}
 }

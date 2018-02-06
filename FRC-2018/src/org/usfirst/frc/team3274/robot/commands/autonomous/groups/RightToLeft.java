@@ -14,12 +14,13 @@ public class RightToLeft extends CommandGroup {
 	 */
 	public RightToLeft() {
 		
+		System.out.println("Robot moving to Left Startpint");
 		addSequential(new DriveForward(4));
 		addSequential(new TurnRobot(-90));
 		addSequential(new DriveForward(21));
 		addSequential(new TurnRobot(90));
 		addSequential(new DriveForward(4));
-
+		System.out.println("Robot at Left Starpoint.");
 		
 	}
 }

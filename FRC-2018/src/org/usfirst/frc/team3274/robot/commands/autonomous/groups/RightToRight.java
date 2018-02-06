@@ -13,7 +13,9 @@ public class RightToRight extends CommandGroup {
 	 */
 	public RightToRight() {
 		
+		System.out.println("Robot moving to Right side Startpoint");
 		addSequential(new DriveForward(8));
+		System.out.println("Robot arrived at Right side Startpoint");
 		
 	}
 }

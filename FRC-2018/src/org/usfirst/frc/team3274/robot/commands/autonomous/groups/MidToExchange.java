@@ -1,6 +1,11 @@
 package org.usfirst.frc.team3274.robot.commands.autonomous.groups;
 
+import org.usfirst.frc.team3274.robot.commands.DeployClaw;
+import org.usfirst.frc.team3274.robot.commands.DriveBackward;
+import org.usfirst.frc.team3274.robot.commands.Eject;
+import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForward;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
+import org.usfirst.frc.team3274.robot.commands.autonomous.TurnRobot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -8,13 +13,22 @@ public class MidToExchange extends CommandGroup {
 
 	/**
 	 * Here is how you would make the robot drive forward 3 feet and then turn left
-	 * 90 degrees.
+	 * 90 degrees. Umm... No
 	 */
 	public MidToExchange() {
-		// make sure robot is in low gear
-		addSequential(new ShiftDownForTime());
-
-		// addSequential(new DriveForward(3));
-		// addSequential(new TurnRobot(-90));
+		
+		System.out.println("Robot moving to Exchange");
+		addSequential(new DriveForward(1));
+		addParallel(new DeployClaw());
+		addSequential(new TurnRobot(-90));
+		addSequential(new DriveForward(4));
+		addSequential(new TurnRobot(-90));
+		addSequential(new DriveForward(0.5));	
+		System.out.println("Robot exchanging P-Cube");
+		System.out.println("Robot moving to Auto Line");
+		addSequential(new Eject());
+		addSequential(new DriveBackward(7));
+		System.out.println("Robot has arrived");
+		
 	}
 }
