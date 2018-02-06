@@ -28,6 +28,20 @@ public class Primary_Autonomous extends CommandGroup {
 		}
 	}
 	
+	public boolean scaleIsRight() {
+		if (Robot.gameData == "RRR") {
+			return true;
+		}
+		else {
+			if(Robot.gameData == "LRL") {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+	}
+	
 	
 
 
@@ -65,14 +79,39 @@ public class Primary_Autonomous extends CommandGroup {
 		if (this.scoringStrategy == "Switch") {
 
 			if (this.startPosition == "Left") {
-				if() {
-					
+				if(this.switchIsRight()) {
+					//left to right switch
+					addSequential(new LeftToRight());
+					addSequential(new RightStartToSwitch());
 				}
 				else {
 					
+					// going from left to left switch
+					addSequential(new LeftToLeft());
+					addSequential(new LeftStartToSwitch());
 				}
 			} else if (this.startPosition == "Middle") {
+				
+				if(this.switchIsRight()) {
+					//mid to Right Switch
+					addSequential(new MidToRight());
+					addSequential(new RightStartToSwitch());
+				}else {
+					//Mid to Left Switch
+					addSequential(new MidToLeft());
+					addSequential(new LeftStartToSwitch());
+				}
 				} else {
+					if(this.switchIsRight()) {
+						//left to right switch
+						addSequential(new RightToRight());
+						addSequential(new RightStartToSwitch());
+					}
+					else {
+						//right to Left Switch
+						addSequential(new RightToLeft());
+						addSequential(new LeftStartToSwitch());
+					}
 				}
 			}
 
@@ -81,8 +120,40 @@ public class Primary_Autonomous extends CommandGroup {
 		else if (this.scoringStrategy == "Scale") {
 
 				if (this.startPosition == "Left") {
+					if(this.scaleIsRight()) {
+						//left to right scale
+						addSequential(new LeftToRight());
+						addSequential(new RightStartToScale());
+					}
+					else {
+						//left to left scale
+						addSequential(new LeftToLeft());
+						addSequential(new LeftStartToScale());
+					}
+					
+					
 				} else if (this.startPosition == "Middle") {
+					if(this.scaleIsRight()) {
+						//mid to right scale
+						addSequential(new MidToRight());
+						addSequential(new RightStartToScale());
+					}
+					else {
+						//mid to left scale
+						addSequential(new MidToLeft());
+						addSequential(new LeftStartToScale());
+					}
 					} else {
+						if(this.scaleIsRight()) {
+							//right to right scale
+							addSequential(new RightToRight());
+							addSequential(new RightStartToSwitch());
+						}
+						else {
+							//right to left scale
+							addSequential(new RightToLeft());
+							addSequential(new LeftStartToSwitch());
+						}
 					}
 		}
 				
@@ -92,17 +163,26 @@ public class Primary_Autonomous extends CommandGroup {
 			else if (this.scoringStrategy == "Exchange") {
 
 					if (this.startPosition == "Left") {
+						System.out.println("Failed: Cannot move to exchange from Left Start Position. However, Robot is smart and will still cross the auto line");
+						addSequential(new LeftToLeft());
 					} else if (this.startPosition == "Middle") {
+						//mid to exchange to auto line
+						addSequential(new MidToExchange());
 						} else {
+							System.out.println("Failed: Cannot move to exchange from Right Start. Robot is sad, but will still cross the auto line");
+							addSequential(new RightToRight());
 						}
+					
+					
 					
 
 				}
-
+			//Cross the Auto Line.
 				else if (this.startPosition == "Left") {
-					} else if (this.startPosition == "Middle") {
-						} else {
-						}
+					addSequential(new LeftToLeft());
+					} else{
+						addSequential(new RightToRight());
+						} 
 					
 
 				
