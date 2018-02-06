@@ -45,15 +45,15 @@ public class DriveTrain extends Subsystem {
 
 	// "rightMotor" and "leftMotor" are
 	// actually all three motors on the side but should act as one
-	private WPI_TalonSRX _rightMotor = new TalonSRXGroup(RobotMap.REAR_RIGHT_MOTOR, RobotMap.FRONT_RIGHT_MOTOR,
-			RobotMap.RIGHT_MOTOR);
-	private WPI_TalonSRX _leftMotor = new TalonSRXGroup(RobotMap.FRONT_LEFT_MOTOR, RobotMap.REAR_LEFT_MOTOR,
-			RobotMap.LEFT_MOTOR);
+	private WPI_TalonSRX _rightMotor = new TalonSRXGroup(RobotMap.REAR_RIGHT_MOTOR,
+			RobotMap.FRONT_RIGHT_MOTOR, RobotMap.RIGHT_MOTOR);
+	private WPI_TalonSRX _leftMotor = new TalonSRXGroup(RobotMap.FRONT_LEFT_MOTOR,
+			RobotMap.REAR_LEFT_MOTOR, RobotMap.LEFT_MOTOR);
 
-	private Encoder _rightEncoder = new Encoder(RobotMap.RIGHT_ENCODER[0], RobotMap.RIGHT_ENCODER[1], true,
-			EncodingType.k4X);
-	private Encoder _leftEncoder = new Encoder(RobotMap.LEFT_ENCODER[0], RobotMap.LEFT_ENCODER[1], true,
-			EncodingType.k4X);
+	private Encoder _rightEncoder = new Encoder(RobotMap.RIGHT_ENCODER[0],
+			RobotMap.RIGHT_ENCODER[1], true, EncodingType.k4X);
+	private Encoder _leftEncoder = new Encoder(RobotMap.LEFT_ENCODER[0], RobotMap.LEFT_ENCODER[1],
+			true, EncodingType.k4X);
 
 	private AHRS navX;
 
@@ -66,7 +66,8 @@ public class DriveTrain extends Subsystem {
 		isSniperMode = false;
 
 		double distancePerPulse; // in feet
-		distancePerPulse = (WHEEL_DIAMETER/* in */ * Math.PI) / (ENCODER_PULSES_PER_REVOLUTION * 12.0/* in/ft */);
+		distancePerPulse = (WHEEL_DIAMETER/* in */ * Math.PI)
+				/ (ENCODER_PULSES_PER_REVOLUTION * 12.0/* in/ft */);
 
 		_rightEncoder.setDistancePerPulse(distancePerPulse);
 		_leftEncoder.setDistancePerPulse(distancePerPulse);
@@ -133,7 +134,8 @@ public class DriveTrain extends Subsystem {
 	 *            Xbox controller to use as the input for tank drive.
 	 */
 	public void tankDrive(Joystick joy) {
-		this.tankDrive(joy.getRawAxis(-RobotMap.XBOX_LEFT_Y_AXIS), joy.getRawAxis(-RobotMap.XBOX_RIGHT_X_AXIS));
+		this.tankDrive(joy.getRawAxis(-RobotMap.XBOX_LEFT_Y_AXIS),
+				joy.getRawAxis(-RobotMap.XBOX_RIGHT_X_AXIS));
 	}
 
 	/**
@@ -180,6 +182,56 @@ public class DriveTrain extends Subsystem {
 		_rightMotor.set(ControlMode.PercentOutput, rJoyStickVal);
 
 		Timer.delay(0.005); // wait for a motor update time
+	}
+
+	/**
+	 * Have left joystick verticle axis for power, and right joystick horizontal
+	 * axis for turning.
+	 * 
+	 * @param joy
+	 *            xbox controller to use for input
+	 */
+	public void cheesyDrive(Joystick joy) {
+		cheesyDrive(RobotMap.XBOX_LEFT_Y_AXIS, RobotMap.XBOX_RIGHT_X_AXIS, true);
+	}
+
+	/**
+	 * Drive with a given forward and turning power.
+	 * 
+	 * @param power
+	 *            forward power to use between 1 and -1
+	 * @param turnPower
+	 *            rotational power to use between 1 and -1 where 1 is to the right,
+	 *            and -1 is to the left
+	 * @param applyDeadband
+	 *            whether or not tankdrive should ignore smaller inputs, in order to
+	 *            account for false input from joysticks
+	 */
+	public void cheesyDrive(double power, double turnPower, boolean applyDeadband) {
+		double tempPower = power;
+		double tempTurnPower = turnPower;
+
+		if (applyDeadband) {
+			tempPower = applyDeadband(tempPower, OI.JOYSTICK_DEADZONE);
+			tempTurnPower = applyDeadband(tempTurnPower, OI.JOYSTICK_DEADZONE);
+		}
+
+		if (power > .999)// keep power below 1
+		{
+			power = .999;
+		} else if (power < -.999) {// keeps power above -1
+			power = -.999;
+		}
+
+		// double forPower = power / 2; // use for slightly finer turning control (or
+		// ------------------------------- enable sniper mode)
+		// double rotPower = turnPower / 2; // use for slightly finer turning control
+		// ----------------------------------- (or enable sniper mode)
+
+		double leftPower = power + turnPower;
+		double rightPower = power - turnPower;
+
+		tankDrive(leftPower, rightPower, false);
 	}
 
 	public int getLeftRotations() {
