@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team3274.robot.commands.ExampleCommand;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.Primary_Autonomous;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.TestAuto;
 import org.usfirst.frc.team3274.robot.subsystems.Claw;
 import org.usfirst.frc.team3274.robot.subsystems.DrivePneumatics;
@@ -42,6 +43,7 @@ public class Robot extends TimedRobot {
 	public static String startPos;
 	public static String scoreSelection;
 	public static Double startDelay;
+	public String gameData;
 
 	// public static OI m_oi;
 
@@ -137,16 +139,18 @@ public class Robot extends TimedRobot {
 		// m_autonomousCommand.start();
 		// }
 
-		new TestAuto().start();
+		new Primary_Autonomous().start();
 
 		// how to get game type from driver station
 		// game data is either: "LLL", "RRR", "LRL", "RLR"
-		String gameData = DriverStation.getInstance().getGameSpecificMessage();
-		if (gameData.equals("LLL")) {
-			// one auto code here
-		} else {
-			// another auto code here
-		}
+		
+		
+		this.gameData = DriverStation.getInstance().getGameSpecificMessage();
+//		if (gameData.equals("LLL")) {
+//			// one auto code here
+//		} else {
+//			// another auto code here
+//		}
 
 	}
 
