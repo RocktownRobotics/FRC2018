@@ -17,19 +17,18 @@ public class Primary_Autonomous extends CommandGroup {
 	 * Here is how you would make the robot drive forward 3 feet and then turn left
 	 * 90 degrees. No, no it is not....
 	 */
-	
-	
-	
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
-*					This is a very complicated bit of code, with many, many stacked if 
-*					statements, not written for easy readability. You have been warned...	
-*/
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * This is a very complicated bit of code, with many, many stacked if
+	 * statements, not written for easy readability. You have been warned...
+	 * 
+	 * Additionally, if you are using my EditBox settings, your eyes will be bleeding by the end of it all...
+	 */
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	public Primary_Autonomous(double startDelay, String scoreSelection, String startPos) {
 
 		addSequential(new ShiftDownForTime());
@@ -42,47 +41,50 @@ public class Primary_Autonomous extends CommandGroup {
 
 		if (this.scoringStrategy == "Switch") {
 
-			if(this.startPosition == "Left") {
-				
+			if (this.startPosition == "Left") {
+
+			} else {
+				if (this.startPosition == "Middle") {
+				} else {
+				}
 			}
-			else {
-				if(this.startPosition == "Middle") {}
-				else {
-				}}
-			
+
 		}
 
 		else {
 
 			if (this.scoringStrategy == "Scale") {
 
-				if(this.startPosition == "Left") {}
-				else {
-					if(this.startPosition == "Middle") {}
-					else {
-					}}
-				
+				if (this.startPosition == "Left") {
+				} else {
+					if (this.startPosition == "Middle") {
+					} else {
+					}
+				}
+
 			}
 
 			else {
 
 				if (this.scoringStrategy == "Exchange") {
 
-					if(this.startPosition == "Left") {}
-					else {
-						if(this.startPosition == "Middle") {}
-						else {
-						}}
-					
+					if (this.startPosition == "Left") {
+					} else {
+						if (this.startPosition == "Middle") {
+						} else {
+						}
+					}
+
 				}
 
 				else {
-					
-					if(this.startPosition == "Left") {}
-					else {
-						if(this.startPosition == "Middle") {}
-						else {
-						}}
+
+					if (this.startPosition == "Left") {
+					} else {
+						if (this.startPosition == "Middle") {
+						} else {
+						}
+					}
 
 				}
 			}

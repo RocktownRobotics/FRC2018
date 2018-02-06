@@ -43,7 +43,7 @@ public class Robot extends TimedRobot {
 	private static String startPos;
 	private static String scoreSelection;
 	private static Double startDelay;
-	public String gameData;
+	public static String gameData;
 
 	// public static OI m_oi;
 
