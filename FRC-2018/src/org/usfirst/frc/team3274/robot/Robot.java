@@ -40,9 +40,6 @@ public class Robot extends TimedRobot {
 	public static final Claw kClaw = new Claw();
 	public static final ForkLift kForkLift = new ForkLift();
 
-	private static String startPos;
-	private static String scoreSelection;
-	private static Double startDelay;
 	public static String gameData;
 
 	// public static OI m_oi;
@@ -51,12 +48,10 @@ public class Robot extends TimedRobot {
 	public static Robot itself;
 
 	private SendableChooser<Double> startDelayChooser = new SendableChooser<>();
-
 	private SendableChooser<String> startPositionChooser = new SendableChooser<>();
-
 	private SendableChooser<String> scoringMethodChooser = new SendableChooser<>();
 
-	private double initialDelay;
+	private Command m_autonomousCommand;
 
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -67,8 +62,8 @@ public class Robot extends TimedRobot {
 		// m_oi = new OI(OI.ControllerSetup.SINGLE_XBOX_CONTROLLER);
 
 		// add Initial Delay options
-		startDelayChooser.addDefault("No Delay", (double) 0);
-		startDelayChooser.addObject("Delay", initialDelay);
+		startDelayChooser.addDefault("No Delay", 0.0);
+		startDelayChooser.addObject("Delay (2 sec)", 2.0);
 		SmartDashboard.putData("Delaying", startDelayChooser);
 
 		// add Starting Position options
@@ -85,10 +80,8 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Attempting to Score", scoringMethodChooser);
 
 		Robot.itself = this;
-
-		this.startPos = startPositionChooser.getSelected();
-		this.startDelay = startDelayChooser.getSelected();
-		this.scoreSelection = scoringMethodChooser.getSelected();
+		
+		this.gameData = "";
 	}
 
 	/**
@@ -120,30 +113,20 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		System.out.println("Robot got placed in the" + startPositionChooser.getSelected() + "position");
-		System.out
-				.println("Robot is trying to do something. Specifically, use the" + scoringMethodChooser.getSelected());
-		System.out.println("Robot just feels like sitting around for" + startDelayChooser.getSelected() + "seconds...");
+		System.out.println(
+				"Robot got placed in the" + startPositionChooser.getSelected() + "position");
+		System.out.println("Robot is trying to do something. Specifically, use the"
+				+ scoringMethodChooser.getSelected());
+		System.out.println("Robot just feels like sitting around for"
+				+ startDelayChooser.getSelected() + "seconds...");
 
-		// m_autonomousCommand = m_autonomousChooser.getSelected();
+		this.m_autonomousCommand = new Primary_Autonomous(startDelayChooser.getSelected(),
+				scoringMethodChooser.getSelected(), startPositionChooser.getSelected());
 
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		 * switch(autoSelected) { case "My Auto": autonomousCommand = new
-		 * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
-		 * ExampleCommand(); break; }
-		 */
-
-		// schedule the autonomous command (example)
-		// if (m_autonomousCommand != null) {
-		// m_autonomousCommand.start();
-		// }
-
-		new Primary_Autonomous(this.initialDelay, this.scoreSelection, this.startPos).start();
+		m_autonomousCommand.start();
 
 		// how to get game type from driver station
 		// game data is either: "LLL", "RRR", "LRL", "RLR"
-
 		this.gameData = DriverStation.getInstance().getGameSpecificMessage();
 		// if (gameData.equals("LLL")) {
 		// // one auto code here
