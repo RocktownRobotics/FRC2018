@@ -39,14 +39,23 @@ public class Robot extends TimedRobot {
 	public static final Claw kClaw = new Claw();
 	public static final ForkLift kForkLift = new ForkLift();
 
+	public static String startPos;
+	public static String scoreSelection;
+	public static Double startDelay;
+
 	// public static OI m_oi;
 
 	// for checking when the robot is running
 	public static Robot itself;
 
-	private Command m_autonomousCommand;
-	private SendableChooser<Command> m_chooser = new SendableChooser<>();
- 
+	private SendableChooser<Double> startDelayChooser = new SendableChooser<>();
+
+	private SendableChooser<String> startPositionChooser = new SendableChooser<>();
+
+	private SendableChooser<String> scoringMethodChooser = new SendableChooser<>();
+
+	private double initialDelay;
+
 	/**
 	 * This function is run when the robot is first started up and should be used
 	 * for any initialization code.
@@ -54,11 +63,30 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		// m_oi = new OI(OI.ControllerSetup.SINGLE_XBOX_CONTROLLER);
-		m_chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", m_chooser);
+
+		// add Initial Delay options
+		startDelayChooser.addDefault("No Delay", (double) 0);
+		startDelayChooser.addObject("Delay", initialDelay);
+		SmartDashboard.putData("Delaying", startDelayChooser);
+
+		// add Starting Position options
+		startPositionChooser.addObject("Left", "Left");
+		startPositionChooser.addObject("Middle", "Middle");
+		startPositionChooser.addObject("Right", "Right");
+		SmartDashboard.putData("Starting in", startPositionChooser);
+
+		// add Scoring Method options
+		scoringMethodChooser.addDefault("Switch", "Switch");
+		scoringMethodChooser.addObject("Scale", "Scale");
+		scoringMethodChooser.addObject("None", "None");
+		scoringMethodChooser.addObject("Exchange(Must be in Middle)", "Exchange");
+		SmartDashboard.putData("Attempting to Score", scoringMethodChooser);
 
 		Robot.itself = this;
+
+		this.startPos = startPositionChooser.getSelected();
+		this.startDelay = startDelayChooser.getSelected();
+		this.scoreSelection = scoringMethodChooser.getSelected();
 	}
 
 	/**
@@ -90,7 +118,12 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		m_autonomousCommand = m_chooser.getSelected();
+		System.out.println("Robot got placed in the" + startPositionChooser.getSelected() + "position");
+		System.out
+				.println("Robot is trying to do something. Specifically, use the" + scoringMethodChooser.getSelected());
+		System.out.println("Robot just feels like sitting around for" + startDelayChooser.getSelected() + "seconds...");
+
+		// m_autonomousCommand = m_autonomousChooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
@@ -167,5 +200,13 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("rightEncoder", kDriveTrain.getRightDistance());
 
 		SmartDashboard.putNumber("gyro_yaw", kDriveTrain.getYaw());
+	}
+
+	public Double getStartDelay() {
+		return startDelay;
+	}
+
+	public void setStartDelay(Double startDelay) {
+		this.startDelay = startDelay;
 	}
 }
