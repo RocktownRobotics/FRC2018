@@ -30,19 +30,21 @@ public class Primary_Autonomous extends CommandGroup {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		
-	public Primary_Autonomous() {
+	public Primary_Autonomous(double startDelay, String scoreSelection, String startPos) {
 
 		addSequential(new ShiftDownForTime());
 
-		this.initialDelay = Robot.startDelay;
-		this.scoringStrategy = Robot.scoreSelection;
-		this.startPosition = Robot.startPos;
+		this.initialDelay = startDelay;
+		this.scoringStrategy = scoreSelection;
+		this.startPosition = startPos;
 
 		addSequential(new Delay(this.initialDelay));
 
 		if (this.scoringStrategy == "Switch") {
 
-			if(this.startPosition == "Left") {}
+			if(this.startPosition == "Left") {
+				
+			}
 			else {
 				if(this.startPosition == "Middle") {}
 				else {

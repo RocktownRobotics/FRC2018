@@ -40,9 +40,9 @@ public class Robot extends TimedRobot {
 	public static final Claw kClaw = new Claw();
 	public static final ForkLift kForkLift = new ForkLift();
 
-	public static String startPos;
-	public static String scoreSelection;
-	public static Double startDelay;
+	private static String startPos;
+	private static String scoreSelection;
+	private static Double startDelay;
 	public String gameData;
 
 	// public static OI m_oi;
@@ -139,18 +139,17 @@ public class Robot extends TimedRobot {
 		// m_autonomousCommand.start();
 		// }
 
-		new Primary_Autonomous().start();
+		new Primary_Autonomous(this.initialDelay, this.scoreSelection, this.startPos).start();
 
 		// how to get game type from driver station
 		// game data is either: "LLL", "RRR", "LRL", "RLR"
-		
-		
+
 		this.gameData = DriverStation.getInstance().getGameSpecificMessage();
-//		if (gameData.equals("LLL")) {
-//			// one auto code here
-//		} else {
-//			// another auto code here
-//		}
+		// if (gameData.equals("LLL")) {
+		// // one auto code here
+		// } else {
+		// // another auto code here
+		// }
 
 	}
 
@@ -206,11 +205,4 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("gyro_yaw", kDriveTrain.getYaw());
 	}
 
-	public Double getStartDelay() {
-		return startDelay;
-	}
-
-	public void setStartDelay(Double startDelay) {
-		this.startDelay = startDelay;
-	}
 }
