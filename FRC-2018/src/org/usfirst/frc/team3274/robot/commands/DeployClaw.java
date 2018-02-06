@@ -5,33 +5,33 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc.team3274.robot.commands.autonomous;
+package org.usfirst.frc.team3274.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team3274.robot.Robot;
-
-
 
 /**
  * An example command.  You can replace me with your own command.
  */
-public class Delay extends Command {
-	public Delay(double targetDelay) {
-		
-		this.delayTime = targetDelay;
-
-		
-		
+public class DeployClaw extends Command {
+	public DeployClaw() {
+		// Use requires() here to declare subsystem dependencies
+		requires(Robot.kClaw);
 	}
-	private double startTime;
-	private double delayTime;
+
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
 		
-		this.startTime = Timer.getMatchTime();
-		System.out.println("Just... wasting time....");
+		System.out.println("Deploying Claw");
+		
+		if(Robot.kClaw.getDeployAngle() < 85) {
+			Robot.kClaw.deploy(0.1);
+		}
+		else {
+			System.out.println("Failed: Claw already deployed");
+		}
+		
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -42,11 +42,11 @@ public class Delay extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		if(Timer.getMatchTime() <= startTime + delayTime) {
+		if(Robot.kClaw.getDeployAngle() <= 80) {
 		return false;
 		}
 		else {
-			System.out.println("Robot is tired of waiting");
+			System.out.println("Claw Deployed Successfully");
 			return true;
 		}
 	}
@@ -54,12 +54,14 @@ public class Delay extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
+		
+		Robot.kClaw.deploy(0);
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		System.out.println("Something got in the way of the sitting about");
+		System.out.println("Claw Deployment interrupted");
 	}
 }
