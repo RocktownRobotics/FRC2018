@@ -73,7 +73,7 @@ Right Startpoint to Right Scale
 	addSequential(new TurnRobot(-45));
 	addSequential(new Eject());
 
-Right Startpoint to Right Scale
+Right Startpoint to Right Switch
 
 	addSequential(new DriveForward(3));
 	addParallel(new DeployClaw());
