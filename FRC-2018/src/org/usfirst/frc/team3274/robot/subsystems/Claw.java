@@ -9,6 +9,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDSourceType;
+import edu.wpi.first.wpilibj.PWMTalonSRX;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -29,10 +30,10 @@ public class Claw extends Subsystem {
 	private Encoder _deployEncoder = new Encoder(RobotMap.DEPLOY_ENCODER[0], RobotMap.DEPLOY_ENCODER[1], true,
 			EncodingType.k4X);
 
-	private WPI_TalonSRX leftClaw = new WPI_TalonSRX(RobotMap.CLAW_MOTOR_LEFT);
-	private WPI_TalonSRX rightClaw = new WPI_TalonSRX(RobotMap.CLAW_MOTOR_RIGHT);
+	private PWMTalonSRX leftClaw = new PWMTalonSRX(RobotMap.CLAW_MOTOR_LEFT);
+	private PWMTalonSRX rightClaw = new PWMTalonSRX(RobotMap.CLAW_MOTOR_RIGHT);
 	private Solenoid clawPistons = new Solenoid(RobotMap.CLAW_PISTON);
-	private WPI_TalonSRX DeployMotor = new WPI_TalonSRX(RobotMap.DEPLOY_MOTOR);
+	private PWMTalonSRX DeployMotor = new PWMTalonSRX(RobotMap.DEPLOY_MOTOR);
 
 	/**
 	 * @param motorSpeed
