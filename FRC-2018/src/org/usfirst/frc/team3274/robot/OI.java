@@ -7,6 +7,18 @@
 
 package org.usfirst.frc.team3274.robot;
 
+import org.usfirst.frc.team3274.robot.commands.Climb;
+import org.usfirst.frc.team3274.robot.commands.CloseClaw;
+import org.usfirst.frc.team3274.robot.commands.DeployClaw;
+import org.usfirst.frc.team3274.robot.commands.DropClaw;
+import org.usfirst.frc.team3274.robot.commands.Eject;
+import org.usfirst.frc.team3274.robot.commands.OpenClaw;
+import org.usfirst.frc.team3274.robot.commands.SetHeight;
+import org.usfirst.frc.team3274.robot.commands.ShiftDown;
+import org.usfirst.frc.team3274.robot.commands.ShiftUp;
+import org.usfirst.frc.team3274.robot.commands.Suck;
+import org.usfirst.frc.team3274.robot.commands.autonomous.RetractClaw;
+import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
 import org.usfirst.frc.team3274.robot.util.AxisButton;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
@@ -71,6 +83,8 @@ public class OI {
 	private JoystickButton right = new JoystickButton(xbox0, RobotMap.XBOX_RIGHT_BUTTON);
 	private JoystickButton start = new JoystickButton(xbox0, RobotMap.XBOX_START_BUTTON);
 	private JoystickButton back = new JoystickButton(xbox0, RobotMap.XBOX_BACK_BUTTON);
+	private JoystickButton l3 = new JoystickButton(xbox0, RobotMap.XBOX_L3_BUTTON);
+	private JoystickButton r3 = new JoystickButton(xbox0, RobotMap.XBOX_R3_BUTTON);
 	private AxisButton rightTrigger = new AxisButton(xbox0, RobotMap.XBOX_RIGHT_TRIGGER_AXIS, .75, true);
 	private AxisButton leftTrigger = new AxisButton(xbox0, RobotMap.XBOX_LEFT_TRIGGER_AXIS, .75, true);
 
@@ -98,7 +112,20 @@ public class OI {
 
 	private void initSingleXboxControllerSetup() {
 		// assign commands to buttons and stuff here (described at top of this class)
-
+		
+		rightTrigger.whileHeld(new ShiftUp());
+		leftTrigger.whileHeld(new ShiftDown());
+		rBumper.whenPressed(new OpenClaw());
+		rBumper.whenReleased(new CloseClaw());
+		r3.whileHeld(new SetHeight(Robot.kForkLift.getLiftHeight() + 1, 0.1));
+		l3.whileHeld(new SetHeight(Robot.kForkLift.getLiftHeight() - 1, 0.1));
+		lBumper.whileHeld(new Eject());
+		b.whenPressed(new Suck());
+		left.whenPressed(new DropClaw());
+		right.whenPressed(new DeployClaw());
+		down.whenPressed(new RetractClaw());
+		start.whenPressed(new Climb());
+		
 		// Keep in mind that joystick stuff is handled by the drive train already, so
 		// you only have to deal with button presses here.
 	}

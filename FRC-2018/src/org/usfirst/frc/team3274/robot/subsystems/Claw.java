@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Claw extends Subsystem {
@@ -61,6 +62,10 @@ public class Claw extends Subsystem {
 	public int getDeployAngle() {
 		return this.getDeployRotations() * 360 / this.ENCODER_PULSES_PER_REVOLUTION;
 	}
+	
+	public void resetDeployEncoder() {
+		this._deployEncoder.reset();
+	}
 
 	public boolean isClawLoaded() {
 		if (_leftClawLimitSwitch.get() && _rightClawLimitSwitch.get()) {
@@ -72,9 +77,7 @@ public class Claw extends Subsystem {
 		}
 	}
 
-	public void resetDeploy() {
-		this._deployEncoder.reset();
-	}
+	
 
 	public void deploy(double deployPower) {
 
@@ -113,21 +116,26 @@ public class Claw extends Subsystem {
 
 	public void OpenClaw() {
 		clawPistons.set(false);
+		this.clawClosed = true;
 	}
 
 	public void CloseClaw() {
 		clawPistons.set(true);
+		this.clawClosed = false;
+	}
+
+	
+	
+	public void stop() {
+		clawPistons.set(false);
+
+		// gearShifter.set(off);
 	}
 
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
-	}
-
-	public void stop() {
-		clawPistons.set(false);
-
-		// gearShifter.set(off);
+		
 	}
 
 	/**

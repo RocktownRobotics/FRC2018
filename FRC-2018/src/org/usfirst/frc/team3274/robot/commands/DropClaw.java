@@ -5,16 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc.team3274.robot.commands.autonomous;
+package org.usfirst.frc.team3274.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team3274.robot.Robot;
 
 /**
- * An example command. You can replace me with your own command.
+ * An example command.  You can replace me with your own command.
  */
-public class RetractClaw extends Command {
-	public RetractClaw() {
+public class DropClaw extends Command {
+	public DropClaw() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.kClaw);
 	}
@@ -22,15 +22,16 @@ public class RetractClaw extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-
-		System.out.println("Retracting Claw");
-
-		if (Robot.kClaw.getDeployAngle() > 5) {
-			Robot.kClaw.retract(0.1);
-		} else {
-			System.out.println("Failed: Claw already retracted");
+		
+		System.out.println("Drop Claw");
+		
+		if(Robot.kClaw.getDeployAngle() < 160) {
+			Robot.kClaw.deploy(0.1);
 		}
-
+		else {
+			System.out.println("Failed: Claw already dropped");
+		}
+		
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -41,12 +42,11 @@ public class RetractClaw extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		if (Robot.kClaw.getDeployAngle() > 5) {
-			return false;
-		} else {
-			System.out.println("Claw Retracted Successfully");
-			Robot.kClaw.resetDeployEncoder();
-
+		if(Robot.kClaw.getDeployAngle() <= 80) {
+		return false;
+		}
+		else {
+			System.out.println("Claw Dropped Successfully");
 			return true;
 		}
 	}
@@ -54,13 +54,14 @@ public class RetractClaw extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Robot.kClaw.retract(0);
+		
+		Robot.kClaw.deploy(0);
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		System.out.println("Claw Retraction Interrupted");
+		System.out.println("Claw Drop interrupted");
 	}
 }

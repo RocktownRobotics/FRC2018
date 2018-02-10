@@ -2,34 +2,37 @@ package org.usfirst.frc.team3274.robot.commands;
 
 import org.usfirst.frc.team3274.robot.Robot;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  * This command allows xbox joystick to drive the robot. It is always running
  * except when interrupted by another command.
  */
-public class DriveWithJoystick extends Command {
-	public DriveWithJoystick() {
-		requires(Robot.kDriveTrain);
-	}
+public class DriveWithJoystick extends CommandGroup {
+
+	public static enum DriveType {
+		CHEESY_DRIVE, TANK_DRIVE
+	};
 
 	/**
-	 * Drive using joystick input.
 	 * 
-	 * @see edu.wpi.first.wpilibj.command.Command#execute()
+	 * @param blah
+	 *            blah is the poorly named variable referring to the method of drive
+	 *            control, either tank, or cheesy...
 	 */
-	@Override
-	protected void execute() {
-//		Robot.kDriveTrain.tankDrive(Robot.m_oi.getXbox01());
-	}
 
-	@Override
-	protected boolean isFinished() {
-		return false;
-	}
+	public DriveWithJoystick(DriveType blah) {
 
-	@Override
-	protected void end() {
-		Robot.kDriveTrain.stop();
+		if (blah == DriveType.TANK_DRIVE) {
+
+			addSequential(new TankDrive());
+
+		} else if (blah == DriveType.CHEESY_DRIVE) {
+
+			addSequential(new CheesyDrive());
+			
+		} else {
+		}
 	}
 }

@@ -18,16 +18,14 @@ public class OpenClaw extends Command {
 		requires(Robot.kClaw);
 	}
 
-	private boolean clawClosed;
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
 		System.out.println("Opening the claw");
-		this.clawClosed = Robot.kClaw.isClawClosed();
-		if (this.clawClosed = false) {
+		if (Robot.kClaw.isClawClosed() == false) {
 			System.out.println("Failed: Claw already open. Robot is sad.");
-			this.end();
+	
 		}
 	}
 
@@ -35,13 +33,12 @@ public class OpenClaw extends Command {
 	@Override
 	protected void execute() {
 		Robot.kClaw.OpenClaw();
-		this.clawClosed = false;
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		if (this.clawClosed == true) {
+		if (Robot.kClaw.isClawClosed() == true) {
 			return false;
 		} else {
 			System.out.println("Claw opened succesfully");

@@ -65,6 +65,8 @@ public class RobotMap {
 	public static final int XBOX_DOWN_BUTTON = 14;
 	public static final int XBOX_LEFT_BUTTON = 15;
 	public static final int XBOX_RIGHT_BUTTON = 16;
+	public static final int XBOX_R3_BUTTON = PROXY_PORT;
+	public static final int XBOX_L3_BUTTON = PROXY_PORT;
 
 	////////////////////////////////////////////////
 	//////////// CAN TALONS BELOW HERE//////////////

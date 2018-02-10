@@ -15,6 +15,7 @@ import org.usfirst.frc.team3274.robot.OI;
 import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.RobotMap;
 import org.usfirst.frc.team3274.robot.commands.DriveWithJoystick;
+import org.usfirst.frc.team3274.robot.commands.DriveWithJoystick.DriveType;
 import org.usfirst.frc.team3274.robot.util.TalonSRXGroup;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -86,7 +87,8 @@ public class DriveTrain extends Subsystem {
 	 */
 	@Override
 	public void initDefaultCommand() {
-		setDefaultCommand(new DriveWithJoystick());
+		//Use either CHEESY_DRIVE or TANK_DRIVE for DriveType
+		setDefaultCommand(new DriveWithJoystick(DriveType.CHEESY_DRIVE));
 	}
 
 	/**
