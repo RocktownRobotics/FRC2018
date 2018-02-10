@@ -13,10 +13,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveForward extends Command {
 
+	public static final double FAST_SPEED = 0.5;
 	public static final double NORMAL_SPEED = 0.2;
 	public static final double SLOW_SPEED = 0.1;
 
 	public static final double SLOW_DISTANCE = 1; // offset in ft
+	private static final double MID_DISTANCE = 2;
 
 	private double targetDistance;
 
@@ -46,11 +48,14 @@ public class DriveForward extends Command {
 		
 		double determinedSpeed;
 
-		if (Robot.kDriveTrain.getDistanceDriven() < targetDistance - SLOW_DISTANCE) {
-			determinedSpeed = NORMAL_SPEED;
+		if (Robot.kDriveTrain.getDistanceDriven() < targetDistance - MID_DISTANCE) {
+			determinedSpeed = FAST_SPEED;
 
-		} else {
+		} else if(Robot.kDriveTrain.getDistanceDriven() < targetDistance - SLOW_DISTANCE){
 			determinedSpeed = SLOW_SPEED;
+		}
+		else {
+			determinedSpeed = NORMAL_SPEED;
 		}
 
 		// no offset needed in error because it is determined at beginning.
