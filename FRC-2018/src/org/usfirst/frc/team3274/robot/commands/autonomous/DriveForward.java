@@ -45,17 +45,21 @@ public class DriveForward extends Command {
 	protected void execute() {
 
 		System.out.println("exe_driveforward");
-		
+
 		double determinedSpeed;
-
-		if (Robot.kDriveTrain.getDistanceDriven() < targetDistance - MID_DISTANCE) {
-			determinedSpeed = FAST_SPEED;
-
-		} else if(Robot.kDriveTrain.getDistanceDriven() < targetDistance - SLOW_DISTANCE){
+		if (Robot.kDriveTrain.isRobotTipping()) {
 			determinedSpeed = SLOW_SPEED;
-		}
-		else {
-			determinedSpeed = NORMAL_SPEED;
+			System.out.println(
+					"Robot is almost tipping over. Robot is scared. Robot will move slowly and carefully until it is on safer ground...");
+		} else {
+			if (Robot.kDriveTrain.getDistanceDriven() < targetDistance - MID_DISTANCE) {
+				determinedSpeed = FAST_SPEED;
+
+			} else if (Robot.kDriveTrain.getDistanceDriven() < targetDistance - SLOW_DISTANCE) {
+				determinedSpeed = SLOW_SPEED;
+			} else {
+				determinedSpeed = NORMAL_SPEED;
+			}
 		}
 
 		// no offset needed in error because it is determined at beginning.

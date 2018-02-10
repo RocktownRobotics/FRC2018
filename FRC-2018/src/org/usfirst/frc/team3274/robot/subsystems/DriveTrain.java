@@ -42,6 +42,10 @@ public class DriveTrain extends Subsystem {
 	/** PID Controller coefficients. **/
 	public static final double Gyro_KP = .01;
 
+	private static final float PITCH_TIPPING_CONSTANT = 15;
+
+	private static final float ROLL_TIPPING_CONSTANT = 15;
+
 	private boolean isSniperMode;
 
 	// "rightMotor" and "leftMotor" are
@@ -340,6 +344,15 @@ public class DriveTrain extends Subsystem {
 		return navX.getYaw();
 	}
 
+	public boolean isRobotTipping() {
+		if(Math.abs(navX.getPitch()) > PITCH_TIPPING_CONSTANT || Math.abs(navX.getRoll()) > ROLL_TIPPING_CONSTANT) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 	/**
 	 * Resets Gyro Yaw to 0.
 	 */

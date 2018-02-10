@@ -13,9 +13,10 @@ public class Climb extends CommandGroup {
 	 */
 	public Climb() {
 		
+		addSequential(new SetHeight(14,1));
+		addParallel(new DropClaw());
 		addSequential(new SetHeight(42,1));
 		addParallel(new Eject());
-		addParallel(new DropClaw());
 		addSequential(new ResetHeight());
 		
 	}
