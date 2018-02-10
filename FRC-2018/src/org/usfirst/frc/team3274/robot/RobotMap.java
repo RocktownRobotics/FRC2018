@@ -80,10 +80,11 @@ public class RobotMap {
 	////////////////////////////////////////////////
 
 	// Limit Switches
-	public static final int UPPER_RIGHT_LIMIT_SWITCH = PROXY_PORT;
-	public static final int UPPER_LEFT_LIMIT_SWITCH = PROXY_PORT;
-	public static final int LOWER_RIGHT_LIMIT_SWITCH = PROXY_PORT;
-	public static final int LOWER_LEFT_LIMIT_SWITCH = PROXY_PORT;
+	public static final int LOWER_LIMIT_SWITCH = PROXY_PORT;
+	public static final int UPPER_LIMIT_SWITCH = PROXY_PORT;
+	
+	public static final int LEFT_CLAW_LIMIT_SWITCH = PROXY_PORT;
+	public static final int RIGHT_CLAW_LIMIT_SWITCH = PROXY_PORT;
 
 	// two input ports for each encoder
 	public static final int[] RIGHT_ENCODER = { PROXY_PORT, PROXY_PORT };

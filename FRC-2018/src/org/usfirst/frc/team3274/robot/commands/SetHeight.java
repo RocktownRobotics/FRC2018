@@ -1,8 +1,10 @@
 
 package org.usfirst.frc.team3274.robot.commands;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team3274.robot.Robot;
+import org.usfirst.frc.team3274.robot.RobotMap;
 
 /**
  * An example command.  You can replace me with your own command. Just did...
@@ -58,15 +60,20 @@ public class SetHeight extends Command {
 			} else {
 				Robot.kForkLift.setLiftPower(-0.1);
 			}
+		}
+	}
+
+	{
+
+		if (Robot.kForkLift.getLiftHeight() < targetHeight - tolerableProximity * 2) {
+			Robot.kForkLift.setLiftPower(0.3);
 		} else {
-			if (Robot.kForkLift.getLiftHeight() < targetHeight - tolerableProximity * 2) {
-				Robot.kForkLift.setLiftPower(0.3);
-			} else {
-				Robot.kForkLift.setLiftPower(0.1);
-			}
+			Robot.kForkLift.setLiftPower(0.1);
 		}
 
 	}
+
+	
 
 	// If forklift is within tolerableProximity of the target height, end.
 	@Override

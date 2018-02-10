@@ -34,7 +34,7 @@ public class Eject extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.kClaw.eject(launchPower);
+		Robot.kClaw.setCubeManipulatorMotors(launchPower);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -53,7 +53,7 @@ public class Eject extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Robot.kClaw.eject(0);
+		Robot.kClaw.setCubeManipulatorMotors(0);
 	}
 
 	// Called when another command which requires one or more of the same

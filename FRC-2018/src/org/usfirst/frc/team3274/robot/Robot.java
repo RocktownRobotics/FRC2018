@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team3274.robot;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -52,6 +53,8 @@ public class Robot extends TimedRobot {
 	private SendableChooser<String> scoringMethodChooser = new SendableChooser<>();
 
 	private Command m_autonomousCommand;
+	
+
 
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -82,6 +85,8 @@ public class Robot extends TimedRobot {
 		Robot.itself = this;
 		
 		this.gameData = "";
+		
+		
 	}
 
 	/**

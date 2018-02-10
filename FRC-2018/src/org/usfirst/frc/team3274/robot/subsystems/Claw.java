@@ -6,6 +6,7 @@ import org.usfirst.frc.team3274.robot.util.TalonSRXGroup;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -15,6 +16,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Claw extends Subsystem {
 	private Solenoid reverseShifter = new Solenoid(RobotMap.SHIFTER_REVERSE);
 	private Solenoid forwardShifter = new Solenoid(RobotMap.SHIFTER_FORWARD);
+
+	private DigitalInput _leftClawLimitSwitch = new DigitalInput(RobotMap.LEFT_CLAW_LIMIT_SWITCH);
+	private DigitalInput _rightClawLimitSwitch = new DigitalInput(RobotMap.RIGHT_CLAW_LIMIT_SWITCH);
 
 	private boolean clawClosed;
 	private boolean clawDeployed;
@@ -30,18 +34,18 @@ public class Claw extends Subsystem {
 	private WPI_TalonSRX DeployMotor = new WPI_TalonSRX(RobotMap.DEPLOY_MOTOR);
 
 	/**
-	 * @param ejectSpeed
-	 *            the motor power at which the cube should be ejected. Between 0 and
+	 * @param motorSpeed
+	 *            the motor power at which the cube should be moved. Between 0 and
 	 *            1, the negatives, if any, will be handled in the eject code.
 	 * 
 	 * @param thrustTime
 	 *            the time to run the ejection motors, in seconds
 	 */
 
-	public void eject(double ejectSpeed) {
+	public void setCubeManipulatorMotors(double motorSpeed) {
 		if (Robot.kClaw.isClawClosed() == true) {
-			this.leftClaw.set(ejectSpeed);
-			this.rightClaw.set(ejectSpeed);
+			this.leftClaw.set(motorSpeed);
+			this.rightClaw.set(motorSpeed);
 
 		}
 
@@ -56,6 +60,16 @@ public class Claw extends Subsystem {
 
 	public int getDeployAngle() {
 		return this.getDeployRotations() * 360 / this.ENCODER_PULSES_PER_REVOLUTION;
+	}
+
+	public boolean isClawLoaded() {
+		if (_leftClawLimitSwitch.get() && _rightClawLimitSwitch.get()) {
+			return false;
+		} else
+
+		{
+			return true;
+		}
 	}
 
 	public void resetDeploy() {
