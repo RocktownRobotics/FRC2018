@@ -18,7 +18,7 @@ public class AxisButton extends Button {
 	private final GenericHID m_joystick;
 	private final int m_axisNumber;
 	private final double m_threshold;
-	private final boolean isPressedIfBelowThreshold;
+	private final boolean isPressedIfAboveThreshold;
 
 	/**
 	 * Create an axis button for triggering commands.
@@ -30,30 +30,30 @@ public class AxisButton extends Button {
 	 * @param threshold
 	 *            the axis value that needs to be reached in order to count as a
 	 *            button press
-	 * @param isPressedIfBelowThreshold
-	 *            true if the button is "pressed" when the value of the axis is
-	 *            below the the threshold, and false if the button is "pressed" when
+	 * @param isPressedIfAboveThreshold
+	 *            false if the button is "pressed" when the value of the axis is
+	 *            below the the threshold, and true if the button is "pressed" when
 	 *            the value of the axis is above the the threshold
 	 */
-	public AxisButton(GenericHID joystick, int axisNumber, double threshold, boolean isPressedIfBelowThreshold) {
-		
+	public AxisButton(GenericHID joystick, int axisNumber, double threshold, boolean isPressedIfAboveThreshold) {
+
 		// check if axis is within range
 		if (axisNumber >= joystick.getAxisCount()) {
 			throw new IndexOutOfBoundsException("Joystick axis is out of range");
 		}
-		
+
 		this.m_joystick = joystick;
 		this.m_axisNumber = axisNumber;
 		this.m_threshold = threshold;
-		this.isPressedIfBelowThreshold = isPressedIfBelowThreshold;
+		this.isPressedIfAboveThreshold = isPressedIfAboveThreshold;
 	}
 
 	@Override
 	public boolean get() {
-		if (isPressedIfBelowThreshold) {
-			return m_joystick.getRawAxis(m_axisNumber) < m_threshold;
-		} else {
+		if (isPressedIfAboveThreshold) {
 			return m_joystick.getRawAxis(m_axisNumber) > m_threshold;
+		} else {
+			return m_joystick.getRawAxis(m_axisNumber) < m_threshold;
 		}
 	}
 
