@@ -43,7 +43,7 @@ public class Robot extends TimedRobot {
 
 	public static String gameData;
 
-	// public static OI m_oi;
+	public static OI m_oi;
 
 	// for checking when the robot is running
 	public static Robot itself;
