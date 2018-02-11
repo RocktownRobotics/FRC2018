@@ -26,6 +26,7 @@ public class Claw extends Subsystem {
 	private boolean clawDeployed;
 
 	public static final int ENCODER_PULSES_PER_REVOLUTION = 1343;
+	public static final double WHEEL_DIAMETER = 4.0; // in inches
 
 	private Encoder _deployEncoder = new Encoder(RobotMap.DEPLOY_ENCODER[0], RobotMap.DEPLOY_ENCODER[1], true,
 			EncodingType.k4X);
@@ -34,6 +35,13 @@ public class Claw extends Subsystem {
 	private PWMTalonSRX rightClaw = new PWMTalonSRX(RobotMap.CLAW_MOTOR_RIGHT);
 	private Solenoid clawPistons = new Solenoid(RobotMap.CLAW_PISTON);
 	private PWMTalonSRX DeployMotor = new PWMTalonSRX(RobotMap.DEPLOY_MOTOR);
+
+	public Claw() {
+		double distancePerPulse; // in feet
+		distancePerPulse = (WHEEL_DIAMETER/* in */ * Math.PI) / (ENCODER_PULSES_PER_REVOLUTION * 12.0/* in/ft */);
+
+		_deployEncoder.setDistancePerPulse(distancePerPulse);
+	}
 
 	/**
 	 * @param motorSpeed
@@ -63,7 +71,7 @@ public class Claw extends Subsystem {
 	public int getDeployAngle() {
 		return this.getDeployRotations() * 360 / this.ENCODER_PULSES_PER_REVOLUTION;
 	}
-	
+
 	public void resetDeployEncoder() {
 		this._deployEncoder.reset();
 	}
@@ -77,8 +85,6 @@ public class Claw extends Subsystem {
 			return true;
 		}
 	}
-
-	
 
 	public void deploy(double deployPower) {
 
@@ -111,10 +117,6 @@ public class Claw extends Subsystem {
 		return clawDeployed;
 	}
 
-	public Claw() {
-		// LiveWindow.addActuator("DrivePnumatics", "GearShifter", gearShifter);
-	}
-
 	public void OpenClaw() {
 		clawPistons.set(false);
 		this.clawClosed = true;
@@ -125,8 +127,6 @@ public class Claw extends Subsystem {
 		this.clawClosed = false;
 	}
 
-	
-	
 	public void stop() {
 		clawPistons.set(false);
 
@@ -136,7 +136,7 @@ public class Claw extends Subsystem {
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/**

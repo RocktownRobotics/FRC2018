@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team3274.robot.commands.ExampleCommand;
+import org.usfirst.frc.team3274.robot.commands.SetHeight;
+import org.usfirst.frc.team3274.robot.commands.autonomous.ResetHeight;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.Primary_Autonomous;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.TestAuto;
 import org.usfirst.frc.team3274.robot.subsystems.Claw;
@@ -82,6 +84,11 @@ public class Robot extends TimedRobot {
 		scoringMethodChooser.addObject("Exchange(Must be in Middle)", "Exchange");
 		SmartDashboard.putData("Attempting to Score", scoringMethodChooser);
 
+		
+		SmartDashboard.putData("Reset Height", new ResetHeight());
+		SmartDashboard.putData("Set Height 2", new SetHeight(1, .01));
+		//SmartDashboard.putData("",);
+		
 		Robot.itself = this;
 		
 		this.gameData = "";
