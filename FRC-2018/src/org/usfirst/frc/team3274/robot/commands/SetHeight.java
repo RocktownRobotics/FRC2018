@@ -22,6 +22,12 @@ import org.usfirst.frc.team3274.robot.RobotMap;
  *            The acceptable range of error on the forklift height, in inches
  */
 public class SetHeight extends Command {
+
+	public static final double MAX_HEIGHT = 42;
+
+	public static final double NORMAL_SPEED = .3;
+	public static final double SLOW_SPEED = .1;
+
 	public SetHeight(double targetHeight, double tolerableProximity) {
 		requires(Robot.kForkLift);
 		this.targetHeight = targetHeight;
@@ -30,22 +36,16 @@ public class SetHeight extends Command {
 
 	private double targetHeight;
 	private double tolerableProximity;
-	private double maxHeight;
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
 		System.out.println("Setting Forklift height");
-		maxHeight = 42;
-		if (targetHeight < 0) {
-			System.out.println("Failed: negative target height value");
-			this.end();
+		if (targetHeight > MAX_HEIGHT) {
+			targetHeight = MAX_HEIGHT;
+			System.out.println(
+					"Robot had to change the target height because it was too big. It's all the driver's fault...");
 
-			if (targetHeight > maxHeight) {
-				targetHeight = maxHeight;
-				System.out.println(
-						"Robot had to change the target height because it was too big. It's all the driver's fault...");
-			}
 		}
 
 	}
@@ -54,30 +54,34 @@ public class SetHeight extends Command {
 	@Override
 	protected void execute() {
 
+		// needs to move down
 		if (Robot.kForkLift.getLiftHeight() > targetHeight) {
 			if (Robot.kForkLift.getLiftHeight() > targetHeight + tolerableProximity * 2) {
-				Robot.kForkLift.setLiftPower(-0.3);
+				Robot.kForkLift.setLiftPower(-NORMAL_SPEED);
 			} else {
-				Robot.kForkLift.setLiftPower(-0.1);
+				Robot.kForkLift.setLiftPower(-SLOW_SPEED);
 			}
 		}
-	}
-
-	{
-
-		if (Robot.kForkLift.getLiftHeight() < targetHeight - tolerableProximity * 2) {
-			Robot.kForkLift.setLiftPower(0.3);
-		} else {
-			Robot.kForkLift.setLiftPower(0.1);
+		// needs to move up
+		if (Robot.kForkLift.getLiftHeight() < targetHeight) {
+			if (Robot.kForkLift.getLiftHeight() < targetHeight - tolerableProximity * 2) {
+				Robot.kForkLift.setLiftPower(NORMAL_SPEED);
+			} else {
+				Robot.kForkLift.setLiftPower(SLOW_SPEED);
+			}
 		}
 
 	}
-
-	
 
 	// If forklift is within tolerableProximity of the target height, end.
 	@Override
 	protected boolean isFinished() {
+
+		if (targetHeight < 0) {
+			System.out.println("Failed: negative target height value");
+			return true;
+		}
+
 		if (Robot.kForkLift.getLiftHeight() > targetHeight + tolerableProximity) {
 			return false;
 		} else {
@@ -90,6 +94,7 @@ public class SetHeight extends Command {
 				return true;
 			}
 		}
+
 	}
 
 	// Called once after isFinished returns true

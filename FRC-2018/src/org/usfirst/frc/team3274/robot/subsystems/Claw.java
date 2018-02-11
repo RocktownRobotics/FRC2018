@@ -16,8 +16,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Claw extends Subsystem {
-	private Solenoid reverseShifter = new Solenoid(RobotMap.SHIFTER_REVERSE);
-	private Solenoid forwardShifter = new Solenoid(RobotMap.SHIFTER_FORWARD);
 
 	private DigitalInput _leftClawLimitSwitch = new DigitalInput(RobotMap.LEFT_CLAW_LIMIT_SWITCH);
 	private DigitalInput _rightClawLimitSwitch = new DigitalInput(RobotMap.RIGHT_CLAW_LIMIT_SWITCH);
@@ -26,10 +24,9 @@ public class Claw extends Subsystem {
 	private boolean clawDeployed;
 
 	public static final int ENCODER_PULSES_PER_REVOLUTION = 1343;
-	public static final double WHEEL_DIAMETER = 4.0; // in inches
 
-	private Encoder _deployEncoder = new Encoder(RobotMap.DEPLOY_ENCODER[0], RobotMap.DEPLOY_ENCODER[1], true,
-			EncodingType.k4X);
+	private Encoder _deployEncoder = new Encoder(RobotMap.DEPLOY_ENCODER[0],
+			RobotMap.DEPLOY_ENCODER[1], true, EncodingType.k4X);
 
 	private PWMTalonSRX leftClaw = new PWMTalonSRX(RobotMap.CLAW_MOTOR_LEFT);
 	private PWMTalonSRX rightClaw = new PWMTalonSRX(RobotMap.CLAW_MOTOR_RIGHT);
@@ -37,10 +34,12 @@ public class Claw extends Subsystem {
 	private PWMTalonSRX DeployMotor = new PWMTalonSRX(RobotMap.DEPLOY_MOTOR);
 
 	public Claw() {
-		double distancePerPulse; // in feet
-		distancePerPulse = (WHEEL_DIAMETER/* in */ * Math.PI) / (ENCODER_PULSES_PER_REVOLUTION * 12.0/* in/ft */);
+		double distancePerPulse; // in degrees
+		distancePerPulse = (360. /* degrees */) / (ENCODER_PULSES_PER_REVOLUTION);
 
 		_deployEncoder.setDistancePerPulse(distancePerPulse);
+
+		this.resetDeployEncoder();
 	}
 
 	/**
@@ -64,12 +63,19 @@ public class Claw extends Subsystem {
 		}
 	}
 
-	public int getDeployRotations() {
-		return this._deployEncoder.getRaw();
-	}
+	// public int getDeployRotations() {
+	// return this._deployEncoder.getRaw();
+	// }
 
-	public int getDeployAngle() {
-		return this.getDeployRotations() * 360 / this.ENCODER_PULSES_PER_REVOLUTION;
+	/**
+	 * Return the angle of this encoder in degrees. Assumes the claw always starts
+	 * in an up position, and 0 degrees straight forward.
+	 * 
+	 * @return the angle of the claw in degrees
+	 */
+	public double getDeployAngle() {
+		// return this.getDeployRotations() * 360 / this.ENCODER_PULSES_PER_REVOLUTION;
+		return this._deployEncoder.getDistance();
 	}
 
 	public void resetDeployEncoder() {

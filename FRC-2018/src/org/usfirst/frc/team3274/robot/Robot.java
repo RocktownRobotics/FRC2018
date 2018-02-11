@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import sun.security.krb5.internal.tools.Klist;
 
 import org.usfirst.frc.team3274.robot.commands.ExampleCommand;
 import org.usfirst.frc.team3274.robot.commands.SetHeight;
@@ -55,8 +56,6 @@ public class Robot extends TimedRobot {
 	private SendableChooser<String> scoringMethodChooser = new SendableChooser<>();
 
 	private Command m_autonomousCommand;
-	
-
 
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -84,16 +83,14 @@ public class Robot extends TimedRobot {
 		scoringMethodChooser.addObject("Exchange(Must be in Middle)", "Exchange");
 		SmartDashboard.putData("Attempting to Score", scoringMethodChooser);
 
-		
 		SmartDashboard.putData("Reset Height", new ResetHeight());
 		SmartDashboard.putData("Set Height 2", new SetHeight(1, .01));
-		//SmartDashboard.putData("",);
-		
+		// SmartDashboard.putData("",);
+
 		Robot.itself = this;
-		
+
 		this.gameData = "";
-		
-		
+
 	}
 
 	/**
@@ -163,7 +160,8 @@ public class Robot extends TimedRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		System.out.println("What? You think you can control Robot? Robot... will not... must not... BEGINNING REMOTE OPERATION");
+		System.out.println(
+				"What? You think you can control Robot? Robot... will not... must not... BEGINNING REMOTE OPERATION");
 
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
@@ -200,6 +198,9 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("rightEncoder", kDriveTrain.getRightDistance());
 
 		SmartDashboard.putNumber("gyro_yaw", kDriveTrain.getYaw());
+
+		SmartDashboard.putNumber("claw degrees", kClaw.getDeployAngle());
+		SmartDashboard.putNumber("lift height", kForkLift.getLiftHeight());
 	}
 
 }
