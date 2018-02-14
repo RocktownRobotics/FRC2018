@@ -92,7 +92,7 @@ public class DriveTrain extends Subsystem {
 	@Override
 	public void initDefaultCommand() {
 		//Use either CHEESY_DRIVE or TANK_DRIVE for DriveType
-		setDefaultCommand(new DriveWithJoystick(DriveType.TANK_DRIVE));
+		setDefaultCommand(new DriveWithJoystick(DriveType.CHEESY_DRIVE));
 	}
 
 	/**
@@ -141,7 +141,7 @@ public class DriveTrain extends Subsystem {
 	 */
 	public void tankDrive(Joystick joy) {
 		this.tankDrive(joy.getRawAxis(RobotMap.XBOX_LEFT_Y_AXIS),
-				joy.getRawAxis(RobotMap.XBOX_RIGHT_X_AXIS));
+				-joy.getRawAxis(RobotMap.XBOX_RIGHT_Y_AXIS), true);
 	}
 
 	/**
@@ -153,9 +153,7 @@ public class DriveTrain extends Subsystem {
 	 * @param rightAxis
 	 *            right stick y-axis (or power between -1 and 1)
 	 */
-	public void tankDrive(double leftAxis, double rightAxis) {
-		tankDrive(-leftAxis, -rightAxis, true);
-	}
+
 
 	/**
 	 * Drive the wheels on one side forward with one stick and the wheels on another
@@ -198,7 +196,7 @@ public class DriveTrain extends Subsystem {
 	 *            xbox controller to use for input
 	 */
 	public void cheesyDrive(Joystick joy) {
-		cheesyDrive(RobotMap.XBOX_LEFT_Y_AXIS, RobotMap.XBOX_RIGHT_X_AXIS, true);
+		cheesyDrive(joy.getRawAxis(RobotMap.XBOX_LEFT_Y_AXIS), joy.getRawAxis(RobotMap.XBOX_RIGHT_X_AXIS), true);
 	}
 
 	/**
@@ -214,6 +212,9 @@ public class DriveTrain extends Subsystem {
 	 *            account for false input from joysticks
 	 */
 	public void cheesyDrive(double power, double turnPower, boolean applyDeadband) {
+		SmartDashboard.putNumber("joystickcheesypowervalue", power);
+		SmartDashboard.putNumber("joystickcheesyturnpowervalue", turnPower);
+		
 		double tempPower = power;
 		double tempTurnPower = turnPower;
 
@@ -263,7 +264,7 @@ public class DriveTrain extends Subsystem {
 	 * Stop the drivetrain from moving.
 	 */
 	public void stop() {
-		this.tankDrive(0, 0);
+		this.tankDrive(0, 0, false);
 	}
 
 	/**

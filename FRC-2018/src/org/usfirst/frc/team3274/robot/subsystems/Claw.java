@@ -55,14 +55,10 @@ public class Claw extends Subsystem {
 	 */
 
 	public void setCubeManipulatorMotors(double motorSpeed) {
-		if (Robot.kClaw.isClawClosed() == true) {
-			this.leftClaw.set(motorSpeed);
-			this.rightClaw.set(motorSpeed);
-		}
-
-		else {
-			System.out.println("Ejection failed due to open claw");
-		}
+		this.leftClaw.set(motorSpeed);
+		this.rightClaw.set(-motorSpeed);
+		
+	
 	}
 
 	// public int getDeployRotations() {

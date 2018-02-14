@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team3274.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team3274.robot.Robot;
 
@@ -15,7 +16,10 @@ import org.usfirst.frc.team3274.robot.Robot;
  */
 public class LowerClaw extends Command {
 	
-	public static final double POWER = .2;
+	public static final double POWER = .75;
+	public static final double WAIT_TIME = .8;
+
+	private double timeToReach;
 	
 	public LowerClaw() {
 		requires(Robot.kClaw);
@@ -23,23 +27,29 @@ public class LowerClaw extends Command {
 
 	@Override
 	protected void initialize() {
+		this.timeToReach = Timer.getMatchTime() + WAIT_TIME;
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.kClaw.deploy(-POWER);
+		Robot.kClaw.deploy(POWER);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
+		if (Timer.getMatchTime() >= this.timeToReach) {
+			
+			return true;
+		}
 		return false;
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
+		Robot.kClaw.deploy(0);
 	}
 
 	// Called when another command which requires one or more of the same
