@@ -17,17 +17,17 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Claw extends Subsystem {
 
-	private DigitalInput _leftClawLimitSwitch = new DigitalInput(RobotMap.LEFT_CLAW_LIMIT_SWITCH);
-	private DigitalInput _rightClawLimitSwitch = new DigitalInput(RobotMap.RIGHT_CLAW_LIMIT_SWITCH);
+	//private DigitalInput _leftClawLimitSwitch = new DigitalInput(RobotMap.LEFT_CLAW_LIMIT_SWITCH);
+	//private DigitalInput _rightClawLimitSwitch = new DigitalInput(RobotMap.RIGHT_CLAW_LIMIT_SWITCH);
 
 	private boolean clawClosed;
 	private boolean clawDeployed;
 
 	public static final int ENCODER_PULSES_PER_REVOLUTION = 1343;
-
+/*
 	private Encoder _deployEncoder = new Encoder(RobotMap.DEPLOY_ENCODER[0],
 			RobotMap.DEPLOY_ENCODER[1], true, EncodingType.k4X);
-
+*/
 	private PWMTalonSRX leftClaw = new PWMTalonSRX(RobotMap.CLAW_MOTOR_LEFT);
 	private PWMTalonSRX rightClaw = new PWMTalonSRX(RobotMap.CLAW_MOTOR_RIGHT);
 	private Solenoid clawPistons = new Solenoid(RobotMap.CLAW_PISTON);
@@ -36,9 +36,9 @@ public class Claw extends Subsystem {
 	public Claw() {
 		double distancePerPulse; // in degrees
 		distancePerPulse = (360. /* degrees */) / (ENCODER_PULSES_PER_REVOLUTION);
-
+/*
 		_deployEncoder.setDistancePerPulse(distancePerPulse);
-
+*/
 		this.resetDeployEncoder();
 	}
 
@@ -75,21 +75,24 @@ public class Claw extends Subsystem {
 	 */
 	public double getDeployAngle() {
 		// return this.getDeployRotations() * 360 / this.ENCODER_PULSES_PER_REVOLUTION;
-		return this._deployEncoder.getDistance();
+		//return this._deployEncoder.getDistance();
+		return 0;
 	}
 
 	public void resetDeployEncoder() {
-		this._deployEncoder.reset();
+		//this._deployEncoder.reset();
 	}
 
 	public boolean isClawLoaded() {
-		if (_leftClawLimitSwitch.get() && _rightClawLimitSwitch.get()) {
+		/*if (_leftClawLimitSwitch.get() && _rightClawLimitSwitch.get()) {
 			return false;
 		} else
 
 		{
 			return true;
 		}
+		*/
+		return false;
 	}
 
 	public void deploy(double deployPower) {

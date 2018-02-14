@@ -22,7 +22,7 @@ public class DropClaw extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-
+/*
 		System.out.println("Drop Claw");
 
 		if (Robot.kClaw.getDeployAngle() < 160) {
@@ -30,7 +30,7 @@ public class DropClaw extends Command {
 		} else {
 			System.out.println("Failed: Claw already dropped");
 		}
-
+*/
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -41,7 +41,7 @@ public class DropClaw extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		if (Robot.kForkLift.getLiftHeight() > 12) {
+		/*if (Robot.kForkLift.getLiftHeight() > 12) {
 			if (Robot.kClaw.getDeployAngle() <= 80) {
 				return false;
 			} else {
@@ -51,11 +51,12 @@ public class DropClaw extends Command {
 		} else {
 			System.out.println("Robot did not drop the claw, because the forklift was too low. Try again later.");
 			return true;
-		}
+		}*/
+		return false;
 	}
 
 	// Called once after isFinished returns true
-	@Override
+	//@Override
 	protected void end() {
 
 		Robot.kClaw.deploy(0);

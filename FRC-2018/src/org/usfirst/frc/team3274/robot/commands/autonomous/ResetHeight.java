@@ -9,7 +9,7 @@ import org.usfirst.frc.team3274.robot.Robot;
 public class ResetHeight extends Command {
 	public ResetHeight() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.kForkLift);
+		//requires(Robot.kForkLift);
 	}
 
 	// Called just before this Command runs the first time
@@ -21,31 +21,32 @@ public class ResetHeight extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-
-		if (Robot.kForkLift.getLiftHeight() > 1) {
-			Robot.kForkLift.setLiftPower(0.3);
+		/*
+		if (//Robot.kForkLift.getLiftHeight() > 1) {
+			//Robot.kForkLift.setLiftPower(0.3);
 		} else {
-			Robot.kForkLift.setLiftPower(0.1);
+			//Robot.kForkLift.setLiftPower(0.1);
 		}
-
+		*/
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		if (Robot.kForkLift.isLiftNotAtMinHeight()) {
+		/*if (//Robot.kForkLift.isLiftNotAtMinHeight()) {
 			return false;
 		} else {
 			System.out.println("Forklift is Lowered");
 			return true;
-		}
+		}*/
+		return false;
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Robot.kForkLift.resetLiftEncoders();
-		Robot.kForkLift.setLiftPower(0);
+		//Robot.kForkLift.resetLiftEncoders();
+		//Robot.kForkLift.setLiftPower(0);
 	}
 
 	// Called when another command which requires one or more of the same

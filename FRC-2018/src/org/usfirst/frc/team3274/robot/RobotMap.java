@@ -73,12 +73,12 @@ public class RobotMap {
 	////////////////////////////////////////////////
 
 	// Four wheels
-	public static final int FRONT_LEFT_MOTOR = PROXY_PORT;
-	public static final int FRONT_RIGHT_MOTOR = PROXY_PORT;
-	public static final int REAR_LEFT_MOTOR = PROXY_PORT;
-	public static final int REAR_RIGHT_MOTOR = PROXY_PORT;
-	public static final int LEFT_MOTOR = PROXY_PORT;
-	public static final int RIGHT_MOTOR = PROXY_PORT;
+	public static final int FRONT_LEFT_MOTOR = 4;
+	public static final int FRONT_RIGHT_MOTOR = 3;
+	public static final int REAR_LEFT_MOTOR = 1;
+	public static final int REAR_RIGHT_MOTOR = 5;
+	public static final int LEFT_MOTOR = 6;
+	public static final int RIGHT_MOTOR = 2;
 
 	////////////////////////////////////////////////
 	/////////////// DIO's BELOW HERE////////////////
@@ -88,14 +88,14 @@ public class RobotMap {
 	public static final int LOWER_LIMIT_SWITCH = PROXY_PORT;
 	public static final int UPPER_LIMIT_SWITCH = PROXY_PORT;
 	
-	public static final int LEFT_CLAW_LIMIT_SWITCH = PROXY_PORT;
-	public static final int RIGHT_CLAW_LIMIT_SWITCH = PROXY_PORT;
+	//public static final int LEFT_CLAW_LIMIT_SWITCH = PROXY_PORT;
+	//public static final int RIGHT_CLAW_LIMIT_SWITCH = PROXY_PORT;
 
 	// two input ports for each encoder
-	public static final int[] RIGHT_ENCODER = { PROXY_PORT, PROXY_PORT };
-	public static final int[] LEFT_ENCODER = { PROXY_PORT, PROXY_PORT };
+	public static final int[] RIGHT_ENCODER = { 2, 3 };
+	public static final int[] LEFT_ENCODER = { 0, 1 };
 	public static final int[] LIFT_ENCODER = { PROXY_PORT, PROXY_PORT };
-	public static final int[] DEPLOY_ENCODER = { PROXY_PORT, PROXY_PORT };
+	//public static final int[] DEPLOY_ENCODER = { PROXY_PORT, PROXY_PORT };
 
 	////////////////////////////////////////////////
 	/////////////// PWM's BELOW HERE////////////////
@@ -103,9 +103,9 @@ public class RobotMap {
 
 	public static final int LIFT_MOTOR_LEFT = PROXY_PORT;
 	public static final int LIFT_MOTOR_RIGHT = PROXY_PORT;
-	public static final int CLAW_MOTOR_LEFT = PROXY_PORT;
-	public static final int CLAW_MOTOR_RIGHT = PROXY_PORT;
-	public static final int DEPLOY_MOTOR = PROXY_PORT;
+	public static final int CLAW_MOTOR_LEFT = 1;
+	public static final int CLAW_MOTOR_RIGHT = 2;
+	public static final int DEPLOY_MOTOR = 0;
 
 	////////////////////////////////////////////////
 	/////////////// PCM's BELOW HERE////////////////
@@ -115,7 +115,7 @@ public class RobotMap {
 	public static final int SHIFTER_REVERSE = PROXY_PORT;
 	public static final int GEAR_FORWARD = PROXY_PORT;
 	public static final int GEAR_REVERSE = PROXY_PORT;
-	public static final int CLAW_PISTON = PROXY_PORT;
+	public static final int CLAW_PISTON = 0;
 
 	////////////////////////////////////////////////
 	////////////// Relays BELOW HERE////////////////

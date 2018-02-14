@@ -29,7 +29,7 @@ public class SetHeight extends Command {
 	public static final double SLOW_SPEED = .1;
 
 	public SetHeight(double targetHeight, double tolerableProximity) {
-		requires(Robot.kForkLift);
+		//requires(Robot.kForkLift);
 		this.targetHeight = targetHeight;
 		this.tolerableProximity = tolerableProximity;
 	}
@@ -53,7 +53,7 @@ public class SetHeight extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-
+/*
 		// needs to move down
 		if (Robot.kForkLift.getLiftHeight() > targetHeight) {
 			if (Robot.kForkLift.getLiftHeight() > targetHeight + tolerableProximity * 2) {
@@ -70,14 +70,14 @@ public class SetHeight extends Command {
 				Robot.kForkLift.setLiftPower(SLOW_SPEED);
 			}
 		}
-
+*/
 	}
 
 	// If forklift is within tolerableProximity of the target height, end.
 	@Override
 	protected boolean isFinished() {
 
-		if (targetHeight < 0) {
+		/*if (targetHeight < 0) {
 			System.out.println("Failed: negative target height value");
 			return true;
 		}
@@ -93,14 +93,16 @@ public class SetHeight extends Command {
 
 				return true;
 			}
-		}
+		}*/
 
+		return false
+				;
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Robot.kForkLift.setLiftPower(0);
+		//Robot.kForkLift.setLiftPower(0);
 	}
 
 	// Called when another command which requires one or more of the same

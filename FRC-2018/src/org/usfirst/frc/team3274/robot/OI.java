@@ -78,10 +78,10 @@ public class OI {
 	private JoystickButton y = new JoystickButton(xbox0, RobotMap.XBOX_Y_BUTTON);
 	private JoystickButton lBumper = new JoystickButton(xbox0, RobotMap.XBOX_L_BUMPER_BUTTON);
 	private JoystickButton rBumper = new JoystickButton(xbox0, RobotMap.XBOX_R_BUMPER_BUTTON);
-	private JoystickButton up = new JoystickButton(xbox0, RobotMap.XBOX_UP_BUTTON);
-	private JoystickButton down = new JoystickButton(xbox0, RobotMap.XBOX_DOWN_BUTTON);
-	private JoystickButton left = new JoystickButton(xbox0, RobotMap.XBOX_LEFT_BUTTON);
-	private JoystickButton right = new JoystickButton(xbox0, RobotMap.XBOX_RIGHT_BUTTON);
+	//private JoystickButton up = new JoystickButton(xbox0, RobotMap.XBOX_UP_BUTTON);
+	//private JoystickButton down = new JoystickButton(xbox0, RobotMap.XBOX_DOWN_BUTTON);
+	//private JoystickButton left = new JoystickButton(xbox0, RobotMap.XBOX_LEFT_BUTTON);
+	//private JoystickButton right = new JoystickButton(xbox0, RobotMap.XBOX_RIGHT_BUTTON);
 	private JoystickButton start = new JoystickButton(xbox0, RobotMap.XBOX_START_BUTTON);
 	private JoystickButton back = new JoystickButton(xbox0, RobotMap.XBOX_BACK_BUTTON);
 	private JoystickButton l3 = new JoystickButton(xbox0, RobotMap.XBOX_L3_BUTTON);
@@ -120,13 +120,13 @@ public class OI {
 		leftTrigger.whileHeld(new ShiftDown());
 		rBumper.whenPressed(new OpenClaw());
 		rBumper.whenReleased(new CloseClaw());
-		r3.whileHeld(new SetHeight(Robot.kForkLift.getLiftHeight() + 1, 0.1));
-		l3.whileHeld(new SetHeight(Robot.kForkLift.getLiftHeight() - 1, 0.1));
+		//r3.whileHeld(new SetHeight(Robot.kForkLift.getLiftHeight() + 1, 0.1));
+		//l3.whileHeld(new SetHeight(Robot.kForkLift.getLiftHeight() - 1, 0.1));
 		lBumper.whileHeld(new Eject());
 		b.whenPressed(new Suck());
-		left.whenPressed(new DropClaw());
-		right.whenPressed(new DeployClaw());
-		down.whenPressed(new RetractClaw());
+		//left.whenPressed(new DropClaw());
+		//right.whenPressed(new DeployClaw());
+		//down.whenPressed(new RetractClaw());
 		start.whenPressed(new Climb());
 
 		// Keep in mind that joystick stuff is handled by the drive train already, so

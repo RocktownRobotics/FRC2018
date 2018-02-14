@@ -38,11 +38,11 @@ import org.usfirst.frc.team3274.robot.subsystems.RobotCompressor;
 public class Robot extends TimedRobot {
 	public static final ExampleSubsystem kExampleSubsystem = new ExampleSubsystem();
 
-	public static final DrivePneumatics kDrivePneumatics = new DrivePneumatics();
+	//public static final DrivePneumatics kDrivePneumatics = new DrivePneumatics();
 	public static final DriveTrain kDriveTrain = new DriveTrain();
 	public static final RobotCompressor kCompressor = new RobotCompressor();
 	public static final Claw kClaw = new Claw();
-	public static final ForkLift kForkLift = new ForkLift();
+	//public static final ForkLift kForkLift = new ForkLift();
 
 	public static String gameData;
 
@@ -63,7 +63,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
-		// m_oi = new OI(OI.ControllerSetup.SINGLE_XBOX_CONTROLLER);
+		m_oi = new OI(OI.ControllerSetup.SINGLE_XBOX_CONTROLLER);
 
 		// add Initial Delay options
 		startDelayChooser.addDefault("No Delay", 0.0);
@@ -200,7 +200,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("gyro_yaw", kDriveTrain.getYaw());
 
 		SmartDashboard.putNumber("claw degrees", kClaw.getDeployAngle());
-		SmartDashboard.putNumber("lift height", kForkLift.getLiftHeight());
+		//SmartDashboard.putNumber("lift height", kForkLift.getLiftHeight());
 	}
 
 }

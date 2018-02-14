@@ -23,7 +23,7 @@ public class DriveWithJoystick extends CommandGroup {
 	 */
 
 	public DriveWithJoystick(DriveType blah) {
-
+		requires(Robot.kDriveTrain);
 		if (blah == DriveType.TANK_DRIVE) {
 
 			addSequential(new TankDrive());

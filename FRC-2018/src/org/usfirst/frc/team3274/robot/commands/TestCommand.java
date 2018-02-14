@@ -25,13 +25,13 @@ public class TestCommand extends Command {
 	public TestCommand(Action action) {
 		switch (action) {
 		case FORK_UP:
-			requires(Robot.kForkLift);
+			//requires(Robot.kForkLift);
 			break;
 		case FORK_DOWN:
-			requires(Robot.kForkLift);
+			//requires(Robot.kForkLift);
 			break;
 		default:
-			requires(Robot.kForkLift);
+			//requires(Robot.kForkLift);
 		}
 
 		this.action = action;
@@ -49,11 +49,11 @@ public class TestCommand extends Command {
 		switch (action) {
 		case FORK_UP:
 			// move fork motor up
-			Robot.kForkLift.setLiftPower(.1);
+			//Robot.kForkLift.setLiftPower(.1);
 			break;
 		case FORK_DOWN:
 			// move fork motor down
-			Robot.kForkLift.setLiftPower(-.1);
+			//Robot.kForkLift.setLiftPower(-.1);
 			break;
 		default:
 			// do nothing

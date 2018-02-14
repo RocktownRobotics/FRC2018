@@ -92,7 +92,7 @@ public class DriveTrain extends Subsystem {
 	@Override
 	public void initDefaultCommand() {
 		//Use either CHEESY_DRIVE or TANK_DRIVE for DriveType
-		setDefaultCommand(new DriveWithJoystick(DriveType.CHEESY_DRIVE));
+		setDefaultCommand(new DriveWithJoystick(DriveType.TANK_DRIVE));
 	}
 
 	/**
@@ -140,8 +140,8 @@ public class DriveTrain extends Subsystem {
 	 *            Xbox controller to use as the input for tank drive.
 	 */
 	public void tankDrive(Joystick joy) {
-		this.tankDrive(joy.getRawAxis(-RobotMap.XBOX_LEFT_Y_AXIS),
-				joy.getRawAxis(-RobotMap.XBOX_RIGHT_X_AXIS));
+		this.tankDrive(joy.getRawAxis(RobotMap.XBOX_LEFT_Y_AXIS),
+				joy.getRawAxis(RobotMap.XBOX_RIGHT_X_AXIS));
 	}
 
 	/**

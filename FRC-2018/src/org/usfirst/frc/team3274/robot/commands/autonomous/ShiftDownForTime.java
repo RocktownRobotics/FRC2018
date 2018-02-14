@@ -18,14 +18,14 @@ public class ShiftDownForTime extends Command {
 	private double timeToReach;
 
 	public ShiftDownForTime() {
-		requires(Robot.kDrivePneumatics);
+		//requires(Robot.kDrivePneumatics);
 	}
 
 	@Override
 	protected void initialize() {
 		this.timeToReach = Timer.getMatchTime() + WAIT_TIME;
 
-		Robot.kDrivePneumatics.StartLowGear();
+		//Robot.kDrivePneumatics.StartLowGear();
 		
 		System.out.println("Shifting down for a while...");
 	}
@@ -41,7 +41,7 @@ public class ShiftDownForTime extends Command {
 
 	@Override
 	protected void end() {
-		Robot.kDrivePneumatics.stop();
+		//Robot.kDrivePneumatics.stop();
 	}
 
 }

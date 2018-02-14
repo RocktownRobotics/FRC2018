@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class ShiftUp extends Command {
 	public ShiftUp() {
-		requires(Robot.kDrivePneumatics);
+		//requires(Robot.kDrivePneumatics);
 	}
 
 	/**
@@ -14,7 +14,7 @@ public class ShiftUp extends Command {
 	 */
 	@Override
 	protected void initialize() {
-		Robot.kDrivePneumatics.StartHighGear();
+		//Robot.kDrivePneumatics.StartHighGear();
 		System.out.println("Shifting up");
 	}
 
@@ -31,7 +31,7 @@ public class ShiftUp extends Command {
 
 	@Override
 	protected void end() {
-		Robot.kDrivePneumatics.stop();
+		//Robot.kDrivePneumatics.stop();
 		System.out.println("No longer shifting up");
 	}
 

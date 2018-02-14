@@ -6,12 +6,12 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class ShiftDown extends Command {
 	public ShiftDown() {
-		requires(Robot.kDrivePneumatics);
+		//requires(Robot.kDrivePneumatics);
 	}
 
 	@Override
 	protected void initialize() {
-		Robot.kDrivePneumatics.StartLowGear();
+		//Robot.kDrivePneumatics.StartLowGear();
 		System.out.println("Shifting down");
 	}
 
@@ -23,7 +23,7 @@ public class ShiftDown extends Command {
 	@Override
 	protected void end() {
 		System.out.println("No longer shifting down");
-		Robot.kDrivePneumatics.stop();
+		//Robot.kDrivePneumatics.stop();
 	}
 
 }
