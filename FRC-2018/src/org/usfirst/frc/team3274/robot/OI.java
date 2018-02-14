@@ -12,7 +12,9 @@ import org.usfirst.frc.team3274.robot.commands.CloseClaw;
 import org.usfirst.frc.team3274.robot.commands.DeployClaw;
 import org.usfirst.frc.team3274.robot.commands.DropClaw;
 import org.usfirst.frc.team3274.robot.commands.Eject;
+import org.usfirst.frc.team3274.robot.commands.LowerClaw;
 import org.usfirst.frc.team3274.robot.commands.OpenClaw;
+import org.usfirst.frc.team3274.robot.commands.RaiseClaw;
 import org.usfirst.frc.team3274.robot.commands.SetHeight;
 import org.usfirst.frc.team3274.robot.commands.ShiftDown;
 import org.usfirst.frc.team3274.robot.commands.ShiftUp;
@@ -123,7 +125,7 @@ public class OI {
 		//r3.whileHeld(new SetHeight(Robot.kForkLift.getLiftHeight() + 1, 0.1));
 		//l3.whileHeld(new SetHeight(Robot.kForkLift.getLiftHeight() - 1, 0.1));
 		lBumper.whileHeld(new Eject());
-		b.whenPressed(new Suck());
+		b.whilePressed(new Suck());
 		//left.whenPressed(new DropClaw());
 		//right.whenPressed(new DeployClaw());
 		//down.whenPressed(new RetractClaw());
@@ -133,8 +135,8 @@ public class OI {
 		// you only have to deal with button presses here.
 
 		///// ////// temporary buttons ////// /////
-		x.whileHeld(new TestCommand(TestCommand.Action.FORK_DOWN));
-		y.whileHeld(new TestCommand(TestCommand.Action.FORK_UP));
+		x.whileHeld(new LowerClaw());
+		y.whileHeld(new RaiseClaw());
 	}
 
 	private void initDualXboxControllerSetup() {
