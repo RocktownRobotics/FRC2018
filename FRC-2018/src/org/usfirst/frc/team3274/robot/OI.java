@@ -125,7 +125,7 @@ public class OI {
 		//r3.whileHeld(new SetHeight(Robot.kForkLift.getLiftHeight() + 1, 0.1));
 		//l3.whileHeld(new SetHeight(Robot.kForkLift.getLiftHeight() - 1, 0.1));
 		lBumper.whileHeld(new Eject());
-		b.whilePressed(new Suck());
+		b.whileHeld(new Suck());
 		//left.whenPressed(new DropClaw());
 		//right.whenPressed(new DeployClaw());
 		//down.whenPressed(new RetractClaw());
