@@ -20,7 +20,7 @@ import org.usfirst.frc.team3274.robot.commands.ShiftDown;
 import org.usfirst.frc.team3274.robot.commands.ShiftUp;
 import org.usfirst.frc.team3274.robot.commands.Suck;
 import org.usfirst.frc.team3274.robot.commands.TestCommand;
-import org.usfirst.frc.team3274.robot.commands.autonomous.EjectAutomous;
+import org.usfirst.frc.team3274.robot.commands.autonomous.EjectAutonomous;
 import org.usfirst.frc.team3274.robot.commands.autonomous.RetractClaw;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
 import org.usfirst.frc.team3274.robot.util.AxisButton;

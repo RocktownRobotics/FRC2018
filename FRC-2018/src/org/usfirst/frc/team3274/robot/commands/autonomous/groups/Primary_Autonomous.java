@@ -26,6 +26,7 @@ public class Primary_Autonomous extends CommandGroup {
 			}
 		} else {
 			DriverStation.reportError("Failed to read a correct FMS message", true);
+			System.out.println("Failed: Field said something unintelligable... Robot hasn't a clue what it should do");
 			return false;
 		}
 	}
@@ -41,6 +42,8 @@ public class Primary_Autonomous extends CommandGroup {
 			}
 		} else {
 			DriverStation.reportError("Failed to read a correct FMS message", true);
+			System.out.println("Failed: Field said something unintelligable... Robot hasn't a clue what it should do");
+
 			return false;
 		}
 	}
@@ -126,6 +129,14 @@ public class Primary_Autonomous extends CommandGroup {
 		} else {
 			// two cube auto
 			goToSwitchFromStart();
+			if(this.scaleIsRight() == true) {
+				addSequential(new RightSwitchToCubeToScale());
+			}
+			else {
+				addSequential(new LeftSwitchToCubeToScale());
+
+				
+			}
 		}
 	}
 

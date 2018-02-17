@@ -8,14 +8,14 @@ import org.usfirst.frc.team3274.robot.Robot;
  * An example command. You can replace me with your own command. I did....
  */
 
-public class EjectAutomous extends Command {
+public class EjectAutonomous extends Command {
 	
 	public static final double THRUST_TIME = .3;
 	
 	private double launchPower;
 	private double ejectStartTime;
 
-	public EjectAutomous() {
+	public EjectAutonomous() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.kClaw);
 		System.out.println("Ejecting Cube");

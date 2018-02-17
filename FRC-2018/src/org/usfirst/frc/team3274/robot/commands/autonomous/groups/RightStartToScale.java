@@ -3,7 +3,7 @@ package org.usfirst.frc.team3274.robot.commands.autonomous.groups;
 import org.usfirst.frc.team3274.robot.commands.DeployClaw;
 import org.usfirst.frc.team3274.robot.commands.SetHeight;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForward;
-import org.usfirst.frc.team3274.robot.commands.autonomous.EjectAutomous;
+import org.usfirst.frc.team3274.robot.commands.autonomous.EjectAutonomous;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
 import org.usfirst.frc.team3274.robot.commands.autonomous.TurnRobot;
 
@@ -22,7 +22,7 @@ public class RightStartToScale extends CommandGroup {
 		addParallel(new DeployClaw());
 		addParallel(new SetHeight(40, 5));
 		addSequential(new TurnRobot(-45));
-		addSequential(new EjectAutomous());
+		addSequential(new EjectAutonomous());
 		System.out.println("Robot believes it has captured the scale. Robot is happy. Hopefully, Robot is not delusional");
 		
 		
