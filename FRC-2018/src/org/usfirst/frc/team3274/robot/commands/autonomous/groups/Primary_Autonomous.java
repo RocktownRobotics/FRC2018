@@ -13,6 +13,7 @@ public class Primary_Autonomous extends CommandGroup {
 	private String startPosition;
 	private String scoringStrategy;
 	private double initialDelay;
+	private boolean isTwoCubeAuto;
 
 	public boolean switchIsRight() {
 		// check if string has 3 characters
@@ -51,7 +52,7 @@ public class Primary_Autonomous extends CommandGroup {
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
+	/*
 	 * 
 	 * All of the if(BLAH.equals("BLEH") needs to become if(BLAH .equals "BLEH")
 	 * 
@@ -64,7 +65,18 @@ public class Primary_Autonomous extends CommandGroup {
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	public Primary_Autonomous(double startDelay, String scoreSelection, String startPos) {
+	/**
+	 * Runs autonomous with given starting parameters and goals. Enabling
+	 * tryTwoCubeAuto will only make the robot grab two cubes if both the switch and
+	 * scale are on the same side.
+	 * 
+	 * @param startDelay
+	 *            in seconds
+	 * @param scoreSelection
+	 * @param startPos
+	 * @param tryTwoCubeAuto
+	 */
+	public Primary_Autonomous(double startDelay, String scoreSelection, String startPos, boolean tryTwoCubeAuto) {
 
 		addSequential(new ShiftDownForTime());
 
@@ -72,104 +84,120 @@ public class Primary_Autonomous extends CommandGroup {
 		this.scoringStrategy = scoreSelection;
 		this.startPosition = startPos;
 
+		boolean switchAndScaleOnSameSide = switchIsRight() == scaleIsRight();
+
+		this.isTwoCubeAuto = switchAndScaleOnSameSide && tryTwoCubeAuto;
+
 		addSequential(new Delay(this.initialDelay));
 
-		if (this.scoringStrategy.equals("Switch")) {
+		if (this.isTwoCubeAuto == false) {
+			if (this.scoringStrategy.equals("Switch")) {
 
-			if (this.startPosition.equals("Left")) {
-				if (this.switchIsRight()) {
-					// left to right switch
-					addSequential(new LeftToRight());
-					addSequential(new RightStartToSwitch());
-				} else {
-
-					// going from left to left switch
-					addSequential(new LeftToLeft());
-					addSequential(new LeftStartToSwitch());
-				}
-			} else if (this.startPosition.equals("Middle")) {
-
-				if (this.switchIsRight()) {
-					// mid to Right Switch
-					addSequential(new MidToRight());
-					addSequential(new RightStartToSwitch());
-				} else {
-					// Mid to Left Switch
-					addSequential(new MidToLeft());
-					addSequential(new LeftStartToSwitch());
-				}
-			} else {
-				if (this.switchIsRight()) {
-					// left to right switch
-					addSequential(new RightToRight());
-					addSequential(new RightStartToSwitch());
-				} else {
-					// right to Left Switch
-					addSequential(new RightToLeft());
-					addSequential(new LeftStartToSwitch());
-				}
+				goToSwitchFromStart();
 			}
-		}
 
-		else if (this.scoringStrategy.equals("Scale")) {
+			else if (this.scoringStrategy.equals("Scale")) {
 
-			if (this.startPosition.equals("Left")) {
-				if (this.scaleIsRight()) {
-					// left to right scale
-					addSequential(new LeftToRight());
-					addSequential(new RightStartToScale());
-				} else {
-					// left to left scale
-					addSequential(new LeftToLeft());
-					addSequential(new LeftStartToScale());
-				}
-
-			} else if (this.startPosition.equals("Middle")) {
-				if (this.scaleIsRight()) {
-					// mid to right scale
-					addSequential(new MidToRight());
-					addSequential(new RightStartToScale());
-				} else {
-					// mid to left scale
-					addSequential(new MidToLeft());
-					addSequential(new LeftStartToScale());
-				}
-			} else {
-				if (this.scaleIsRight()) {
-					// right to right scale
-					addSequential(new RightToRight());
-					addSequential(new RightStartToSwitch());
-				} else {
-					// right to left scale
-					addSequential(new RightToLeft());
-					addSequential(new LeftStartToSwitch());
-				}
+				goToScaleFromStart();
 			}
-		}
 
-		else if (this.scoringStrategy.equals("Exchange")) {
+			else if (this.scoringStrategy.equals("Exchange")) {
 
-			if (this.startPosition.equals("Left")) {
-				System.out.println(
-						"Failed: Cannot move to exchange from Left Start Position. However, Robot is smart and will still cross the auto line");
+				if (this.startPosition.equals("Left")) {
+					System.out.println(
+							"Failed: Cannot move to exchange from Left Start Position. However, Robot is smart and will still cross the auto line");
+					addSequential(new LeftToLeft());
+				} else if (this.startPosition.equals("Middle")) {
+					// mid to exchange to auto line
+					addSequential(new MidToExchange());
+				} else {
+					System.out.println(
+							"Failed: Cannot move to exchange from Right Start. Robot is sad, but will still cross the auto line");
+					addSequential(new RightToRight());
+				}
+
+			}
+			// Cross the Auto Line.
+			else if (this.startPosition.equals("Left")) {
 				addSequential(new LeftToLeft());
-			} else if (this.startPosition.equals("Middle")) {
-				// mid to exchange to auto line
-				addSequential(new MidToExchange());
 			} else {
-				System.out.println(
-						"Failed: Cannot move to exchange from Right Start. Robot is sad, but will still cross the auto line");
 				addSequential(new RightToRight());
 			}
-
-		}
-		// Cross the Auto Line.
-		else if (this.startPosition.equals("Left")) {
-			addSequential(new LeftToLeft());
 		} else {
-			addSequential(new RightToRight());
+			// two cube auto
+			goToSwitchFromStart();
 		}
+	}
 
+	private void goToSwitchFromStart() {
+		if (this.startPosition.equals("Left")) {
+			if (this.switchIsRight()) {
+				// left to right switch
+				addSequential(new LeftToRight());
+				addSequential(new RightStartToSwitch());
+			} else {
+
+				// going from left to left switch
+				addSequential(new LeftToLeft());
+				addSequential(new LeftStartToSwitch());
+			}
+		} else if (this.startPosition.equals("Middle")) {
+
+			if (this.switchIsRight()) {
+				// mid to Right Switch
+				addSequential(new MidToRight());
+				addSequential(new RightStartToSwitch());
+			} else {
+				// Mid to Left Switch
+				addSequential(new MidToLeft());
+				addSequential(new LeftStartToSwitch());
+			}
+		} else {
+			if (this.switchIsRight()) {
+				// left to right switch
+				addSequential(new RightToRight());
+				addSequential(new RightStartToSwitch());
+			} else {
+				// right to Left Switch
+				addSequential(new RightToLeft());
+				addSequential(new LeftStartToSwitch());
+			}
+		}
+	}
+
+	private void goToScaleFromStart() {
+		if (this.startPosition.equals("Left")) {
+			if (this.scaleIsRight()) {
+				// left to right scale
+				addSequential(new LeftToRight());
+				addSequential(new RightStartToScale());
+			} else {
+				// left to left scale
+				addSequential(new LeftToLeft());
+				addSequential(new LeftStartToScale());
+			}
+
+		} else if (this.startPosition.equals("Middle")) {
+			if (this.scaleIsRight()) {
+				// mid to right scale
+				addSequential(new MidToRight());
+				addSequential(new RightStartToScale());
+			} else {
+				// mid to left scale
+				addSequential(new MidToLeft());
+				addSequential(new LeftStartToScale());
+			}
+		} else {
+			if (this.scaleIsRight()) {
+				// right to right scale
+				addSequential(new RightToRight());
+				addSequential(new RightStartToSwitch());
+			} else {
+				// right to left scale
+				addSequential(new RightToLeft());
+				addSequential(new LeftStartToSwitch());
+			}
+		}
 	}
 
 }

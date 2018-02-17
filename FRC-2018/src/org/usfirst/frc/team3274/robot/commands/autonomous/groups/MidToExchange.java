@@ -1,9 +1,9 @@
 package org.usfirst.frc.team3274.robot.commands.autonomous.groups;
 
 import org.usfirst.frc.team3274.robot.commands.DeployClaw;
-import org.usfirst.frc.team3274.robot.commands.Eject;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveBackward;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForward;
+import org.usfirst.frc.team3274.robot.commands.autonomous.EjectAutomous;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
 import org.usfirst.frc.team3274.robot.commands.autonomous.TurnRobot;
 
@@ -26,7 +26,7 @@ public class MidToExchange extends CommandGroup {
 		addSequential(new DriveForward(0.5));	
 		System.out.println("Robot exchanging P-Cube");
 		System.out.println("Robot moving to Auto Line");
-		addSequential(new Eject());
+		addSequential(new EjectAutomous());
 		addSequential(new DriveBackward(7));
 		System.out.println("Robot has arrived");
 		

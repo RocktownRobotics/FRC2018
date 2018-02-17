@@ -1,33 +1,30 @@
-package org.usfirst.frc.team3274.robot.commands;
+package org.usfirst.frc.team3274.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team3274.robot.Robot;
 
-
-
 /**
- * An example command.  You can replace me with your own command. I did....
+ * An example command. You can replace me with your own command. I did....
  */
 
-public class Eject extends Command {
-	 double launchPower;
-	 double ejectStartTime;
-	 double thrustTime;
+public class EjectAutomous extends Command {
+	
+	public static final double THRUST_TIME = .3;
+	
+	private double launchPower;
+	private double ejectStartTime;
 
-	public Eject() {
+	public EjectAutomous() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.kClaw);
 		System.out.println("Ejecting Cube");
 	}
 
-
-	
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
 		this.launchPower = 0.0;
-		this.thrustTime = 0.5;
 		this.ejectStartTime = Timer.getMatchTime();
 	}
 
@@ -41,15 +38,13 @@ public class Eject extends Command {
 	@Override
 	protected boolean isFinished() {
 
-//	if(ejectStartTime + thrustTime <= Timer.getMatchTime()){
-//		return false;
-//	}
-//		else{
-//			System.out.println("Robot has ejected it's cube. Robot has nothing. Robot is lonely, and wants another cube to throw at something.");
-		//return true;
-	
-	//}
-		return false;
+		if (ejectStartTime + THRUST_TIME <= Timer.getMatchTime()) {
+			return false;
+		} else {
+			System.out.println(
+					"Robot has ejected it's cube. Robot has nothing. Robot is lonely, and wants another cube to throw at something.");
+			return true;
+		}
 	}
 
 	// Called once after isFinished returns true

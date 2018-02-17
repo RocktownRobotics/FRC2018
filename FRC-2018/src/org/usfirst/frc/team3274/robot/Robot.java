@@ -28,6 +28,8 @@ import org.usfirst.frc.team3274.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team3274.robot.subsystems.ForkLift;
 import org.usfirst.frc.team3274.robot.subsystems.RobotCompressor;
 
+import com.sun.javafx.scene.control.behavior.TwoLevelFocusPopupBehavior;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -38,11 +40,11 @@ import org.usfirst.frc.team3274.robot.subsystems.RobotCompressor;
 public class Robot extends TimedRobot {
 	public static final ExampleSubsystem kExampleSubsystem = new ExampleSubsystem();
 
-	//public static final DrivePneumatics kDrivePneumatics = new DrivePneumatics();
+	// public static final DrivePneumatics kDrivePneumatics = new DrivePneumatics();
 	public static final DriveTrain kDriveTrain = new DriveTrain();
 	public static final RobotCompressor kCompressor = new RobotCompressor();
 	public static final Claw kClaw = new Claw();
-	//public static final ForkLift kForkLift = new ForkLift();
+	// public static final ForkLift kForkLift = new ForkLift();
 
 	public static String gameData;
 
@@ -54,6 +56,7 @@ public class Robot extends TimedRobot {
 	private SendableChooser<Double> startDelayChooser = new SendableChooser<>();
 	private SendableChooser<String> startPositionChooser = new SendableChooser<>();
 	private SendableChooser<String> scoringMethodChooser = new SendableChooser<>();
+	private SendableChooser<Boolean> twoCubeAutoChooser = new SendableChooser<>();
 
 	private Command m_autonomousCommand;
 
@@ -82,6 +85,11 @@ public class Robot extends TimedRobot {
 		scoringMethodChooser.addObject("None", "None");
 		scoringMethodChooser.addObject("Exchange(Must be in Middle)", "Exchange");
 		SmartDashboard.putData("Attempting to Score", scoringMethodChooser);
+
+		// add two-cube auto option
+		twoCubeAutoChooser.addDefault("Disable Two Cube Auto", false);
+		twoCubeAutoChooser.addObject("Enable Two Cube Auto", true);
+		SmartDashboard.putData("Attempting to Do Two Cubes", twoCubeAutoChooser);
 
 		SmartDashboard.putData("Reset Height", new ResetHeight());
 		SmartDashboard.putData("Set Height 2", new SetHeight(1, .01));
@@ -122,15 +130,16 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		System.out.println(
-				"Robot got placed in the" + startPositionChooser.getSelected() + "position");
-		System.out.println("Robot is trying to do something. Specifically, use the"
-				+ scoringMethodChooser.getSelected());
-		System.out.println("Robot just feels like sitting around for"
-				+ startDelayChooser.getSelected() + "seconds...");
+		System.out.println("Robot got placed in the" + startPositionChooser.getSelected() + "position");
+		System.out
+				.println("Robot is trying to do something. Specifically, use the" + scoringMethodChooser.getSelected());
+		System.out.println("Robot just feels like sitting around for" + startDelayChooser.getSelected() + "seconds...");
+		System.out.println("Robot " + (twoCubeAutoChooser.getSelected() ? "feels like" : "doesn't feel like")
+				+ " trying to go for a two-cube autonomous");
 
 		this.m_autonomousCommand = new Primary_Autonomous(startDelayChooser.getSelected(),
-				scoringMethodChooser.getSelected(), startPositionChooser.getSelected());
+				scoringMethodChooser.getSelected(), startPositionChooser.getSelected(),
+				twoCubeAutoChooser.getSelected());
 
 		m_autonomousCommand.start();
 
@@ -200,7 +209,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("gyro_yaw", kDriveTrain.getYaw());
 
 		SmartDashboard.putNumber("claw degrees", kClaw.getDeployAngle());
-		//SmartDashboard.putNumber("lift height", kForkLift.getLiftHeight());
+		// SmartDashboard.putNumber("lift height", kForkLift.getLiftHeight());
 	}
 
 }

@@ -196,7 +196,7 @@ public class DriveTrain extends Subsystem {
 	 *            xbox controller to use for input
 	 */
 	public void cheesyDrive(Joystick joy) {
-		cheesyDrive(joy.getRawAxis(RobotMap.XBOX_LEFT_Y_AXIS), joy.getRawAxis(RobotMap.XBOX_RIGHT_X_AXIS), true);
+		cheesyDrive(-joy.getRawAxis(RobotMap.XBOX_RIGHT_X_AXIS), joy.getRawAxis(RobotMap.XBOX_LEFT_Y_AXIS), true);
 	}
 
 	/**
@@ -212,8 +212,8 @@ public class DriveTrain extends Subsystem {
 	 *            account for false input from joysticks
 	 */
 	public void cheesyDrive(double power, double turnPower, boolean applyDeadband) {
-		SmartDashboard.putNumber("joystickcheesypowervalue", power);
-		SmartDashboard.putNumber("joystickcheesyturnpowervalue", turnPower);
+		SmartDashboard.putNumber("joystickcheesypowervalue2", power);
+		SmartDashboard.putNumber("joystickcheesyturnpowervalue2", turnPower);
 		
 		double tempPower = power;
 		double tempTurnPower = turnPower;
@@ -230,9 +230,9 @@ public class DriveTrain extends Subsystem {
 			power = -.999;
 		}
 
-		// double forPower = power / 2; // use for slightly finer turning control (or
+	    double forPower = power / 2; // use for slightly finer turning control (or
 		// ------------------------------- enable sniper mode)
-		// double rotPower = turnPower / 2; // use for slightly finer turning control
+		double rotPower = turnPower / 2; // use for slightly finer turning control
 		// ----------------------------------- (or enable sniper mode)
 
 		double leftPower = power + turnPower;

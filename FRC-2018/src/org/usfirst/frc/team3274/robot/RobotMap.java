@@ -130,5 +130,5 @@ public class RobotMap {
 	//////////// Misc. PORTS BELOW HERE/////////////
 	////////////////////////////////////////////////
 
-	public static final SPI.Port NAVX_PORT = SPI.Port.kMXP;
+	//public static final SPI.Port NAVX_PORT = SPI.Port.kMXP;
 }
