@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import sun.security.krb5.internal.tools.Klist;
 
 import org.usfirst.frc.team3274.robot.commands.ExampleCommand;
-import org.usfirst.frc.team3274.robot.commands.SetHeight;
+import org.usfirst.frc.team3274.robot.commands.SetHeightWithEncoder;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ResetHeight;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.Primary_Autonomous;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.TestAuto;
@@ -44,6 +44,7 @@ public class Robot extends TimedRobot {
 	public static final DriveTrain kDriveTrain = new DriveTrain();
 	public static final RobotCompressor kCompressor = new RobotCompressor();
 	public static final Claw kClaw = new Claw();
+	public static final ForkLift kForkLift = new ForkLift();
 	// public static final ForkLift kForkLift = new ForkLift();
 
 	public static String gameData;
@@ -92,7 +93,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Attempting to Do Two Cubes", twoCubeAutoChooser);
 
 		SmartDashboard.putData("Reset Height", new ResetHeight());
-		SmartDashboard.putData("Set Height 2", new SetHeight(1, .01));
+		SmartDashboard.putData("Set Height 2", new SetHeightWithEncoder(1, .01));
 		// SmartDashboard.putData("",);
 
 		Robot.itself = this;

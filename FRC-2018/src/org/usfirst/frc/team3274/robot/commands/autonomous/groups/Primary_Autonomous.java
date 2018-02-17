@@ -26,7 +26,7 @@ public class Primary_Autonomous extends CommandGroup {
 			}
 		} else {
 			DriverStation.reportError("Failed to read a correct FMS message", true);
-			System.out.println("Failed: Field said something unintelligable... Robot hasn't a clue what it should do");
+			System.out.println("Failed: Field said something unintelligable... Robot hasn't a clue what it should do... Left is always the answer");
 			return false;
 		}
 	}
@@ -42,7 +42,7 @@ public class Primary_Autonomous extends CommandGroup {
 			}
 		} else {
 			DriverStation.reportError("Failed to read a correct FMS message", true);
-			System.out.println("Failed: Field said something unintelligable... Robot hasn't a clue what it should do");
+			System.out.println("Failed: Field said something unintelligable... Robot hasn't a clue what it should do... Left is always the answer");
 
 			return false;
 		}

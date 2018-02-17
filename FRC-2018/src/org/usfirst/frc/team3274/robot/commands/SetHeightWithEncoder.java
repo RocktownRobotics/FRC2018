@@ -21,14 +21,14 @@ import org.usfirst.frc.team3274.robot.RobotMap;
  * @param tolerableProximity
  *            The acceptable range of error on the forklift height, in inches
  */
-public class SetHeight extends Command {
+public class SetHeightWithEncoder extends Command {
 
 	public static final double MAX_HEIGHT = 42;
 
 	public static final double NORMAL_SPEED = .3;
 	public static final double SLOW_SPEED = .1;
 
-	public SetHeight(double targetHeight, double tolerableProximity) {
+	public SetHeightWithEncoder(double targetHeight, double tolerableProximity) {
 		//requires(Robot.kForkLift);
 		this.targetHeight = targetHeight;
 		this.tolerableProximity = tolerableProximity;

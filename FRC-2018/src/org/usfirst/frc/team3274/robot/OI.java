@@ -15,7 +15,7 @@ import org.usfirst.frc.team3274.robot.commands.Eject;
 import org.usfirst.frc.team3274.robot.commands.LowerClaw;
 import org.usfirst.frc.team3274.robot.commands.OpenClaw;
 import org.usfirst.frc.team3274.robot.commands.RaiseClaw;
-import org.usfirst.frc.team3274.robot.commands.SetHeight;
+import org.usfirst.frc.team3274.robot.commands.SetHeightWithEncoder;
 import org.usfirst.frc.team3274.robot.commands.ShiftDown;
 import org.usfirst.frc.team3274.robot.commands.ShiftUp;
 import org.usfirst.frc.team3274.robot.commands.Suck;
