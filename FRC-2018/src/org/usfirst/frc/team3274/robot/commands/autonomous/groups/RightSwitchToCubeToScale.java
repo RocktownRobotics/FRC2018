@@ -5,6 +5,7 @@ import org.usfirst.frc.team3274.robot.commands.autonomous.DriveBackward;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForward;
 import org.usfirst.frc.team3274.robot.commands.autonomous.EjectAutonomous;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ResetHeight;
+import org.usfirst.frc.team3274.robot.commands.autonomous.SetHeightByGuesstimate;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
 import org.usfirst.frc.team3274.robot.commands.autonomous.TurnRobot;
 
@@ -28,6 +29,7 @@ public class RightSwitchToCubeToScale extends CommandGroup {
 		addSequential(new DriveBackward(1));
 		addSequential(new TurnRobot(90));
 		addSequential(new DriveForward(7.5));
+		addParallel(new SetHeightByGuesstimate(40));
 		addSequential(new TurnRobot(-45));
 		addSequential(new EjectAutonomous());
 		System.out.println("Robot believes it has captured the switch and scale. Robot is delighted. Hopefully, Robot is not delusional");

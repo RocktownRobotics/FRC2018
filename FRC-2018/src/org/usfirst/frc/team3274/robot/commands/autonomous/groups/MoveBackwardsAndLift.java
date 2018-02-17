@@ -4,6 +4,7 @@ import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.commands.SetHeightWithEncoder;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveBackward;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForward;
+import org.usfirst.frc.team3274.robot.commands.autonomous.SetHeightByGuesstimate;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -23,7 +24,7 @@ public class MoveBackwardsAndLift extends CommandGroup {
 		
 		// Drive forward and set the height...
 				addSequential(new DriveBackward(distance));
-				addParallel(new SetHeightWithEncoder(height, tolerance));
+				addParallel(new SetHeightByGuesstimate(height));
 	}
 	
 	/**

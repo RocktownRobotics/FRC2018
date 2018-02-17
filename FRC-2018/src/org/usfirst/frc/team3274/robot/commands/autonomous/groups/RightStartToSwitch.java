@@ -4,6 +4,7 @@ import org.usfirst.frc.team3274.robot.commands.DeployClaw;
 import org.usfirst.frc.team3274.robot.commands.SetHeightWithEncoder;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForward;
 import org.usfirst.frc.team3274.robot.commands.autonomous.EjectAutonomous;
+import org.usfirst.frc.team3274.robot.commands.autonomous.SetHeightByGuesstimate;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
 import org.usfirst.frc.team3274.robot.commands.autonomous.TurnRobot;
 
@@ -20,7 +21,7 @@ public class RightStartToSwitch extends CommandGroup {
 		System.out.println("Robot moving to Switch");
 		addSequential(new DriveForward(3));
 		addParallel(new DeployClaw());
-		addParallel(new SetHeightWithEncoder(20, 5));
+		addParallel(new SetHeightByGuesstimate(20));
 		addSequential(new TurnRobot(-90));
 		addSequential(new EjectAutonomous());
 		System.out.println("Robot has siezed the Switch, and is happy.");

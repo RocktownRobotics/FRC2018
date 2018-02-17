@@ -4,6 +4,7 @@ import org.usfirst.frc.team3274.robot.commands.DeployClaw;
 import org.usfirst.frc.team3274.robot.commands.SetHeightWithEncoder;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForward;
 import org.usfirst.frc.team3274.robot.commands.autonomous.EjectAutonomous;
+import org.usfirst.frc.team3274.robot.commands.autonomous.SetHeightByGuesstimate;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
 import org.usfirst.frc.team3274.robot.commands.autonomous.TurnRobot;
 
@@ -20,8 +21,9 @@ public class LeftStartToScale extends CommandGroup {
 		System.out.println("Robot moving to Scale");
 		addSequential(new DriveForward(13));
 		addParallel(new DeployClaw());
-		addParallel(new SetHeightWithEncoder(40, 5));
+		addParallel(new SetHeightByGuesstimate(40));
 		addSequential(new TurnRobot(45));
 		addSequential(new EjectAutonomous());
+		System.out.println("Robot has captured the Scale! Robot is happy. With luck, Robot knows what it is talking about");
 	}
 }
