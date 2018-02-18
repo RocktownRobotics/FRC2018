@@ -48,17 +48,20 @@ public class DriveTrain extends Subsystem {
 
 	private boolean isSniperMode;
 
-	// "rightMotor" and "leftMotor" are
-	// actually all three motors on the side but should act as one
-	private WPI_TalonSRX _rightMotor = new TalonSRXGroup(RobotMap.REAR_RIGHT_MOTOR,
-			RobotMap.FRONT_RIGHT_MOTOR, RobotMap.RIGHT_MOTOR);
-	private WPI_TalonSRX _leftMotor = new TalonSRXGroup(RobotMap.FRONT_LEFT_MOTOR,
-			RobotMap.REAR_LEFT_MOTOR, RobotMap.LEFT_MOTOR);
+	// right motors (note some are wired backwards, so need different value)
+	private WPI_TalonSRX _rFrontMot = new WPI_TalonSRX(RobotMap.FRONT_RIGHT_MOTOR);
+	private WPI_TalonSRX _rMidMot = new WPI_TalonSRX(RobotMap.RIGHT_MOTOR);
+	private WPI_TalonSRX _rRearMot = new WPI_TalonSRX(RobotMap.REAR_RIGHT_MOTOR);
 
-	private Encoder _rightEncoder = new Encoder(RobotMap.RIGHT_ENCODER[0],
-			RobotMap.RIGHT_ENCODER[1], true, EncodingType.k4X);
-	private Encoder _leftEncoder = new Encoder(RobotMap.LEFT_ENCODER[0], RobotMap.LEFT_ENCODER[1],
-			true, EncodingType.k4X);
+	// left motors (note some are wired backwards, so need different value)
+	private WPI_TalonSRX _lFrontMot = new WPI_TalonSRX(RobotMap.FRONT_LEFT_MOTOR);
+	private WPI_TalonSRX _lMidMot = new WPI_TalonSRX(RobotMap.LEFT_MOTOR);
+	private WPI_TalonSRX _lRearMot = new WPI_TalonSRX(RobotMap.REAR_LEFT_MOTOR);
+
+	private Encoder _rightEncoder = new Encoder(RobotMap.RIGHT_ENCODER[0], RobotMap.RIGHT_ENCODER[1], true,
+			EncodingType.k4X);
+	private Encoder _leftEncoder = new Encoder(RobotMap.LEFT_ENCODER[0], RobotMap.LEFT_ENCODER[1], true,
+			EncodingType.k4X);
 
 	private AHRS navX;
 
@@ -71,15 +74,14 @@ public class DriveTrain extends Subsystem {
 		isSniperMode = false;
 
 		double distancePerPulse; // in feet
-		distancePerPulse = (WHEEL_DIAMETER/* in */ * Math.PI)
-				/ (ENCODER_PULSES_PER_REVOLUTION * 12.0/* in/ft */);
+		distancePerPulse = (WHEEL_DIAMETER/* in */ * Math.PI) / (ENCODER_PULSES_PER_REVOLUTION * 12.0/* in/ft */);
 
 		_rightEncoder.setDistancePerPulse(distancePerPulse);
 		_leftEncoder.setDistancePerPulse(distancePerPulse);
 
 		// configure navX
 		try {
-			navX = new AHRS(SerialPort.Port.kUSB);
+			navX = new AHRS(RobotMap.NAVX_PORT);
 		} catch (RuntimeException ex) {
 			DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), true);
 		}
@@ -91,7 +93,7 @@ public class DriveTrain extends Subsystem {
 	 */
 	@Override
 	public void initDefaultCommand() {
-		//Use either CHEESY_DRIVE or TANK_DRIVE for DriveType
+		// Use either CHEESY_DRIVE or TANK_DRIVE for DriveType
 		setDefaultCommand(new DriveWithJoystick(DriveType.CHEESY_DRIVE));
 	}
 
@@ -140,8 +142,7 @@ public class DriveTrain extends Subsystem {
 	 *            Xbox controller to use as the input for tank drive.
 	 */
 	public void tankDrive(Joystick joy) {
-		this.tankDrive(joy.getRawAxis(RobotMap.XBOX_LEFT_Y_AXIS),
-				-joy.getRawAxis(RobotMap.XBOX_RIGHT_Y_AXIS), true);
+		this.tankDrive(joy.getRawAxis(RobotMap.XBOX_LEFT_Y_AXIS), -joy.getRawAxis(RobotMap.XBOX_RIGHT_Y_AXIS), true);
 	}
 
 	/**
@@ -153,7 +154,6 @@ public class DriveTrain extends Subsystem {
 	 * @param rightAxis
 	 *            right stick y-axis (or power between -1 and 1)
 	 */
-
 
 	/**
 	 * Drive the wheels on one side forward with one stick and the wheels on another
@@ -182,8 +182,15 @@ public class DriveTrain extends Subsystem {
 			rJoyStickVal *= SNIPER_MODE_MULTIPLIER;
 		}
 
-		_leftMotor.set(ControlMode.PercentOutput, lJoyStickVal);
-		_rightMotor.set(ControlMode.PercentOutput, rJoyStickVal);
+		// left motors (note some are wired backwards, so need different value)
+		_lFrontMot.set(ControlMode.PercentOutput, -lJoyStickVal);
+		_lMidMot.set(ControlMode.PercentOutput, lJoyStickVal);
+		_lRearMot.set(ControlMode.PercentOutput, lJoyStickVal);
+
+		// right motors (note some are wired backwards, so need different value)
+		_rFrontMot.set(ControlMode.PercentOutput, rJoyStickVal);
+		_rMidMot.set(ControlMode.PercentOutput, rJoyStickVal);
+		_rRearMot.set(ControlMode.PercentOutput, -rJoyStickVal);
 
 		Timer.delay(0.005); // wait for a motor update time
 	}
@@ -214,7 +221,7 @@ public class DriveTrain extends Subsystem {
 	public void cheesyDrive(double power, double turnPower, boolean applyDeadband) {
 		SmartDashboard.putNumber("joystickcheesypowervalue2", power);
 		SmartDashboard.putNumber("joystickcheesyturnpowervalue2", turnPower);
-		
+
 		double tempPower = power;
 		double tempTurnPower = turnPower;
 
@@ -230,7 +237,7 @@ public class DriveTrain extends Subsystem {
 			power = -.999;
 		}
 
-	    double forPower = power / 2; // use for slightly finer turning control (or
+		double forPower = power / 2; // use for slightly finer turning control (or
 		// ------------------------------- enable sniper mode)
 		double rotPower = turnPower / 2; // use for slightly finer turning control
 		// ----------------------------------- (or enable sniper mode)
@@ -346,14 +353,13 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public boolean isRobotTipping() {
-		if(Math.abs(navX.getPitch()) > PITCH_TIPPING_CONSTANT || Math.abs(navX.getRoll()) > ROLL_TIPPING_CONSTANT) {
+		if (Math.abs(navX.getPitch()) > PITCH_TIPPING_CONSTANT || Math.abs(navX.getRoll()) > ROLL_TIPPING_CONSTANT) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Resets Gyro Yaw to 0.
 	 */

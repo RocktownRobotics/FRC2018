@@ -59,8 +59,8 @@ public class RobotMap {
 	public static final int XBOX_Y_BUTTON = 4;
 	public static final int XBOX_L_BUMPER_BUTTON = 5;
 	public static final int XBOX_R_BUMPER_BUTTON = 6;
-	public static final int XBOX_START_BUTTON = 7;
-	public static final int XBOX_BACK_BUTTON = 8;
+	public static final int XBOX_START_BUTTON = 8;
+	public static final int XBOX_BACK_BUTTON = 7;
 	public static final int XBOX_UP_BUTTON = 13;
 	public static final int XBOX_DOWN_BUTTON = 14;
 	public static final int XBOX_LEFT_BUTTON = 15;
@@ -114,10 +114,8 @@ public class RobotMap {
 	/////////////// PCM's BELOW HERE////////////////
 	////////////////////////////////////////////////
 
-	public static final int SHIFTER_FORWARD = PROXY_PORT;
-	public static final int SHIFTER_REVERSE = PROXY_PORT;
-	public static final int GEAR_FORWARD = PROXY_PORT;
-	public static final int GEAR_REVERSE = PROXY_PORT;
+	public static final int SHIFTER_FORWARD = 1;
+	public static final int SHIFTER_REVERSE = 2;
 	public static final int CLAW_PISTON = 0;
 
 	////////////////////////////////////////////////
@@ -133,5 +131,5 @@ public class RobotMap {
 	//////////// Misc. PORTS BELOW HERE/////////////
 	////////////////////////////////////////////////
 
-	//public static final SPI.Port NAVX_PORT = SPI.Port.kMXP;
+	public static final SPI.Port NAVX_PORT = SPI.Port.kMXP;
 }

@@ -37,7 +37,7 @@ public class Suck extends Command {
 	protected boolean isFinished() {
 
 		return Robot.kClaw.isClawLoaded();
-		
+//		return false;
 	}
 
 	// Called once after isFinished returns true

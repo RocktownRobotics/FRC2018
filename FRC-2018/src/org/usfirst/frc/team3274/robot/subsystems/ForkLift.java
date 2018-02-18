@@ -14,6 +14,7 @@ import org.usfirst.frc.team3274.robot.util.TalonSRXGroup;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PWMTalonSRX;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -38,30 +39,31 @@ public class ForkLift extends Subsystem {
 	private PWMTalonSRX liftMotor2 = new PWMTalonSRX(RobotMap.LIFT_MOTOR_RIGHT);
 
 	// sets the left and right forklift motors to be together...
-	private SpeedController _liftMotors = new SpeedControllerGroup(this.liftMotor1,
-			this.liftMotor2);
+	private SpeedController _liftMotors = new SpeedControllerGroup(this.liftMotor1, this.liftMotor2);
 
-	private Encoder _liftEncoder = new Encoder(RobotMap.LIFT_ENCODER[0], RobotMap.LIFT_ENCODER[1],
-			true, EncodingType.k4X);
+	// private Encoder _liftEncoder = new Encoder(RobotMap.LIFT_ENCODER[0],
+	// RobotMap.LIFT_ENCODER[1],
+	// true, EncodingType.k4X);
 
 	public ForkLift() {
 		double distancePerPulse; // in feet
-		distancePerPulse = (WHEEL_DIAMETER/* in */ * Math.PI)
-				/ (ENCODER_PULSES_PER_REVOLUTION * 12.0/* in/ft */);
+		distancePerPulse = (WHEEL_DIAMETER/* in */ * Math.PI) / (ENCODER_PULSES_PER_REVOLUTION * 12.0/* in/ft */);
 
-		_liftEncoder.setDistancePerPulse(distancePerPulse);
+		// _liftEncoder.setDistancePerPulse(distancePerPulse);
 	}
 
 	public void setStartPositions() {
-		_liftEncoder.reset();
+		// _liftEncoder.reset();
 	}
 
 	public double getLiftHeight() {
-		return _liftEncoder.getDistance();
+		// return _liftEncoder.getDistance();
+		DriverStation.reportError("Tried to get lift height using nonexistant encoder", true);
+		return 0;
 	}
 
 	public void resetLiftEncoders() {
-		_liftEncoder.reset();
+		// _liftEncoder.reset();
 	}
 
 	public boolean isLiftNotAtMaxHeight() {

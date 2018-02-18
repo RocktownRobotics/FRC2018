@@ -12,15 +12,15 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team3274.robot.Robot;
 
 /**
- * An example command.  You can replace me with your own command.
+ * An example command. You can replace me with your own command.
  */
 public class LowerClaw extends Command {
-	
-	public static final double POWER = .75;
-	public static final double WAIT_TIME = .8;
+
+	public static final double POWER = .05;
+	public static final double WAIT_TIME = .5;
 
 	private double timeToReach;
-	
+
 	public LowerClaw() {
 		requires(Robot.kClaw);
 	}
@@ -33,14 +33,14 @@ public class LowerClaw extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.kClaw.deploy(POWER);
+		Robot.kClaw.deploy(-POWER);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
 		if (Timer.getMatchTime() >= this.timeToReach) {
-			
+
 			return true;
 		}
 		return false;

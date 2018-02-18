@@ -20,8 +20,10 @@ public class Claw extends Subsystem {
 	private DigitalInput _leftClawLimitSwitch = new DigitalInput(RobotMap.LEFT_CLAW_EYE_LIMIT_SWITCH);
 	private DigitalInput _rightClawLimitSwitch = new DigitalInput(RobotMap.RIGHT_CLAW_EYE_LIMIT_SWITCH);
 
-	private DigitalInput _upperClawLimitSwitch = new DigitalInput(RobotMap.UPPER_CLAW_LIMIT_SWITCH);
-	private DigitalInput _lowerClawLimitSwitch = new DigitalInput(RobotMap.LOWER_CLAW_LIMIT_SWITCH);
+	// private DigitalInput _upperClawLimitSwitch = new
+	// DigitalInput(RobotMap.UPPER_CLAW_LIMIT_SWITCH);
+	// private DigitalInput _lowerClawLimitSwitch = new
+	// DigitalInput(RobotMap.LOWER_CLAW_LIMIT_SWITCH);
 
 	private boolean clawClosed;
 	private boolean clawDeployed;
@@ -83,7 +85,7 @@ public class Claw extends Subsystem {
 
 	public boolean isClawLoaded() {
 
-		if (_leftClawLimitSwitch.get() || _rightClawLimitSwitch.get()) {
+		if (_leftClawLimitSwitch.get() == false && _rightClawLimitSwitch.get() == false) {
 			return false;
 		} else
 
@@ -93,7 +95,7 @@ public class Claw extends Subsystem {
 	}
 
 	public void deploy(double deployPower) {
-		if (!_lowerClawLimitSwitch.get()) {
+		if (true/* !_lowerClawLimitSwitch.get() */) {
 			this.deployMotor.set(deployPower);
 		} else {
 			this.deployMotor.set(0);
@@ -102,7 +104,7 @@ public class Claw extends Subsystem {
 	}
 
 	public void retract(double retractPower) {
-		if (!_upperClawLimitSwitch.get()) {
+		if (true/* !_upperClawLimitSwitch.get() */) {
 			this.deployMotor.set(-retractPower);
 		} else {
 			this.deployMotor.set(0);
@@ -144,9 +146,14 @@ public class Claw extends Subsystem {
 
 	}
 
-	/**
-	 * 
-	 * @return -1 for low and 1 for high
-	 */
+	public DigitalInput get_leftClawLimitSwitch() {
+		return _leftClawLimitSwitch;
+	}
+
+	public DigitalInput get_rightClawLimitSwitch() {
+		return _rightClawLimitSwitch;
+	}
+
+	
 
 }
