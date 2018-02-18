@@ -34,7 +34,7 @@ public class Claw extends Subsystem {
 	private PWMTalonSRX leftClaw = new PWMTalonSRX(RobotMap.CLAW_MOTOR_LEFT);
 	private PWMTalonSRX rightClaw = new PWMTalonSRX(RobotMap.CLAW_MOTOR_RIGHT);
 	private Solenoid clawPistons = new Solenoid(RobotMap.CLAW_PISTON);
-	private PWMTalonSRX DeployMotor = new PWMTalonSRX(RobotMap.DEPLOY_MOTOR);
+	private PWMTalonSRX deployMotor = new PWMTalonSRX(RobotMap.DEPLOY_MOTOR);
 
 	public Claw() {
 		double distancePerPulse; // in degrees
@@ -82,27 +82,30 @@ public class Claw extends Subsystem {
 	}
 
 	public boolean isClawLoaded() {
-		/*
-		 * if (_leftClawLimitSwitch.get() && _rightClawLimitSwitch.get()) { return
-		 * false; } else
-		 * 
-		 * { return true; }
-		 */
-		return false;
+
+		if (_leftClawLimitSwitch.get() || _rightClawLimitSwitch.get()) {
+			return false;
+		} else
+
+		{
+			return true;
+		}
 	}
 
 	public void deploy(double deployPower) {
-		if(!_lowerClawLimitSwitch.get())
-		{
-			this.DeployMotor.set(deployPower);
+		if (!_lowerClawLimitSwitch.get()) {
+			this.deployMotor.set(deployPower);
+		} else {
+			this.deployMotor.set(0);
 		}
 
 	}
 
 	public void retract(double retractPower) {
-		if(!_upperClawLimitSwitch.get())
-		{
-			this.DeployMotor.set(-retractPower);
+		if (!_upperClawLimitSwitch.get()) {
+			this.deployMotor.set(-retractPower);
+		} else {
+			this.deployMotor.set(0);
 		}
 
 	}
