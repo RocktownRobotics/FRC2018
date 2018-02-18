@@ -12,9 +12,11 @@ import org.usfirst.frc.team3274.robot.commands.CloseClaw;
 import org.usfirst.frc.team3274.robot.commands.DeployClaw;
 import org.usfirst.frc.team3274.robot.commands.DropClaw;
 import org.usfirst.frc.team3274.robot.commands.Eject;
+import org.usfirst.frc.team3274.robot.commands.IncreaseHeight;
 import org.usfirst.frc.team3274.robot.commands.LowerClaw;
 import org.usfirst.frc.team3274.robot.commands.OpenClaw;
 import org.usfirst.frc.team3274.robot.commands.RaiseClaw;
+import org.usfirst.frc.team3274.robot.commands.ReduceHeight;
 import org.usfirst.frc.team3274.robot.commands.SetHeightWithEncoder;
 import org.usfirst.frc.team3274.robot.commands.ShiftDown;
 import org.usfirst.frc.team3274.robot.commands.ShiftUp;
@@ -125,8 +127,8 @@ public class OI {
 		leftTrigger.whileHeld(new ShiftDown());
 		rBumper.whenPressed(new OpenClaw());
 		rBumper.whenReleased(new CloseClaw());
-		// r3.whileHeld(new SetHeight(Robot.kForkLift.getLiftHeight() + 1, 0.1));
-		// l3.whileHeld(new SetHeight(Robot.kForkLift.getLiftHeight() - 1, 0.1));
+		r3.whileHeld(new IncreaseHeight());
+		l3.whileHeld(new ReduceHeight());
 		lBumper.whenPressed(new Eject());
 		b.whenPressed(new Suck());
 		// left.whenPressed(new DropClaw());
@@ -140,6 +142,7 @@ public class OI {
 		///// ////// temporary buttons ////// /////
 		x.whenPressed(new LowerClaw());
 		y.whenPressed(new RaiseClaw());
+		//////Why temporary? they're fine!//////
 	}
 
 	private void initDualXboxControllerSetup() {

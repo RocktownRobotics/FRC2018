@@ -17,10 +17,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Claw extends Subsystem {
 
-	// private DigitalInput _leftClawLimitSwitch = new
-	// DigitalInput(RobotMap.LEFT_CLAW_LIMIT_SWITCH);
-	// private DigitalInput _rightClawLimitSwitch = new
-	// DigitalInput(RobotMap.RIGHT_CLAW_LIMIT_SWITCH);
+	private DigitalInput _leftClawLimitSwitch = new DigitalInput(RobotMap.LEFT_CLAW_EYE_LIMIT_SWITCH);
+	private DigitalInput _rightClawLimitSwitch = new DigitalInput(RobotMap.RIGHT_CLAW_EYE_LIMIT_SWITCH);
+
+	private DigitalInput _upperClawLimitSwitch = new DigitalInput(RobotMap.UPPER_CLAW_LIMIT_SWITCH);
+	private DigitalInput _lowerClawLimitSwitch = new DigitalInput(RobotMap.LOWER_CLAW_LIMIT_SWITCH);
 
 	private boolean clawClosed;
 	private boolean clawDeployed;
@@ -57,8 +58,7 @@ public class Claw extends Subsystem {
 	public void setCubeManipulatorMotors(double motorSpeed) {
 		this.leftClaw.set(motorSpeed);
 		this.rightClaw.set(-motorSpeed);
-		
-	
+
 	}
 
 	// public int getDeployRotations() {
@@ -92,14 +92,18 @@ public class Claw extends Subsystem {
 	}
 
 	public void deploy(double deployPower) {
-
-		this.DeployMotor.set(deployPower);
+		if(!_lowerClawLimitSwitch.get())
+		{
+			this.DeployMotor.set(deployPower);
+		}
 
 	}
 
 	public void retract(double retractPower) {
-
-		this.DeployMotor.set(-retractPower);
+		if(!_upperClawLimitSwitch.get())
+		{
+			this.DeployMotor.set(-retractPower);
+		}
 
 	}
 	// DoubleSolenoid gearShifter = new DoubleSolenoid(RobotMap.shifterForward,

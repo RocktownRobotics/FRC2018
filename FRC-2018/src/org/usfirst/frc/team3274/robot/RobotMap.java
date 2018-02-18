@@ -65,31 +65,34 @@ public class RobotMap {
 	public static final int XBOX_DOWN_BUTTON = 14;
 	public static final int XBOX_LEFT_BUTTON = 15;
 	public static final int XBOX_RIGHT_BUTTON = 16;
-	public static final int XBOX_R3_BUTTON = PROXY_PORT;
-	public static final int XBOX_L3_BUTTON = PROXY_PORT;
+	public static final int XBOX_R3_BUTTON = 10;
+	public static final int XBOX_L3_BUTTON = 9;
 
 	////////////////////////////////////////////////
 	//////////// CAN TALONS BELOW HERE//////////////
 	////////////////////////////////////////////////
 
 	// Four wheels
-	public static final int FRONT_LEFT_MOTOR = 4;
-	public static final int FRONT_RIGHT_MOTOR = 3;
-	public static final int REAR_LEFT_MOTOR = 1;
+	public static final int FRONT_LEFT_MOTOR = 1;
+	public static final int FRONT_RIGHT_MOTOR = 4;
+	public static final int REAR_LEFT_MOTOR = 2;
 	public static final int REAR_RIGHT_MOTOR = 5;
-	public static final int LEFT_MOTOR = 6;
-	public static final int RIGHT_MOTOR = 2;
+	public static final int LEFT_MOTOR = 3;
+	public static final int RIGHT_MOTOR = 6;
 
 	////////////////////////////////////////////////
 	/////////////// DIO's BELOW HERE////////////////
 	////////////////////////////////////////////////
 
 	// Limit Switches
-	public static final int LOWER_LIMIT_SWITCH = PROXY_PORT;
-	public static final int UPPER_LIMIT_SWITCH = PROXY_PORT;
+	public static final int LOWER_LIMIT_SWITCH = 4;
+	public static final int UPPER_LIMIT_SWITCH = 5;
 	
-	public static final int LEFT_CLAW_LIMIT_SWITCH = PROXY_PORT;
-	public static final int RIGHT_CLAW_LIMIT_SWITCH = PROXY_PORT;
+	public static final int LEFT_CLAW_EYE_LIMIT_SWITCH = 7; //LEFT EYE
+	public static final int RIGHT_CLAW_EYE_LIMIT_SWITCH = 6; //RIGHT EYE
+	
+	public static final int UPPER_CLAW_LIMIT_SWITCH = PROXY_PORT;
+	public static final int LOWER_CLAW_LIMIT_SWITCH = PROXY_PORT;
 
 	// two input ports for each encoder
 	public static final int[] RIGHT_ENCODER = { 2, 3 };
@@ -101,8 +104,8 @@ public class RobotMap {
 	/////////////// PWM's BELOW HERE////////////////
 	////////////////////////////////////////////////
 
-	public static final int LIFT_MOTOR_LEFT = PROXY_PORT;
-	public static final int LIFT_MOTOR_RIGHT = PROXY_PORT;
+	public static final int LIFT_MOTOR_LEFT = 8;
+	public static final int LIFT_MOTOR_RIGHT = 9;
 	public static final int CLAW_MOTOR_LEFT = 1;
 	public static final int CLAW_MOTOR_RIGHT = 2;
 	public static final int DEPLOY_MOTOR = 0;
