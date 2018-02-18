@@ -13,6 +13,7 @@ import org.usfirst.frc.team3274.robot.commands.DeployClaw;
 import org.usfirst.frc.team3274.robot.commands.DropClaw;
 import org.usfirst.frc.team3274.robot.commands.Eject;
 import org.usfirst.frc.team3274.robot.commands.IncreaseHeight;
+import org.usfirst.frc.team3274.robot.commands.Interrupt;
 import org.usfirst.frc.team3274.robot.commands.LowerClaw;
 import org.usfirst.frc.team3274.robot.commands.OpenClaw;
 import org.usfirst.frc.team3274.robot.commands.RaiseClaw;
@@ -156,9 +157,13 @@ public class OI {
 		rBumper0.whenPressed(new OpenClaw());
 		rBumper0.whenReleased(new CloseClaw());
 		r30.whileHeld(new IncreaseHeight());
+		r30.whenReleased(new Interrupt("Lift"));
 		l30.whileHeld(new ReduceHeight());
+		l30.whenReleased(new Interrupt("Lift"));
 		lBumper0.whenPressed(new Eject());
+		lBumper0.whenReleased(new Interrupt("Lift"));
 		b0.whenPressed(new Suck());
+		b0.whenReleased(new Interrupt("Claw"));
 		// left.whenPressed(new DropClaw());
 		// right.whenPressed(new DeployClaw());
 		// down.whenPressed(new RetractClaw());
@@ -169,7 +174,9 @@ public class OI {
 
 		///// ////// temporary buttons ////// /////
 		x0.whenPressed(new LowerClaw());
+		x0.whenReleased(new Interrupt("Claw"));
 		y0.whenPressed(new RaiseClaw());
+		y0.whenReleased(new Interrupt("Claw"));
 		////// Why temporary? they're fine!//////
 	}
 
@@ -181,14 +188,20 @@ public class OI {
 
 		// second driver
 		rBumper1.whileHeld(new IncreaseHeight());
+		rBumper1.whenReleased(new Interrupt("Lift"));
 		lBumper1.whileHeld(new ReduceHeight());
+		lBumper1.whenReleased(new Interrupt("Lift"));
 		x1.whenPressed(new OpenClaw());
 		x1.whenReleased(new CloseClaw());
 		y1.whileHeld(new Suck());
+		y1.whenReleased(new Interrupt("Claw"));
 		b1.whileHeld(new Eject());
+		b1.whenReleased(new Interrupt("Claw"));
 
 		start1.whenPressed(new RaiseClaw());
+		start1.whenReleased(new Interrupt("Claw"));
 		back1.whenPressed(new LowerClaw());
+		back1.whenReleased(new Interrupt("Claw"));
 	}
 
 	/**
