@@ -157,13 +157,13 @@ public class OI {
 		rBumper0.whenPressed(new OpenClaw());
 		rBumper0.whenReleased(new CloseClaw());
 		r30.whileHeld(new IncreaseHeight());
-		r30.whenReleased(new Interrupt("Lift"));
+		r30.whenReleased(new Interrupt(Robot.kForkLift));
 		l30.whileHeld(new ReduceHeight());
-		l30.whenReleased(new Interrupt("Lift"));
+		l30.whenReleased(new Interrupt(Robot.kForkLift));
 		lBumper0.whenPressed(new Eject());
-		lBumper0.whenReleased(new Interrupt("Lift"));
+		lBumper0.whenReleased(new Interrupt(Robot.kForkLift));
 		b0.whenPressed(new Suck());
-		b0.whenReleased(new Interrupt("Claw"));
+		b0.whenReleased(new Interrupt(Robot.kClaw));
 		// left.whenPressed(new DropClaw());
 		// right.whenPressed(new DeployClaw());
 		// down.whenPressed(new RetractClaw());
@@ -174,9 +174,9 @@ public class OI {
 
 		///// ////// temporary buttons ////// /////
 		x0.whenPressed(new LowerClaw());
-		x0.whenReleased(new Interrupt("Claw"));
+		x0.whenReleased(new Interrupt(Robot.kClaw));
 		y0.whenPressed(new RaiseClaw());
-		y0.whenReleased(new Interrupt("Claw"));
+		y0.whenReleased(new Interrupt(Robot.kClaw));
 		////// Why temporary? they're fine!//////
 	}
 
@@ -188,20 +188,20 @@ public class OI {
 
 		// second driver
 		rBumper1.whileHeld(new IncreaseHeight());
-		rBumper1.whenReleased(new Interrupt("Lift"));
+		rBumper1.whenReleased(new Interrupt(Robot.kForkLift));
 		lBumper1.whileHeld(new ReduceHeight());
-		lBumper1.whenReleased(new Interrupt("Lift"));
+		lBumper1.whenReleased(new Interrupt(Robot.kForkLift));
 		x1.whenPressed(new OpenClaw());
 		x1.whenReleased(new CloseClaw());
 		y1.whileHeld(new Suck());
-		y1.whenReleased(new Interrupt("Claw"));
+		y1.whenReleased(new Interrupt(Robot.kClaw));
 		b1.whileHeld(new Eject());
-		b1.whenReleased(new Interrupt("Claw"));
+		b1.whenReleased(new Interrupt(Robot.kClaw));
 
 		start1.whenPressed(new RaiseClaw());
-		start1.whenReleased(new Interrupt("Claw"));
+		start1.whenReleased(new Interrupt(Robot.kClaw));
 		back1.whenPressed(new LowerClaw());
-		back1.whenReleased(new Interrupt("Claw"));
+		back1.whenReleased(new Interrupt(Robot.kClaw));
 	}
 
 	/**

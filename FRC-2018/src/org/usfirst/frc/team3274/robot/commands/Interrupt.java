@@ -8,22 +8,16 @@
 package org.usfirst.frc.team3274.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Subsystem;
+
 import org.usfirst.frc.team3274.robot.Robot;
 
 /**
  * An example command. You can replace me with your own command.
  */
 public class Interrupt extends Command {
-	public Interrupt(String Subsystem) {
-		// Use requires() here to declare subsystem dependencies
-		if (Subsystem == "Claw") {
-			requires(Robot.kClaw);
-		} else if (Subsystem == "Lift") {
-			requires(Robot.kForkLift);
-		} else if (Subsystem == "DriveTrain") {
-			requires(Robot.kDriveTrain);
-		} else {
-		}
+	public Interrupt(Subsystem sub) {
+		requires(sub);
 	}
 
 	// Called just before this Command runs the first time
