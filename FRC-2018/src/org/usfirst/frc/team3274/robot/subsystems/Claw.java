@@ -109,13 +109,6 @@ public class Claw extends Subsystem {
 		}
 
 	}
-	// DoubleSolenoid gearShifter = new DoubleSolenoid(RobotMap.shifterForward,
-	// RobotMap.shifterReverse);
-	//
-	// DoubleSolenoid.Value off = DoubleSolenoid.Value.kOff;
-	// // May need to switch lowGear and HighGear values (kForward/kReverse)
-	// DoubleSolenoid.Value lowGear = DoubleSolenoid.Value.kForward;
-	// DoubleSolenoid.Value highGear = DoubleSolenoid.Value.kReverse;
 
 	public Solenoid getclawPiston() {
 		return clawPistons;
