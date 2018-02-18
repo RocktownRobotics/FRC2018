@@ -44,10 +44,10 @@ public class ReduceHeight extends Command {
 	@Override
 	protected boolean isFinished() {
 
-		if (Robot.kForkLift.isLiftNotAtMaxHeight()) {
+		if (Robot.kForkLift.isLiftNotAtMinHeight()) {
 			return false;
 		} else {
-			System.out.println("Robot is about to blow itself up. Luckily, Robot is smart and won't do it.");
+			System.out.println("Robot is about to implode itself. Luckily, Robot is smart and won't do it.");
 			return true;
 		}
 

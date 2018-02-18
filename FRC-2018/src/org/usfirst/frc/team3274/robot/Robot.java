@@ -137,7 +137,7 @@ public class Robot extends TimedRobot {
 		System.out.println("Robot just feels like sitting around for" + startDelayChooser.getSelected() + "seconds...");
 		System.out.println("Robot " + (twoCubeAutoChooser.getSelected() ? "feels like" : "doesn't feel like")
 				+ " trying to go for a two-cube autonomous");
-
+		
 		this.m_autonomousCommand = new Primary_Autonomous(startDelayChooser.getSelected(),
 				scoringMethodChooser.getSelected(), startPositionChooser.getSelected(),
 				twoCubeAutoChooser.getSelected());

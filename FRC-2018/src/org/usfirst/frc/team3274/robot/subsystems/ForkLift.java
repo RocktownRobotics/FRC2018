@@ -66,17 +66,17 @@ public class ForkLift extends Subsystem {
 
 	public boolean isLiftNotAtMaxHeight() {
 		if (this._upperLimitSwitch.get()) {
-			return false;
-		} else {
 			return true;
+		} else {
+			return false;
 		}
 	}
 
 	public boolean isLiftNotAtMinHeight() {
 		if (this._lowerLimitSwitch.get()) {
-			return false;
-		} else {
 			return true;
+		} else {
+			return false;
 		}
 	}
 
