@@ -26,7 +26,7 @@ public class DeployClaw extends Command {
 		System.out.println("Deploying Claw");
 		
 		if(Robot.kClawArm.isClawDeployed() == false) {
-			Robot.kClawArm.setDeployMotor(0.1);
+			Robot.kClawArm.setDeployMotorPower(0.1);
 		}
 		else {
 			System.out.println("Failed: Claw already deployed");
@@ -44,20 +44,21 @@ public class DeployClaw extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-//		if(Robot.kClawArm. <= 80) {
-//		return false;
-//		}
-//		else {
-//			System.out.println("Claw Deployed Successfully");
+
+		if(Robot.kClawArm.isClawDeployed() == true) {
 			return true;
-	//	}
+		}
+		else {
+			return false;
+		}
+		
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
 		
-	//	Robot.kClaw.deploy(0);
+	Robot.kClawArm.setDeployMotorPower(0);
 	}
 
 	// Called when another command which requires one or more of the same

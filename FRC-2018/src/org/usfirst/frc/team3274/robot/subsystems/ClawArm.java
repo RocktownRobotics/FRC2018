@@ -19,6 +19,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ClawArm extends StoppableSubsystem {
 
 	
+	private DigitalInput _lowerClawLimitSwitch = new DigitalInput(RobotMap.LOWER_CLAW_LIMIT_SWITCH);
+	private DigitalInput _upperClawLimitSwitch = new DigitalInput(RobotMap.UPPER_CLAW_LIMIT_SWITCH);
+
+	
 //	 private DigitalInput _upperClawLimitSwitch = new
 //	 DigitalInput(RobotMap.UPPER_CLAW_LIMIT_SWITCH);
 //	 private DigitalInput _lowerClawLimitSwitch = new
@@ -26,43 +30,57 @@ public class ClawArm extends StoppableSubsystem {
 
 	private boolean clawDeployed;
 
-	public static final int ENCODER_PULSES_PER_REVOLUTION = 1343;
 	/*
 	 * private Encoder _deployEncoder = new Encoder(RobotMap.DEPLOY_ENCODER[0],
 	 * RobotMap.DEPLOY_ENCODER[1], true, EncodingType.k4X);
 	 */
 	
+	
+	
 	private PWMTalonSRX deployMotor = new PWMTalonSRX(RobotMap.DEPLOY_MOTOR);
 
-	public void setDeployMotor(double Power) {
+	public void setDeployMotorPower(double Power) {
+		if(this.isClawDeployed() == false) {
 		this.deployMotor.set(Power);
-	}
-
-//	public boolean isClawRetracted{
-//		if(this._upperClawLimitSwitch.get() = 1 && this._lowerClawLimitSwitch.get() == 1) {
-//			return true;
-//		}
-//		else {
-//			return false;
-//		}
-//	}
+		}
+		else {
+			System.out.println("Robot refuses to do as told and damage itself through overdeployment of the claw arm");
 	
-	/**
-	 * @param motorSpeed
-	 *            the motor power at which the cube should be moved. Between 0 and
-	 *            1, the negatives, if any, will be handled in the eject code.
-	 * 
-	 * @param thrustTime
-	 *            the time to run the ejection motors, in seconds
-	 */
-
-	// public int getDeployRotations() {
-	// return this._deployEncoder.getRaw();
-	// }
-
-	public boolean isClawDeployed() {
-		return clawDeployed;
+		}
 	}
+	
+	public void setRetractMotorPower(double Power) {
+		if(this.isClawRetracted() == false) {
+		this.deployMotor.set(-Power);
+		}
+		else {
+			System.out.println("Robot will not overretract the claw. Please refrain from ordering Robot to hit itself");
+		}
+	}
+
+	public boolean isClawRetracted(){
+		if(this._upperClawLimitSwitch.get() == true) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean isClawDeployed(){
+		if(this._lowerClawLimitSwitch.get() == true) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	
+
+ 
+
+	
 
 	@Override
 	protected void initDefaultCommand() {
@@ -71,7 +89,7 @@ public class ClawArm extends StoppableSubsystem {
 
 	@Override
 	public void stop() {
-		setDeployMotor(0);
+		setDeployMotorPower(0);
 	}
 
 }

@@ -11,7 +11,7 @@ import org.usfirst.frc.team3274.robot.commands.Climb;
 import org.usfirst.frc.team3274.robot.commands.CloseClaw;
 import org.usfirst.frc.team3274.robot.commands.DeployClaw;
 import static org.usfirst.frc.team3274.robot.commands.DriveWithJoystick.DriveType;
-import org.usfirst.frc.team3274.robot.commands.DropClaw;
+//import org.usfirst.frc.team3274.robot.commands.DropClaw;
 import org.usfirst.frc.team3274.robot.commands.Eject;
 import org.usfirst.frc.team3274.robot.commands.IncreaseHeight;
 import org.usfirst.frc.team3274.robot.commands.Interrupt;

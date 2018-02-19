@@ -206,7 +206,7 @@ public class DriveTrain extends StoppableSubsystem {
 	 *            xbox controller to use for input
 	 */
 	public void cheesyDrive(Joystick joy) {
-		cheesyDrive(-joy.getRawAxis(RobotMap.XBOX_RIGHT_X_AXIS), -joy.getRawAxis(RobotMap.XBOX_LEFT_Y_AXIS), true);
+		cheesyDrive(-joy.getRawAxis(RobotMap.XBOX_RIGHT_X_AXIS), joy.getRawAxis(RobotMap.XBOX_LEFT_Y_AXIS), true);
 	}
 
 	/**

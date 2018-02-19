@@ -48,9 +48,7 @@ public class ForkLift extends StoppableSubsystem {
 	// true, EncodingType.k4X);
 
 	public ForkLift() {
-		double distancePerPulse; // in feet
-		distancePerPulse = (WHEEL_DIAMETER/* in */ * Math.PI) / (ENCODER_PULSES_PER_REVOLUTION * 12.0/* in/ft */);
-
+		
 		// _liftEncoder.setDistancePerPulse(distancePerPulse);
 	}
 
