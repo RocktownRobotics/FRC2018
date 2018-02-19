@@ -9,6 +9,8 @@ package org.usfirst.frc.team3274.robot.subsystems;
 
 import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.RobotMap;
+import org.usfirst.frc.team3274.robot.commands.autonomous.HoldForkLift;
+import org.usfirst.frc.team3274.robot.util.StoppableSubsystem;
 import org.usfirst.frc.team3274.robot.util.TalonSRXGroup;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -27,7 +29,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * Controls all DC motors and encoders for the forklift assembly
  */
-public class ForkLift extends Subsystem {
+public class ForkLift extends StoppableSubsystem {
 
 	private DigitalInput _lowerLimitSwitch = new DigitalInput(RobotMap.LOWER_LIMIT_SWITCH);
 	private DigitalInput _upperLimitSwitch = new DigitalInput(RobotMap.UPPER_LIMIT_SWITCH);
@@ -110,7 +112,11 @@ public class ForkLift extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+		 setDefaultCommand(new HoldForkLift());
+	}
+
+	@Override
+	public void stop() {
+		setLiftPower(0);
 	}
 }

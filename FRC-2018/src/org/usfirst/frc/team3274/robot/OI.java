@@ -10,6 +10,7 @@ package org.usfirst.frc.team3274.robot;
 import org.usfirst.frc.team3274.robot.commands.Climb;
 import org.usfirst.frc.team3274.robot.commands.CloseClaw;
 import org.usfirst.frc.team3274.robot.commands.DeployClaw;
+import static org.usfirst.frc.team3274.robot.commands.DriveWithJoystick.DriveType;
 import org.usfirst.frc.team3274.robot.commands.DropClaw;
 import org.usfirst.frc.team3274.robot.commands.Eject;
 import org.usfirst.frc.team3274.robot.commands.IncreaseHeight;
@@ -70,6 +71,8 @@ public class OI {
 	/** +- 0, dead zone for joystick input **/
 	public static final double JOYSTICK_DEADZONE = 0.1;
 
+	public static final DriveType DRIVE_MODE = DriveType.CHEESY_DRIVE;
+
 	// this is an enum. its like creating a class called ControllerSetup, where the
 	// only values can be SINGLE_XBOX_CONTROLLER or DUAL_XBOX_CONTROLLER
 	public enum ControllerSetup {
@@ -96,8 +99,8 @@ public class OI {
 	private JoystickButton back0 = new JoystickButton(xbox0, RobotMap.XBOX_BACK_BUTTON);
 	private JoystickButton l30 = new JoystickButton(xbox0, RobotMap.XBOX_L3_BUTTON);
 	private JoystickButton r30 = new JoystickButton(xbox0, RobotMap.XBOX_R3_BUTTON);
-	private AxisButton rTrigger0 = new AxisButton(xbox0, RobotMap.XBOX_RIGHT_TRIGGER_AXIS, .75, true);
-	private AxisButton lTrigger0 = new AxisButton(xbox0, RobotMap.XBOX_LEFT_TRIGGER_AXIS, .75, true);
+//	private AxisButton rTrigger0 = new AxisButton(xbox0, RobotMap.XBOX_RIGHT_TRIGGER_AXIS, .75, true);
+//	private AxisButton lTrigger0 = new AxisButton(xbox0, RobotMap.XBOX_LEFT_TRIGGER_AXIS, .75, true);
 
 	private double leftY0 = xbox0.getRawAxis(RobotMap.XBOX_LEFT_Y_AXIS);
 	private double leftX0 = xbox0.getRawAxis(RobotMap.XBOX_LEFT_X_AXIS);
@@ -124,8 +127,8 @@ public class OI {
 	private JoystickButton back1 = new JoystickButton(xbox1, RobotMap.XBOX_BACK_BUTTON);
 	private JoystickButton l31 = new JoystickButton(xbox1, RobotMap.XBOX_L3_BUTTON);
 	private JoystickButton r31 = new JoystickButton(xbox1, RobotMap.XBOX_R3_BUTTON);
-	private AxisButton rTrigger1 = new AxisButton(xbox1, RobotMap.XBOX_RIGHT_TRIGGER_AXIS, .75, true);
-	private AxisButton lTrigger1 = new AxisButton(xbox1, RobotMap.XBOX_LEFT_TRIGGER_AXIS, .75, true);
+//	private AxisButton rTrigger1 = new AxisButton(xbox1, RobotMap.XBOX_RIGHT_TRIGGER_AXIS, .75, true);
+//	private AxisButton lTrigger1 = new AxisButton(xbox1, RobotMap.XBOX_LEFT_TRIGGER_AXIS, .75, true);
 
 	private double leftY1 = xbox1.getRawAxis(RobotMap.XBOX_LEFT_Y_AXIS);
 	private double leftX1 = xbox1.getRawAxis(RobotMap.XBOX_LEFT_X_AXIS);
@@ -152,8 +155,8 @@ public class OI {
 	private void initSingleXboxControllerSetup() {
 		// assign commands to buttons and stuff here (described at top of this class)
 
-		rTrigger0.whileHeld(new ShiftUp());
-		lTrigger0.whileHeld(new ShiftDown());
+//		rTrigger0.whileHeld(new ShiftUp());
+//		lTrigger0.whileHeld(new ShiftDown());
 		rBumper0.whenPressed(new OpenClaw());
 		rBumper0.whenReleased(new CloseClaw());
 		r30.whileHeld(new IncreaseHeight());
@@ -163,7 +166,7 @@ public class OI {
 		lBumper0.whenPressed(new Eject());
 		lBumper0.whenReleased(new Interrupt(Robot.kForkLift));
 		b0.whenPressed(new Suck());
-		b0.whenReleased(new Interrupt(Robot.kClaw));
+		b0.whenReleased(new Interrupt(Robot.kClawIntake));
 		// left.whenPressed(new DropClaw());
 		// right.whenPressed(new DeployClaw());
 		// down.whenPressed(new RetractClaw());
@@ -174,9 +177,9 @@ public class OI {
 
 		///// ////// temporary buttons ////// /////
 		x0.whenPressed(new LowerClaw());
-		x0.whenReleased(new Interrupt(Robot.kClaw));
+		x0.whenReleased(new Interrupt(Robot.kClawArm));
 		y0.whenPressed(new RaiseClaw());
-		y0.whenReleased(new Interrupt(Robot.kClaw));
+		y0.whenReleased(new Interrupt(Robot.kClawArm));
 		////// Why temporary? they're fine!//////
 	}
 
@@ -187,21 +190,20 @@ public class OI {
 		lBumper0.whileHeld(new ShiftDown());
 
 		// second driver
-		rBumper1.whileHeld(new IncreaseHeight());
+		rBumper1.whenPressed(new IncreaseHeight());
 		rBumper1.whenReleased(new Interrupt(Robot.kForkLift));
-		lBumper1.whileHeld(new ReduceHeight());
+		lBumper1.whenPressed(new ReduceHeight());
 		lBumper1.whenReleased(new Interrupt(Robot.kForkLift));
 		x1.whenPressed(new OpenClaw());
 		x1.whenReleased(new CloseClaw());
-		y1.whileHeld(new Suck());
-		y1.whenReleased(new Interrupt(Robot.kClaw));
-		b1.whileHeld(new Eject());
-		b1.whenReleased(new Interrupt(Robot.kClaw));
+		y1.whenPressed(new Suck());
+		y1.whenReleased(new Interrupt(Robot.kClawIntake));
+		b1.whenPressed(new Eject());
 
 		start1.whenPressed(new RaiseClaw());
-		start1.whenReleased(new Interrupt(Robot.kClaw));
+		start1.whenReleased(new Interrupt(Robot.kClawArm));
 		back1.whenPressed(new LowerClaw());
-		back1.whenReleased(new Interrupt(Robot.kClaw));
+		back1.whenReleased(new Interrupt(Robot.kClawArm));
 	}
 
 	/**

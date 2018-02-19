@@ -16,7 +16,7 @@ import org.usfirst.frc.team3274.robot.Robot;
 public class DropClaw extends Command {
 	public DropClaw() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.kClaw);
+		requires(Robot.kClawArm);
 	}
 
 	// Called just before this Command runs the first time
@@ -59,7 +59,7 @@ public class DropClaw extends Command {
 	//@Override
 	protected void end() {
 
-		Robot.kClaw.deploy(0);
+		Robot.kClawArm.setDeployMotor(0);
 	}
 
 	// Called when another command which requires one or more of the same

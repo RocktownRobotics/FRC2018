@@ -16,6 +16,7 @@ import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.RobotMap;
 import org.usfirst.frc.team3274.robot.commands.DriveWithJoystick;
 import org.usfirst.frc.team3274.robot.commands.DriveWithJoystick.DriveType;
+import org.usfirst.frc.team3274.robot.util.StoppableSubsystem;
 import org.usfirst.frc.team3274.robot.util.TalonSRXGroup;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -26,7 +27,7 @@ import com.kauailabs.navx.frc.AHRS;
  * The DriveTrain subsystem controls the robot's chassis and reads in
  * information about it's speed and position.
  */
-public class DriveTrain extends Subsystem {
+public class DriveTrain extends StoppableSubsystem {
 
 	public static final double ENCODER_PULSES_PER_REVOLUTION = 1343;
 
@@ -45,6 +46,8 @@ public class DriveTrain extends Subsystem {
 	private static final float PITCH_TIPPING_CONSTANT = 15;
 
 	private static final float ROLL_TIPPING_CONSTANT = 15;
+	
+	private static final double JoystickPowerModifier = 2;
 
 	private boolean isSniperMode;
 
@@ -94,7 +97,7 @@ public class DriveTrain extends Subsystem {
 	@Override
 	public void initDefaultCommand() {
 		// Use either CHEESY_DRIVE or TANK_DRIVE for DriveType
-		setDefaultCommand(new DriveWithJoystick(DriveType.CHEESY_DRIVE));
+		setDefaultCommand(new DriveWithJoystick(OI.DRIVE_MODE));
 	}
 
 	/**
@@ -125,9 +128,9 @@ public class DriveTrain extends Subsystem {
 	protected double applyDeadband(double value, double deadband) {
 		if (Math.abs(value) > deadband) {
 			if (value > 0.0) {
-				return (value - deadband) / (1.0 - deadband);
+				return (value - deadband) * (value - deadband);
 			} else {
-				return (value + deadband) / (1.0 - deadband);
+				return -1 * (value + deadband) * (value + deadband);
 			}
 		} else {
 			return 0.0;
@@ -203,7 +206,7 @@ public class DriveTrain extends Subsystem {
 	 *            xbox controller to use for input
 	 */
 	public void cheesyDrive(Joystick joy) {
-		cheesyDrive(-joy.getRawAxis(RobotMap.XBOX_RIGHT_X_AXIS), joy.getRawAxis(RobotMap.XBOX_LEFT_Y_AXIS), true);
+		cheesyDrive(-joy.getRawAxis(RobotMap.XBOX_RIGHT_X_AXIS), -joy.getRawAxis(RobotMap.XBOX_LEFT_Y_AXIS), true);
 	}
 
 	/**
@@ -270,6 +273,7 @@ public class DriveTrain extends Subsystem {
 	/**
 	 * Stop the drivetrain from moving.
 	 */
+	@Override
 	public void stop() {
 		this.tankDrive(0, 0, false);
 	}

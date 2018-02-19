@@ -16,7 +16,7 @@ import org.usfirst.frc.team3274.robot.Robot;
 public class RetractClaw extends Command {
 	public RetractClaw() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.kClaw);
+		requires(Robot.kClawArm);
 	}
 
 	// Called just before this Command runs the first time
@@ -25,13 +25,13 @@ public class RetractClaw extends Command {
 
 		System.out.println("Retracting Claw");
 
-		if (Robot.kClaw.getDeployAngle() > 5) {
-			Robot.kClaw.retract(0.1);
-		} else {
-			System.out.println("Failed: Claw already retracted");
-		}
-
-	}
+//		if (Robot.kClaw.getDeployAngle() > 5) {
+//			Robot.kClaw.retract(0.1);
+//		} else {
+//			System.out.println("Failed: Claw already retracted");
+//		}
+//
+}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
@@ -41,20 +41,20 @@ public class RetractClaw extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		if (Robot.kClaw.getDeployAngle() > 5) {
-			return false;
-		} else {
-			System.out.println("Claw Retracted Successfully");
-			Robot.kClaw.resetDeployEncoder();
+//		if (Robot.kClaw.getDeployAngle() > 5) {
+//			return false;
+//		} else {
+//			System.out.println("Claw Retracted Successfully");
+//			Robot.kClaw.resetDeployEncoder();
 
 			return true;
-		}
+	//	}
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Robot.kClaw.retract(0);
+//		Robot.kClaw.retract(0);
 	}
 
 	// Called when another command which requires one or more of the same

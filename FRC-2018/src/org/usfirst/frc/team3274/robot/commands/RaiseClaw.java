@@ -17,39 +17,32 @@ import org.usfirst.frc.team3274.robot.Robot;
 public class RaiseClaw extends Command {
 
 	public static final double POWER = .35;
-	public static final double WAIT_TIME = .5;
-
-	private double timeToReach;
 
 	public RaiseClaw() {
-		requires(Robot.kClaw);
+		requires(Robot.kClawArm);
 	}
 
 	@Override
 	protected void initialize() {
-		this.timeToReach = Timer.getMatchTime() + WAIT_TIME;
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.kClaw.deploy(POWER);
+		Robot.kClawArm.setDeployMotor(POWER);;
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		// if (Timer.getMatchTime() >= this.timeToReach) {
-		//
-		// return true;
-		// }
+
 		return false;
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Robot.kClaw.deploy(0);
+		Robot.kClawArm.setDeployMotor(0);
 	}
 
 	// Called when another command which requires one or more of the same

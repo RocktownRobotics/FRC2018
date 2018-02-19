@@ -16,10 +16,7 @@ import org.usfirst.frc.team3274.robot.Robot;
  */
 public class IncreaseHeight extends Command {
 
-	public static final double POWER = .25;
-	public static final double WAIT_TIME = .25;
-	
-	private double timeToReach;
+	public static final double POWER = .5;
 
 	public IncreaseHeight() {
 		// Use requires() here to declare subsystem dependencies
@@ -30,7 +27,6 @@ public class IncreaseHeight extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		this.timeToReach = Timer.getMatchTime() + WAIT_TIME;
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -45,18 +41,15 @@ public class IncreaseHeight extends Command {
 	@Override
 	protected boolean isFinished() {
 
-		if (Timer.getMatchTime() >= this.timeToReach) {
-
-			return true;
-		}
 		return false;
-		
-//		if (Robot.kForkLift.isLiftNotAtMaxHeight()) {
-//			return false;
-//		} else {
-//			System.out.println("Robot is about to blow itself up. Luckily, Robot is smart and won't do it.");
-//			return true;
-//		}
+
+		// if (Robot.kForkLift.isLiftNotAtMaxHeight()) {
+		// return false;
+		// } else {
+		// System.out.println("Robot is about to blow itself up. Luckily, Robot is smart
+		// and won't do it.");
+		// return true;
+		// }
 
 	}
 

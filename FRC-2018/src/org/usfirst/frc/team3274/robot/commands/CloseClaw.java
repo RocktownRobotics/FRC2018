@@ -17,7 +17,7 @@ import org.usfirst.frc.team3274.robot.Robot;
 public class CloseClaw extends Command {
 
 	public CloseClaw() {
-		requires(Robot.kClaw);
+		requires(Robot.kClawIntake);
 
 	}
 
@@ -25,7 +25,7 @@ public class CloseClaw extends Command {
 	@Override
 	protected void initialize() {
 		System.out.println("Closing Claw");
-		if (Robot.kClaw.isClawClosed() == true) {
+		if (Robot.kClawIntake.isClawClosed() == true) {
 			System.out.println("Failed: Claw already closed. Blame the driver.");
 		}
 	}
@@ -33,14 +33,14 @@ public class CloseClaw extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.kClaw.CloseClaw();
+		Robot.kClawIntake.CloseClaw();
 
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		if (Robot.kClaw.isClawClosed() == false) {
+		if (Robot.kClawIntake.isClawClosed() == false) {
 			return false;
 		} else {
 			System.out.println("Claw succesfully closed");

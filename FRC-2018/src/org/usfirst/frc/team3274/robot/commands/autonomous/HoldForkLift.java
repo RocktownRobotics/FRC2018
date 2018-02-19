@@ -5,56 +5,60 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc.team3274.robot.commands;
+package org.usfirst.frc.team3274.robot.commands.autonomous;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team3274.robot.Robot;
 
 /**
  * An example command. You can replace me with your own command.
  */
-public class OpenClaw extends Command {
-	public OpenClaw() {
-		requires(Robot.kClawIntake);
-	}
+public class HoldForkLift extends Command {
 
+	
+	private double liftPower;
+
+	public HoldForkLift() {
+		// Use requires() here to declare subsystem dependencies
+		requires(Robot.kForkLift);
+		
+
+	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		System.out.println("Opening the claw");
-		if (Robot.kClawIntake.isClawClosed() == false) {
-			System.out.println("Failed: Claw already open. Robot is sad.");
-	
-		}
+
+		
+		this.liftPower = 0.1;
+
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.kClawIntake.OpenClaw();
+
+		Robot.kForkLift.setLiftPower(this.liftPower);
+
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		if (Robot.kClawIntake.isClawClosed() == true) {
-			return false;
-		} else {
-			System.out.println("Claw opened succesfully");
-			return true;
-		}
+
+	return false;
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
+		Robot.kForkLift.setLiftPower(0);
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		System.out.println("Failed: Claw open was interrupted");
 	}
 }

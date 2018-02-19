@@ -32,7 +32,7 @@ public class SetHeightFromBottom extends Command {
 	@Override
 	protected void initialize() {
 
-		this.timeToRun = this.desiredHeight * 1;
+		this.timeToRun = this.desiredHeight * 0.1;
 		this.startTime = Timer.getMatchTime();
 		this.liftPower = 0.5;
 

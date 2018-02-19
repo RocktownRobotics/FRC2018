@@ -1,13 +1,14 @@
 package org.usfirst.frc.team3274.robot.subsystems;
 
 import org.usfirst.frc.team3274.robot.RobotMap;
+import org.usfirst.frc.team3274.robot.util.StoppableSubsystem;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class DrivePneumatics extends Subsystem {
-	private Solenoid reverseShifter = new Solenoid(RobotMap.SHIFTER_REVERSE);
-	private Solenoid forwardShifter = new Solenoid(RobotMap.SHIFTER_FORWARD);
+public class DrivePneumatics extends StoppableSubsystem {
+	private Solenoid shifterLowGear = new Solenoid(RobotMap.SHIFTER_LOW_GEAR);
+	private Solenoid shifterHighGear = new Solenoid(RobotMap.SHIFTER_HIGH_GEAR);
 
 	// DoubleSolenoid gearShifter = new DoubleSolenoid(RobotMap.shifterForward,
 	// RobotMap.shifterReverse);
@@ -22,12 +23,12 @@ public class DrivePneumatics extends Subsystem {
 	}
 
 	public void StartLowGear() {
-		reverseShifter.set(true);
+		shifterLowGear.set(true);
 		// gearShifter.set(lowGear);
 	}
 
 	public void StartHighGear() {
-		forwardShifter.set(true);
+		shifterHighGear.set(true);
 		// gearShifter.set(highGear);
 	}
 
@@ -47,8 +48,8 @@ public class DrivePneumatics extends Subsystem {
 	}
 
 	public void stop() {
-		forwardShifter.set(false);
-		reverseShifter.set(false);
+		shifterHighGear.set(false);
+		shifterLowGear.set(false);
 
 		// gearShifter.set(off);
 	}
@@ -58,6 +59,6 @@ public class DrivePneumatics extends Subsystem {
 	 * @return -1 for low and 1 for high
 	 */
 	public boolean getCurrentGear() {
-		return forwardShifter.get() == true;
+		return shifterHighGear.get() == true;
 	}
 }

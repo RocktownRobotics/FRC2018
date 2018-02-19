@@ -2,6 +2,7 @@ package org.usfirst.frc.team3274.robot.subsystems;
 
 import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.RobotMap;
+import org.usfirst.frc.team3274.robot.util.StoppableSubsystem;
 import org.usfirst.frc.team3274.robot.util.TalonSRXGroup;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -15,7 +16,7 @@ import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Claw extends Subsystem {
+public class ClawIntake extends StoppableSubsystem {
 
 	private DigitalInput _leftClawLimitSwitch = new DigitalInput(RobotMap.LEFT_CLAW_EYE_LIMIT_SWITCH);
 	private DigitalInput _rightClawLimitSwitch = new DigitalInput(RobotMap.RIGHT_CLAW_EYE_LIMIT_SWITCH);
@@ -26,9 +27,7 @@ public class Claw extends Subsystem {
 	// DigitalInput(RobotMap.LOWER_CLAW_LIMIT_SWITCH);
 
 	private boolean clawClosed;
-	private boolean clawDeployed;
-
-	public static final int ENCODER_PULSES_PER_REVOLUTION = 1343;
+	
 	/*
 	 * private Encoder _deployEncoder = new Encoder(RobotMap.DEPLOY_ENCODER[0],
 	 * RobotMap.DEPLOY_ENCODER[1], true, EncodingType.k4X);
@@ -36,15 +35,9 @@ public class Claw extends Subsystem {
 	private PWMTalonSRX leftClaw = new PWMTalonSRX(RobotMap.CLAW_MOTOR_LEFT);
 	private PWMTalonSRX rightClaw = new PWMTalonSRX(RobotMap.CLAW_MOTOR_RIGHT);
 	private Solenoid clawPistons = new Solenoid(RobotMap.CLAW_PISTON);
-	private PWMTalonSRX deployMotor = new PWMTalonSRX(RobotMap.DEPLOY_MOTOR);
 
-	public Claw() {
-		double distancePerPulse; // in degrees
-		distancePerPulse = (360. /* degrees */) / (ENCODER_PULSES_PER_REVOLUTION);
-		/*
-		 * _deployEncoder.setDistancePerPulse(distancePerPulse);
-		 */
-		this.resetDeployEncoder();
+	public ClawIntake() {
+		
 		this.clawClosed = true;
 	}
 
@@ -73,16 +66,7 @@ public class Claw extends Subsystem {
 	 * 
 	 * @return the angle of the claw in degrees
 	 */
-	public double getDeployAngle() {
-		// return this.getDeployRotations() * 360 / this.ENCODER_PULSES_PER_REVOLUTION;
-		// return this._deployEncoder.getDistance();
-		return 0;
-	}
-
-	public void resetDeployEncoder() {
-		// this._deployEncoder.reset();
-	}
-
+	
 	public boolean isClawLoaded() {
 
 		if (_leftClawLimitSwitch.get() == false && _rightClawLimitSwitch.get() == false) {
@@ -94,23 +78,8 @@ public class Claw extends Subsystem {
 		}
 	}
 
-	public void deploy(double deployPower) {
-		if (true/* !_lowerClawLimitSwitch.get() */) {
-			this.deployMotor.set(deployPower);
-		} else {
-			this.deployMotor.set(0);
-		}
 
-	}
-
-	public void retract(double retractPower) {
-		if (true/* !_upperClawLimitSwitch.get() */) {
-			this.deployMotor.set(-retractPower);
-		} else {
-			this.deployMotor.set(0);
-		}
-
-	}
+	
 
 	public Solenoid getclawPiston() {
 		return clawPistons;
@@ -118,10 +87,6 @@ public class Claw extends Subsystem {
 
 	public boolean isClawClosed() {
 		return clawClosed;
-	}
-
-	public boolean isClawDeployed() {
-		return clawDeployed;
 	}
 
 	public void OpenClaw() {
@@ -134,10 +99,10 @@ public class Claw extends Subsystem {
 		this.clawClosed = false;
 	}
 
+	@Override
 	public void stop() {
 		clawPistons.set(false);
-
-		// gearShifter.set(off);
+		setCubeManipulatorMotors(0);
 	}
 
 	@Override

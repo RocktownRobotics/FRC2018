@@ -16,8 +16,7 @@ public class MoveBackwardsAndLift extends CommandGroup {
 	private double tolerance;
 	
 	public MoveBackwardsAndLift(double distance, double height, double tolerance) {
-		requires(Robot.kDriveTrain);
-		requires(Robot.kClaw);
+	
 		this.distance = distance;
 		this.height = height;
 		this.tolerance = tolerance;

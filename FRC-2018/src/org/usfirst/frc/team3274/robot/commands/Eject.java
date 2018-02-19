@@ -17,7 +17,7 @@ public class Eject extends Command {
 
 	public Eject() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.kClaw);
+		requires(Robot.kClawIntake);
 		System.out.println("Ejecting Cube");
 	}
 
@@ -34,7 +34,7 @@ public class Eject extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.kClaw.setCubeManipulatorMotors(launchPower);
+		Robot.kClawIntake.setCubeManipulatorMotors(launchPower);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -55,7 +55,7 @@ public class Eject extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Robot.kClaw.setCubeManipulatorMotors(0);
+		Robot.kClawIntake.setCubeManipulatorMotors(0);
 	}
 
 	// Called when another command which requires one or more of the same

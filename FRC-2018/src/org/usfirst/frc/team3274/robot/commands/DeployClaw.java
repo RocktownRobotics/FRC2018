@@ -16,7 +16,7 @@ import org.usfirst.frc.team3274.robot.Robot;
 public class DeployClaw extends Command {
 	public DeployClaw() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.kClaw);
+		requires(Robot.kClawArm);
 	}
 
 	// Called just before this Command runs the first time
@@ -25,8 +25,8 @@ public class DeployClaw extends Command {
 		
 		System.out.println("Deploying Claw");
 		
-		if(Robot.kClaw.getDeployAngle() < 85) {
-			Robot.kClaw.deploy(0.1);
+		if(Robot.kClawArm.isClawDeployed() == false) {
+			Robot.kClawArm.setDeployMotor(0.1);
 		}
 		else {
 			System.out.println("Failed: Claw already deployed");
@@ -37,25 +37,27 @@ public class DeployClaw extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
+		
+		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		if(Robot.kClaw.getDeployAngle() <= 80) {
-		return false;
-		}
-		else {
-			System.out.println("Claw Deployed Successfully");
+//		if(Robot.kClawArm. <= 80) {
+//		return false;
+//		}
+//		else {
+//			System.out.println("Claw Deployed Successfully");
 			return true;
-		}
+	//	}
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
 		
-		Robot.kClaw.deploy(0);
+	//	Robot.kClaw.deploy(0);
 	}
 
 	// Called when another command which requires one or more of the same

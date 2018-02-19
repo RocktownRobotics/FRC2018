@@ -21,7 +21,8 @@ import org.usfirst.frc.team3274.robot.commands.SetHeightWithEncoder;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ResetHeight;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.Primary_Autonomous;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.TestAuto;
-import org.usfirst.frc.team3274.robot.subsystems.Claw;
+import org.usfirst.frc.team3274.robot.subsystems.ClawArm;
+import org.usfirst.frc.team3274.robot.subsystems.ClawIntake;
 import org.usfirst.frc.team3274.robot.subsystems.DrivePneumatics;
 import org.usfirst.frc.team3274.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3274.robot.subsystems.ExampleSubsystem;
@@ -43,7 +44,8 @@ public class Robot extends TimedRobot {
 	public static final DrivePneumatics kDrivePneumatics = new DrivePneumatics();
 	public static final DriveTrain kDriveTrain = new DriveTrain();
 	public static final RobotCompressor kCompressor = new RobotCompressor();
-	public static final Claw kClaw = new Claw();
+	public static final ClawIntake kClawIntake = new ClawIntake();
+	public static final ClawArm kClawArm = new ClawArm();
 	public static final ForkLift kForkLift = new ForkLift();
 
 	public static String gameData;
@@ -208,16 +210,14 @@ public class Robot extends TimedRobot {
 
 		SmartDashboard.putNumber("gyro_yaw", kDriveTrain.getYaw());
 
-		SmartDashboard.putNumber("claw degrees", kClaw.getDeployAngle());
-		// SmartDashboard.putNumber("lift height", kForkLift.getLiftHeight());
 
 		SmartDashboard.putBoolean("Lift not at min position", kForkLift.isLiftNotAtMinHeight());
 		SmartDashboard.putBoolean("Lift not at max position", kForkLift.isLiftNotAtMaxHeight());
 
-		SmartDashboard.putBoolean("Claw is loaded", kClaw.isClawLoaded());
+		SmartDashboard.putBoolean("Claw is loaded", kClawIntake.isClawLoaded());
 
-		SmartDashboard.putBoolean("Left Claw Eye", kClaw.get_leftClawLimitSwitch().get());
-		SmartDashboard.putBoolean("Right Claw Eye", kClaw.get_rightClawLimitSwitch().get());
+		SmartDashboard.putBoolean("Left Claw Eye", kClawIntake.get_leftClawLimitSwitch().get());
+		SmartDashboard.putBoolean("Right Claw Eye", kClawIntake.get_rightClawLimitSwitch().get());
 	}
 
 }

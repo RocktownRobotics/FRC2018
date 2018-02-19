@@ -114,8 +114,8 @@ public class RobotMap {
 	/////////////// PCM's BELOW HERE////////////////
 	////////////////////////////////////////////////
 
-	public static final int SHIFTER_FORWARD = 1;
-	public static final int SHIFTER_REVERSE = 2;
+	public static final int SHIFTER_HIGH_GEAR = 1;
+	public static final int SHIFTER_LOW_GEAR = 2;
 	public static final int CLAW_PISTON = 0;
 
 	////////////////////////////////////////////////

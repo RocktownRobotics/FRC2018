@@ -11,17 +11,25 @@
 //comment
 package org.usfirst.frc.team3274.robot.subsystems;
 
+import org.usfirst.frc.team3274.robot.util.StoppableSubsystem;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
-public class ExampleSubsystem extends Subsystem {
+public class ExampleSubsystem extends StoppableSubsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
+	}
+
+	@Override
+	public void stop() {
+		// TODO Auto-generated method stub
+		
 	}
 }

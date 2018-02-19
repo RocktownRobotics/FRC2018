@@ -3,7 +3,7 @@ package org.usfirst.frc.team3274.robot.commands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team3274.robot.Robot;
-import org.usfirst.frc.team3274.robot.subsystems.Claw;
+import org.usfirst.frc.team3274.robot.subsystems.ClawIntake;
 
 /**
  * this command sucks. Seriously!
@@ -16,7 +16,7 @@ public class Suck extends Command {
 
 	public Suck() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.kClaw);
+		requires(Robot.kClawIntake);
 	}
 
 	// Called just before this Command runs the first time
@@ -29,14 +29,14 @@ public class Suck extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.kClaw.setCubeManipulatorMotors(-howMuchWeSuck);
+		Robot.kClawIntake.setCubeManipulatorMotors(-howMuchWeSuck);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
 
-		return Robot.kClaw.isClawLoaded();
+		return Robot.kClawIntake.isClawLoaded();
 //		return false;
 	}
 
@@ -44,7 +44,7 @@ public class Suck extends Command {
 	@Override
 	protected void end() {
 		System.out.println("The robot was sucking, but no longer");
-		Robot.kClaw.setCubeManipulatorMotors(0);
+		Robot.kClawIntake.setCubeManipulatorMotors(0);
 	}
 
 	// Called when another command which requires one or more of the same
