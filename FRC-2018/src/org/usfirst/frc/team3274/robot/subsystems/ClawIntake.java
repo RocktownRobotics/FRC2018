@@ -2,6 +2,7 @@ package org.usfirst.frc.team3274.robot.subsystems;
 
 import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.RobotMap;
+import org.usfirst.frc.team3274.robot.commands.SuckWeakly;
 import org.usfirst.frc.team3274.robot.util.StoppableSubsystem;
 import org.usfirst.frc.team3274.robot.util.TalonSRXGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -108,8 +109,7 @@ public class ClawIntake extends StoppableSubsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
-
+setDefaultCommand(new SuckWeakly());
 	}
 
 	public DigitalInput get_leftClawLimitSwitch() {

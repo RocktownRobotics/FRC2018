@@ -30,6 +30,7 @@ import org.usfirst.frc.team3274.robot.commands.autonomous.EjectAutonomous;
 import org.usfirst.frc.team3274.robot.commands.autonomous.HoldForkLift;
 import org.usfirst.frc.team3274.robot.commands.autonomous.RetractClaw;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.GrabAndSuck;
 import org.usfirst.frc.team3274.robot.util.AxisButton;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
@@ -102,7 +103,7 @@ public class OI {
 	private JoystickButton back0 = new JoystickButton(xbox0, RobotMap.XBOX_BACK_BUTTON);
 	private JoystickButton l30 = new JoystickButton(xbox0, RobotMap.XBOX_L3_BUTTON);
 	private JoystickButton r30 = new JoystickButton(xbox0, RobotMap.XBOX_R3_BUTTON);
-//	private AxisButton rTrigger0 = new AxisButton(xbox0, RobotMap.XBOX_RIGHT_TRIGGER_AXIS, .75, true);
+	//private AxisButton rTrigger0 = new AxisButton(xbox0, RobotMap.XBOX_RIGHT_TRIGGER_AXIS, .75, true);
 //	private AxisButton lTrigger0 = new AxisButton(xbox0, RobotMap.XBOX_LEFT_TRIGGER_AXIS, .75, true);
 	
 	private double leftY0 = xbox0.getRawAxis(RobotMap.XBOX_LEFT_Y_AXIS);
@@ -135,6 +136,8 @@ public class OI {
 	private JoystickButton back1 = new JoystickButton(xbox1, RobotMap.XBOX_BACK_BUTTON);
 	private JoystickButton l31 = new JoystickButton(xbox1, RobotMap.XBOX_L3_BUTTON);
 	private JoystickButton r31 = new JoystickButton(xbox1, RobotMap.XBOX_R3_BUTTON);
+	private AxisButton rTrigger1 = new AxisButton(xbox1, RobotMap.XBOX_RIGHT_TRIGGER_AXIS, .75, true);
+//FAIL
 //	private AxisButton rTrigger1 = new AxisButton(xbox1, RobotMap.XBOX_RIGHT_TRIGGER_AXIS, .75, true);
 //	private AxisButton lTrigger1 = new AxisButton(xbox1, RobotMap.XBOX_LEFT_TRIGGER_AXIS, .75, true);
 
@@ -204,19 +207,21 @@ public class OI {
 		lBumper1.whenPressed(new ReduceHeight());
 		lBumper1.whenReleased(new HoldForkLift());
 		b1.whenPressed(new CloseClaw());
-		//x1.whenPressed(new CloseClaw());
-		x1.whileHeld(new Suck());
+		x1.whileHeld(new GrabAndSuck());
 		x1.whenReleased(new Interrupt(Robot.kClawIntake));
 		r31.whenPressed(new Eject());
-		//add Lift Control to Left Stick
+		//add Lift Control to Left Stick... NOPE
 		y1.whenPressed(new RaiseClaw());
 		y1.whenReleased(new Interrupt(Robot.kClawArm));
 		a1.whenPressed(new LowerClaw());
 		a1.whenReleased(new Interrupt(Robot.kClawArm));
 		
-		start1.whenPressed(new ArmLock());
-		start1.whenReleased(new Interrupt(Robot.kClawArm));
-		
+		rTrigger1.whenPressed(new ArmLock());
+		rTrigger1.whenReleased(new Interrupt(Robot.kClawArm));
+//		
+//		start1.whenPressed(new ArmLock());
+//		start1.whenReleased(new Interrupt(Robot.kClawArm));
+//		
 
 	
 	}
