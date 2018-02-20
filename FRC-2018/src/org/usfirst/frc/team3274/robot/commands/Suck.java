@@ -36,8 +36,8 @@ public class Suck extends Command {
 	@Override
 	protected boolean isFinished() {
 
-		return Robot.kClawIntake.isClawLoaded();
-//		return false;
+//		return Robot.kClawIntake.isClawLoaded();
+		return false;
 	}
 
 	// Called once after isFinished returns true

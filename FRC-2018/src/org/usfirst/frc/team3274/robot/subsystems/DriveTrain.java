@@ -186,14 +186,14 @@ public class DriveTrain extends StoppableSubsystem {
 		}
 
 		// left motors (note some are wired backwards, so need different value)
-		_lFrontMot.set(ControlMode.PercentOutput, -lJoyStickVal);
+		_lFrontMot.set(ControlMode.PercentOutput, lJoyStickVal);
 		_lMidMot.set(ControlMode.PercentOutput, lJoyStickVal);
 		_lRearMot.set(ControlMode.PercentOutput, lJoyStickVal);
 
 		// right motors (note some are wired backwards, so need different value)
 		_rFrontMot.set(ControlMode.PercentOutput, rJoyStickVal);
 		_rMidMot.set(ControlMode.PercentOutput, rJoyStickVal);
-		_rRearMot.set(ControlMode.PercentOutput, -rJoyStickVal);
+		_rRearMot.set(ControlMode.PercentOutput, rJoyStickVal);
 
 		Timer.delay(0.005); // wait for a motor update time
 	}

@@ -26,7 +26,7 @@ public class Eject extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		this.launchPower = 0.0;
+		this.launchPower = 0.99999999999;
 		this.thrustTime = 0.5;
 		this.ejectStartTime = Timer.getMatchTime();
 	}

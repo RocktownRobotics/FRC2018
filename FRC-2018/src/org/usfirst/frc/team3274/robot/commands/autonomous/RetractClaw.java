@@ -25,13 +25,13 @@ public class RetractClaw extends Command {
 		
 		System.out.println("Retracting Claw");
 		
-		if(Robot.kClawArm.isClawRetracted() == false) {
+		//if(Robot.kClawArm.isClawRetracted() == false) {
 			Robot.kClawArm.setDeployMotorPower(0.1);
-		}
-		else {
-			System.out.println("Failed: Claw already retracted");
-		}
-		
+//		}
+//		else {
+//			System.out.println("Failed: Claw already retracted");
+//		}
+//		
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -45,12 +45,12 @@ public class RetractClaw extends Command {
 	@Override
 	protected boolean isFinished() {
 
-		if(Robot.kClawArm.isClawRetracted() == true) {
-			return true;
-		}
-		else {
+		//if(Robot.kClawArm.isClawRetracted() == true) {
+//			return true;
+//		}
+//		else {
 			return false;
-		}
+		//}
 		
 	}
 

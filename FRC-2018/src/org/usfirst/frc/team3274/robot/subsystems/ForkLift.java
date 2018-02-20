@@ -67,19 +67,21 @@ public class ForkLift extends StoppableSubsystem {
 	}
 
 	public boolean isLiftNotAtMaxHeight() {
-		if (this._upperLimitSwitch.get()) {
-			return true;
-		} else {
-			return false;
-		}
+//		if (this._upperLimitSwitch.get()) {
+//			return true;
+//		} else {
+//			return false;
+//		}
+		return true;
 	}
 
 	public boolean isLiftNotAtMinHeight() {
-		if (this._lowerLimitSwitch.get()) {
-			return true;
-		} else {
-			return false;
-		}
+//		if (this._lowerLimitSwitch.get()) {
+//			return true;
+//		} else {
+//			return false;
+//		}
+		return true;
 	}
 
 	/**

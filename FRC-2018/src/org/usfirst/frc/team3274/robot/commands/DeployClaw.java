@@ -25,12 +25,12 @@ public class DeployClaw extends Command {
 		
 		System.out.println("Deploying Claw");
 		
-		if(Robot.kClawArm.isClawDeployed() == false) {
+		//if(Robot.kClawArm.isClawDeployed() == false) {
 			Robot.kClawArm.setDeployMotorPower(0.1);
-		}
-		else {
-			System.out.println("Failed: Claw already deployed");
-		}
+//		}
+//		else {
+//			System.out.println("Failed: Claw already deployed");
+//		}
 		
 	}
 
@@ -45,12 +45,12 @@ public class DeployClaw extends Command {
 	@Override
 	protected boolean isFinished() {
 
-		if(Robot.kClawArm.isClawDeployed() == true) {
-			return true;
-		}
-		else {
+//		if(Robot.kClawArm.isClawDeployed() == true) {
+//			return true;
+//		}
+//		else {
 			return false;
-		}
+//		}
 		
 	}
 

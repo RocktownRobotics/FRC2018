@@ -31,7 +31,7 @@ public class HoldForkLift extends Command {
 	protected void initialize() {
 
 		
-		this.liftPower = 0.1;
+		this.liftPower = -0.1;
 
 	}
 

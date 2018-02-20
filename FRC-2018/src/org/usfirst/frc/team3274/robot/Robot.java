@@ -210,7 +210,6 @@ public class Robot extends TimedRobot {
 
 		SmartDashboard.putNumber("gyro_yaw", kDriveTrain.getYaw());
 
-
 		SmartDashboard.putBoolean("Lift not at min position", kForkLift.isLiftNotAtMinHeight());
 		SmartDashboard.putBoolean("Lift not at max position", kForkLift.isLiftNotAtMaxHeight());
 
