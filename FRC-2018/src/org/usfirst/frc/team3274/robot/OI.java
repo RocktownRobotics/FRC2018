@@ -210,14 +210,14 @@ public class OI {
 		x1.whileHeld(new GrabAndSuck());
 		x1.whenReleased(new Interrupt(Robot.kClawIntake));
 		r31.whenPressed(new Eject());
+		r31.whenReleased(new Interrupt(Robot.kClawIntake));
 		//add Lift Control to Left Stick... NOPE
 		y1.whenPressed(new RaiseClaw());
 		y1.whenReleased(new Interrupt(Robot.kClawArm));
 		a1.whenPressed(new LowerClaw());
 		a1.whenReleased(new Interrupt(Robot.kClawArm));
 		
-		rTrigger1.whenPressed(new ArmLock());
-		rTrigger1.whenReleased(new Interrupt(Robot.kClawArm));
+		rTrigger1.toggleWhenPressed(new ArmLock());
 //		
 //		start1.whenPressed(new ArmLock());
 //		start1.whenReleased(new Interrupt(Robot.kClawArm));

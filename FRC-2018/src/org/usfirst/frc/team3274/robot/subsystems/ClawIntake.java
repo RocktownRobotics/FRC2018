@@ -90,14 +90,18 @@ public class ClawIntake extends StoppableSubsystem {
 	public boolean isClawClosed() {
 		return clawClosed;
 	}
+	
+	public void setClawClosed(boolean closed) {
+		this.clawClosed = closed;
+	}
 
 	public void OpenClaw() {
-		clawPistons.set(false);
+		clawPistons.set(true);
 		this.clawClosed = true;
 	}
 
 	public void CloseClaw() {
-		clawPistons.set(true);
+		clawPistons.set(false);
 		this.clawClosed = false;
 	}
 

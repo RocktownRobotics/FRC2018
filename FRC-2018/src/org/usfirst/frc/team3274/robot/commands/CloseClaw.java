@@ -34,6 +34,7 @@ public class CloseClaw extends Command {
 	@Override
 	protected void execute() {
 		Robot.kClawIntake.CloseClaw();
+		Robot.kClawIntake.setClawClosed(true);
 
 	}
 

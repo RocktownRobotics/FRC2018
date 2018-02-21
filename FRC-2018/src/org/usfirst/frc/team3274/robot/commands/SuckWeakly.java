@@ -22,14 +22,16 @@ public class SuckWeakly extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		this.howMuchWeSuck = 0.1;
+		this.howMuchWeSuck = 0.3;
 		System.out.println("The robot sucks");
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
+		if(Robot.kClawIntake.isClawLoaded()) {
 		Robot.kClawIntake.setCubeManipulatorMotors(-howMuchWeSuck);
+	}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
