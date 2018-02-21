@@ -31,6 +31,8 @@ import org.usfirst.frc.team3274.robot.subsystems.RobotCompressor;
 
 import com.sun.javafx.scene.control.behavior.TwoLevelFocusPopupBehavior;
 
+import VisionProcessing.CameraProcessor;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -100,6 +102,9 @@ public class Robot extends TimedRobot {
 		Robot.itself = this;
 
 		this.gameData = "";
+		
+		//*****VISION PROCESSING*****
+		new CameraProcessor().init();
 
 	}
 

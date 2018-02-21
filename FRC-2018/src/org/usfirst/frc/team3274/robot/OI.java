@@ -207,7 +207,7 @@ public class OI {
 		lBumper1.whenPressed(new ReduceHeight());
 		lBumper1.whenReleased(new HoldForkLift());
 		b1.whenPressed(new CloseClaw());
-		x1.whileHeld(new GrabAndSuck());
+		x1.whenPressed(new GrabAndSuck());
 		x1.whenReleased(new Interrupt(Robot.kClawIntake));
 		r31.whenPressed(new Eject());
 		r31.whenReleased(new Interrupt(Robot.kClawIntake));
