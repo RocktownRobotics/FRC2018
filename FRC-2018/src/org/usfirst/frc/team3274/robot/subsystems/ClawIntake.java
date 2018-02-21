@@ -29,7 +29,7 @@ public class ClawIntake extends StoppableSubsystem {
 	// DigitalInput(RobotMap.LOWER_CLAW_LIMIT_SWITCH);
 
 	private boolean clawClosed;
-	
+
 	/*
 	 * private Encoder _deployEncoder = new Encoder(RobotMap.DEPLOY_ENCODER[0],
 	 * RobotMap.DEPLOY_ENCODER[1], true, EncodingType.k4X);
@@ -39,7 +39,7 @@ public class ClawIntake extends StoppableSubsystem {
 	private Solenoid clawPistons = new Solenoid(RobotMap.CLAW_PISTON);
 
 	public ClawIntake() {
-		
+
 		this.clawClosed = true;
 	}
 
@@ -54,7 +54,7 @@ public class ClawIntake extends StoppableSubsystem {
 
 	public void setCubeManipulatorMotors(double motorSpeed) {
 		this.leftClaw.set(motorSpeed);
-		this.rightClaw.set(-motorSpeed);
+		this.rightClaw.set(motorSpeed);
 
 	}
 
@@ -68,7 +68,7 @@ public class ClawIntake extends StoppableSubsystem {
 	 * 
 	 * @return the angle of the claw in degrees
 	 */
-	
+
 	public boolean isClawLoaded() {
 
 		if (_leftClawLimitSwitch.get() == false && _rightClawLimitSwitch.get() == false) {
@@ -80,9 +80,6 @@ public class ClawIntake extends StoppableSubsystem {
 		}
 	}
 
-
-	
-
 	public Solenoid getclawPiston() {
 		return clawPistons;
 	}
@@ -90,18 +87,18 @@ public class ClawIntake extends StoppableSubsystem {
 	public boolean isClawClosed() {
 		return clawClosed;
 	}
-	
+
 	public void setClawClosed(boolean closed) {
 		this.clawClosed = closed;
 	}
 
 	public void OpenClaw() {
-		clawPistons.set(false);
+		clawPistons.set(true);
 		this.clawClosed = true;
 	}
 
 	public void CloseClaw() {
-		clawPistons.set(true);
+		clawPistons.set(false);
 		this.clawClosed = false;
 	}
 
@@ -113,7 +110,7 @@ public class ClawIntake extends StoppableSubsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-setDefaultCommand(new SuckWeakly());
+		setDefaultCommand(new SuckWeakly());
 	}
 
 	public DigitalInput get_leftClawLimitSwitch() {
@@ -123,7 +120,5 @@ setDefaultCommand(new SuckWeakly());
 	public DigitalInput get_rightClawLimitSwitch() {
 		return _rightClawLimitSwitch;
 	}
-
-	
 
 }

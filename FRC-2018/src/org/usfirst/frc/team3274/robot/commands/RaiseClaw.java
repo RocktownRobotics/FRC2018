@@ -16,7 +16,7 @@ import org.usfirst.frc.team3274.robot.Robot;
  */
 public class RaiseClaw extends Command {
 
-	public static final double POWER = -.99;
+	public static final double POWER = -.85;
 
 	public RaiseClaw() {
 		requires(Robot.kClawArm);

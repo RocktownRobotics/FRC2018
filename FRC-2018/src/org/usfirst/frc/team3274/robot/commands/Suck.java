@@ -22,7 +22,7 @@ public class Suck extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		this.howMuchWeSuck = 0.99;
+		this.howMuchWeSuck = 0.9999999999999999999999999999;
 		System.out.println("The robot sucks");
 	}
 

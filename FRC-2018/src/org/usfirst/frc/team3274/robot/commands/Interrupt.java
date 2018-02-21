@@ -10,6 +10,7 @@ package org.usfirst.frc.team3274.robot.commands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.util.StoppableSubsystem;
@@ -23,7 +24,7 @@ public class Interrupt extends Command {
 	public static final double WAIT_TIME = .2;
 
 	private double timeToReach;
-	
+
 	StoppableSubsystem sub;
 
 	public Interrupt(StoppableSubsystem sub) {
@@ -34,9 +35,12 @@ public class Interrupt extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
+
+		System.out.println("starting interrupt");
+
 		this.sub.stop();
-		
-		this.timeToReach = Timer.getMatchTime() + WAIT_TIME;
+
+		this.timeToReach = Robot.getTime() + WAIT_TIME;
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -47,7 +51,7 @@ public class Interrupt extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		if (Timer.getMatchTime() >= this.timeToReach) {
+		if (Robot.getTime() >= this.timeToReach) {
 			return true;
 		}
 		return false;
@@ -56,6 +60,8 @@ public class Interrupt extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
+		System.out.println(
+				"Robot is no longer interrupting itself. It is very impressive to interrupt oneself, so Robot feels accomplished");
 	}
 
 	// Called when another command which requires one or more of the same

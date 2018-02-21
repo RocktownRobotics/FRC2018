@@ -65,6 +65,15 @@ public class Robot extends TimedRobot {
 	private Command m_autonomousCommand;
 
 	/**
+	 * REturns the current time in seconds.
+	 * 
+	 * @return
+	 */
+	public static double getTime() {
+		 return System.nanoTime() / 1000000000.;
+	}
+
+	/**
 	 * This function is run when the robot is first started up and should be used
 	 * for any initialization code.
 	 */
@@ -102,8 +111,8 @@ public class Robot extends TimedRobot {
 		Robot.itself = this;
 
 		this.gameData = "";
-		
-		//*****VISION PROCESSING*****
+
+		// *****VISION PROCESSING*****
 		new CameraProcessor().init();
 
 	}

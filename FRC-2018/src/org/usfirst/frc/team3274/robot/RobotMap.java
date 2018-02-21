@@ -95,8 +95,8 @@ public class RobotMap {
 	public static final int LOWER_CLAW_LIMIT_SWITCH = PROXY_PORT;
 
 	// two input ports for each encoder
-	public static final int[] RIGHT_ENCODER = { 2, 3 };
-	public static final int[] LEFT_ENCODER = { 0, 1 };
+	public static final int[] RIGHT_ENCODER = { 3, 2 };
+	public static final int[] LEFT_ENCODER = { 1, 0 };
 	public static final int[] LIFT_ENCODER = { PROXY_PORT, PROXY_PORT };
 	//public static final int[] DEPLOY_ENCODER = { PROXY_PORT, PROXY_PORT };
 
