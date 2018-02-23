@@ -97,8 +97,7 @@ public class RobotMap {
 	// two input ports for each encoder
 	public static final int[] RIGHT_ENCODER = { 3, 2 };
 	public static final int[] LEFT_ENCODER = { 1, 0 };
-	public static final int[] LIFT_ENCODER = { PROXY_PORT, PROXY_PORT };
-	//public static final int[] DEPLOY_ENCODER = { PROXY_PORT, PROXY_PORT };
+	public static final int[] DEPLOY_ENCODER = { PROXY_PORT, PROXY_PORT };
 
 	////////////////////////////////////////////////
 	/////////////// PWM's BELOW HERE////////////////
