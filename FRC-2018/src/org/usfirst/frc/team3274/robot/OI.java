@@ -9,7 +9,6 @@ package org.usfirst.frc.team3274.robot;
 
 import org.usfirst.frc.team3274.robot.commands.Climb;
 import org.usfirst.frc.team3274.robot.commands.CloseClaw;
-import org.usfirst.frc.team3274.robot.commands.DeployClaw;
 import static org.usfirst.frc.team3274.robot.commands.DriveWithJoystick.DriveType;
 
 import org.usfirst.frc.team3274.robot.commands.ArmLock;
@@ -29,7 +28,6 @@ import org.usfirst.frc.team3274.robot.commands.TestCommand;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForward;
 import org.usfirst.frc.team3274.robot.commands.autonomous.EjectAutonomous;
 import org.usfirst.frc.team3274.robot.commands.autonomous.HoldForkLift;
-import org.usfirst.frc.team3274.robot.commands.autonomous.RetractClaw;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
 import org.usfirst.frc.team3274.robot.commands.autonomous.TurnRobot;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.GrabAndSuck;

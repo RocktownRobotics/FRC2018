@@ -46,8 +46,6 @@ public class DriveTrain extends StoppableSubsystem {
 	private static final float PITCH_TIPPING_CONSTANT = 15;
 
 	private static final float ROLL_TIPPING_CONSTANT = 15;
-	
-	private static final double JoystickPowerModifier = 2;
 
 	private boolean isSniperMode;
 
@@ -152,16 +150,6 @@ public class DriveTrain extends StoppableSubsystem {
 	 * Drive the wheels on one side forward with one stick and the wheels on another
 	 * side forward with another stick.
 	 * 
-	 * @param leftAxis
-	 *            left stick y-axis (or power between -1 and 1)
-	 * @param rightAxis
-	 *            right stick y-axis (or power between -1 and 1)
-	 */
-
-	/**
-	 * Drive the wheels on one side forward with one stick and the wheels on another
-	 * side forward with another stick.
-	 * 
 	 * @param leftPower
 	 *            power towards left motor, between -1 and 1, where 0 is not moving
 	 * @param rightPower
@@ -239,11 +227,6 @@ public class DriveTrain extends StoppableSubsystem {
 		} else if (power < -.999) {// keeps power above -1
 			power = -.999;
 		}
-
-		double forPower = power / 2; // use for slightly finer turning control (or
-		// ------------------------------- enable sniper mode)
-		double rotPower = turnPower / 2; // use for slightly finer turning control
-		// ----------------------------------- (or enable sniper mode)
 
 		double leftPower = power + turnPower;
 		double rightPower = power - turnPower;
