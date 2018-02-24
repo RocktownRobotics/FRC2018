@@ -33,7 +33,7 @@ public class SetHeightFromBottom extends Command {
 	protected void initialize() {
 
 		this.timeToRun = this.desiredHeight * 0.1;
-		this.startTime = Timer.getMatchTime();
+		this.startTime = Robot.getTime();
 		this.liftPower = 0.5;
 
 	}
@@ -51,7 +51,7 @@ public class SetHeightFromBottom extends Command {
 	protected boolean isFinished() {
 
 		if (Robot.kForkLift.isLiftNotAtMaxHeight()) {
-			if (Timer.getMatchTime() < this.timeToRun + this.startTime) {
+			if (Robot.getTime() < this.timeToRun + this.startTime) {
 				return false;
 			} else {
 				System.out.println("Robot has reached the desired height");

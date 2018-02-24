@@ -23,7 +23,7 @@ public class ShiftDownForTime extends Command {
 
 	@Override
 	protected void initialize() {
-		this.timeToReach = Timer.getMatchTime() + WAIT_TIME;
+		this.timeToReach = Robot.getTime() + WAIT_TIME;
 
 		//Robot.kDrivePneumatics.StartLowGear();
 		
@@ -32,7 +32,7 @@ public class ShiftDownForTime extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		if (Timer.getMatchTime() >= this.timeToReach) {
+		if (Robot.getTime() >= this.timeToReach) {
 			System.out.println("Done shifting for now");
 			return true;
 		}

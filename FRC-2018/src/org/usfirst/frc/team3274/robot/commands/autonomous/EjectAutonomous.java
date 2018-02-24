@@ -25,7 +25,7 @@ public class EjectAutonomous extends Command {
 	@Override
 	protected void initialize() {
 		this.launchPower = 0.0;
-		this.ejectStartTime = Timer.getMatchTime();
+		this.ejectStartTime = Robot.getTime();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -38,7 +38,7 @@ public class EjectAutonomous extends Command {
 	@Override
 	protected boolean isFinished() {
 
-		if (ejectStartTime + THRUST_TIME <= Timer.getMatchTime()) {
+		if (ejectStartTime + THRUST_TIME <= Robot.getTime()) {
 			return false;
 		} else {
 			System.out.println(

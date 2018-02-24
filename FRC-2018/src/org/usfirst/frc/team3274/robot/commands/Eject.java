@@ -28,7 +28,7 @@ public class Eject extends Command {
 	protected void initialize() {
 		this.launchPower = 0.8;
 		this.thrustTime = 0.5;
-		this.ejectStartTime = Timer.getMatchTime();
+		this.ejectStartTime = Robot.getTime();
 	}
 
 	// Called repeatedly when this Command is scheduled to run

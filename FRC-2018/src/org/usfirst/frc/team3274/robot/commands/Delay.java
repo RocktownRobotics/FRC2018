@@ -30,7 +30,7 @@ public class Delay extends Command {
 	@Override
 	protected void initialize() {
 		
-		this.startTime = Timer.getMatchTime();
+		this.startTime = Robot.getTime();
 		System.out.println("Just... wasting time....");
 	}
 
@@ -42,7 +42,7 @@ public class Delay extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		if(Timer.getMatchTime() <= startTime + delayTime) {
+		if(Robot.getTime() <= startTime + delayTime) {
 		return false;
 		}
 		else {
