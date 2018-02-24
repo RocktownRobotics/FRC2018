@@ -41,5 +41,6 @@ public class RetractClawArm extends Command {
 	@Override
 	protected void end() {
 		Robot.kClawArm.setPower(0);
+		Robot.kClawArm.resetEncoder();
 	}
 }
