@@ -20,7 +20,7 @@ public class Primary_Autonomous extends CommandGroup {
 		// check if string has 3 characters
 		if (Robot.gameData.length() >= 3) {
 			// check if first character in string is 'R'
-			if (Robot.gameData.charAt(0) == 'R') {
+			if (Robot.gameData.toUpperCase().charAt(0) == 'R') {
 				return true;
 			} else {
 				return false;
@@ -37,7 +37,7 @@ public class Primary_Autonomous extends CommandGroup {
 		// check if string has 3 characters
 		if (Robot.gameData.length() >= 3) {
 			// check if second character in string is 'R'
-			if (Robot.gameData.charAt(1) == 'R') {
+			if (Robot.gameData.toUpperCase().charAt(1) == 'R') {
 				return true;
 			} else {
 				return false;
