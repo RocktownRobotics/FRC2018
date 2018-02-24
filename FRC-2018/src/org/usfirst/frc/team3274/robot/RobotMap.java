@@ -91,8 +91,7 @@ public class RobotMap {
 	public static final int LEFT_CLAW_EYE_LIMIT_SWITCH = 7; //LEFT EYE
 	public static final int RIGHT_CLAW_EYE_LIMIT_SWITCH = 6; //RIGHT EYE
 	
-	public static final int UPPER_CLAW_LIMIT_SWITCH = PROXY_PORT;
-	public static final int LOWER_CLAW_LIMIT_SWITCH = PROXY_PORT;
+	public static final int UPPER_CLAW_LIMIT_SWITCH = 8;
 
 	// two input ports for each encoder
 	public static final int[] RIGHT_ENCODER = { 3, 2 };

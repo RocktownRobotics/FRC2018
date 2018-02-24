@@ -79,7 +79,7 @@ public class DriveForward extends Command {
 		double leftPower = determinedSpeed - gyroTurn;
 		double rightPower = determinedSpeed + gyroTurn;
 
-		Robot.kDriveTrain.tankDrive(-leftPower, rightPower, false);
+		Robot.kDriveTrain.tankDrive(leftPower, rightPower, false);
 	}
 
 	@Override

@@ -156,12 +156,13 @@ public class Robot extends TimedRobot {
 		System.out.println("Robot " + (twoCubeAutoChooser.getSelected() ? "feels like" : "doesn't feel like")
 				+ " trying to go for a two-cube autonomous");
 
-//		this.m_autonomousCommand = new PrimaryAutonomous(startDelayChooser.getSelected(),
-//				scoringMethodChooser.getSelected(), startPositionChooser.getSelected(),
-//				twoCubeAutoChooser.getSelected());
+		// this.m_autonomousCommand = new
+		// PrimaryAutonomous(startDelayChooser.getSelected(),
+		// scoringMethodChooser.getSelected(), startPositionChooser.getSelected(),
+		// twoCubeAutoChooser.getSelected());
 
 		this.m_autonomousCommand = new DrivingAbout();
-		
+
 		m_autonomousCommand.start();
 
 		// how to get game type from driver station
@@ -236,6 +237,9 @@ public class Robot extends TimedRobot {
 
 		SmartDashboard.putBoolean("Left Claw Eye", kClawIntake.get_leftClawLimitSwitch().get());
 		SmartDashboard.putBoolean("Right Claw Eye", kClawIntake.get_rightClawLimitSwitch().get());
+
+		SmartDashboard.putBoolean("Claw is Retracted", kClawArm.isClawRetracted());
+		SmartDashboard.putNumber("Claw Angle", kClawArm.getAngle());
 	}
 
 }

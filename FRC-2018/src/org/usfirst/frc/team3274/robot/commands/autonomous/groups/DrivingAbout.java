@@ -21,7 +21,7 @@ public class DrivingAbout extends CommandGroup {
 		addSequential(new TurnRobot(180));
 		addSequential(new DriveForward(5));
 		System.out.println("Will now simultaneously raise and deploy the claw");
-		addSequential(new SetHeightByGuesstimate(25));
+		addSequential(new SetHeightByGuesstimate(35));
 		addParallel(new MoveClawTo(45));
 		addSequential(new EjectAutonomous());
 	}

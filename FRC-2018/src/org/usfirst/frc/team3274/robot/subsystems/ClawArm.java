@@ -14,8 +14,8 @@ public class ClawArm extends StoppableSubsystem {
 
 	private DigitalInput _upperClawLimitSwitch = new DigitalInput(RobotMap.UPPER_CLAW_LIMIT_SWITCH);
 
-	private Encoder _deployEncoder = new Encoder(RobotMap.DEPLOY_ENCODER[0],
-			RobotMap.DEPLOY_ENCODER[1], true, EncodingType.k4X);
+	// private Encoder _deployEncoder = new Encoder(RobotMap.DEPLOY_ENCODER[0],
+	// RobotMap.DEPLOY_ENCODER[1], true, EncodingType.k4X);
 
 	private PWMTalonSRX _deployMotor = new PWMTalonSRX(RobotMap.DEPLOY_MOTOR);
 
@@ -23,7 +23,7 @@ public class ClawArm extends StoppableSubsystem {
 		double distancePerPulse; // in feet
 		distancePerPulse = (360 /* degrees */) / (ENCODER_PULSES_PER_REVOLUTION);
 
-		_deployEncoder.setDistancePerPulse(distancePerPulse);
+		// _deployEncoder.setDistancePerPulse(distancePerPulse);
 
 		this.resetEncoder();
 	}
@@ -41,7 +41,7 @@ public class ClawArm extends StoppableSubsystem {
 	}
 
 	public boolean isClawRetracted() {
-		if (this._upperClawLimitSwitch.get() == true) {
+		if (this._upperClawLimitSwitch.get() == false) {
 			return true;
 		} else {
 			return false;
@@ -54,11 +54,12 @@ public class ClawArm extends StoppableSubsystem {
 	 * @return
 	 */
 	public double getAngle() {
-		return _deployEncoder.getDistance();
+		// return _deployEncoder.getDistance();
+		return 0;
 	}
 
 	public void resetEncoder() {
-		_deployEncoder.reset();
+		// _deployEncoder.reset();
 	}
 
 	@Override

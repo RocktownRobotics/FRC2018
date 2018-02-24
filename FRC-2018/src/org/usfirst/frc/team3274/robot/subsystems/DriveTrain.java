@@ -62,10 +62,10 @@ public class DriveTrain extends StoppableSubsystem {
 	private WPI_TalonSRX _lMidMot = new WPI_TalonSRX(RobotMap.LEFT_MOTOR);
 	private WPI_TalonSRX _lRearMot = new WPI_TalonSRX(RobotMap.REAR_LEFT_MOTOR);
 
-	private Encoder _rightEncoder = new Encoder(RobotMap.RIGHT_ENCODER[0],
-			RobotMap.RIGHT_ENCODER[1], true, EncodingType.k4X);
-	private Encoder _leftEncoder = new Encoder(RobotMap.LEFT_ENCODER[0], RobotMap.LEFT_ENCODER[1],
-			true, EncodingType.k4X);
+	private Encoder _rightEncoder = new Encoder(RobotMap.RIGHT_ENCODER[0], RobotMap.RIGHT_ENCODER[1], true,
+			EncodingType.k4X);
+	private Encoder _leftEncoder = new Encoder(RobotMap.LEFT_ENCODER[0], RobotMap.LEFT_ENCODER[1], false,
+			EncodingType.k4X);
 
 	private AHRS navX;
 
@@ -78,8 +78,7 @@ public class DriveTrain extends StoppableSubsystem {
 		isSniperMode = false;
 
 		double distancePerPulse; // in feet
-		distancePerPulse = (WHEEL_DIAMETER/* in */ * Math.PI)
-				/ (ENCODER_PULSES_PER_REVOLUTION * 12.0/* in/ft */);
+		distancePerPulse = (WHEEL_DIAMETER/* in */ * Math.PI) / (ENCODER_PULSES_PER_REVOLUTION * 12.0/* in/ft */);
 
 		_rightEncoder.setDistancePerPulse(distancePerPulse);
 		_leftEncoder.setDistancePerPulse(distancePerPulse);
@@ -147,8 +146,7 @@ public class DriveTrain extends StoppableSubsystem {
 	 *            Xbox controller to use as the input for tank drive.
 	 */
 	public void tankDrive(Joystick joy) {
-		this.tankDrive(joy.getRawAxis(RobotMap.XBOX_LEFT_Y_AXIS),
-				-joy.getRawAxis(RobotMap.XBOX_RIGHT_Y_AXIS), true);
+		this.tankDrive(joy.getRawAxis(RobotMap.XBOX_LEFT_Y_AXIS), -joy.getRawAxis(RobotMap.XBOX_RIGHT_Y_AXIS), true);
 	}
 
 	/**
@@ -170,7 +168,7 @@ public class DriveTrain extends StoppableSubsystem {
 		double rJoyStickVal = rightPower;
 
 		if (applyDeadband) {
-			
+
 			// make "almost" equal values equal
 			if (Math.abs(lJoyStickVal - rJoyStickVal) < TANK_DRIVE_STRAIGHT_OFFSET) {
 				lJoyStickVal = rJoyStickVal;
@@ -208,8 +206,7 @@ public class DriveTrain extends StoppableSubsystem {
 	 *            xbox controller to use for input
 	 */
 	public void cheesyDrive(Joystick joy) {
-		cheesyDrive(-joy.getRawAxis(RobotMap.XBOX_RIGHT_X_AXIS),
-				joy.getRawAxis(RobotMap.XBOX_LEFT_Y_AXIS), true);
+		cheesyDrive(-joy.getRawAxis(RobotMap.XBOX_RIGHT_X_AXIS), joy.getRawAxis(RobotMap.XBOX_LEFT_Y_AXIS), true);
 	}
 
 	/**
@@ -307,7 +304,8 @@ public class DriveTrain extends StoppableSubsystem {
 	public double getDistanceDriven() {
 		double dist;
 
-		dist = (_rightEncoder.getDistance() + _leftEncoder.getDistance()) / 2;
+		// dist = (_rightEncoder.getDistance() + _leftEncoder.getDistance()) / 2;
+		dist = _rightEncoder.getDistance();
 
 		return dist;
 	}
@@ -355,8 +353,7 @@ public class DriveTrain extends StoppableSubsystem {
 	}
 
 	public boolean isRobotTipping() {
-		if (Math.abs(navX.getPitch()) > PITCH_TIPPING_CONSTANT
-				|| Math.abs(navX.getRoll()) > ROLL_TIPPING_CONSTANT) {
+		if (Math.abs(navX.getPitch()) > PITCH_TIPPING_CONSTANT || Math.abs(navX.getRoll()) > ROLL_TIPPING_CONSTANT) {
 			return true;
 		} else {
 			return false;
