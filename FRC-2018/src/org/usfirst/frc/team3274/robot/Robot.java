@@ -19,8 +19,11 @@ import sun.security.krb5.internal.tools.Klist;
 import org.usfirst.frc.team3274.robot.commands.ExampleCommand;
 import org.usfirst.frc.team3274.robot.commands.SetHeightWithEncoder;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ResetHeight;
-import org.usfirst.frc.team3274.robot.commands.autonomous.groups.Primary_Autonomous;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.DrivingAbout;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.PrimaryAutonomous;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.TestAuto;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.PrimaryAutonomous.ScoringMethod;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.PrimaryAutonomous.StartPosition;
 import org.usfirst.frc.team3274.robot.subsystems.ClawArm;
 import org.usfirst.frc.team3274.robot.subsystems.ClawIntake;
 import org.usfirst.frc.team3274.robot.subsystems.DrivePneumatics;
@@ -57,8 +60,8 @@ public class Robot extends TimedRobot {
 	public static Robot itself;
 
 	private SendableChooser<Double> startDelayChooser = new SendableChooser<>();
-	private SendableChooser<String> startPositionChooser = new SendableChooser<>();
-	private SendableChooser<String> scoringMethodChooser = new SendableChooser<>();
+	private SendableChooser<PrimaryAutonomous.StartPosition> startPositionChooser = new SendableChooser<>();
+	private SendableChooser<PrimaryAutonomous.ScoringMethod> scoringMethodChooser = new SendableChooser<>();
 	private SendableChooser<Boolean> twoCubeAutoChooser = new SendableChooser<>();
 
 	private Command m_autonomousCommand;
@@ -69,7 +72,7 @@ public class Robot extends TimedRobot {
 	 * @return
 	 */
 	public static double getTime() {
-		 return System.nanoTime() / 1000000000.;
+		return System.nanoTime() / 1000000000.;
 	}
 
 	/**
@@ -86,16 +89,16 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Delaying", startDelayChooser);
 
 		// add Starting Position options
-		startPositionChooser.addObject("Left", "Left");
-		startPositionChooser.addObject("Middle", "Middle");
-		startPositionChooser.addObject("Right", "Right");
+		startPositionChooser.addDefault("Middle", StartPosition.MIDDLE);
+		startPositionChooser.addObject("Left", StartPosition.LEFT);
+		startPositionChooser.addObject("Right", StartPosition.RIGHT);
 		SmartDashboard.putData("Starting in", startPositionChooser);
 
 		// add Scoring Method options
-		scoringMethodChooser.addDefault("Switch", "Switch");
-		scoringMethodChooser.addObject("Scale", "Scale");
-		scoringMethodChooser.addObject("None", "None");
-		scoringMethodChooser.addObject("Exchange(Must be in Middle)", "Exchange");
+		scoringMethodChooser.addDefault("Switch", ScoringMethod.SWITCH);
+		scoringMethodChooser.addObject("Scale", ScoringMethod.SCALE);
+		scoringMethodChooser.addObject("None", ScoringMethod.NONE); // Doesn't exist in PrimaryAutonomous
+		scoringMethodChooser.addObject("Exchange(Must be in Middle)", ScoringMethod.EXCHANGE);
 		SmartDashboard.putData("Attempting to Score", scoringMethodChooser);
 
 		// add two-cube auto option
@@ -112,7 +115,8 @@ public class Robot extends TimedRobot {
 		this.gameData = "";
 
 		// *****VISION PROCESSING*****
-		new CameraProcessor().init();
+		CameraProcessor camProcessor = new CameraProcessor();
+		camProcessor.init();
 
 	}
 
@@ -152,10 +156,12 @@ public class Robot extends TimedRobot {
 		System.out.println("Robot " + (twoCubeAutoChooser.getSelected() ? "feels like" : "doesn't feel like")
 				+ " trying to go for a two-cube autonomous");
 
-		this.m_autonomousCommand = new Primary_Autonomous(startDelayChooser.getSelected(),
-				scoringMethodChooser.getSelected(), startPositionChooser.getSelected(),
-				twoCubeAutoChooser.getSelected());
+//		this.m_autonomousCommand = new PrimaryAutonomous(startDelayChooser.getSelected(),
+//				scoringMethodChooser.getSelected(), startPositionChooser.getSelected(),
+//				twoCubeAutoChooser.getSelected());
 
+		this.m_autonomousCommand = new DrivingAbout();
+		
 		m_autonomousCommand.start();
 
 		// how to get game type from driver station

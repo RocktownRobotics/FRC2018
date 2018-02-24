@@ -9,12 +9,16 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class Primary_Autonomous extends CommandGroup {
+public class PrimaryAutonomous extends CommandGroup {
 
-	private String startPosition;
-	private String scoringStrategy;
+	private StartPosition startPosition;
+	private ScoringMethod scoringStrategy;
 	private double initialDelay;
 	private boolean isTwoCubeAuto;
+	
+	//Enums for choosing options in SmartDashboard
+	public static enum StartPosition{MIDDLE, LEFT, RIGHT};
+	public static enum ScoringMethod{SWITCH, SCALE, NONE, EXCHANGE};
 
 	public boolean switchIsRight() {
 		// check if string has 3 characters
@@ -82,7 +86,7 @@ public class Primary_Autonomous extends CommandGroup {
 	 * @param startPos
 	 * @param tryTwoCubeAuto
 	 */
-	public Primary_Autonomous(double startDelay, String scoreSelection, String startPos,
+	public PrimaryAutonomous(double startDelay, ScoringMethod scoreSelection, StartPosition startPos,
 			boolean tryTwoCubeAuto) {
 
 		addSequential(new ShiftDownForTime());
@@ -99,23 +103,23 @@ public class Primary_Autonomous extends CommandGroup {
 		addSequential(new Delay(this.initialDelay));
 
 		if (this.isTwoCubeAuto == false) {
-			if (this.scoringStrategy.equals("Switch")) {
+			if (this.scoringStrategy == ScoringMethod.SWITCH) {
 
 				goToSwitchFromStart();
 			}
 
-			else if (this.scoringStrategy.equals("Scale")) {
+			else if (this.scoringStrategy == ScoringMethod.SCALE) {
 
 				goToScaleFromStart();
 			}
 
-			else if (this.scoringStrategy.equals("Exchange")) {
+			else if (this.scoringStrategy == ScoringMethod.EXCHANGE) {
 
-				if (this.startPosition.equals("Left")) {
+				if (this.startPosition == StartPosition.LEFT) {
 					System.out.println(
 							"Failed: Cannot move to exchange from Left Start Position. However, Robot is smart and will still cross the auto line");
 					addSequential(new LeftToLeft());
-				} else if (this.startPosition.equals("Middle")) {
+				} else if (this.startPosition == StartPosition.MIDDLE) {
 					// mid to exchange to auto line
 					addSequential(new MidToExchange());
 				} else {
@@ -126,7 +130,7 @@ public class Primary_Autonomous extends CommandGroup {
 
 			}
 			// Cross the Auto Line.
-			else if (this.startPosition.equals("Left")) {
+			else if (this.startPosition == StartPosition.LEFT) {
 				addSequential(new LeftToLeft());
 			} else {
 				addSequential(new RightToRight());
@@ -144,7 +148,7 @@ public class Primary_Autonomous extends CommandGroup {
 	}
 
 	private void goToSwitchFromStart() {
-		if (this.startPosition.equals("Left")) {
+		if (this.startPosition == StartPosition.LEFT) {
 			if (this.switchIsRight()) {
 				// left to right switch
 				addSequential(new LeftToRight());
@@ -155,7 +159,7 @@ public class Primary_Autonomous extends CommandGroup {
 				addSequential(new LeftToLeft());
 				addSequential(new LeftStartToSwitch());
 			}
-		} else if (this.startPosition.equals("Middle")) {
+		} else if (this.startPosition == StartPosition.MIDDLE) {
 
 			if (this.switchIsRight()) {
 				// mid to Right Switch
@@ -180,7 +184,7 @@ public class Primary_Autonomous extends CommandGroup {
 	}
 
 	private void goToScaleFromStart() {
-		if (this.startPosition.equals("Left")) {
+		if (this.startPosition == StartPosition.LEFT) {
 			if (this.scaleIsRight()) {
 				// left to right scale
 				addSequential(new LeftToRight());
@@ -191,7 +195,7 @@ public class Primary_Autonomous extends CommandGroup {
 				addSequential(new LeftStartToScale());
 			}
 
-		} else if (this.startPosition.equals("Middle")) {
+		} else if (this.startPosition == StartPosition.MIDDLE) {
 			if (this.scaleIsRight()) {
 				// mid to right scale
 				addSequential(new MidToRight());
