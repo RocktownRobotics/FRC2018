@@ -7,12 +7,10 @@
 
 package org.usfirst.frc.team3274.robot;
 
-import org.usfirst.frc.team3274.robot.commands.Climb;
 import org.usfirst.frc.team3274.robot.commands.CloseClaw;
 import static org.usfirst.frc.team3274.robot.commands.DriveWithJoystick.DriveType;
 
 import org.usfirst.frc.team3274.robot.commands.ArmLock;
-//import org.usfirst.frc.team3274.robot.commands.DropClaw;
 import org.usfirst.frc.team3274.robot.commands.Eject;
 import org.usfirst.frc.team3274.robot.commands.IncreaseHeight;
 import org.usfirst.frc.team3274.robot.commands.Interrupt;

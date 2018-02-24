@@ -41,14 +41,15 @@ public class ForkLift extends StoppableSubsystem {
 	private PWMTalonSRX liftMotor2 = new PWMTalonSRX(RobotMap.LIFT_MOTOR_RIGHT);
 
 	// sets the left and right forklift motors to be together...
-	private SpeedController _liftMotors = new SpeedControllerGroup(this.liftMotor1, this.liftMotor2);
+	private SpeedController _liftMotors = new SpeedControllerGroup(this.liftMotor1,
+			this.liftMotor2);
 
 	// private Encoder _liftEncoder = new Encoder(RobotMap.LIFT_ENCODER[0],
 	// RobotMap.LIFT_ENCODER[1],
 	// true, EncodingType.k4X);
 
 	public ForkLift() {
-		
+
 		// _liftEncoder.setDistancePerPulse(distancePerPulse);
 	}
 
@@ -67,20 +68,20 @@ public class ForkLift extends StoppableSubsystem {
 	}
 
 	public boolean isLiftNotAtMaxHeight() {
-//		if (this._upperLimitSwitch.get()) {
-//			return true;
-//		} else {
-//			return false;
-//		}
+		// if (this._upperLimitSwitch.get()) {
+		// return true;
+		// } else {
+		// return false;
+		// }
 		return true;
 	}
 
 	public boolean isLiftNotAtMinHeight() {
-//		if (this._lowerLimitSwitch.get()) {
-//			return true;
-//		} else {
-//			return false;
-//		}
+		// if (this._lowerLimitSwitch.get()) {
+		// return true;
+		// } else {
+		// return false;
+		// }
 		return true;
 	}
 
@@ -90,9 +91,12 @@ public class ForkLift extends StoppableSubsystem {
 	 *            desired motor power
 	 */
 	public void setLiftPower(double power) {
-		if (power > 0) {
+
+		double realPower = -power;
+
+		if (realPower > 0) {
 			if (this.isLiftNotAtMaxHeight()) {
-				_liftMotors.set(power);
+				_liftMotors.set(realPower);
 			} else {
 				System.out.println("Robot is unhappy, because someone told it to blow itself up. "
 						+ "Robot does not like blowing up. "
@@ -102,7 +106,7 @@ public class ForkLift extends StoppableSubsystem {
 			}
 		} else {
 			if (this.isLiftNotAtMinHeight()) {
-				_liftMotors.set(power);
+				_liftMotors.set(realPower);
 			} else {
 				System.out.println("'somebody' just ordered Robot to implode. Robot is"
 						+ " unhappy, and refuses to lower the lift below the frame....");
@@ -112,7 +116,7 @@ public class ForkLift extends StoppableSubsystem {
 	}
 
 	public void initDefaultCommand() {
-		 setDefaultCommand(new HoldForkLift());
+		setDefaultCommand(new HoldForkLift());
 	}
 
 	@Override

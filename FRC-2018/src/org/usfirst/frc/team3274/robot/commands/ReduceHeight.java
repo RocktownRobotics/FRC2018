@@ -33,7 +33,7 @@ public class ReduceHeight extends Command {
 	@Override
 	protected void execute() {
 
-		Robot.kForkLift.setLiftPower(POWER);
+		Robot.kForkLift.setLiftPower(-POWER);
 
 	}
 
