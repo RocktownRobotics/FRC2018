@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3274.robot.commands.autonomous.groups;
 
-import org.usfirst.frc.team3274.robot.commands.DeployClaw;
+import org.usfirst.frc.team3274.robot.commands.MoveClawTo;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveBackward;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForward;
 import org.usfirst.frc.team3274.robot.commands.autonomous.EjectAutonomous;
@@ -19,7 +19,7 @@ public class MidToExchange extends CommandGroup {
 		
 		System.out.println("Robot moving to Exchange");
 		addSequential(new DriveForward(1));
-		addParallel(new DeployClaw());
+		addParallel(new MoveClawTo(90));
 		addSequential(new TurnRobot(-90));
 		addSequential(new DriveForward(4));
 		addSequential(new TurnRobot(-90));
