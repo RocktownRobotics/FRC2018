@@ -2,6 +2,7 @@ package org.usfirst.frc.team3274.robot.commands.autonomous.groups;
 
 import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.commands.Delay;
+import org.usfirst.frc.team3274.robot.commands.RetractClawArm;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -26,7 +27,8 @@ public class Primary_Autonomous extends CommandGroup {
 			}
 		} else {
 			DriverStation.reportError("Failed to read a correct FMS message", true);
-			System.out.println("Failed: Field said something unintelligable... Robot hasn't a clue what it should do... Left is always the answer");
+			System.out.println(
+					"Failed: Field said something unintelligable... Robot hasn't a clue what it should do... Left is always the answer");
 			return false;
 		}
 	}
@@ -42,7 +44,8 @@ public class Primary_Autonomous extends CommandGroup {
 			}
 		} else {
 			DriverStation.reportError("Failed to read a correct FMS message", true);
-			System.out.println("Failed: Field said something unintelligable... Robot hasn't a clue what it should do... Left is always the answer");
+			System.out.println(
+					"Failed: Field said something unintelligable... Robot hasn't a clue what it should do... Left is always the answer");
 
 			return false;
 		}
@@ -79,9 +82,11 @@ public class Primary_Autonomous extends CommandGroup {
 	 * @param startPos
 	 * @param tryTwoCubeAuto
 	 */
-	public Primary_Autonomous(double startDelay, String scoreSelection, String startPos, boolean tryTwoCubeAuto) {
+	public Primary_Autonomous(double startDelay, String scoreSelection, String startPos,
+			boolean tryTwoCubeAuto) {
 
 		addSequential(new ShiftDownForTime());
+		addSequential(new RetractClawArm());
 
 		this.initialDelay = startDelay;
 		this.scoringStrategy = scoreSelection;
@@ -129,13 +134,11 @@ public class Primary_Autonomous extends CommandGroup {
 		} else {
 			// two cube auto
 			goToSwitchFromStart();
-			if(this.scaleIsRight() == true) {
+			if (this.scaleIsRight() == true) {
 				addSequential(new RightSwitchToCubeToScale());
-			}
-			else {
+			} else {
 				addSequential(new LeftSwitchToCubeToScale());
 
-				
 			}
 		}
 	}
