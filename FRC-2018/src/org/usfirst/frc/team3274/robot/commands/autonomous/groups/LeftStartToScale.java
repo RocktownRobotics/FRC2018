@@ -12,10 +12,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class LeftStartToScale extends CommandGroup {
 
-	/**
-	 * Here is how you would make the robot drive forward 3 feet and then turn left
-	 * 90 degrees.
-	 */
+	
 	public LeftStartToScale() {
 		
 		System.out.println("Robot moving to Scale");
