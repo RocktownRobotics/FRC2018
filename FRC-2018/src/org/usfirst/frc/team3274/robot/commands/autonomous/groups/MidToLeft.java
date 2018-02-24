@@ -14,12 +14,12 @@ public class MidToLeft extends CommandGroup {
 	 */
 	public MidToLeft() {
 		
-		System.out.println("Robot moving to Right side Startpoint");
+		System.out.println("Robot moving to Left side Startpoint");
 		addSequential(new DriveForward(4));
 		addSequential(new TurnRobot(-90));
 		addSequential(new DriveForward(10));
 		addSequential(new TurnRobot(90));
 		addSequential(new DriveForward(4));
-		System.out.println("Robot arrived at Right side Startpoint");
+		System.out.println("Robot arrived at Left side Startpoint");
 	}
 }
