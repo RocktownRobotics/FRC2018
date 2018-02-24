@@ -28,10 +28,9 @@ import org.usfirst.frc.team3274.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3274.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team3274.robot.subsystems.ForkLift;
 import org.usfirst.frc.team3274.robot.subsystems.RobotCompressor;
+import org.usfurst.frc.team3274.robot.visionprocessing.CameraProcessor;
 
 import com.sun.javafx.scene.control.behavior.TwoLevelFocusPopupBehavior;
-
-import VisionProcessing.CameraProcessor;
 
 /**
  * The VM is configured to automatically run this class, and to call the
