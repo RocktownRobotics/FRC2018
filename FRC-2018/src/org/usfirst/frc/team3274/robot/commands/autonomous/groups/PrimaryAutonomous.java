@@ -222,11 +222,11 @@ public class PrimaryAutonomous extends CommandGroup {
 			if (this.scaleIsRight()) {
 				// right to right scale
 				addSequential(new RightToRight());
-				addSequential(new RightStartToSwitch());
+				addSequential(new RightStartToScale());
 			} else {
 				// right to left scale
 				addSequential(new RightToLeft());
-				addSequential(new LeftStartToSwitch());
+				addSequential(new LeftStartToScale());
 			}
 		}
 	}
