@@ -57,12 +57,12 @@ public class TurnRobot extends Command {
 
 		double leftPower;
 		double rightPower;
-
+//just reversed leftPower
 		if (turnAngle > 0) {
-			leftPower = unscaledPower;
+			leftPower = -unscaledPower;
 			rightPower = -unscaledPower;
 		} else {
-			leftPower = -unscaledPower;
+			leftPower = unscaledPower;
 			rightPower = unscaledPower;
 		}
 

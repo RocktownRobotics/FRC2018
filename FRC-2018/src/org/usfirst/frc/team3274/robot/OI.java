@@ -202,8 +202,8 @@ public class OI {
 		lBumper0.whenPressed(new TurnRobot(-90));
 		rBumper0.whenPressed(new TurnRobot(90));
 		
-		a0.whenPressed(new DriveForward(3));
-		b0.whenPressed(new DriveForward(5));
+		a0.whenPressed(new DriveForward(4));
+		b0.whenPressed(new DriveForward(8));
 		
 	}
 
@@ -253,7 +253,16 @@ public class OI {
 	 * 
 	 * @return
 	 */
-	public Joystick getXbox01() {
+	public Joystick getXbox0() {
 		return xbox0;
+	}
+	
+	/**
+	 * Returns the first xbox controller.
+	 * 
+	 * @return
+	 */
+	public Joystick getXbox1() {
+		return xbox1;
 	}
 }

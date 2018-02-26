@@ -106,17 +106,13 @@ public class Robot extends TimedRobot {
 		twoCubeAutoChooser.addObject("Enable Two Cube Auto", true);
 		SmartDashboard.putData("Attempting to Do Two Cubes", twoCubeAutoChooser);
 
-		SmartDashboard.putData("Reset Height", new ResetHeight());
-		SmartDashboard.putData("Set Height 2", new SetHeightWithEncoder(1, .01));
-		// SmartDashboard.putData("",);
-
 		Robot.itself = this;
 
 		this.gameData = "";
 
 		// *****VISION PROCESSING*****
-		CameraProcessor camProcessor = new CameraProcessor();
-		camProcessor.init();
+//		CameraProcessor camProcessor = new CameraProcessor();
+//		camProcessor.init();
 
 	}
 
@@ -149,6 +145,11 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		
+		System.out.println("before getting gamedata from driver station");
+		this.gameData = DriverStation.getInstance().getGameSpecificMessage();
+		System.out.println("after getting gamedata from driver station");
+		
 		System.out.println("Robot got placed in the" + startPositionChooser.getSelected() + "position");
 		System.out
 				.println("Robot is trying to do something. Specifically, use the" + scoringMethodChooser.getSelected());
@@ -156,24 +157,19 @@ public class Robot extends TimedRobot {
 		System.out.println("Robot " + (twoCubeAutoChooser.getSelected() ? "feels like" : "doesn't feel like")
 				+ " trying to go for a two-cube autonomous");
 
-		// this.m_autonomousCommand = new
-		// PrimaryAutonomous(startDelayChooser.getSelected(),
-		// scoringMethodChooser.getSelected(), startPositionChooser.getSelected(),
-		// twoCubeAutoChooser.getSelected());
+//		this.m_autonomousCommand = new PrimaryAutonomous(startDelayChooser.getSelected(),
+//				scoringMethodChooser.getSelected(), startPositionChooser.getSelected(),
+//				twoCubeAutoChooser.getSelected());
+		
+		this.m_autonomousCommand = new PrimaryAutonomous(0, ScoringMethod.SWITCH, StartPosition.RIGHT, false);
 
-		this.m_autonomousCommand = new DrivingAbout();
+		// this.m_autonomousCommand = new DrivingAbout();
 
+		System.out.println("before auto start");
+		
 		m_autonomousCommand.start();
-
-		// how to get game type from driver station
-		// game data is either: "LLL", "RRR", "LRL", "RLR"
-		this.gameData = DriverStation.getInstance().getGameSpecificMessage();
-		// if (gameData.equals("LLL")) {
-		// // one auto code here
-		// } else {
-		// // another auto code here
-		// }
-
+		
+		System.out.println("after auto start");
 	}
 
 	/**
@@ -227,6 +223,9 @@ public class Robot extends TimedRobot {
 		// SmartDashboard.putNumber("Shooter Speed", shooter.getRPM());
 		SmartDashboard.putNumber("leftEncoder", kDriveTrain.getLeftDistance());
 		SmartDashboard.putNumber("rightEncoder", kDriveTrain.getRightDistance());
+
+		SmartDashboard.putNumber("leftEncoderRaw", kDriveTrain.getLeftRotations());
+		SmartDashboard.putNumber("rightEncoderRaw", kDriveTrain.getRightRotations());
 
 		SmartDashboard.putNumber("gyro_yaw", kDriveTrain.getYaw());
 

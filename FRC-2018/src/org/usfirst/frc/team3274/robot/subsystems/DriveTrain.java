@@ -29,7 +29,7 @@ import com.kauailabs.navx.frc.AHRS;
  */
 public class DriveTrain extends StoppableSubsystem {
 
-	public static final double ENCODER_PULSES_PER_REVOLUTION = 1343;
+	public static final double ENCODER_PULSES_PER_REVOLUTION = 1895;
 
 	/**
 	 * Normal power is multiplied by this value when in enter sniper mode. Greater
@@ -164,7 +164,7 @@ public class DriveTrain extends StoppableSubsystem {
 	 *            same input.
 	 */
 	public void tankDrive(double leftPower, double rightPower, boolean applyDeadband) {
-		double lJoyStickVal = leftPower;
+		double lJoyStickVal = -leftPower;
 		double rJoyStickVal = rightPower;
 
 		if (applyDeadband) {

@@ -2,6 +2,9 @@ package org.usfurst.frc.team3274.robot.visionprocessing;
 
 import java.awt.Color;
 
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
+
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
@@ -71,15 +74,16 @@ public class CameraProcessor// extends IterativeRobot
             outputStream = CameraServer.getInstance().putVideo("Blur",
                     frameWidth, frameHeight);
 
+            Mat source = new Mat();
+            Mat output = new Mat();
+            
             // get frames and put in output stream
             while (!Thread.interrupted())
             {
-                /* get the current picture, write it to source */
-                /* copy source image to output image */
-                // drawRectangle();
-                // Imgcodecs.imwrite("test2.jpg", output);
-                
-                /* send to smart dashboard */
+            	// send to smartdashboard
+               cvSink.grabFrame(source);
+               Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
+               outputStream.putFrame(output);
             }
         }).start();
     }

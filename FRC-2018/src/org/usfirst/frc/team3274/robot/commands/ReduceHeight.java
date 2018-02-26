@@ -16,7 +16,7 @@ import org.usfirst.frc.team3274.robot.Robot;
  */
 public class ReduceHeight extends Command {
 
-	public static final double POWER = .5;
+	public static final double POWER = .999999999;
 
 	public ReduceHeight() {
 		// Use requires() here to declare subsystem dependencies

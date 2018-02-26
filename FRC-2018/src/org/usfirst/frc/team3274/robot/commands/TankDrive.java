@@ -23,16 +23,16 @@ public class TankDrive extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		System.out.println("Why are you doing this? Do you not trust Robot? Robot will deny your attempted subjuga-INPUT COMMAND");
+		System.out.println(
+				"Why are you doing this? Do you not trust Robot? Robot will deny your attempted subjuga-INPUT COMMAND");
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		
+
 		Robot.kDriveTrain.tankDrive(Robot.m_oi.xbox0);
-		
-		
+
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

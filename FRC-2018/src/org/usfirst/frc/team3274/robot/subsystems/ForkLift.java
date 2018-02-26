@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team3274.robot.subsystems;
 
+import org.usfirst.frc.team3274.robot.OI;
 import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.RobotMap;
 import org.usfirst.frc.team3274.robot.commands.autonomous.HoldForkLift;
@@ -18,6 +19,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PWMTalonSRX;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -41,8 +43,7 @@ public class ForkLift extends StoppableSubsystem {
 	private PWMTalonSRX liftMotor2 = new PWMTalonSRX(RobotMap.LIFT_MOTOR_RIGHT);
 
 	// sets the left and right forklift motors to be together...
-	private SpeedController _liftMotors = new SpeedControllerGroup(this.liftMotor1,
-			this.liftMotor2);
+	private SpeedController _liftMotors = new SpeedControllerGroup(this.liftMotor1, this.liftMotor2);
 
 	// private Encoder _liftEncoder = new Encoder(RobotMap.LIFT_ENCODER[0],
 	// RobotMap.LIFT_ENCODER[1],
@@ -82,12 +83,62 @@ public class ForkLift extends StoppableSubsystem {
 			return false;
 		}
 	}
+	
+	/**
+	 * Returns 0.0 if the given value is within the specified range around zero. The
+	 * remaining range between the deadzone and 1.0 is scaled from 0.0 to 1.0.
+	 * 
+	 * This method is used to make sure we ignore false input from the joysticks
+	 * (basically any value that is too small).
+	 *
+	 * @param value
+	 *            value to clip
+	 * @param deadband
+	 *            range around zero
+	 */
+	protected double applyDeadband(double value, double deadband) {
+		if (Math.abs(value) > deadband) {
+			if (value > 0.0) {
+				return (value - deadband) * (value - deadband);
+			} else {
+				return -1 * (value + deadband) * (value + deadband);
+			}
+		} else {
+			return 0.0;
+		}
+	}
 
 	/**
 	 * 
 	 * @param power
 	 *            desired motor power
+	 * 
+	 *            public void tankDrive(Joystick joy) {
+	 *            this.tankDrive(joy.getRawAxis(RobotMap.XBOX_LEFT_Y_AXIS),
+	 *            -joy.getRawAxis(RobotMap.XBOX_RIGHT_Y_AXIS), true); }
+	 * 
+	 *            /** Drive the wheels on one side forward with one stick and the
+	 *            wheels on another side forward with another stick.
+	 * 
+	 * @param leftPower
+	 *            power towards left motor, between -1 and 1, where 0 is not moving
+	 * @param rightPower
+	 *            power towards right motor, between -1 and 1, where 0 is not moving
+	 * @param applyDeadband
+	 *            whether or not tankdrive should ignore smaller inputs, in order to
+	 *            account for false input from joysticks. Will also assume two
+	 *            inputs that are really close to each other should actually be the
+	 *            same input.
 	 */
+	public void setLiftPowerWithJoystick(double power) {
+		double realPower = -power;
+
+		// apply deadband
+		realPower = applyDeadband(realPower, OI.JOYSTICK_DEADZONE);
+		
+		setLiftPower(realPower);
+	}
+
 	public void setLiftPower(double power) {
 
 		double realPower = -power;

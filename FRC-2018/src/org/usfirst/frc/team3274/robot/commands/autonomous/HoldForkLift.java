@@ -10,6 +10,7 @@ package org.usfirst.frc.team3274.robot.commands.autonomous;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team3274.robot.Robot;
+import org.usfirst.frc.team3274.robot.RobotMap;
 
 /**
  * An example command. You can replace me with your own command.
@@ -17,7 +18,7 @@ import org.usfirst.frc.team3274.robot.Robot;
 public class HoldForkLift extends Command {
 
 	
-	private double liftPower;
+	private double baseLiftPower;
 
 	public HoldForkLift() {
 		// Use requires() here to declare subsystem dependencies
@@ -31,7 +32,7 @@ public class HoldForkLift extends Command {
 	protected void initialize() {
 
 		
-		this.liftPower = -0.1;
+		this.baseLiftPower = -0.1;
 
 	}
 
@@ -39,7 +40,9 @@ public class HoldForkLift extends Command {
 	@Override
 	protected void execute() {
 
-		Robot.kForkLift.setLiftPower(this.liftPower);
+		double joystickVal = Robot.m_oi.getXbox1().getRawAxis(RobotMap.XBOX_LEFT_Y_AXIS);
+		
+		Robot.kForkLift.setLiftPowerWithJoystick(this.baseLiftPower + joystickVal);
 
 	}
 

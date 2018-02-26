@@ -35,13 +35,13 @@ public class ClawArm extends StoppableSubsystem {
 	 *            in range -1 <= p <= 1
 	 */
 	public void setPower(double power) {
-		if (this.isClawRetracted() == false && power > 0) {
+		//if (this.isClawRetracted() == false && power > 0) {
 			this._deployMotor.set(power);
-		}
+		//}
 	}
 
 	public boolean isClawRetracted() {
-		if (this._upperClawLimitSwitch.get() == false) {
+		if (this._upperClawLimitSwitch.get() == true) {
 			return true;
 		} else {
 			return false;

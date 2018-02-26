@@ -30,7 +30,7 @@ public class PrimaryAutonomous extends CommandGroup {
 				return false;
 			}
 		} else {
-			DriverStation.reportError("Failed to read a correct FMS message", true);
+			DriverStation.reportError("Failed to read a correct FMS message: " + Robot.gameData, true);
 			System.out.println(
 					"Failed: Field said something unintelligable... Robot hasn't a clue what it should do... Left is always the answer");
 			return false;
@@ -89,18 +89,25 @@ public class PrimaryAutonomous extends CommandGroup {
 	public PrimaryAutonomous(double startDelay, ScoringMethod scoreSelection, StartPosition startPos,
 			boolean tryTwoCubeAuto) {
 
+		System.out.println("before added initial sequentials");
+		
 		addSequential(new ShiftDownForTime());
-		addSequential(new RetractClawArm());
 
 		this.initialDelay = startDelay;
 		this.scoringStrategy = scoreSelection;
 		this.startPosition = startPos;
+		
+		System.out.println("after added initial sequential");
 
 		boolean switchAndScaleOnSameSide = switchIsRight() == scaleIsRight();
 
 		this.isTwoCubeAuto = switchAndScaleOnSameSide && tryTwoCubeAuto;
 
+		System.out.println("after checked switch side");
+		
 		addSequential(new Delay(this.initialDelay));
+		
+		System.out.println("after added initial delayF");
 
 		if (this.isTwoCubeAuto == false) {
 			if (this.scoringStrategy == ScoringMethod.SWITCH) {
@@ -110,7 +117,9 @@ public class PrimaryAutonomous extends CommandGroup {
 
 			else if (this.scoringStrategy == ScoringMethod.SCALE) {
 
+				System.out.println("before going to scale from start");
 				goToScaleFromStart();
+				System.out.println("started going to scale from start");
 			}
 
 			else if (this.scoringStrategy == ScoringMethod.EXCHANGE) {
@@ -135,6 +144,8 @@ public class PrimaryAutonomous extends CommandGroup {
 			} else {
 				addSequential(new RightToRight());
 			}
+			
+			System.out.println("done with primary auto if statements");
 		} else {
 			// two cube auto
 			goToSwitchFromStart();
@@ -145,6 +156,8 @@ public class PrimaryAutonomous extends CommandGroup {
 
 			}
 		}
+		
+		System.out.println("end of primary auto setup");
 	}
 
 	private void goToSwitchFromStart() {

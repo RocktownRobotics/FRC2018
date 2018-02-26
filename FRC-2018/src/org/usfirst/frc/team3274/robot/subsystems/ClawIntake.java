@@ -54,7 +54,7 @@ public class ClawIntake extends StoppableSubsystem {
 
 	public void setCubeManipulatorMotors(double motorSpeed) {
 		this.leftClaw.set(motorSpeed);
-		this.rightClaw.set(motorSpeed);
+		this.rightClaw.set(-motorSpeed);
 
 	}
 
