@@ -152,8 +152,8 @@ public class Robot extends TimedRobot {
 		
 		System.out.println("Robot got placed in the" + startPositionChooser.getSelected() + "position");
 		System.out
-				.println("Robot is trying to do something. Specifically, use the" + scoringMethodChooser.getSelected());
-		System.out.println("Robot just feels like sitting around for" + startDelayChooser.getSelected() + "seconds...");
+				.println("Robot is trying to do something. Specifically, use the " + scoringMethodChooser.getSelected());
+		System.out.println("Robot just feels like sitting around for " + startDelayChooser.getSelected() + " seconds...");
 		System.out.println("Robot " + (twoCubeAutoChooser.getSelected() ? "feels like" : "doesn't feel like")
 				+ " trying to go for a two-cube autonomous");
 
