@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * @author AJ Snarr
  */
 
-public class DriveForward extends Command {
+public class CrossingTheLine extends Command {
 
 	public static final double FAST_SPEED = 0.5;
 	public static final double NORMAL_SPEED = 0.2;
@@ -33,9 +33,8 @@ public class DriveForward extends Command {
 	 * @param targetDistance
 	 *            Distance to be traveled, in feet... hopefully....
 	 */
-	public DriveForward(double targetDistance) {
+	public CrossingTheLine() {
 		requires(Robot.kDriveTrain);
-		this.targetDistance = targetDistance;
 	}
 
 	@Override
@@ -44,7 +43,7 @@ public class DriveForward extends Command {
 		Robot.kDriveTrain.resetEncoders();
 		DriverStation.reportWarning("initDriveForward", false);
 		System.out.println("Robot is now driving forwards");
-
+		this.targetDistance = 8;
 		this.startTime = Robot.getTime();
 	}
 
