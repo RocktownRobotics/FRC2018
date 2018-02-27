@@ -177,10 +177,12 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		Scheduler.getInstance().run();
+//		Scheduler.getInstance().run(); NOT NEEDED FOR COMMAND BASED PROGRAMMING
 		log();
 	}
 
+
+	
 	@Override
 	public void teleopInit() {
 		// This makes sure that the autonomous stops running when
