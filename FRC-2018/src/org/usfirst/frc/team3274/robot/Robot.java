@@ -31,7 +31,7 @@ import org.usfirst.frc.team3274.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3274.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team3274.robot.subsystems.ForkLift;
 import org.usfirst.frc.team3274.robot.subsystems.RobotCompressor;
-import org.usfurst.frc.team3274.robot.visionprocessing.CameraProcessor;
+import org.usfirst.frc.team3274.robot.visionprocessing.CameraProcessor;
 
 import com.sun.javafx.scene.control.behavior.TwoLevelFocusPopupBehavior;
 
@@ -221,24 +221,24 @@ public class Robot extends TimedRobot {
 	private void log() {
 		// For example:
 		// SmartDashboard.putNumber("Shooter Speed", shooter.getRPM());
-		SmartDashboard.putNumber("leftEncoder", kDriveTrain.getLeftDistance());
-		SmartDashboard.putNumber("rightEncoder", kDriveTrain.getRightDistance());
-
-		SmartDashboard.putNumber("leftEncoderRaw", kDriveTrain.getLeftRotations());
-		SmartDashboard.putNumber("rightEncoderRaw", kDriveTrain.getRightRotations());
-
-		SmartDashboard.putNumber("gyro_yaw", kDriveTrain.getYaw());
-
-		SmartDashboard.putBoolean("Lift not at min position", kForkLift.isLiftNotAtMinHeight());
-		SmartDashboard.putBoolean("Lift not at max position", kForkLift.isLiftNotAtMaxHeight());
-
-		SmartDashboard.putBoolean("Claw is loaded", kClawIntake.isClawLoaded());
-
-		SmartDashboard.putBoolean("Left Claw Eye", kClawIntake.get_leftClawLimitSwitch().get());
-		SmartDashboard.putBoolean("Right Claw Eye", kClawIntake.get_rightClawLimitSwitch().get());
-
-		SmartDashboard.putBoolean("Claw is Retracted", kClawArm.isClawRetracted());
-		SmartDashboard.putNumber("Claw Angle", kClawArm.getAngle());
+//		SmartDashboard.putNumber("leftEncoder", kDriveTrain.getLeftDistance());
+//		SmartDashboard.putNumber("rightEncoder", kDriveTrain.getRightDistance());
+//
+//		SmartDashboard.putNumber("leftEncoderRaw", kDriveTrain.getLeftRotations());
+//		SmartDashboard.putNumber("rightEncoderRaw", kDriveTrain.getRightRotations());
+//
+//		SmartDashboard.putNumber("gyro_yaw", kDriveTrain.getYaw());
+//
+//		SmartDashboard.putBoolean("Lift not at min position", kForkLift.isLiftNotAtMinHeight());
+//		SmartDashboard.putBoolean("Lift not at max position", kForkLift.isLiftNotAtMaxHeight());
+//
+//		SmartDashboard.putBoolean("Claw is loaded", kClawIntake.isClawLoaded());
+//
+//		SmartDashboard.putBoolean("Left Claw Eye", kClawIntake.get_leftClawLimitSwitch().get());
+//		SmartDashboard.putBoolean("Right Claw Eye", kClawIntake.get_rightClawLimitSwitch().get());
+//
+//		SmartDashboard.putBoolean("Claw is Retracted", kClawArm.isClawRetracted());
+//		SmartDashboard.putNumber("Claw Angle", kClawArm.getAngle());
 	}
 
 }

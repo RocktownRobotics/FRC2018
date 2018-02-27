@@ -2,12 +2,10 @@ package org.usfirst.frc.team3274.robot.commands.autonomous.groups;
 
 import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.commands.Delay;
-import org.usfirst.frc.team3274.robot.commands.RetractClawArm;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class PrimaryAutonomous extends CommandGroup {
 
