@@ -178,7 +178,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousPeriodic() {
 //		Scheduler.getInstance().run(); NOT NEEDED FOR COMMAND BASED PROGRAMMING
-		log();
+		//log();
 	}
 
 
