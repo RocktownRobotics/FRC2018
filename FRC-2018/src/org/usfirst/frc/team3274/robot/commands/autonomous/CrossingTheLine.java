@@ -42,7 +42,7 @@ public class CrossingTheLine extends Command {
 		Robot.kDriveTrain.resetYaw();
 		Robot.kDriveTrain.resetEncoders();
 		DriverStation.reportWarning("initDriveForward", false);
-		System.out.println("Robot is now driving forwards");
+		System.out.println("There is a Line. 'The Colossus' is going to cross it.");
 		this.targetDistance = 8;
 		this.startTime = Robot.getTime();
 	}
@@ -85,7 +85,7 @@ public class CrossingTheLine extends Command {
 	protected void end() {
 		Robot.kDriveTrain.tankDrive(0, 0, false);
 		Robot.kDriveTrain.resetYaw();
-		System.out.println("No longer driving forwards");
+		System.out.println("'The Colossus' has crossed a line, from which it can never return... during this Autonomous period");
 	}
 
 	@Override
