@@ -55,7 +55,7 @@ public class SwitchFromLeft extends CommandGroup {
 	public SwitchFromLeft() {
 		// make sure robot is in low gear
 		addSequential(new ShiftDownForTime());
-		if (t.switchIsRight()) {
+		if (this.switchIsRight()) {
 			// left to right switch
 			addSequential(new LeftToRight());
 			addSequential(new RightStartToSwitch());

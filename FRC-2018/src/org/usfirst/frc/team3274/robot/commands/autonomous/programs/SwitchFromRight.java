@@ -2,6 +2,10 @@ package org.usfirst.frc.team3274.robot.commands.autonomous.programs;
 
 import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftStartToSwitch;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightStartToSwitch;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightToLeft;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightToRight;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -50,8 +54,14 @@ public class SwitchFromRight extends CommandGroup {
 	public SwitchFromRight() {
 		// make sure robot is in low gear
 		addSequential(new ShiftDownForTime());
-
-		// addSequential(new DriveForward(3));
-		// addSequential(new TurnRobot(-90));
+		if (this.switchIsRight()) {
+			// left to right switch
+			addSequential(new RightToRight());
+			addSequential(new RightStartToSwitch());
+		} else {
+			// right to Left Switch
+			addSequential(new RightToLeft());
+			addSequential(new LeftStartToSwitch());
+		}
 	}
 }

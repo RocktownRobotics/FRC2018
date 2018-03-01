@@ -2,6 +2,10 @@ package org.usfirst.frc.team3274.robot.commands.autonomous.programs;
 
 import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftStartToScale;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightStartToScale;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightToLeft;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightToRight;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -50,8 +54,14 @@ public class ScaleFromRight extends CommandGroup {
 	public ScaleFromRight() {
 		// make sure robot is in low gear
 		addSequential(new ShiftDownForTime());
-
-		// addSequential(new DriveForward(3));
-		// addSequential(new TurnRobot(-90));
+		if (this.scaleIsRight()) {
+			// right to right scale
+			addSequential(new RightToRight());
+			addSequential(new RightStartToScale());
+		} else {
+			// right to left scale
+			addSequential(new RightToLeft());
+			addSequential(new LeftStartToScale());
+		}
 	}
 }

@@ -2,6 +2,10 @@ package org.usfirst.frc.team3274.robot.commands.autonomous.programs;
 
 import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftStartToScale;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.MidToLeft;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.MidToRight;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightStartToScale;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -12,7 +16,7 @@ public class ScaleFromMid extends CommandGroup {
 	 * Here is how you would make the robot drive forward 3 feet and then turn left
 	 * 90 degrees.
 	 */
-	
+
 	public boolean switchIsRight() {
 		// check if string has 3 characters
 		if (Robot.gameData.length() >= 3) {
@@ -47,11 +51,19 @@ public class ScaleFromMid extends CommandGroup {
 			return false;
 		}
 	}
+
 	public ScaleFromMid() {
 		// make sure robot is in low gear
 		addSequential(new ShiftDownForTime());
 
-		// addSequential(new DriveForward(3));
-		// addSequential(new TurnRobot(-90));
+		if (this.scaleIsRight()) {
+			// mid to right scale
+			addSequential(new MidToRight());
+			addSequential(new RightStartToScale());
+		} else {
+			// mid to left scale
+			addSequential(new MidToLeft());
+			addSequential(new LeftStartToScale());
+		}
 	}
 }
