@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3274.robot.commands.autonomous.groups;
+package org.usfirst.frc.team3274.robot.commands.autonomous.programs;
 
 import org.usfirst.frc.team3274.robot.commands.MoveClawTo;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForward;

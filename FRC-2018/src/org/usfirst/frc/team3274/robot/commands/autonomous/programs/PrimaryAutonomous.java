@@ -1,8 +1,21 @@
-package org.usfirst.frc.team3274.robot.commands.autonomous.groups;
+package org.usfirst.frc.team3274.robot.commands.autonomous.programs;
 
 import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.commands.Delay;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftStartToScale;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftStartToSwitch;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftSwitchToCubeToScale;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftToLeft;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftToRight;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.MidToExchange;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.MidToLeft;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.MidToRight;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightStartToScale;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightStartToSwitch;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightSwitchToCubeToScale;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightToLeft;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightToRight;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -102,9 +115,9 @@ public class PrimaryAutonomous extends CommandGroup {
 		this.isTwoCubeAuto = switchAndScaleOnSameSide && tryTwoCubeAuto;
 
 		System.out.println("after checked switch side");
-		
+		if(this.initialDelay > 0) {
 		addSequential(new Delay(this.initialDelay));
-		
+		}
 		System.out.println("after added initial delayF");
 
 		if (this.isTwoCubeAuto == false) {
