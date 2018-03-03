@@ -19,11 +19,11 @@ import sun.security.krb5.internal.tools.Klist;
 import org.usfirst.frc.team3274.robot.commands.ExampleCommand;
 import org.usfirst.frc.team3274.robot.commands.SetHeightWithEncoder;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ResetHeight;
-import org.usfirst.frc.team3274.robot.commands.autonomous.groups.DrivingAbout;
-import org.usfirst.frc.team3274.robot.commands.autonomous.groups.PrimaryAutonomous;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.TestAuto;
-import org.usfirst.frc.team3274.robot.commands.autonomous.groups.PrimaryAutonomous.ScoringMethod;
-import org.usfirst.frc.team3274.robot.commands.autonomous.groups.PrimaryAutonomous.StartPosition;
+import org.usfirst.frc.team3274.robot.commands.autonomous.programs.DrivingAbout;
+import org.usfirst.frc.team3274.robot.commands.autonomous.programs.PrimaryAutonomous;
+import org.usfirst.frc.team3274.robot.commands.autonomous.programs.PrimaryAutonomous.ScoringMethod;
+import org.usfirst.frc.team3274.robot.commands.autonomous.programs.PrimaryAutonomous.StartPosition;
 import org.usfirst.frc.team3274.robot.subsystems.ClawArm;
 import org.usfirst.frc.team3274.robot.subsystems.ClawIntake;
 import org.usfirst.frc.team3274.robot.subsystems.DrivePneumatics;
@@ -177,10 +177,12 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		Scheduler.getInstance().run();
-		log();
+//		Scheduler.getInstance().run(); NOT NEEDED FOR COMMAND BASED PROGRAMMING
+		//log();
 	}
 
+
+	
 	@Override
 	public void teleopInit() {
 		// This makes sure that the autonomous stops running when

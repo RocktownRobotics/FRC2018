@@ -46,7 +46,6 @@ public class Delay extends Command {
 		return false;
 		}
 		else {
-			System.out.println("Robot is tired of waiting");
 			return true;
 		}
 	}
@@ -54,6 +53,8 @@ public class Delay extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
+		System.out.println("Robot is tired of waiting");
+
 	}
 
 	// Called when another command which requires one or more of the same
