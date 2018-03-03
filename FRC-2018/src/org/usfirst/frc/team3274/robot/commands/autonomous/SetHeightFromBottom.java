@@ -19,7 +19,8 @@ public class SetHeightFromBottom extends Command {
 	private double desiredHeight;
 	private double startTime;
 	private double timeToRun;
-	private double liftPower;
+	public static final double timePerInch = 0.07;
+	public static final double liftPower = 0.95;
 
 	public SetHeightFromBottom(double targetHeight) {
 		// Use requires() here to declare subsystem dependencies
@@ -32,9 +33,8 @@ public class SetHeightFromBottom extends Command {
 	@Override
 	protected void initialize() {
 
-		this.timeToRun = this.desiredHeight * 0.1;
+		this.timeToRun = this.desiredHeight * this.timePerInch;
 		this.startTime = Robot.getTime();
-		this.liftPower = 0.5;
 
 	}
 
