@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3274.robot.commands.autonomous.groups;
 
+import org.usfirst.frc.team3274.robot.commands.DeployClawArm;
 import org.usfirst.frc.team3274.robot.commands.Suck;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveBackward;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForward;
@@ -22,6 +23,7 @@ public class LeftSwitchToCubeToScale extends CommandGroup {
 		addSequential(new TurnRobot(-90));
 		addSequential(new DriveForward(2.5));
 		addParallel(new ResetHeight());
+		addParallel(new ResetClawArm());
 		addSequential(new  TurnRobot(90));
 		addSequential(new DriveForward(1));
 		System.out.println("Robot is now attempting to retrieve a cube");

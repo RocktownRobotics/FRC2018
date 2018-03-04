@@ -22,7 +22,7 @@ public class DriveForward extends Command {
 	public static final double SLOW_DISTANCE = 1; // offset in ft
 	public static final double MID_DISTANCE = 2; // offset in ft
 
-	public static final double SLOWER_STARTING_TIME = 0.5; // in seconds
+	public static final double SLOWER_STARTING_TIME = 0.25; // in seconds
 
 	private double targetDistance;
 	private double startTime;
@@ -35,6 +35,8 @@ public class DriveForward extends Command {
 	 */
 	public DriveForward(double targetDistance) {
 		requires(Robot.kDriveTrain);
+
+		Robot.kDriveTrain.resetEncoders();
 		this.targetDistance = targetDistance;
 	}
 
@@ -42,7 +44,7 @@ public class DriveForward extends Command {
 	protected void initialize() {
 		Robot.kDriveTrain.resetYaw();
 		Robot.kDriveTrain.resetEncoders();
-		DriverStation.reportWarning("initDriveForward", false);
+//		DriverStation.reportWarning("initDriveForward", false);
 		System.out.println("Robot is now driving forwards");
 
 		this.startTime = Robot.getTime();

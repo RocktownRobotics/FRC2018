@@ -278,21 +278,21 @@ public class DriveTrain extends StoppableSubsystem {
 	 */
 	public void resetEncoders() {
 		_rightEncoder.reset();
-		_leftEncoder.reset();
+		//_leftEncoder.reset();
 
 		double time = 0;
 
 		// wait for encoders to finish resetting
-		while (Robot.itself.isEnabled() && Math.abs(_rightEncoder.getDistance()) > 0.15
-				&& Math.abs(_leftEncoder.getDistance()) > 0.15) {
-
-			Timer.delay(0.01);
-
-			SmartDashboard.putNumber("leftEncoder", this.getLeftDistance());
-			SmartDashboard.putNumber("rightEncoder", this.getRightDistance());
-			;
-			SmartDashboard.putNumber("encoder_reset_seconds", time += 0.01);
-		}
+//		while (Robot.itself.isEnabled() && Math.abs(_rightEncoder.getDistance()) > 0.15
+//				/*&& Math.abs(_leftEncoder.getDistance()) > 0.15*/) {
+//
+//			Timer.delay(0.01);
+//
+////			SmartDashboard.putNumber("leftEncoder", this.getLeftDistance());
+////			SmartDashboard.putNumber("rightEncoder", this.getRightDistance());
+////			;
+////			SmartDashboard.putNumber("encoder_reset_seconds", time += 0.01);
+//		}
 	}
 
 	/**

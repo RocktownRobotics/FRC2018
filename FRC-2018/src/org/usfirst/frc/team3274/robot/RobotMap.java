@@ -86,7 +86,7 @@ public class RobotMap {
 
 	// Limit Switches
 	public static final int LOWER_LIMIT_SWITCH = 4;
-	public static final int UPPER_LIMIT_SWITCH = 5;
+	//public static final int UPPER_LIMIT_SWITCH = 5;
 	
 	public static final int LEFT_CLAW_EYE_LIMIT_SWITCH = 7; //LEFT EYE
 	public static final int RIGHT_CLAW_EYE_LIMIT_SWITCH = 6; //RIGHT EYE

@@ -25,7 +25,7 @@ import org.usfirst.frc.team3274.robot.commands.Suck;
 import org.usfirst.frc.team3274.robot.commands.TestCommand;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForward;
 import org.usfirst.frc.team3274.robot.commands.autonomous.EjectAutonomous;
-import org.usfirst.frc.team3274.robot.commands.autonomous.HoldForkLift;
+import org.usfirst.frc.team3274.robot.commands.autonomous.RunForkLift;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
 import org.usfirst.frc.team3274.robot.commands.autonomous.TurnRobot;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.GrabAndSuck;
@@ -215,9 +215,9 @@ public class OI {
 
 		// second driver
 		rBumper1.whenPressed(new IncreaseHeight());
-		rBumper1.whenReleased(new HoldForkLift());
+		rBumper1.whenReleased(new RunForkLift());
 		lBumper1.whenPressed(new ReduceHeight());
-		lBumper1.whenReleased(new HoldForkLift());
+		lBumper1.whenReleased(new RunForkLift());
 		b1.whenPressed(new OpenClaw());
 		x1.whenPressed(new GrabAndSuck());
 		x1.whenReleased(new Interrupt(Robot.kClawIntake));

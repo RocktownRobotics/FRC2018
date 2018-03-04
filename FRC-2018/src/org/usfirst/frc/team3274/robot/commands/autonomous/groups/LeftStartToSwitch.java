@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3274.robot.commands.autonomous.groups;
 
+import org.usfirst.frc.team3274.robot.commands.DeployClawArm;
 import org.usfirst.frc.team3274.robot.commands.MoveClawTo;
 import org.usfirst.frc.team3274.robot.commands.SetHeightWithEncoder;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForward;
@@ -20,8 +21,8 @@ public class LeftStartToSwitch extends CommandGroup {
 		
 		System.out.println("Robot moving to Switch");
 		addSequential(new DriveForward(3));
-		addParallel(new MoveClawTo(90));
-		addParallel(new SetHeightByGuesstimate(20));
+	//	addParallel(new ResetClawArm());
+	//	addParallel(new SetHeightByGuesstimate(20));
 		addSequential(new TurnRobot(90));
 		addSequential(new EjectAutonomous());
 		System.out.println("Robot has captured the Switch! Robot is happy.");

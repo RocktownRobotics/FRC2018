@@ -18,12 +18,17 @@ import sun.security.krb5.internal.tools.Klist;
 
 import org.usfirst.frc.team3274.robot.commands.ExampleCommand;
 import org.usfirst.frc.team3274.robot.commands.SetHeightWithEncoder;
+import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForward;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ResetHeight;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.TestAuto;
+import org.usfirst.frc.team3274.robot.commands.autonomous.programs.CrossingTheLine;
 import org.usfirst.frc.team3274.robot.commands.autonomous.programs.DrivingAbout;
 import org.usfirst.frc.team3274.robot.commands.autonomous.programs.PrimaryAutonomous;
 import org.usfirst.frc.team3274.robot.commands.autonomous.programs.PrimaryAutonomous.ScoringMethod;
 import org.usfirst.frc.team3274.robot.commands.autonomous.programs.PrimaryAutonomous.StartPosition;
+import org.usfirst.frc.team3274.robot.commands.autonomous.programs.ScaleFromRight;
+import org.usfirst.frc.team3274.robot.commands.autonomous.programs.SwitchFromLeft;
+import org.usfirst.frc.team3274.robot.commands.autonomous.programs.SwitchFromRight;
 import org.usfirst.frc.team3274.robot.subsystems.ClawArm;
 import org.usfirst.frc.team3274.robot.subsystems.ClawIntake;
 import org.usfirst.frc.team3274.robot.subsystems.DrivePneumatics;
@@ -111,8 +116,8 @@ public class Robot extends TimedRobot {
 		this.gameData = "";
 
 		// *****VISION PROCESSING*****
-//		CameraProcessor camProcessor = new CameraProcessor();
-//		camProcessor.init();
+		// CameraProcessor camProcessor = new CameraProcessor();
+		// camProcessor.init();
 
 	}
 
@@ -145,31 +150,41 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		
-		System.out.println("before getting gamedata from driver station");
-		this.gameData = DriverStation.getInstance().getGameSpecificMessage();
-		System.out.println("after getting gamedata from driver station");
-		
-		System.out.println("Robot got placed in the" + startPositionChooser.getSelected() + "position");
-		System.out
-				.println("Robot is trying to do something. Specifically, use the " + scoringMethodChooser.getSelected());
-		System.out.println("Robot just feels like sitting around for " + startDelayChooser.getSelected() + " seconds...");
-		System.out.println("Robot " + (twoCubeAutoChooser.getSelected() ? "feels like" : "doesn't feel like")
-				+ " trying to go for a two-cube autonomous");
 
-//		this.m_autonomousCommand = new PrimaryAutonomous(startDelayChooser.getSelected(),
-//				scoringMethodChooser.getSelected(), startPositionChooser.getSelected(),
-//				twoCubeAutoChooser.getSelected());
-		
-		this.m_autonomousCommand = new PrimaryAutonomous(0, ScoringMethod.SWITCH, StartPosition.RIGHT, false);
+		System.out.println("before getting gamedata from driver station");
+		 gameData = DriverStation.getInstance().getGameSpecificMessage();
+		 System.out.println("after getting gamedata from driver station");
+		//
+		// System.out.println("Robot got placed in the" +
+		// startPositionChooser.getSelected() + "position");
+		// System.out
+		// .println("Robot is trying to do something. Specifically, use the " +
+		// scoringMethodChooser.getSelected());
+		// System.out.println("Robot just feels like sitting around for " +
+		// startDelayChooser.getSelected() + " seconds...");
+		// System.out.println("Robot " + (twoCubeAutoChooser.getSelected() ? "feels
+		// like" : "doesn't feel like")
+		// + " trying to go for a two-cube autonomous");
+
+		// this.m_autonomousCommand = new
+		// PrimaryAutonomous(startDelayChooser.getSelected(),
+		// scoringMethodChooser.getSelected(), startPositionChooser.getSelected(),
+		// twoCubeAutoChooser.getSelected());
+
+		// this.m_autonomousCommand = new PrimaryAutonomous(0, ScoringMethod.SWITCH,
+		// StartPosition.RIGHT, false);
 
 		// this.m_autonomousCommand = new DrivingAbout();
+		// this.m_autonomousCommand = new ScaleFromRight();
+		this.m_autonomousCommand = new SwitchFromLeft();
 
-		System.out.println("before auto start");
-		
+		//this.m_autonomousCommand = new DriveForward(11);
+		//
+		// System.out.println("before auto start");
+		//
 		m_autonomousCommand.start();
-		
-		System.out.println("after auto start");
+		//
+		// System.out.println("after auto start");
 	}
 
 	/**
@@ -177,12 +192,10 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-//		Scheduler.getInstance().run(); NOT NEEDED FOR COMMAND BASED PROGRAMMING
-		//log();
+		Scheduler.getInstance().run();
+		log();
 	}
 
-
-	
 	@Override
 	public void teleopInit() {
 		// This makes sure that the autonomous stops running when
@@ -223,24 +236,24 @@ public class Robot extends TimedRobot {
 	private void log() {
 		// For example:
 		// SmartDashboard.putNumber("Shooter Speed", shooter.getRPM());
-//		SmartDashboard.putNumber("leftEncoder", kDriveTrain.getLeftDistance());
-//		SmartDashboard.putNumber("rightEncoder", kDriveTrain.getRightDistance());
-//
-//		SmartDashboard.putNumber("leftEncoderRaw", kDriveTrain.getLeftRotations());
-//		SmartDashboard.putNumber("rightEncoderRaw", kDriveTrain.getRightRotations());
-//
-//		SmartDashboard.putNumber("gyro_yaw", kDriveTrain.getYaw());
-//
-//		SmartDashboard.putBoolean("Lift not at min position", kForkLift.isLiftNotAtMinHeight());
-//		SmartDashboard.putBoolean("Lift not at max position", kForkLift.isLiftNotAtMaxHeight());
-//
-//		SmartDashboard.putBoolean("Claw is loaded", kClawIntake.isClawLoaded());
-//
-//		SmartDashboard.putBoolean("Left Claw Eye", kClawIntake.get_leftClawLimitSwitch().get());
-//		SmartDashboard.putBoolean("Right Claw Eye", kClawIntake.get_rightClawLimitSwitch().get());
-//
-//		SmartDashboard.putBoolean("Claw is Retracted", kClawArm.isClawRetracted());
-//		SmartDashboard.putNumber("Claw Angle", kClawArm.getAngle());
+		SmartDashboard.putNumber("leftEncoder", kDriveTrain.getLeftDistance());
+		SmartDashboard.putNumber("rightEncoder", kDriveTrain.getRightDistance());
+
+		SmartDashboard.putNumber("leftEncoderRaw", kDriveTrain.getLeftRotations());
+		SmartDashboard.putNumber("rightEncoderRaw", kDriveTrain.getRightRotations());
+
+		SmartDashboard.putNumber("gyro_yaw", kDriveTrain.getYaw());
+
+		SmartDashboard.putBoolean("Lift not at min position", kForkLift.isLiftNotAtMinHeight());
+		SmartDashboard.putBoolean("Lift not at max position", kForkLift.isLiftNotAtMaxHeight());
+
+		SmartDashboard.putBoolean("Claw is loaded", kClawIntake.isClawLoaded());
+
+		SmartDashboard.putBoolean("Left Claw Eye", kClawIntake.get_leftClawLimitSwitch().get());
+		SmartDashboard.putBoolean("Right Claw Eye", kClawIntake.get_rightClawLimitSwitch().get());
+
+		SmartDashboard.putBoolean("Claw is Retracted", kClawArm.isClawRetracted());
+		SmartDashboard.putNumber("Claw Angle", kClawArm.getAngle());
 	}
 
 }

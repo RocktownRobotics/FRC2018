@@ -15,12 +15,12 @@ import org.usfirst.frc.team3274.robot.RobotMap;
 /**
  * An example command. You can replace me with your own command.
  */
-public class HoldForkLift extends Command {
+public class RunForkLift extends Command {
 
 	
 	private double baseLiftPower;
 
-	public HoldForkLift() {
+	public RunForkLift() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.kForkLift);
 		
@@ -32,7 +32,7 @@ public class HoldForkLift extends Command {
 	protected void initialize() {
 
 		
-		this.baseLiftPower = -0.1;
+		this.baseLiftPower = -0.55;
 
 	}
 
@@ -42,7 +42,16 @@ public class HoldForkLift extends Command {
 
 		double joystickVal = Robot.m_oi.getXbox1().getRawAxis(RobotMap.XBOX_LEFT_Y_AXIS);
 		
-		Robot.kForkLift.setLiftPowerWithJoystick(this.baseLiftPower + joystickVal);
+		double addedPower;
+		
+		if (joystickVal > 0) {
+			// add more power going down
+			addedPower = joystickVal - baseLiftPower - .35;
+		} else {
+			addedPower = joystickVal;
+		}
+		
+		Robot.kForkLift.setLiftPowerWithJoystick(this.baseLiftPower + addedPower);
 
 	}
 

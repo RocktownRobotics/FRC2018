@@ -10,7 +10,7 @@ package org.usfirst.frc.team3274.robot.subsystems;
 import org.usfirst.frc.team3274.robot.OI;
 import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.RobotMap;
-import org.usfirst.frc.team3274.robot.commands.autonomous.HoldForkLift;
+import org.usfirst.frc.team3274.robot.commands.autonomous.RunForkLift;
 import org.usfirst.frc.team3274.robot.util.StoppableSubsystem;
 import org.usfirst.frc.team3274.robot.util.TalonSRXGroup;
 
@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PWMTalonSRX;
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Timer;
@@ -34,13 +35,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class ForkLift extends StoppableSubsystem {
 
 	private DigitalInput _lowerLimitSwitch = new DigitalInput(RobotMap.LOWER_LIMIT_SWITCH);
-	private DigitalInput _upperLimitSwitch = new DigitalInput(RobotMap.UPPER_LIMIT_SWITCH);
+	//private DigitalInput _upperLimitSwitch = new DigitalInput(RobotMap.UPPER_LIMIT_SWITCH);
 
 	public static final double ENCODER_PULSES_PER_REVOLUTION = 1343;
 	public static final double WHEEL_DIAMETER = 4.0; // in inches
 
-	private PWMTalonSRX liftMotor1 = new PWMTalonSRX(RobotMap.LIFT_MOTOR_LEFT);
-	private PWMTalonSRX liftMotor2 = new PWMTalonSRX(RobotMap.LIFT_MOTOR_RIGHT);
+	private Spark liftMotor1 = new Spark(RobotMap.LIFT_MOTOR_LEFT);
+	private Spark liftMotor2 = new Spark(RobotMap.LIFT_MOTOR_RIGHT);
 
 	// sets the left and right forklift motors to be together...
 	private SpeedController _liftMotors = new SpeedControllerGroup(this.liftMotor1, this.liftMotor2);
@@ -69,21 +70,21 @@ public class ForkLift extends StoppableSubsystem {
 	}
 
 	public boolean isLiftNotAtMaxHeight() {
-		if (this._upperLimitSwitch.get()) {
+//		if (this._upperLimitSwitch.get()) {
 			return true;
-		} else {
-			return false;
-		}
+//		} else {
+//			return false;
+//		}
 	}
 
 	public boolean isLiftNotAtMinHeight() {
-		if (this._lowerLimitSwitch.get()) {
-			return true;
-		} else {
-			return false;
-		}
+		// if (this._lowerLimitSwitch.get()) {
+		return true;
+		// } else {
+		// return false;
 	}
-	
+	// }
+
 	/**
 	 * Returns 0.0 if the given value is within the specified range around zero. The
 	 * remaining range between the deadzone and 1.0 is scaled from 0.0 to 1.0.
@@ -135,7 +136,7 @@ public class ForkLift extends StoppableSubsystem {
 
 		// apply deadband
 		realPower = applyDeadband(realPower, OI.JOYSTICK_DEADZONE);
-		
+
 		setLiftPower(realPower);
 	}
 
@@ -143,29 +144,31 @@ public class ForkLift extends StoppableSubsystem {
 
 		double realPower = -power;
 
-		if (realPower > 0) {
-			if (this.isLiftNotAtMaxHeight()) {
-				_liftMotors.set(realPower);
-			} else {
-				System.out.println("Robot is unhappy, because someone told it to blow itself up. "
-						+ "Robot does not like blowing up. "
-						+ "Therefore, Robot refuses to raise the lift high enough to blow itself up. "
-						+ "You should be happy that Robot is smart enough to do that");
-				_liftMotors.set(0);
-			}
-		} else {
-			if (this.isLiftNotAtMinHeight()) {
-				_liftMotors.set(realPower);
-			} else {
-				System.out.println("'somebody' just ordered Robot to implode. Robot is"
-						+ " unhappy, and refuses to lower the lift below the frame....");
-				_liftMotors.set(0);
-			}
-		}
+		 _liftMotors.set(realPower);
+//		
+//		if (power > 0) {
+//			if (this.isLiftNotAtMaxHeight()) {
+//				_liftMotors.set(realPower);
+//			} else {
+//				System.out.println("Robot is unhappy, because someone told it to blow itself up. "
+//						+ "Robot does not like blowing up. "
+//						+ "Therefore, Robot refuses to raise the lift high enough to blow itself up. "
+//						+ "You should be happy that Robot is smart enough to do that");
+//				_liftMotors.set(0);
+//			}
+//		} else {
+//			if (this.isLiftNotAtMinHeight()) {
+//			_liftMotors.set(realPower);
+//			 } else {
+//			 System.out.println("'somebody' just ordered Robot to implode. Robot is"
+//			 + " unhappy, and refuses to lower the lift below the frame....");
+//			 _liftMotors.set(0);
+//			 }
+//		}
 	}
 
 	public void initDefaultCommand() {
-		setDefaultCommand(new HoldForkLift());
+		setDefaultCommand(new RunForkLift());
 	}
 
 	@Override

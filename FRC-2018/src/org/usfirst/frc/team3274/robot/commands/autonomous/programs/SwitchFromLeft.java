@@ -34,23 +34,8 @@ public class SwitchFromLeft extends CommandGroup {
 		}
 	}
 
-	public boolean scaleIsRight() {
-		// check if string has 3 characters
-		if (Robot.gameData.length() >= 3) {
-			// check if second character in string is 'R'
-			if (Robot.gameData.toUpperCase().charAt(1) == 'R') {
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			DriverStation.reportError("Failed to read a correct FMS message", true);
-			System.out.println(
-					"Failed: Field said something unintelligable... Robot hasn't a clue what it should do... Left is always the answer");
 
-			return false;
-		}
-	}
+	
 
 	public SwitchFromLeft() {
 		// make sure robot is in low gear
