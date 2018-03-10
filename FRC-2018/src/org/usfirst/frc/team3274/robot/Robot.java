@@ -152,8 +152,8 @@ public class Robot extends TimedRobot {
 	public void autonomousInit() {
 
 		System.out.println("before getting gamedata from driver station");
-		 gameData = DriverStation.getInstance().getGameSpecificMessage();
-		 System.out.println("after getting gamedata from driver station");
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		System.out.println("after getting gamedata from driver station");
 		//
 		// System.out.println("Robot got placed in the" +
 		// startPositionChooser.getSelected() + "position");
@@ -176,13 +176,22 @@ public class Robot extends TimedRobot {
 
 		// this.m_autonomousCommand = new DrivingAbout();
 		// this.m_autonomousCommand = new ScaleFromRight();
-		this.m_autonomousCommand = new SwitchFromLeft();
 
-		//this.m_autonomousCommand = new DriveForward(11);
+		////////////////////////////////////////// AUTONOMOUS SELECTION
+		////////////////////////////////////////// /////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// this.m_autonomousCommand = new SwitchFromRight();
+		// this.m_autonomousCommand = new SwitchFromLeft();
+		this.m_autonomousCommand = new CrossingTheLine();
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 		//
 		// System.out.println("before auto start");
-		//
-		m_autonomousCommand.start();
+
+		this.m_autonomousCommand.start();
 		//
 		// System.out.println("after auto start");
 	}

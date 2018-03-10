@@ -40,39 +40,7 @@ public class TurnRobot extends Command {
 		System.out.println("Turning...");
 	}
 
-	/**mrrrz$$$$$$JJJm                                                                                                                                
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
+	/**
 	 * Turns, left or right based on the turnAngle variable.
 	 */
 	@Override
@@ -80,7 +48,7 @@ public class TurnRobot extends Command {
 
 		double unscaledPower;
 
-		System.out.println("exe_turn");
+	//	System.out.println("exe_turn");
 		if (Math.abs(Robot.kDriveTrain.getYaw()) >= (Math.abs(turnAngle) - SLOW_ANGLE)) {
 			unscaledPower = SLOW_TURN_POWER;
 		} else {

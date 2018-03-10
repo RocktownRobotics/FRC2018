@@ -19,6 +19,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class CrossingTheLine extends CommandGroup {
 
 	public CrossingTheLine() {
-		addSequential(new DriveForward(11.));
+		addSequential(new DriveForward(11));
 	}
 }
