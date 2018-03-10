@@ -46,9 +46,9 @@ public class ForkLift extends StoppableSubsystem {
 	// sets the left and right forklift motors to be together...
 	private SpeedController _liftMotors = new SpeedControllerGroup(this.liftMotor1, this.liftMotor2);
 
-	// private Encoder _liftEncoder = new Encoder(RobotMap.LIFT_ENCODER[0],
-	// RobotMap.LIFT_ENCODER[1],
-	// true, EncodingType.k4X);
+	 private Encoder _liftEncoder = new Encoder(RobotMap.LIFT_ENCODER[0],
+	 RobotMap.LIFT_ENCODER[1],
+	 true, EncodingType.k4X);
 
 	public ForkLift() {
 
@@ -60,13 +60,12 @@ public class ForkLift extends StoppableSubsystem {
 	}
 
 	public double getLiftHeight() {
-		// return _liftEncoder.getDistance();
-		DriverStation.reportError("Tried to get lift height using nonexistant encoder", true);
-		return 0;
+		return _liftEncoder.getDistance();
+		
 	}
 
 	public void resetLiftEncoders() {
-		// _liftEncoder.reset();
+		 _liftEncoder.reset();
 	}
 
 	public boolean isLiftNotAtMaxHeight() {

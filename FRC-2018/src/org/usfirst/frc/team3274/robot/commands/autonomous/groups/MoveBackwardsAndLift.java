@@ -23,7 +23,7 @@ public class MoveBackwardsAndLift extends CommandGroup {
 		
 		// Drive forward and set the height...
 				addSequential(new DriveBackward(distance));
-				addParallel(new SetHeightByGuesstimate(height));
+				addParallel(new SetHeightWithEncoder(height, 2));
 	}
 	
 	/**

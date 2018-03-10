@@ -21,8 +21,8 @@ public class LeftStartToSwitch extends CommandGroup {
 		
 		System.out.println("Robot moving to Switch");
 		addSequential(new DriveForward(3));
-	//	addParallel(new ResetClawArm());
-	//	addParallel(new SetHeightByGuesstimate(20));
+		addParallel(new ResetClawArm());
+		addParallel(new SetHeightWithEncoder(20, 2));
 		addSequential(new TurnRobot(90));
 		addSequential(new EjectAutonomous());
 		System.out.println("Robot has captured the Switch! Robot is happy.");

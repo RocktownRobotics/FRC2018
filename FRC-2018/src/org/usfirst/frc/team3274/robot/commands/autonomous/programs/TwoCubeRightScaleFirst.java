@@ -2,9 +2,9 @@ package org.usfirst.frc.team3274.robot.commands.autonomous.programs;
 
 import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
-import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftScaleToCube;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftScaleToCubeToSwitch;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftStartToScale;
-import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightScaleToCube;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightScaleToCubeToSwitch;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightStartToScale;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightToLeft;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightToRight;
@@ -12,13 +12,13 @@ import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightToRight;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class ScaleFromRight extends CommandGroup {
+public class TwoCubeRightScaleFirst extends CommandGroup {
 
 	/**
 	 * Here is how you would make the robot drive forward 3 feet and then turn left
 	 * 90 degrees.
 	 */
-	
+
 	public boolean switchIsRight() {
 		// check if string has 3 characters
 		if (Robot.gameData.length() >= 3) {
@@ -53,19 +53,22 @@ public class ScaleFromRight extends CommandGroup {
 			return false;
 		}
 	}
-	public ScaleFromRight() {
+
+	public TwoCubeRightScaleFirst() {
 		// make sure robot is in low gear
 		addSequential(new ShiftDownForTime());
-		if (this.scaleIsRight()) {
-			// right to right scale
+
+		if (this.scaleIsRight() && this.switchIsRight()) {
 			addSequential(new RightToRight());
 			addSequential(new RightStartToScale());
-			addSequential(new RightScaleToCube());
-		} else {
-			// right to left scale
+			addSequential(new RightScaleToCubeToSwitch());
+		} else if (this.scaleIsRight() && this.switchIsRight() == false) {
 			addSequential(new RightToLeft());
 			addSequential(new LeftStartToScale());
-			addSequential(new LeftScaleToCube());
+			addSequential(new LeftScaleToCubeToSwitch());
+		} else {
+			addSequential(new ScaleFromRight());
 		}
 	}
+
 }

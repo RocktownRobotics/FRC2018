@@ -22,12 +22,12 @@ public class RightStartToSwitch extends CommandGroup {
 	public RightStartToSwitch() {
 		
 		System.out.println("Robot moving to Switch");
-	//	addParallel(new ArmLock());
+//		addParallel(new ArmLock());
 	//	addSequential(new DriveBackward(2));
 	//	addSequential(new TurnRobot(180));
 		addSequential(new DriveForward(3));
-	//	addParallel(new ResetClawArm());
-	//	addParallel(new SetHeightByGuesstimate(20));
+		addParallel(new ResetClawArm());
+		addParallel(new SetHeightWithEncoder(20, 2));
 		addSequential(new TurnRobot(-90));
 		addSequential(new EjectAutonomous());
 		System.out.println("Robot has siezed the Switch, and is happy.");

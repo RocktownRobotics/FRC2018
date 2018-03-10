@@ -190,6 +190,7 @@ public class Robot extends TimedRobot {
 
 		//
 		// System.out.println("before auto start");
+		Robot.kForkLift.resetLiftEncoders();
 
 		this.m_autonomousCommand.start();
 		//

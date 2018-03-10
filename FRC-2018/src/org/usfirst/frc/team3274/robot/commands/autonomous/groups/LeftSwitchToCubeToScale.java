@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3274.robot.commands.autonomous.groups;
 
 import org.usfirst.frc.team3274.robot.commands.DeployClawArm;
+import org.usfirst.frc.team3274.robot.commands.SetHeightWithEncoder;
 import org.usfirst.frc.team3274.robot.commands.Suck;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveBackward;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForward;
@@ -31,7 +32,7 @@ public class LeftSwitchToCubeToScale extends CommandGroup {
 		addSequential(new DriveBackward(1));
 		addSequential(new TurnRobot(-90));
 		addSequential(new DriveForward(7.5));
-		addParallel(new SetHeightByGuesstimate(40));
+		addParallel(new SetHeightWithEncoder(40, 3));
 		addSequential(new TurnRobot(45));
 		addSequential(new EjectAutonomous());
 		System.out.println("Robot believes it has captured the switch and scale. Robot is delighted. Hopefully, Robot is not delusional");

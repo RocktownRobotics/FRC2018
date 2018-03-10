@@ -2,9 +2,11 @@ package org.usfirst.frc.team3274.robot.commands.autonomous.programs;
 
 import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftScaleToCube;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftStartToScale;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.MidToLeft;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.MidToRight;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightScaleToCube;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightStartToScale;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -60,10 +62,12 @@ public class ScaleFromMid extends CommandGroup {
 			// mid to right scale
 			addSequential(new MidToRight());
 			addSequential(new RightStartToScale());
+			addSequential(new RightScaleToCube());
 		} else {
 			// mid to left scale
 			addSequential(new MidToLeft());
 			addSequential(new LeftStartToScale());
+			addSequential(new LeftScaleToCube());
 		}
 	}
 }
