@@ -31,7 +31,7 @@ public class LeftSwitchToRightScale extends CommandGroup {
 		addParallel(new Suck());
 		addSequential(new TurnRobot(-90));
 		addSequential(new DriveForward(7.5));
-		addParallel(new SetHeightWithEncoder(40, 3));
+		addParallel(new SetHeightByGuesstimate(40));
 		addSequential(new TurnRobot(45));
 		addSequential(new EjectAutonomous());
 		System.out.println("Robot believes it has captured the switch and scale. Robot is delighted. Hopefully, Robot is not delusional");

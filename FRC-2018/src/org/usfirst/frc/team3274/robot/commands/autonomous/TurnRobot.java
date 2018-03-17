@@ -37,7 +37,11 @@ public class TurnRobot extends Command {
 	protected void initialize() {
 		DriverStation.reportWarning("initTurn", false);
 		Robot.kDriveTrain.resetYaw();
-		System.out.println("Turning...");
+		if (turnAngle > 0) {
+			System.out.println("Turning right...");
+		} else {
+			System.out.println("Turning left...");
+		}
 	}
 
 	/**
@@ -48,7 +52,7 @@ public class TurnRobot extends Command {
 
 		double unscaledPower;
 
-	//	System.out.println("exe_turn");
+		// System.out.println("exe_turn");
 		if (Math.abs(Robot.kDriveTrain.getYaw()) >= (Math.abs(turnAngle) - SLOW_ANGLE)) {
 			unscaledPower = SLOW_TURN_POWER;
 		} else {
@@ -57,7 +61,7 @@ public class TurnRobot extends Command {
 
 		double leftPower;
 		double rightPower;
-//just reversed leftPower
+		// just reversed leftPower
 		if (turnAngle > 0) {
 			leftPower = -unscaledPower;
 			rightPower = -unscaledPower;
@@ -72,7 +76,6 @@ public class TurnRobot extends Command {
 	@Override
 	protected void end() {
 		Robot.kDriveTrain.tankDrive(0, 0, false);
-		DriverStation.reportWarning("endTurn", false);
 		System.out.println("No longer turning");
 	}
 

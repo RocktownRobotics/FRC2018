@@ -29,7 +29,7 @@ public class RightScaleToCubeToSwitch extends CommandGroup {
 		addSequential(new DriveForward(7));
 		addParallel(new Suck());
 		addSequential(new DriveBackward(1));
-		addSequential(new SetHeightWithEncoder(20, 3));
+		addSequential(new SetHeightByGuesstimate(20));
 		addSequential(new DriveForward(1));
 		addSequential(new EjectAutonomous());
 		System.out.println("Robot has seized both Scale and Switch, and is joyous. Hopefullynot joyously delusional...");

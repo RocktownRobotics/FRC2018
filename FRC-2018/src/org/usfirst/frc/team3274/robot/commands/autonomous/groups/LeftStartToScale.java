@@ -19,7 +19,7 @@ public class LeftStartToScale extends CommandGroup {
 		System.out.println("Robot moving to Scale");
 		addSequential(new DriveForward(13));
 		addParallel(new ResetClawArm());
-		addParallel(new SetHeightWithEncoder(40, 3));
+		addParallel(new SetHeightByGuesstimate(40));
 		addSequential(new TurnRobot(45));
 		addSequential(new EjectAutonomous());
 		System.out.println("Robot has captured the Scale! Robot is happy. With luck, Robot knows what it is talking about");

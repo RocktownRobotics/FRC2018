@@ -22,7 +22,7 @@ public class RightStartToScale extends CommandGroup {
 		System.out.println("Robot moving to Scale");
 		addParallel(new ResetClawArm());
 		addSequential(new DriveForward(13));
-		addParallel(new SetHeightWithEncoder(40, 3));
+		addParallel(new SetHeightByGuesstimate(40));
 		addSequential(new TurnRobot(-45));
 		addSequential(new EjectAutonomous());
 		System.out.println("Robot believes it has captured the scale. Robot is happy. Hopefully, Robot is not delusional");

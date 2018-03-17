@@ -22,7 +22,7 @@ public class LeftScaleToCube extends CommandGroup {
 	public LeftScaleToCube() {
 		
 		addSequential(new TurnRobot(45));
-		addParallel(new SetHeightWithEncoder(3, 2));
+		addParallel(new ResetHeight());
 		addParallel(new ResetClawArm());
 		addSequential(new DriveForward(1));
 		addSequential(new TurnRobot(90));
