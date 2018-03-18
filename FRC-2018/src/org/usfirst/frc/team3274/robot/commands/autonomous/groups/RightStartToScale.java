@@ -21,7 +21,7 @@ public class RightStartToScale extends CommandGroup {
 		System.out.println("Robot moving to Scale");
 		addSequential(new DriveForward(RobotMap.Autonomous.FORWARD_DISTANCE_TO_SCALE_FROM_STARTPOINT));
 		addParallel(new SetHeightByGuesstimate(RobotMap.Autonomous.SCALE_RAISE_HEIGHT));
-		addSequential(new TurnRobot(-45));
+		addSequential(new TurnRobot(-90));
 		addSequential(new Eject(), RobotMap.Autonomous.EJECT_DURATION);
 		addSequential(new Interrupt(Robot.kForkLift));
 		System.out.println("Robot believes it has captured the scale. Robot is happy. Hopefully, Robot is not delusional");

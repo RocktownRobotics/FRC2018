@@ -13,9 +13,9 @@ public class ResetHeightByGuesstimate extends Command {
 	/**
 	 * This is a percentage of the speed used to keep lift in place.
 	 */
-	public static final double PERCENT_SPEED_DOWN = .6;
-	
-	public static final double TIME_TO_LOWER = 4; // in seconds
+	public static final double PERCENT_SPEED_DOWN = .1;
+
+	public static final double TIME_TO_LOWER = 5.5; // in seconds
 	
 	private double timeToReach;
 	
@@ -29,6 +29,7 @@ public class ResetHeightByGuesstimate extends Command {
 	@Override
 	protected void initialize() {
 		this.timeToReach = Robot.getTime() + TIME_TO_LOWER;
+		System.out.println("Resetting Height by guess...");
 	}
 	
 	@Override
@@ -47,5 +48,6 @@ public class ResetHeightByGuesstimate extends Command {
 	@Override
 	protected void end() {
 		Robot.kForkLift.setLiftPower(0);
+		System.out.println("Done Resetting Height by guess");
 	}
 }

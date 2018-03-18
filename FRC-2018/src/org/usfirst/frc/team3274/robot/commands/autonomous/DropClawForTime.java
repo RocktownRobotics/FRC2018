@@ -13,26 +13,35 @@ import org.usfirst.frc.team3274.robot.Robot;
 /**
  * An example command.  You can replace me with your own command.
  */
-public class ExampleCommand extends Command {
-	public ExampleCommand() {
-		// Use requires() here to declare subsystem dependencies
-		requires(Robot.kExampleSubsystem);
+public class DropClawForTime extends Command {
+	
+	public static final double POWER = .2;
+	
+	private double dropTime;
+	private double timeToReach;
+	
+	public DropClawForTime(double dropTime) {
+		requires(Robot.kClawArm);
+		
+		this.dropTime = dropTime;
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
+		this.timeToReach = dropTime + Robot.getTime();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
+		Robot.kClawArm.setPower(-POWER);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return Robot.getTime() >= this.timeToReach;
 	}
 
 	// Called once after isFinished returns true

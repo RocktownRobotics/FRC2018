@@ -140,7 +140,7 @@ public class RobotMap {
 		/// Put measurements here ///
 		/////////////////////////////
 
-		public static final double SCALE_RAISE_HEIGHT = 35; // inches
+		public static final double SCALE_RAISE_HEIGHT = 72; // inches
 		public static final double SWITCH_RAISE_HEIGHT = 5; // inches
 
 		public static final double FORWARD_DISTANCE_TO_STARTPOINT = 10; // feet
@@ -174,6 +174,8 @@ public class RobotMap {
 		public static final double EJECT_DURATION = .75; // seconds
 
 		public static final double POS_TO_SWITCH_TIMEOUT = 2; // seconds
+		
+		public static final double CLAW_ARM_DROP_TIME = .61;
 
 		//////////////////////////////
 		/////////// MISC /////////////

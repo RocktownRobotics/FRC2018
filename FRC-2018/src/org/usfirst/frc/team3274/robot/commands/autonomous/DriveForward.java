@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveForward extends Command {
 
-	public static final double FAST_SPEED = 0.6;
+	public static final double FAST_SPEED = 0.45;
 	public static final double NORMAL_SPEED = 0.2;
 	public static final double SLOW_SPEED = 0.1;
 

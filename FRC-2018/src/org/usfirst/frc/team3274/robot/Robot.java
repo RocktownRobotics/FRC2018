@@ -89,36 +89,13 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		m_oi = new OI(OI.ControllerSetup.DUAL_XBOX_CONTROLLER);
 
-		// add Initial Delay options
-		startDelayChooser.addDefault("No Delay", 0.0);
-		startDelayChooser.addObject("Delay (2 sec)", 2.0);
-		SmartDashboard.putData("Delaying", startDelayChooser);
-
-		// add Starting Position options
-		startPositionChooser.addDefault("Middle", StartPosition.MIDDLE);
-		startPositionChooser.addObject("Left", StartPosition.LEFT);
-		startPositionChooser.addObject("Right", StartPosition.RIGHT);
-		SmartDashboard.putData("Starting in", startPositionChooser);
-
-		// add Scoring Method options
-		scoringMethodChooser.addDefault("Switch", ScoringMethod.SWITCH);
-		scoringMethodChooser.addObject("Scale", ScoringMethod.SCALE);
-		scoringMethodChooser.addObject("None", ScoringMethod.NONE); // Doesn't exist in PrimaryAutonomous
-		scoringMethodChooser.addObject("Exchange(Must be in Middle)", ScoringMethod.EXCHANGE);
-		SmartDashboard.putData("Attempting to Score", scoringMethodChooser);
-
-		// add two-cube auto option
-		twoCubeAutoChooser.addDefault("Disable Two Cube Auto", false);
-		twoCubeAutoChooser.addObject("Enable Two Cube Auto", true);
-		SmartDashboard.putData("Attempting to Do Two Cubes", twoCubeAutoChooser);
-
 		Robot.itself = this;
 
 		this.gameData = "";
 
 		// *****VISION PROCESSING*****
-		// CameraProcessor camProcessor = new CameraProcessor();
-		// camProcessor.init();
+		CameraProcessor camProcessor = new CameraProcessor();
+		camProcessor.init();
 
 	}
 
@@ -158,7 +135,7 @@ public class Robot extends TimedRobot {
 		// this.m_autonomousCommand = new SwitchFromLeft();
 		// this.m_autonomousCommand = new CrossingTheLine();
 		this.m_autonomousCommand = new ScaleFromRight();
-		// this.m_autonomousCommand = new ScaleFromLeft();
+		//this.m_autonomousCommand = new ScaleFromLeft();
 
 		Robot.kForkLift.resetLiftEncoders();
 
