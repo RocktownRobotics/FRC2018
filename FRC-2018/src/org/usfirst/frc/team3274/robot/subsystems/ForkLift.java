@@ -35,7 +35,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class ForkLift extends StoppableSubsystem {
 
 	private DigitalInput _lowerLimitSwitch = new DigitalInput(RobotMap.LOWER_LIMIT_SWITCH);
-	//private DigitalInput _upperLimitSwitch = new DigitalInput(RobotMap.UPPER_LIMIT_SWITCH);
+	private DigitalInput _upperLimitSwitch = new DigitalInput(RobotMap.UPPER_LIMIT_SWITCH);
 
 	public static final double ENCODER_PULSES_PER_REVOLUTION = 1343;
 	public static final double WHEEL_DIAMETER = 4.0; // in inches
@@ -46,9 +46,9 @@ public class ForkLift extends StoppableSubsystem {
 	// sets the left and right forklift motors to be together...
 	private SpeedController _liftMotors = new SpeedControllerGroup(this.liftMotor1, this.liftMotor2);
 
-	 private Encoder _liftEncoder = new Encoder(RobotMap.LIFT_ENCODER[0],
-	 RobotMap.LIFT_ENCODER[1],
-	 true, EncodingType.k4X);
+	// private Encoder _liftEncoder = new Encoder(RobotMap.LIFT_ENCODER[0],
+	// RobotMap.LIFT_ENCODER[1],
+	// true, EncodingType.k4X);
 
 	public ForkLift() {
 
@@ -59,21 +59,23 @@ public class ForkLift extends StoppableSubsystem {
 		// _liftEncoder.reset();
 	}
 
+	@Deprecated
 	public double getLiftHeight() {
-		return _liftEncoder.getDistance();
-		
+		//return _liftEncoder.getDistance();
+		return 42;
 	}
 
+	@Deprecated
 	public void resetLiftEncoders() {
-		 _liftEncoder.reset();
+		//_liftEncoder.reset();
 	}
 
 	public boolean isLiftNotAtMaxHeight() {
-//		if (this._upperLimitSwitch.get()) {
-			return true;
-//		} else {
-//			return false;
-//		}
+		// if (this._upperLimitSwitch.get()) {
+		return true;
+		// } else {
+		// return false;
+		// }
 	}
 
 	public boolean isLiftNotAtMinHeight() {
@@ -143,27 +145,29 @@ public class ForkLift extends StoppableSubsystem {
 
 		double realPower = -power;
 
-		 _liftMotors.set(realPower);
-//		
-//		if (power > 0) {
-//			if (this.isLiftNotAtMaxHeight()) {
-//				_liftMotors.set(realPower);
-//			} else {
-//				System.out.println("Robot is unhappy, because someone told it to blow itself up. "
-//						+ "Robot does not like blowing up. "
-//						+ "Therefore, Robot refuses to raise the lift high enough to blow itself up. "
-//						+ "You should be happy that Robot is smart enough to do that");
-//				_liftMotors.set(0);
-//			}
-//		} else {
-//			if (this.isLiftNotAtMinHeight()) {
-//			_liftMotors.set(realPower);
-//			 } else {
-//			 System.out.println("'somebody' just ordered Robot to implode. Robot is"
-//			 + " unhappy, and refuses to lower the lift below the frame....");
-//			 _liftMotors.set(0);
-//			 }
-//		}
+		_liftMotors.set(realPower);
+		//
+		// if (power > 0) {
+		// if (this.isLiftNotAtMaxHeight()) {
+		// _liftMotors.set(realPower);
+		// } else {
+		// System.out.println("Robot is unhappy, because someone told it to blow itself
+		// up. "
+		// + "Robot does not like blowing up. "
+		// + "Therefore, Robot refuses to raise the lift high enough to blow itself up.
+		// "
+		// + "You should be happy that Robot is smart enough to do that");
+		// _liftMotors.set(0);
+		// }
+		// } else {
+		// if (this.isLiftNotAtMinHeight()) {
+		// _liftMotors.set(realPower);
+		// } else {
+		// System.out.println("'somebody' just ordered Robot to implode. Robot is"
+		// + " unhappy, and refuses to lower the lift below the frame....");
+		// _liftMotors.set(0);
+		// }
+		// }
 	}
 
 	public void initDefaultCommand() {

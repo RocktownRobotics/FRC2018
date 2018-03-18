@@ -4,29 +4,49 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team3274.robot.Robot;
 
-
-
 /**
- * An example command.  You can replace me with your own command. I did....
+ * An example command. You can replace me with your own command. I did....
  */
 
 public class Eject extends Command {
-	 double launchPower;
-	 double ejectStartTime;
-	 double thrustTime;
+
+	public static enum Speed {
+		LOW, MEDIUM, HIGH
+	};
+
+	public static final double HIGH_SPEED = .8;
+	public static final double MEDIUM_SPEED = .6;
+	public static final double SLOW_SPEED = .4;
+
+	double launchPower;
+	double ejectStartTime;
+	double thrustTime;
 
 	public Eject() {
-		// Use requires() here to declare subsystem dependencies
-		requires(Robot.kClawIntake);
-		System.out.println("Ejecting Cube");
+		this(Speed.HIGH);
 	}
 
+	public Eject(Speed speed) {
+		switch (speed) {
+		case HIGH:
+			this.launchPower = HIGH_SPEED;
+			break;
+		case MEDIUM:
+			this.launchPower = MEDIUM_SPEED;
+			break;
+		case LOW:
+			this.launchPower = SLOW_SPEED;
+			break;
+		default:
+			this.launchPower = HIGH_SPEED;
+		}
 
-	
+		requires(Robot.kClawIntake);
+	}
+
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		this.launchPower = 0.8;
 		this.thrustTime = 0.5;
 		this.ejectStartTime = Robot.getTime();
 	}
@@ -41,14 +61,15 @@ public class Eject extends Command {
 	@Override
 	protected boolean isFinished() {
 
-//	if(ejectStartTime + thrustTime <= Timer.getMatchTime()){
-//		return false;
-//	}
-//		else{
-//			System.out.println("Robot has ejected it's cube. Robot has nothing. Robot is lonely, and wants another cube to throw at something.");
-		//return true;
-	
-	//}
+		// if(ejectStartTime + thrustTime <= Timer.getMatchTime()){
+		// return false;
+		// }
+		// else{
+		// System.out.println("Robot has ejected it's cube. Robot has nothing. Robot is
+		// lonely, and wants another cube to throw at something.");
+		// return true;
+
+		// }
 		return false;
 	}
 

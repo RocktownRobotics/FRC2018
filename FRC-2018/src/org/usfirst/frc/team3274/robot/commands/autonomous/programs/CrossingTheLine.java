@@ -1,13 +1,9 @@
 package org.usfirst.frc.team3274.robot.commands.autonomous.programs;
 
-import org.usfirst.frc.team3274.robot.Robot;
-import org.usfirst.frc.team3274.robot.commands.autonomous.DriveBackward;
+import org.usfirst.frc.team3274.robot.RobotMap;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForward;
 
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * A command. That drives. Forward. Hence the name DriveForward.
@@ -19,6 +15,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class CrossingTheLine extends CommandGroup {
 
 	public CrossingTheLine() {
-		addSequential(new DriveForward(11));
+		addSequential(new DriveForward(RobotMap.Autonomous.CROSS_THE_LINE));
 	}
 }

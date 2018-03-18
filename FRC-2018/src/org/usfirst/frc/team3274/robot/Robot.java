@@ -26,6 +26,7 @@ import org.usfirst.frc.team3274.robot.commands.autonomous.programs.DrivingAbout;
 import org.usfirst.frc.team3274.robot.commands.autonomous.programs.PrimaryAutonomous;
 import org.usfirst.frc.team3274.robot.commands.autonomous.programs.PrimaryAutonomous.ScoringMethod;
 import org.usfirst.frc.team3274.robot.commands.autonomous.programs.PrimaryAutonomous.StartPosition;
+import org.usfirst.frc.team3274.robot.commands.autonomous.programs.ScaleFromLeft;
 import org.usfirst.frc.team3274.robot.commands.autonomous.programs.ScaleFromRight;
 import org.usfirst.frc.team3274.robot.commands.autonomous.programs.SwitchFromLeft;
 import org.usfirst.frc.team3274.robot.commands.autonomous.programs.SwitchFromRight;
@@ -151,50 +152,17 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 
-		System.out.println("before getting gamedata from driver station");
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		System.out.println("after getting gamedata from driver station");
-		//
-		// System.out.println("Robot got placed in the" +
-		// startPositionChooser.getSelected() + "position");
-		// System.out
-		// .println("Robot is trying to do something. Specifically, use the " +
-		// scoringMethodChooser.getSelected());
-		// System.out.println("Robot just feels like sitting around for " +
-		// startDelayChooser.getSelected() + " seconds...");
-		// System.out.println("Robot " + (twoCubeAutoChooser.getSelected() ? "feels
-		// like" : "doesn't feel like")
-		// + " trying to go for a two-cube autonomous");
 
-		// this.m_autonomousCommand = new
-		// PrimaryAutonomous(startDelayChooser.getSelected(),
-		// scoringMethodChooser.getSelected(), startPositionChooser.getSelected(),
-		// twoCubeAutoChooser.getSelected());
-
-		// this.m_autonomousCommand = new PrimaryAutonomous(0, ScoringMethod.SWITCH,
-		// StartPosition.RIGHT, false);
-
-		// this.m_autonomousCommand = new DrivingAbout();
-		// this.m_autonomousCommand = new ScaleFromRight();
-
-		////////////////////////////////////////// AUTONOMOUS SELECTION
-		////////////////////////////////////////// /////////////////////////////////////////////////////////
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// this.m_autonomousCommand = new SwitchFromRight();
 		// this.m_autonomousCommand = new SwitchFromLeft();
-		this.m_autonomousCommand = new CrossingTheLine();
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// this.m_autonomousCommand = new CrossingTheLine();
+		this.m_autonomousCommand = new ScaleFromRight();
+		// this.m_autonomousCommand = new ScaleFromLeft();
 
-		//
-		// System.out.println("before auto start");
 		Robot.kForkLift.resetLiftEncoders();
 
 		this.m_autonomousCommand.start();
-		//
-		// System.out.println("after auto start");
 	}
 
 	/**

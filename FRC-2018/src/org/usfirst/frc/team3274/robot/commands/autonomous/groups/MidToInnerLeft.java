@@ -18,16 +18,14 @@ public class MidToInnerLeft extends CommandGroup {
 	 */
 	public MidToInnerLeft() {
 
-		addParallel(new ArmLock());
 		// addSequential(new DriveBackward(2));
 		// addSequential(new TurnRobot(180));
 		System.out.println("Robot moving to Left side Startpoint");
-		addSequential(new DriveForward(5));
+		addSequential(new DriveForward(4));
 		addSequential(new TurnRobot(-90));
 		addSequential(new DriveForward(6));
 		addSequential(new TurnRobot(90));
-		addSequential(new DriveForward(5));
-		addSequential(new Interrupt(Robot.kClawArm));
+		addSequential(new DriveForward(4));
 		System.out.println("Robot arrived at Left side Startpoint");
 	}
 }

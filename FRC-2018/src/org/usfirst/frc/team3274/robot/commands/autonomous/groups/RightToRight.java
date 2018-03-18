@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3274.robot.commands.autonomous.groups;
 
 import org.usfirst.frc.team3274.robot.Robot;
+import org.usfirst.frc.team3274.robot.RobotMap;
 import org.usfirst.frc.team3274.robot.commands.ArmLock;
 import org.usfirst.frc.team3274.robot.commands.Interrupt;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveBackward;
@@ -19,11 +20,9 @@ public class RightToRight extends CommandGroup {
 	public RightToRight() {
 
 		System.out.println("Robot moving to Right side Startpoint");
-		addParallel(new ArmLock());
 		// addSequential(new DriveBackward(2));
 		// addSequential(new TurnRobot(180));
-		addSequential(new DriveForward(10));
-		addSequential(new Interrupt(Robot.kClawArm));
+		addSequential(new DriveForward(RobotMap.Autonomous.FORWARD_DISTANCE_TO_STARTPOINT, false));
 		System.out.println("Robot arrived at Right side Startpoint");
 
 	}

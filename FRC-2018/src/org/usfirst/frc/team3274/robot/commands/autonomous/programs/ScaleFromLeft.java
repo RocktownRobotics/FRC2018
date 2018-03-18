@@ -1,6 +1,8 @@
 package org.usfirst.frc.team3274.robot.commands.autonomous.programs;
 
 import org.usfirst.frc.team3274.robot.Robot;
+import org.usfirst.frc.team3274.robot.commands.ArmLock;
+import org.usfirst.frc.team3274.robot.commands.Interrupt;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftScaleToCube;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftStartToScale;
@@ -54,8 +56,10 @@ public class ScaleFromLeft extends CommandGroup {
 	}
 
 	public ScaleFromLeft() {
+		addParallel(new ArmLock());
+
 		// make sure robot is in low gear
-		addSequential(new ShiftDownForTime());
+		// addSequential(new ShiftDownForTime());
 		if (this.scaleIsRight()) {
 			// left to right scale
 			addSequential(new LeftToRight());
@@ -67,5 +71,7 @@ public class ScaleFromLeft extends CommandGroup {
 			addSequential(new LeftStartToScale());
 			addSequential(new LeftScaleToCube());
 		}
+
+		addSequential(new Interrupt(Robot.kClawArm));
 	}
 }

@@ -14,9 +14,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class TurnRobot extends Command {
 
-	public static final double TURN_POWER = 0.3;
+	public static final double TURN_POWER = 0.25;
 
-	public static final double SLOW_TURN_POWER = 0.12;
+	public static final double SLOW_TURN_POWER = 0.16;
 	public static final double SLOW_ANGLE = 35;
 
 	private double turnAngle;

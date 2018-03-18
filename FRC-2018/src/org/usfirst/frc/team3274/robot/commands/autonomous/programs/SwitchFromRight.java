@@ -1,6 +1,8 @@
 package org.usfirst.frc.team3274.robot.commands.autonomous.programs;
 
 import org.usfirst.frc.team3274.robot.Robot;
+import org.usfirst.frc.team3274.robot.commands.ArmLock;
+import org.usfirst.frc.team3274.robot.commands.Interrupt;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftStartToSwitch;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightStartToSwitch;
@@ -52,8 +54,9 @@ public class SwitchFromRight extends CommandGroup {
 		}
 	}
 	public SwitchFromRight() {
+		addParallel(new ArmLock());
 		// make sure robot is in low gear
-		addSequential(new ShiftDownForTime());
+//		addSequential(new ShiftDownForTime());
 		if (this.switchIsRight()) {
 			// left to right switch
 			addSequential(new RightToRight());
@@ -63,5 +66,6 @@ public class SwitchFromRight extends CommandGroup {
 			addSequential(new RightToLeft());
 			addSequential(new LeftStartToSwitch());
 		}
+		addSequential(new Interrupt(Robot.kClawArm));
 	}
 }

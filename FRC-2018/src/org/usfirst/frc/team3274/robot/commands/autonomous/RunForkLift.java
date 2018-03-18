@@ -18,7 +18,7 @@ import org.usfirst.frc.team3274.robot.RobotMap;
 public class RunForkLift extends Command {
 
 	
-	private double baseLiftPower;
+	public static final double BASE_LIFT_POWER = .55;
 
 	public RunForkLift() {
 		// Use requires() here to declare subsystem dependencies
@@ -30,9 +30,6 @@ public class RunForkLift extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-
-		
-		this.baseLiftPower = -0.55;
 
 	}
 
@@ -46,12 +43,12 @@ public class RunForkLift extends Command {
 		
 		if (joystickVal > 0) {
 			// add more power going down
-			addedPower = joystickVal - baseLiftPower - .35;
+			addedPower = joystickVal - (-BASE_LIFT_POWER) - .35;
 		} else {
 			addedPower = joystickVal;
 		}
 		
-		Robot.kForkLift.setLiftPowerWithJoystick(this.baseLiftPower + addedPower);
+		Robot.kForkLift.setLiftPowerWithJoystick((-BASE_LIFT_POWER) + addedPower);
 
 	}
 

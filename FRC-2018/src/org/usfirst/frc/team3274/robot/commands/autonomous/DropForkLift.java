@@ -55,6 +55,7 @@ else {
 	@Override
 	protected void end() {
 		Robot.kForkLift.setLiftPower(0);
+		System.out.println("end of dropforklift");
 	}
 
 	// Called when another command which requires one or more of the same

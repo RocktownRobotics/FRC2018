@@ -1,14 +1,8 @@
 package org.usfirst.frc.team3274.robot.commands.autonomous.groups;
 
-import org.usfirst.frc.team3274.robot.commands.DeployClawArm;
-import org.usfirst.frc.team3274.robot.commands.SetHeightWithEncoder;
+import org.usfirst.frc.team3274.robot.RobotMap;
 import org.usfirst.frc.team3274.robot.commands.Suck;
-import org.usfirst.frc.team3274.robot.commands.autonomous.DriveBackward;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForward;
-import org.usfirst.frc.team3274.robot.commands.autonomous.EjectAutonomous;
-import org.usfirst.frc.team3274.robot.commands.autonomous.ResetHeight;
-import org.usfirst.frc.team3274.robot.commands.autonomous.SetHeightByGuesstimate;
-import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
 import org.usfirst.frc.team3274.robot.commands.autonomous.TurnRobot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -20,13 +14,11 @@ public class RightScaleToCube extends CommandGroup {
 	 * 90 degrees. NOPE
 	 */
 	public RightScaleToCube() {
-		
+		//W/o any kind of switch or lift encoder, this DOES NOT WORK
 		addSequential(new TurnRobot(-45));
-		addParallel(new ResetHeight());
-		addParallel(new ResetClawArm());
 		addSequential(new DriveForward(1));
 		addSequential(new TurnRobot(-90));
 		addSequential(new DriveForward(7));
-		addParallel(new Suck());
+		addSequential(new Suck(), RobotMap.Autonomous.SUCK_DURATION);
 	}
 }

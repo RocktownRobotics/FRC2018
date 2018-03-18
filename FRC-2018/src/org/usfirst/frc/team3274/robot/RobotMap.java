@@ -39,7 +39,7 @@ public class RobotMap {
 	public static final int XBOX_LEFT_X_AXIS = 0;
 	public static final int XBOX_RIGHT_Y_AXIS = 5;
 	public static final int XBOX_RIGHT_X_AXIS = 4;
-	
+
 	public static final int XBOX_RIGHT_TRIGGER_AXIS = 3;
 	public static final int XBOX_LEFT_TRIGGER_AXIS = 2;
 
@@ -86,11 +86,11 @@ public class RobotMap {
 
 	// Limit Switches
 	public static final int LOWER_LIMIT_SWITCH = 4;
-	//public static final int UPPER_LIMIT_SWITCH = 5;
-	
-	public static final int LEFT_CLAW_EYE_LIMIT_SWITCH = 7; //LEFT EYE
-	public static final int RIGHT_CLAW_EYE_LIMIT_SWITCH = 6; //RIGHT EYE
-	
+	public static final int UPPER_LIMIT_SWITCH = 5;
+
+	public static final int LEFT_CLAW_EYE_LIMIT_SWITCH = 7; // LEFT EYE
+	public static final int RIGHT_CLAW_EYE_LIMIT_SWITCH = 6; // RIGHT EYE
+
 	public static final int UPPER_CLAW_LIMIT_SWITCH = 8;
 
 	// two input ports for each encoder
@@ -98,7 +98,7 @@ public class RobotMap {
 	public static final int[] LEFT_ENCODER = { 1, 0 };
 	public static final int[] DEPLOY_ENCODER = { PROXY_PORT, PROXY_PORT };
 	public static final int[] LIFT_ENCODER = { PROXY_PORT, PROXY_PORT };
-	
+
 	////////////////////////////////////////////////
 	/////////////// PWM's BELOW HERE////////////////
 	////////////////////////////////////////////////
@@ -131,4 +131,53 @@ public class RobotMap {
 	////////////////////////////////////////////////
 
 	public static final SPI.Port NAVX_PORT = SPI.Port.kMXP;
+
+	/**
+	 * For storing constants and other values used in autonomous;
+	 */
+	public static class Autonomous {
+		/////////////////////////////
+		/// Put measurements here ///
+		/////////////////////////////
+
+		public static final double SCALE_RAISE_HEIGHT = 35; // inches
+		public static final double SWITCH_RAISE_HEIGHT = 5; // inches
+
+		public static final double FORWARD_DISTANCE_TO_STARTPOINT = 10; // feet
+		public static final double SIDE_DISTANCE_TO_STARTPOINT = 21; // feet
+
+		public static final double CROSS_THE_LINE = 11; // feet
+
+		/**
+		 * Used when driving from one side to other. Distance in feet.
+		 */
+		public static final double INITIAL_FORWARD_DISTANCE_TO_STARTPOINT = 5;
+
+		/**
+		 * Used when driving from one side to other. Distance in feet.
+		 */
+		public static final double SECOND_FORWARD_DISTANCE_TO_STARTPOINT = FORWARD_DISTANCE_TO_STARTPOINT
+				- INITIAL_FORWARD_DISTANCE_TO_STARTPOINT;
+
+		public static final double MID_DISTANCE_TO_STARTPOINT = 10;
+
+		public static final double FORWARD_DISTANCE_TO_SWITCH_FROM_STARTPOINT = 1; // feet
+		public static final double SIDE_DISTANCE_TO_SWITCH_FROM_STARTPOINT = 1.8; // feet
+
+		public static final double FORWARD_DISTANCE_TO_SCALE_FROM_STARTPOINT = 13; // feet
+
+		//////////////////////////////
+		/// Put timing values here ///
+		//////////////////////////////
+
+		public static final double SUCK_DURATION = .75; // seconds
+		public static final double EJECT_DURATION = .75; // seconds
+
+		public static final double POS_TO_SWITCH_TIMEOUT = 2; // seconds
+
+		//////////////////////////////
+		/////////// MISC /////////////
+		//////////////////////////////
+
+	}
 }

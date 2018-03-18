@@ -14,21 +14,21 @@ public class MoveBackwardsAndLift extends CommandGroup {
 	private double distance;
 	private double height;
 	private double tolerance;
-	
+
 	public MoveBackwardsAndLift(double distance, double height, double tolerance) {
-	
+
 		this.distance = distance;
 		this.height = height;
 		this.tolerance = tolerance;
-		
+
 		// Drive forward and set the height...
-				addSequential(new DriveBackward(distance));
-			//	addParallel(new SetHeightWithEncoder(height, 2));
+		addSequential(new DriveBackward(distance));
+		// addParallel(new SetHeightWithEncoder(height, 2));
 	}
-	
+
 	/**
 	 * Here is how you would make the robot drive forward 3 feet and then turn left
 	 * 90 degrees.
 	 */
-	
+
 }

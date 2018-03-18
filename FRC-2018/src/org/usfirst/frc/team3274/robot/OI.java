@@ -7,10 +7,8 @@
 
 package org.usfirst.frc.team3274.robot;
 
-import org.usfirst.frc.team3274.robot.commands.CloseClaw;
-import static org.usfirst.frc.team3274.robot.commands.DriveWithJoystick.DriveType;
-
 import org.usfirst.frc.team3274.robot.commands.ArmLock;
+import org.usfirst.frc.team3274.robot.commands.DriveWithJoystick.DriveType;
 import org.usfirst.frc.team3274.robot.commands.Eject;
 import org.usfirst.frc.team3274.robot.commands.IncreaseHeight;
 import org.usfirst.frc.team3274.robot.commands.Interrupt;
@@ -18,23 +16,16 @@ import org.usfirst.frc.team3274.robot.commands.LowerClaw;
 import org.usfirst.frc.team3274.robot.commands.OpenClaw;
 import org.usfirst.frc.team3274.robot.commands.RaiseClaw;
 import org.usfirst.frc.team3274.robot.commands.ReduceHeight;
-import org.usfirst.frc.team3274.robot.commands.SetHeightWithEncoder;
 import org.usfirst.frc.team3274.robot.commands.ShiftDown;
 import org.usfirst.frc.team3274.robot.commands.ShiftUp;
-import org.usfirst.frc.team3274.robot.commands.Suck;
-import org.usfirst.frc.team3274.robot.commands.TestCommand;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForward;
-import org.usfirst.frc.team3274.robot.commands.autonomous.EjectAutonomous;
 import org.usfirst.frc.team3274.robot.commands.autonomous.RunForkLift;
-import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
 import org.usfirst.frc.team3274.robot.commands.autonomous.TurnRobot;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.GrabAndSuck;
 import org.usfirst.frc.team3274.robot.util.AxisButton;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
-//import edu.wpi.first.wpilibj.Joystick.Axis;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**

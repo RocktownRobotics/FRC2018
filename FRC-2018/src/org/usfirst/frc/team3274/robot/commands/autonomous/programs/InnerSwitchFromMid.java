@@ -1,6 +1,8 @@
 package org.usfirst.frc.team3274.robot.commands.autonomous.programs;
 
 import org.usfirst.frc.team3274.robot.Robot;
+import org.usfirst.frc.team3274.robot.commands.ArmLock;
+import org.usfirst.frc.team3274.robot.commands.Interrupt;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.InnerLeftToSwitch;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.InnerRightToSwitch;
@@ -52,8 +54,11 @@ public class InnerSwitchFromMid extends CommandGroup {
 		}
 	}
 	public InnerSwitchFromMid() {
+		
+		addParallel(new ArmLock());
+		
 		// make sure robot is in low gear
-		addSequential(new ShiftDownForTime());
+//		addSequential(new ShiftDownForTime());
 
 		if (this.switchIsRight()) {
 			// mid to Right Switch
@@ -64,5 +69,7 @@ public class InnerSwitchFromMid extends CommandGroup {
 			addSequential(new MidToInnerLeft());
 			addSequential(new InnerLeftToSwitch());
 		}
+		
+		addSequential(new Interrupt(Robot.kClawArm));
 	}
 }

@@ -15,18 +15,29 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveForward extends Command {
 
-	public static final double FAST_SPEED = 0.5;
+	public static final double FAST_SPEED = 0.6;
 	public static final double NORMAL_SPEED = 0.2;
 	public static final double SLOW_SPEED = 0.1;
 
 	public static final double SLOW_DISTANCE = 1; // offset in ft
-	public static final double MID_DISTANCE = 2; // offset in ft
+	public static final double MID_DISTANCE = 3; // offset in ft
 
 	public static final double SLOWER_STARTING_TIME = 0.25; // in seconds
 
 	private double targetDistance;
 	private double startTime;
+	
+	private boolean ignorePrecisionForSpeed;
 
+	public DriveForward(double targetDistance, boolean ignorePrecisionForSpeed) {
+		this.ignorePrecisionForSpeed = ignorePrecisionForSpeed;
+		
+		requires(Robot.kDriveTrain);
+
+		Robot.kDriveTrain.resetEncoders();
+		this.targetDistance = targetDistance;
+	}
+	
 	/**
 	 * creates a new DriveForward command that drives the targetDistance.
 	 * 
@@ -34,10 +45,7 @@ public class DriveForward extends Command {
 	 *            Distance to be traveled, in feet... hopefully....
 	 */
 	public DriveForward(double targetDistance) {
-		requires(Robot.kDriveTrain);
-
-		Robot.kDriveTrain.resetEncoders();
-		this.targetDistance = targetDistance;
+		this(targetDistance, false);
 	}
 
 	@Override
@@ -45,7 +53,7 @@ public class DriveForward extends Command {
 		Robot.kDriveTrain.resetYaw();
 		Robot.kDriveTrain.resetEncoders();
 //		DriverStation.reportWarning("initDriveForward", false);
-		System.out.println("Robot is now driving forwards");
+		System.out.println("Robot is now driving forwards :)");
 
 		this.startTime = Robot.getTime();
 	}
@@ -59,18 +67,22 @@ public class DriveForward extends Command {
 			System.out.println(
 					"Robot is almost tipping over. Robot is scared. Robot will move slowly and carefully until it is on safer ground...");
 		} else {
-			if (Robot.kDriveTrain.getDistanceDriven() < targetDistance - MID_DISTANCE) {
-
-				if (this.startTime + SLOWER_STARTING_TIME <= Robot.getTime()) {
-					determinedSpeed = FAST_SPEED;
+			if (this.ignorePrecisionForSpeed == false) {
+				if (Robot.kDriveTrain.getDistanceDriven() < targetDistance - MID_DISTANCE) {
+	
+					if (this.startTime + SLOWER_STARTING_TIME <= Robot.getTime()) {
+						determinedSpeed = FAST_SPEED;
+					} else {
+						determinedSpeed = NORMAL_SPEED;
+					}
+	
+				} else if (Robot.kDriveTrain.getDistanceDriven() < targetDistance - SLOW_DISTANCE) {
+					determinedSpeed = SLOW_SPEED;
 				} else {
 					determinedSpeed = NORMAL_SPEED;
 				}
-
-			} else if (Robot.kDriveTrain.getDistanceDriven() < targetDistance - SLOW_DISTANCE) {
-				determinedSpeed = SLOW_SPEED;
 			} else {
-				determinedSpeed = NORMAL_SPEED;
+				determinedSpeed = FAST_SPEED;
 			}
 		}
 

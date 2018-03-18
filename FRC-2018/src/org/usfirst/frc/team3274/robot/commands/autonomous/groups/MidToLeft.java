@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3274.robot.commands.autonomous.groups;
 
 import org.usfirst.frc.team3274.robot.Robot;
+import org.usfirst.frc.team3274.robot.RobotMap;
 import org.usfirst.frc.team3274.robot.commands.ArmLock;
 import org.usfirst.frc.team3274.robot.commands.Interrupt;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveBackward;
@@ -18,16 +19,14 @@ public class MidToLeft extends CommandGroup {
 	 */
 	public MidToLeft() {
 
-		addParallel(new ArmLock());
 		// addSequential(new DriveBackward(2));
 		// addSequential(new TurnRobot(180));
 		System.out.println("Robot moving to Left side Startpoint");
-		addSequential(new DriveForward(5));
+		addSequential(new DriveForward(RobotMap.Autonomous.INITIAL_FORWARD_DISTANCE_TO_STARTPOINT));
 		addSequential(new TurnRobot(-90));
-		addSequential(new DriveForward(10));
+		addSequential(new DriveForward(RobotMap.Autonomous.MID_DISTANCE_TO_STARTPOINT));
 		addSequential(new TurnRobot(90));
-		addSequential(new DriveForward(5));
-		addSequential(new Interrupt(Robot.kClawArm));
+		addSequential(new DriveForward(RobotMap.Autonomous.SECOND_FORWARD_DISTANCE_TO_STARTPOINT));
 		System.out.println("Robot arrived at Left side Startpoint");
 	}
 }

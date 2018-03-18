@@ -1,6 +1,8 @@
 package org.usfirst.frc.team3274.robot.commands.autonomous.programs;
 
 import org.usfirst.frc.team3274.robot.Robot;
+import org.usfirst.frc.team3274.robot.commands.ArmLock;
+import org.usfirst.frc.team3274.robot.commands.Interrupt;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftStartToSwitch;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.MidToLeft;
@@ -16,7 +18,7 @@ public class SwitchFromMid extends CommandGroup {
 	 * Here is how you would make the robot drive forward 3 feet and then turn left
 	 * 90 degrees.
 	 */
-	
+
 	public boolean switchIsRight() {
 		// check if string has 3 characters
 		if (Robot.gameData.length() >= 3) {
@@ -51,9 +53,11 @@ public class SwitchFromMid extends CommandGroup {
 			return false;
 		}
 	}
+
 	public SwitchFromMid() {
+		addParallel(new ArmLock());
 		// make sure robot is in low gear
-		addSequential(new ShiftDownForTime());
+		// addSequential(new ShiftDownForTime());
 
 		if (this.switchIsRight()) {
 			// mid to Right Switch
@@ -64,5 +68,6 @@ public class SwitchFromMid extends CommandGroup {
 			addSequential(new MidToLeft());
 			addSequential(new LeftStartToSwitch());
 		}
+		addSequential(new Interrupt(Robot.kClawArm));
 	}
 }

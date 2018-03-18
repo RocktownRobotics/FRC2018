@@ -1,6 +1,8 @@
 package org.usfirst.frc.team3274.robot.commands.autonomous.programs;
 
 import org.usfirst.frc.team3274.robot.Robot;
+import org.usfirst.frc.team3274.robot.commands.ArmLock;
+import org.usfirst.frc.team3274.robot.commands.Interrupt;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftStartToSwitch;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftSwitchToCubeToScale;
@@ -60,7 +62,8 @@ public class TwoCubeMid extends CommandGroup {
 
 	public TwoCubeMid() {
 		// make sure robot is in low gear
-		addSequential(new ShiftDownForTime());
+//		addSequential(new ShiftDownForTime());
+		addParallel(new ArmLock());
 		if (this.switchIsRight()) {
 			// left to right switch
 			addSequential(new MidToRight());
@@ -83,5 +86,6 @@ public class TwoCubeMid extends CommandGroup {
 				addSequential(new LeftSwitchToCubeToScale());
 			}
 		}
+		addSequential(new Interrupt(Robot.kClawArm));
 	}
 }

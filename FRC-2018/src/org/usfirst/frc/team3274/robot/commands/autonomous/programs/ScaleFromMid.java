@@ -1,6 +1,8 @@
 package org.usfirst.frc.team3274.robot.commands.autonomous.programs;
 
 import org.usfirst.frc.team3274.robot.Robot;
+import org.usfirst.frc.team3274.robot.commands.ArmLock;
+import org.usfirst.frc.team3274.robot.commands.Interrupt;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftScaleToCube;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftStartToScale;
@@ -55,8 +57,11 @@ public class ScaleFromMid extends CommandGroup {
 	}
 
 	public ScaleFromMid() {
+		
+		addParallel(new ArmLock());
+		
 		// make sure robot is in low gear
-		addSequential(new ShiftDownForTime());
+//		addSequential(new ShiftDownForTime());
 
 		if (this.scaleIsRight()) {
 			// mid to right scale
@@ -69,5 +74,6 @@ public class ScaleFromMid extends CommandGroup {
 			addSequential(new LeftStartToScale());
 			addSequential(new LeftScaleToCube());
 		}
+		addSequential(new Interrupt(Robot.kClawArm));
 	}
 }
