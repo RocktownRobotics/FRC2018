@@ -21,6 +21,9 @@ import org.usfirst.frc.team3274.robot.commands.SetHeightWithEncoder;
 import org.usfirst.frc.team3274.robot.commands.autonomous.DriveForward;
 import org.usfirst.frc.team3274.robot.commands.autonomous.ResetHeight;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.TestAuto;
+import org.usfirst.frc.team3274.robot.commands.autonomous.programs.CloseFromLeft;
+import org.usfirst.frc.team3274.robot.commands.autonomous.programs.CloseFromLeft_PrioritizingScale;
+import org.usfirst.frc.team3274.robot.commands.autonomous.programs.CloseFromRight;
 import org.usfirst.frc.team3274.robot.commands.autonomous.programs.CrossingTheLine;
 import org.usfirst.frc.team3274.robot.commands.autonomous.programs.DrivingAbout;
 import org.usfirst.frc.team3274.robot.commands.autonomous.programs.PrimaryAutonomous;
@@ -29,6 +32,7 @@ import org.usfirst.frc.team3274.robot.commands.autonomous.programs.PrimaryAutono
 import org.usfirst.frc.team3274.robot.commands.autonomous.programs.ScaleFromLeft;
 import org.usfirst.frc.team3274.robot.commands.autonomous.programs.ScaleFromRight;
 import org.usfirst.frc.team3274.robot.commands.autonomous.programs.SwitchFromLeft;
+import org.usfirst.frc.team3274.robot.commands.autonomous.programs.SwitchFromMid;
 import org.usfirst.frc.team3274.robot.commands.autonomous.programs.SwitchFromRight;
 import org.usfirst.frc.team3274.robot.subsystems.ClawArm;
 import org.usfirst.frc.team3274.robot.subsystems.ClawIntake;
@@ -133,9 +137,14 @@ public class Robot extends TimedRobot {
 
 		// this.m_autonomousCommand = new SwitchFromRight();
 		// this.m_autonomousCommand = new SwitchFromLeft();
-		// this.m_autonomousCommand = new CrossingTheLine();
-		this.m_autonomousCommand = new ScaleFromRight();
+		 //this.m_autonomousCommand = new CrossingTheLine();
 		//this.m_autonomousCommand = new ScaleFromLeft();
+//		this.m_autonomousCommand = new ScaleFromRight();
+//		this.m_autonomousCommand = new CloseFromLeft();//SWITCH IS PRIORITY, SCALE IS SECONDARY
+		//this.m_autonomousCommand = new CloseFromRight();//SWITCH IS PRIORITY, SCALE IS SECONDARY
+//		this.m_autonomousCommand = new SwitchFromMid();
+//		this.m_autonomousCommand = new CloseFromLeft_PrioritizingScale();
+		this.m_autonomousCommand = new SwitchFromMid();
 
 		Robot.kForkLift.resetLiftEncoders();
 

@@ -13,7 +13,7 @@ import org.usfirst.frc.team3274.robot.subsystems.ClawIntake;
 public class SuckWeakly extends Command {
 
 	public static final double HIGH_SPEED = .5;
-	public static final double NORMAL_SPEED = .15;
+	public static final double NORMAL_SPEED = .25;
 
 	public static final double HIGH_POWER_TIME = 1.5; // in seconds
 

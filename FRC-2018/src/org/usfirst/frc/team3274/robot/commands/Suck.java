@@ -12,7 +12,7 @@ import org.usfirst.frc.team3274.robot.subsystems.ClawIntake;
 
 public class Suck extends Command {
 	double howMuchWeSuck;
-	
+
 
 	public Suck() {
 		// Use requires() here to declare subsystem dependencies
@@ -30,13 +30,19 @@ public class Suck extends Command {
 	@Override
 	protected void execute() {
 		Robot.kClawIntake.setCubeManipulatorMotors(-howMuchWeSuck);
+		
+		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-
-		return Robot.kClawIntake.isClawLoaded();
+		if(Robot.kClawIntake.isClawLoaded()) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	// Called once after isFinished returns true

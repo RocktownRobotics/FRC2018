@@ -21,7 +21,7 @@ import org.usfirst.frc.team3274.robot.util.StoppableSubsystem;
 public class Interrupt extends Command {
 
 	/** In seconds **/
-	public static final double WAIT_TIME = .2;
+	public static final double WAIT_TIME = .01;
 
 	private double timeToReach;
 

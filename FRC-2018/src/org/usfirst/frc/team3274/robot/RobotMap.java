@@ -143,7 +143,7 @@ public class RobotMap {
 		public static final double SCALE_RAISE_HEIGHT = 72; // inches
 		public static final double SWITCH_RAISE_HEIGHT = 5; // inches
 
-		public static final double FORWARD_DISTANCE_TO_STARTPOINT = 10; // feet
+		public static final double FORWARD_DISTANCE_TO_STARTPOINT = 10; // feet3jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj+3j+33-
 		public static final double SIDE_DISTANCE_TO_STARTPOINT = 21; // feet
 
 		public static final double CROSS_THE_LINE = 11; // feet
@@ -151,7 +151,7 @@ public class RobotMap {
 		/**
 		 * Used when driving from one side to other. Distance in feet.
 		 */
-		public static final double INITIAL_FORWARD_DISTANCE_TO_STARTPOINT = 5;
+		public static final double INITIAL_FORWARD_DISTANCE_TO_STARTPOINT = 2.5;
 
 		/**
 		 * Used when driving from one side to other. Distance in feet.
@@ -159,7 +159,7 @@ public class RobotMap {
 		public static final double SECOND_FORWARD_DISTANCE_TO_STARTPOINT = FORWARD_DISTANCE_TO_STARTPOINT
 				- INITIAL_FORWARD_DISTANCE_TO_STARTPOINT;
 
-		public static final double MID_DISTANCE_TO_STARTPOINT = 10;
+		public static final double MID_DISTANCE_TO_STARTPOINT = 3;//IMPORTANT***************************WAS 8*******
 
 		public static final double FORWARD_DISTANCE_TO_SWITCH_FROM_STARTPOINT = 1; // feet
 		public static final double SIDE_DISTANCE_TO_SWITCH_FROM_STARTPOINT = 1.8; // feet

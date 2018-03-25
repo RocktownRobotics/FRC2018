@@ -16,7 +16,7 @@ public class TurnRobot extends Command {
 
 	public static final double TURN_POWER = 0.25;
 
-	public static final double SLOW_TURN_POWER = 0.199;
+	public static final double SLOW_TURN_POWER = 0.2;
 	public static final double SLOW_ANGLE = 35;
 
 	private double turnAngle;
