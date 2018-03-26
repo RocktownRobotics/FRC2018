@@ -11,21 +11,19 @@ import org.usfirst.frc.team3274.robot.commands.autonomous.TurnRobot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class RightStartToSwitch extends CommandGroup {
+public class MidToLeftSwitch extends CommandGroup {
 
 	/**
 	 * Here is how you would make the robot drive forward 3 feet and then turn left
 	 * 90 degrees.
 	 */
-	public RightStartToSwitch() {
+	public MidToLeftSwitch() {
 		
 		System.out.println("Robot moving to Switch");
-	//	addSequential(new DriveForward(1));
+		addSequential(new DriveForward(2));
+		addSequential(new TurnRobot(-40));
 		addParallel(new SetHeightByGuesstimate(RobotMap.Autonomous.SWITCH_RAISE_HEIGHT));
-		addSequential(new TurnRobot(-90), 3.5);
-		addSequential(new Interrupt(Robot.kDriveTrain));
-		addSequential(new DriveForward(RobotMap.Autonomous.SIDE_DISTANCE_TO_SWITCH_FROM_STARTPOINT, true),
-				RobotMap.Autonomous.POS_TO_SWITCH_TIMEOUT);
+		addSequential(new DriveForward(13, true), 2);
 		addSequential(new Eject(Eject.Speed.LOW), RobotMap.Autonomous.EJECT_DURATION);
 		addSequential(new Interrupt(Robot.kForkLift));
 		System.out.println("Robot has siezed the Switch, and is happy.");

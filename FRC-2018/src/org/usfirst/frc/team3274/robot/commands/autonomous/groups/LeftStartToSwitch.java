@@ -22,6 +22,7 @@ public class LeftStartToSwitch extends CommandGroup {
 		addSequential(new DriveForward(1));
 		addParallel(new SetHeightByGuesstimate(RobotMap.Autonomous.SWITCH_RAISE_HEIGHT));
 		addSequential(new TurnRobot(90), 3.5);
+		addSequential(new Interrupt(Robot.kDriveTrain));
 		addSequential(new DriveForward(RobotMap.Autonomous.SIDE_DISTANCE_TO_SWITCH_FROM_STARTPOINT, true),
 				RobotMap.Autonomous.POS_TO_SWITCH_TIMEOUT);
 		addSequential(new Eject(Eject.Speed.LOW), RobotMap.Autonomous.EJECT_DURATION);

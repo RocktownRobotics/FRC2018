@@ -1,18 +1,11 @@
 package org.usfirst.frc.team3274.robot.commands.autonomous.programs;
 
 import org.usfirst.frc.team3274.robot.Robot;
-import org.usfirst.frc.team3274.robot.RobotMap;
 import org.usfirst.frc.team3274.robot.commands.ArmLock;
 import org.usfirst.frc.team3274.robot.commands.Interrupt;
-import org.usfirst.frc.team3274.robot.commands.autonomous.DropClawForTime;
-import org.usfirst.frc.team3274.robot.commands.autonomous.ResetHeightByGuesstimate;
-import org.usfirst.frc.team3274.robot.commands.autonomous.ShiftDownForTime;
-import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftScaleToCube;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftStartToRightScale;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftStartToScale;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftToLeft;
-import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftToRight;
-import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightScaleToCube;
-import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightStartToScale;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -59,31 +52,19 @@ public class ScaleFromLeft extends CommandGroup {
 	}
 
 	public ScaleFromLeft() {
+		
 		addParallel(new ArmLock());
-
+		addSequential(new LeftToLeft());
+		
 		// make sure robot is in low gear
 		// addSequential(new ShiftDownForTime());
 		if (this.scaleIsRight()) {
 			// left to right scale
-			addSequential(new LeftToRight());
-			
-			addSequential(new Interrupt(Robot.kClawArm));
-			addSequential(new DropClawForTime(RobotMap.Autonomous.CLAW_ARM_DROP_TIME));
-			addParallel(new ArmLock());
-			
-			addSequential(new RightStartToScale());
-			addSequential(new ResetHeightByGuesstimate());
+//			addSequential(new LeftStartToRightScale());
 			//addSequential(new RightScaleToCube());
 		} else {
 			// left to left scale
-			addSequential(new LeftToLeft());
-			
-			addSequential(new Interrupt(Robot.kClawArm));
-			addSequential(new DropClawForTime(RobotMap.Autonomous.CLAW_ARM_DROP_TIME));
-			addParallel(new ArmLock());
-			
 			addSequential(new LeftStartToScale());
-			addSequential(new ResetHeightByGuesstimate());
 			//addSequential(new LeftScaleToCube());
 		}
 

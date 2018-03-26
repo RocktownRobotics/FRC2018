@@ -3,13 +3,14 @@ package org.usfirst.frc.team3274.robot.commands.autonomous.programs;
 import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.commands.ArmLock;
 import org.usfirst.frc.team3274.robot.commands.Interrupt;
-import org.usfirst.frc.team3274.robot.commands.autonomous.groups.MidToLeftSwitch;
-import org.usfirst.frc.team3274.robot.commands.autonomous.groups.MidToRightSwitch;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightStartToScale;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightStartToSwitch;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightToRight;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class SwitchFromMid extends CommandGroup {
+public class CloseFromRight_PrioritizingScale extends CommandGroup {
 
 	/**
 	 * Here is how you would make the robot drive forward 3 feet and then turn left
@@ -51,18 +52,20 @@ public class SwitchFromMid extends CommandGroup {
 		}
 	}
 
-	public SwitchFromMid() {
-		addParallel(new ArmLock());
-		// make sure robot is in low gear
-		// addSequential(new ShiftDownForTime());
+	
 
-		if (this.switchIsRight()) {
-			// mid to Right Switch
-			addSequential(new MidToRightSwitch());
-		} else {
-			// Mid to Left Switch
-			addSequential(new MidToLeftSwitch());
+	public CloseFromRight_PrioritizingScale() {
+		// make sure robot is in low gear
+		addParallel(new ArmLock());
+		addSequential(new RightToRight());
+//		addSequential(new ShiftDownForTime());
+		if (this.scaleIsRight()) {
+			// left to right switch
+			addSequential(new RightStartToScale());
+		} else if (this.switchIsRight()) {
+			addSequential(new RightStartToSwitch());
 		}
+
 		addSequential(new Interrupt(Robot.kClawArm));
 	}
 }
