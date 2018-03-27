@@ -145,6 +145,11 @@ public class RobotMap {
 
 		public static final double FORWARD_DISTANCE_TO_STARTPOINT = 10; // feet3jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj+3j+33-
 		public static final double SIDE_DISTANCE_TO_STARTPOINT = 21; // feet
+		
+		public static final double SIDE_DISTANCE_TO_SCALE = 19.5; // feet
+		
+		public static final double CROSS_FORWARD_DISTANCE_TO_SCALE = 4; // feet
+		public static final double SCALE_SAFE_BACKUP_DISTANCE = 0.5; // feet
 
 		public static final double CROSS_THE_LINE = 11; // feet
 

@@ -60,12 +60,10 @@ public class ScaleFromLeft extends CommandGroup {
 		// addSequential(new ShiftDownForTime());
 		if (this.scaleIsRight()) {
 			// left to right scale
-//			addSequential(new LeftStartToRightScale());
-			//addSequential(new RightScaleToCube());
+			//addSequential(new LeftStartToRightScale());
 		} else {
 			// left to left scale
 			addSequential(new LeftStartToScale());
-			//addSequential(new LeftScaleToCube());
 		}
 
 		addSequential(new Interrupt(Robot.kClawArm));

@@ -16,7 +16,7 @@ public class CloseFromRight extends CommandGroup {
 	 * Here is how you would make the robot drive forward 3 feet and then turn left
 	 * 90 degrees.
 	 */
-	
+
 	public boolean switchIsRight() {
 		// check if string has 3 characters
 		if (Robot.gameData.length() >= 3) {
@@ -51,17 +51,21 @@ public class CloseFromRight extends CommandGroup {
 			return false;
 		}
 	}
+
 	public CloseFromRight() {
 		// make sure robot is in low gear
 		addParallel(new ArmLock());
 		addSequential(new RightToRight());
-//		addSequential(new ShiftDownForTime());
+		// addSequential(new ShiftDownForTime());
 		if (this.switchIsRight()) {
 			// left to right switch
 			addSequential(new RightStartToSwitch());
 		} else if (this.scaleIsRight()) {
-					addSequential(new RightStartToScale());
-				}
+			addSequential(new RightStartToScale());
+		}  else {
+			//addSequential(new RightStartToLeftScale());
+		}
 
-				addSequential(new Interrupt(Robot.kClawArm));
-	}}
+		addSequential(new Interrupt(Robot.kClawArm));
+	}
+}

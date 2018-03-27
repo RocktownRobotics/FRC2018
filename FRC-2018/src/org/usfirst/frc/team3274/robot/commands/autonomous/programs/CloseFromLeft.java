@@ -3,6 +3,7 @@ package org.usfirst.frc.team3274.robot.commands.autonomous.programs;
 import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.commands.ArmLock;
 import org.usfirst.frc.team3274.robot.commands.Interrupt;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftStartToRightScale;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftStartToScale;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftStartToSwitch;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftToLeft;
@@ -64,6 +65,8 @@ public class CloseFromLeft extends CommandGroup {
 			addSequential(new LeftStartToSwitch());
 		} else if (!this.scaleIsRight()) {
 			addSequential(new LeftStartToScale());
+		} else {
+			//addSequential(new LeftStartToRightScale());
 		}
 
 		addSequential(new Interrupt(Robot.kClawArm));

@@ -9,6 +9,8 @@ package org.usfirst.frc.team3274.robot;
 
 import org.usfirst.frc.team3274.robot.commands.autonomous.programs.PrimaryAutonomous;
 import org.usfirst.frc.team3274.robot.commands.autonomous.programs.ScaleFromLeft;
+import org.usfirst.frc.team3274.robot.commands.autonomous.programs.ScaleFromRight;
+import org.usfirst.frc.team3274.robot.commands.autonomous.programs.SwitchFromLeft;
 import org.usfirst.frc.team3274.robot.subsystems.ClawArm;
 import org.usfirst.frc.team3274.robot.subsystems.ClawIntake;
 import org.usfirst.frc.team3274.robot.subsystems.DrivePneumatics;
@@ -115,17 +117,19 @@ public class Robot extends TimedRobot {
 
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 
-//		 this.m_autonomousCommand = new SwitchFromRight();
+		// this.m_autonomousCommand = new SwitchFromRight();
 		// this.m_autonomousCommand = new SwitchFromLeft();
-		 //this.m_autonomousCommand = new CrossingTheLine();
+		// this.m_autonomousCommand = new CrossingTheLine();
 		this.m_autonomousCommand = new ScaleFromLeft();
-//		this.m_autonomousCommand = new ScaleFromRight();
-//		this.m_autonomousCommand = new CloseFromLeft();//SWITCH IS PRIORITY, SCALE IS SECONDARY
-		//this.m_autonomousCommand = new CloseFromRight();//SWITCH IS PRIORITY, SCALE IS SECONDARY
-//		this.m_autonomousCommand = new SwitchFromMid();
-//		this.m_autonomousCommand = new CloseFromLeft_PrioritizingScale();
-//		this.m_autonomousCommand = new CloseFromRight_PrioritizingScale();
-//		this.m_autonomousCommand = new SwitchFromMid();
+		// this.m_autonomousCommand = new ScaleFromRight();
+		// this.m_autonomousCommand = new CloseFromLeft();//SWITCH IS PRIORITY, SCALE IS
+		// SECONDARY
+		// this.m_autonomousCommand = new CloseFromRight();//SWITCH IS PRIORITY, SCALE
+		// IS SECONDARY
+		// this.m_autonomousCommand = new SwitchFromMid();
+		// this.m_autonomousCommand = new CloseFromLeft_PrioritizingScale();
+		// this.m_autonomousCommand = new CloseFromRight_PrioritizingScale();
+		// this.m_autonomousCommand = new SwitchFromMid();
 
 		Robot.kForkLift.resetLiftEncoders();
 

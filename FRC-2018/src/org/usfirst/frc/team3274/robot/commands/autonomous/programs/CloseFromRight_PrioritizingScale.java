@@ -3,6 +3,7 @@ package org.usfirst.frc.team3274.robot.commands.autonomous.programs;
 import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.commands.ArmLock;
 import org.usfirst.frc.team3274.robot.commands.Interrupt;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightStartToLeftScale;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightStartToScale;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightStartToSwitch;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightToRight;
@@ -64,6 +65,8 @@ public class CloseFromRight_PrioritizingScale extends CommandGroup {
 			addSequential(new RightStartToScale());
 		} else if (this.switchIsRight()) {
 			addSequential(new RightStartToSwitch());
+		} else {
+			//addSequential(new RightStartToLeftScale());
 		}
 
 		addSequential(new Interrupt(Robot.kClawArm));

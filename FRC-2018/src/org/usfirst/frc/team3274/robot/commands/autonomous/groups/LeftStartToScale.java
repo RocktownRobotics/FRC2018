@@ -29,6 +29,7 @@ public class LeftStartToScale extends CommandGroup {
 		addSequential(new SetHeightByGuesstimate(RobotMap.Autonomous.SCALE_RAISE_HEIGHT), 2);
 		addSequential(new Eject(), RobotMap.Autonomous.EJECT_DURATION);
 		addSequential(new Interrupt(Robot.kForkLift));
+		addSequential(new Interrupt(Robot.kClawArm));
 		System.out.println("Robot has captured the Scale! Robot is happy. With luck, Robot knows what it is talking about");
 	}
 }

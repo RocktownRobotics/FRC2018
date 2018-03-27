@@ -61,10 +61,9 @@ public class ScaleFromRight extends CommandGroup {
 		if (this.scaleIsRight()) {
 			// right to right scale
 			addSequential(new RightStartToScale());
-			//addSequential(new RightScaleToCube());
 		} else {
 			// right to left scale
-//			addSequential(new RightStartToLeftScale());
+			//addSequential(new RightStartToLeftScale());
 		}
 
 		addSequential(new Interrupt(Robot.kClawArm));
