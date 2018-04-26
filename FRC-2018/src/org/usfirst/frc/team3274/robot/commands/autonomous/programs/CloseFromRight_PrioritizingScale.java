@@ -3,10 +3,11 @@ package org.usfirst.frc.team3274.robot.commands.autonomous.programs;
 import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.commands.ArmLock;
 import org.usfirst.frc.team3274.robot.commands.Interrupt;
-import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightStartToLeftScale;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightStartToScale;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightStartToSwitch;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightToRight;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightToRightScale;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightToRightSwitch;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -58,15 +59,16 @@ public class CloseFromRight_PrioritizingScale extends CommandGroup {
 	public CloseFromRight_PrioritizingScale() {
 		// make sure robot is in low gear
 		addParallel(new ArmLock());
-		addSequential(new RightToRight());
 //		addSequential(new ShiftDownForTime());
 		if (this.scaleIsRight()) {
 			// left to right switch
+			addSequential(new RightToRightScale());
 			addSequential(new RightStartToScale());
 		} else if (this.switchIsRight()) {
+			addSequential(new RightToRightSwitch());
 			addSequential(new RightStartToSwitch());
 		} else {
-			//addSequential(new RightStartToLeftScale());
+			addSequential(new RightToRight());
 		}
 
 		addSequential(new Interrupt(Robot.kClawArm));

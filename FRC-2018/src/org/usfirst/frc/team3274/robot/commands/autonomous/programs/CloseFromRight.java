@@ -6,6 +6,8 @@ import org.usfirst.frc.team3274.robot.commands.Interrupt;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightStartToScale;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightStartToSwitch;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightToRight;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightToRightScale;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightToRightSwitch;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -16,7 +18,7 @@ public class CloseFromRight extends CommandGroup {
 	 * Here is how you would make the robot drive forward 3 feet and then turn left
 	 * 90 degrees.
 	 */
-
+	
 	public boolean switchIsRight() {
 		// check if string has 3 characters
 		if (Robot.gameData.length() >= 3) {
@@ -51,21 +53,20 @@ public class CloseFromRight extends CommandGroup {
 			return false;
 		}
 	}
-
 	public CloseFromRight() {
 		// make sure robot is in low gear
 		addParallel(new ArmLock());
-		addSequential(new RightToRight());
-		// addSequential(new ShiftDownForTime());
+//		addSequential(new ShiftDownForTime());
 		if (this.switchIsRight()) {
 			// left to right switch
+			addSequential(new RightToRightSwitch());
 			addSequential(new RightStartToSwitch());
 		} else if (this.scaleIsRight()) {
+			addSequential(new RightToRightScale());
 			addSequential(new RightStartToScale());
-		}  else {
-			//addSequential(new RightStartToLeftScale());
+		} else {
+			addSequential(new RightToRight());
 		}
-
 		addSequential(new Interrupt(Robot.kClawArm));
 	}
 }

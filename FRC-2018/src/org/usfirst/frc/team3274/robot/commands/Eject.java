@@ -16,7 +16,7 @@ public class Eject extends Command {
 
 	public static final double HIGH_SPEED = .8;
 	public static final double MEDIUM_SPEED = .6;
-	public static final double SLOW_SPEED = .4;
+	public static final double SLOW_SPEED = .37;
 
 	double launchPower;
 	double ejectStartTime;

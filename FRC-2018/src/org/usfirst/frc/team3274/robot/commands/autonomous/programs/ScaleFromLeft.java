@@ -6,6 +6,7 @@ import org.usfirst.frc.team3274.robot.commands.Interrupt;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftStartToRightScale;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftStartToScale;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftToLeft;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftToLeftScale;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -54,16 +55,17 @@ public class ScaleFromLeft extends CommandGroup {
 	public ScaleFromLeft() {
 		
 		addParallel(new ArmLock());
-		addSequential(new LeftToLeft());
-		
+		addSequential(new LeftToLeftScale());
 		// make sure robot is in low gear
 		// addSequential(new ShiftDownForTime());
 		if (this.scaleIsRight()) {
 			// left to right scale
-			//addSequential(new LeftStartToRightScale());
+//			addSequential(new LeftStartToRightScale());
+			//addSequential(new RightScaleToCube());
 		} else {
 			// left to left scale
 			addSequential(new LeftStartToScale());
+			//addSequential(new LeftScaleToCube());
 		}
 
 		addSequential(new Interrupt(Robot.kClawArm));

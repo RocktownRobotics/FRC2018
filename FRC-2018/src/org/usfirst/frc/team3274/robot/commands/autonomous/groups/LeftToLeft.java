@@ -1,5 +1,4 @@
 package org.usfirst.frc.team3274.robot.commands.autonomous.groups;
-
 import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.RobotMap;
 import org.usfirst.frc.team3274.robot.commands.ArmLock;
@@ -18,11 +17,13 @@ public class LeftToLeft extends CommandGroup {
 	 * 90 degrees.
 	 */
 	public LeftToLeft() {
-		
+
 		System.out.println("Robot en route to Left side Startpoint");
-		//addSequential(new DriveBackward(2));
-		//addSequential(new TurnRobot(180));
-		addSequential(new DriveForward(RobotMap.Autonomous.FORWARD_DISTANCE_TO_STARTPOINT));
+		// addSequential(new DriveBackward(2));
+		// addSequential(new TurnRobot(180));
+		addSequential(new DriveForward(RobotMap.Autonomous.FORWARD_DISTANCE_TO_STARTPOINT, true));
+		addSequential(new Interrupt(Robot.kDriveTrain));
+
 		System.out.println("Robot arrived at Left side Startpoint");
 	}
 }

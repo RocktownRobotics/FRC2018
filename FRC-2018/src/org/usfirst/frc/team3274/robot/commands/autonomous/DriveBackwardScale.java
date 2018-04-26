@@ -11,10 +11,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *         DriveForward. Except not anymore, and I didn't make it. Now it drives backwards.
  */
 
-public class DriveBackward extends Command {
+public class DriveBackwardScale extends Command {
 
-	public static final double NORMAL_SPEED = -0.2;
-	public static final double SLOW_SPEED = -0.1;
+	public static final double NORMAL_SPEED = -0.4;
+	public static final double SLOW_SPEED = -0.2;
 
 	public static final double SLOW_DISTANCE = -1; // offset in ft
 
@@ -26,7 +26,7 @@ public class DriveBackward extends Command {
 	 * @param targetDistance
 	 *            Distance to be traveled, in feet... hopefully....
 	 */
-	public DriveBackward(double targetDistance) {
+	public DriveBackwardScale(double targetDistance) {
 		requires(Robot.kDriveTrain);
 		this.targetDistance = -Math.abs(targetDistance);
 	}
@@ -57,10 +57,10 @@ public class DriveBackward extends Command {
 		double gyroError = Robot.kDriveTrain.getYaw();
 		double gyroTurn = gyroError * Robot.kDriveTrain.Gyro_KP;
 
-		double leftPower = determinedSpeed; //- gyroTurn;
-		double rightPower = determinedSpeed; //+ gyroTurn;
+		double leftPower = determinedSpeed - gyroTurn;
+		double rightPower = determinedSpeed + gyroTurn;
 
-		Robot.kDriveTrain.tankDrive(leftPower, rightPower, false);
+		Robot.kDriveTrain.tankDrive(-leftPower, rightPower, false);
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftStartToSwit
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightStartToSwitch;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightToLeft;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightToRight;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.RightToRightSwitch;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -59,12 +60,13 @@ public class SwitchFromRight extends CommandGroup {
 //		addSequential(new ShiftDownForTime());
 		if (this.switchIsRight()) {
 			// left to right switch
-			addSequential(new RightToRight());
+			addSequential(new RightToRightSwitch());
 			addSequential(new RightStartToSwitch());
 		} else {
-			// right to Left Switch
-			addSequential(new RightToLeft());
-			addSequential(new LeftStartToSwitch());
+			addSequential(new RightToRight());//Will need to remove when add the far scale code in
+//			// right to Left Switch
+//			addSequential(new RightToLeft());
+//			addSequential(new LeftStartToSwitch());
 		}
 		addSequential(new Interrupt(Robot.kClawArm));
 	}

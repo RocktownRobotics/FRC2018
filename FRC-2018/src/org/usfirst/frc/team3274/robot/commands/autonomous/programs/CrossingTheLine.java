@@ -15,6 +15,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CrossingTheLine extends CommandGroup {
 
 	public CrossingTheLine() {
-		addSequential(new DriveForward(RobotMap.Autonomous.CROSS_THE_LINE));
+		addSequential(new DriveForward(RobotMap.Autonomous.CROSS_THE_LINE), 3.5);
 	}
 }

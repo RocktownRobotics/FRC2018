@@ -29,7 +29,7 @@ import com.kauailabs.navx.frc.AHRS;
  */
 public class DriveTrain extends StoppableSubsystem {
 
-	public static final double ENCODER_PULSES_PER_REVOLUTION = 1895;
+	public static final double ENCODER_PULSES_PER_REVOLUTION = 875;//was 1895 then 3790 with rightEncoder *** 500
 
 	/**
 	 * Normal power is multiplied by this value when in enter sniper mode. Greater
@@ -277,8 +277,8 @@ public class DriveTrain extends StoppableSubsystem {
 	 * Resets encoders to start tracking distance driven from a certain point.
 	 */
 	public void resetEncoders() {
-		_rightEncoder.reset();
-		//_leftEncoder.reset();
+		//_rightEncoder.reset();
+		_leftEncoder.reset();
 
 		double time = 0;
 
@@ -305,7 +305,7 @@ public class DriveTrain extends StoppableSubsystem {
 		double dist;
 
 		// dist = (_rightEncoder.getDistance() + _leftEncoder.getDistance()) / 2;
-		dist = _rightEncoder.getDistance();
+		dist = _leftEncoder.getDistance();
 
 		return dist;
 	}
@@ -365,16 +365,21 @@ public class DriveTrain extends StoppableSubsystem {
 	 */
 
 	public void resetYaw() {
-
 		double time = 0;
 
 		navX.zeroYaw();
+		
+		int counter = 0;
 
 		// wait for yaw to reset fully
-		while (Robot.itself.isEnabled() && Math.abs(this.getYaw()) > 0.8) {
+		while (Robot.itself.isEnabled() && Math.abs(this.getYaw()) > 0.8 && (counter < 10)) {
 			Timer.delay(0.01);
 			SmartDashboard.putNumber("gyro_yaw", this.getYaw());
 			SmartDashboard.putNumber("gyro_reset_seconds", time += 0.01);
+			System.out.println("Yaw is " + this.getYaw());
+//			navX.zeroYaw();
+			counter++;
 		}
+		System.out.println("Resetted Yaw");
 	}
 }

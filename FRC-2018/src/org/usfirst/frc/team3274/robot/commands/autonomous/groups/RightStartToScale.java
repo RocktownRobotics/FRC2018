@@ -14,26 +14,19 @@ import org.usfirst.frc.team3274.robot.commands.autonomous.TurnRobot;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class RightStartToScale extends CommandGroup {
-
-	/**
-	 * Here is how you would make the robot drive forward 3 feet and then turn left
-	 * 90 degrees.
-	 */
 	public RightStartToScale() {
-
 		System.out.println("Robot moving to Scale");
+		addSequential(new Interrupt(Robot.kDriveTrain));
+		System.out.println("Drivetrain Interrupted");
 		addSequential(new DropClawForTime(0.3));
 		addParallel(new ArmLock());
-		addSequential(new DriveForward(RobotMap.Autonomous.FORWARD_DISTANCE_TO_SCALE_FROM_STARTPOINT));
-		addSequential(new TurnRobot(-90), 2);
+		addSequential(new DriveForward(RobotMap.Autonomous.FORWARD_DISTANCE_TO_SCALE_FROM_STARTPOINT, true));
+		addSequential(new TurnRobot(-40), 1.5); //is actually 90 degrees
 		addSequential(new Interrupt(Robot.kDriveTrain));
-		addSequential(new DriveBackward(0.75), 1);
-		addSequential(new SetHeightByGuesstimate(RobotMap.Autonomous.SCALE_RAISE_HEIGHT), 2);
+		addSequential(new DriveBackward(1.5), 1);
+		addSequential(new SetHeightByGuesstimate(RobotMap.Autonomous.SCALE_RAISE_HEIGHT), 0.85);
 		addSequential(new Eject(), RobotMap.Autonomous.EJECT_DURATION);
 		addSequential(new Interrupt(Robot.kForkLift));
-		addSequential(new Interrupt(Robot.kClawArm));
 		System.out.println("Robot believes it has captured the scale. Robot is happy. Hopefully, Robot is not delusional");
-		
-		
 	}
 }

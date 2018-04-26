@@ -3,10 +3,11 @@ package org.usfirst.frc.team3274.robot.commands.autonomous.programs;
 import org.usfirst.frc.team3274.robot.Robot;
 import org.usfirst.frc.team3274.robot.commands.ArmLock;
 import org.usfirst.frc.team3274.robot.commands.Interrupt;
-import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftStartToRightScale;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftStartToScale;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftStartToSwitch;
 import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftToLeft;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftToLeftScale;
+import org.usfirst.frc.team3274.robot.commands.autonomous.groups.LeftToLeftSwitch;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -53,18 +54,21 @@ public class CloseFromLeft_PrioritizingScale extends CommandGroup {
 		}
 	}
 
+	
+
 	public CloseFromLeft_PrioritizingScale() {
 		// make sure robot is in low gear
 		addParallel(new ArmLock());
-		addSequential(new LeftToLeft());
-		// addSequential(new ShiftDownForTime());
+//		addSequential(new ShiftDownForTime());
 		if (!this.scaleIsRight()) {
 			// left to right switch
+			addSequential(new LeftToLeftScale());
 			addSequential(new LeftStartToScale());
 		} else if (!this.switchIsRight()) {
+			addSequential(new LeftToLeftSwitch());
 			addSequential(new LeftStartToSwitch());
 		} else {
-			//addSequential(new LeftStartToRightScale());
+			addSequential(new LeftToLeft());
 		}
 
 		addSequential(new Interrupt(Robot.kClawArm));

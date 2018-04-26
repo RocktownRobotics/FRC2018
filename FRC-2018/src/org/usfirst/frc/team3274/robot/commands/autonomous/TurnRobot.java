@@ -14,10 +14,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class TurnRobot extends Command {
 
-	public static final double TURN_POWER = 0.35;
-
-	public static final double SLOW_TURN_POWER = 0.25;
-	public static final double SLOW_ANGLE = 35; // in degrees
+	public static final double TURN_POWER = 0.40;
+	public static final double SLOW_TURN_POWER = 0.3;// 0.25
+	public static final double SLOW_ANGLE = 35;
 
 	private double turnAngle;
 
@@ -28,7 +27,21 @@ public class TurnRobot extends Command {
 	 *            The angle to be turned, in degrees. Positive numbers will turn
 	 *            right, negatives left. MUST BE <= 180 DEGREES.
 	 */
+	//*****************************************************************************************
+	//THIS IS FOR IGNORE_PRECISION_FOR_SPEED
+	private boolean ignorePrecisionForSpeed;
+	
+	public TurnRobot(double targetAngle, boolean ignorePrecisionForSpeed)
+	{
+		this.ignorePrecisionForSpeed = ignorePrecisionForSpeed;
+		requires(Robot.kDriveTrain);
+		this.turnAngle = targetAngle;
+	}
+	//*****************************************************************************************
+	
+	
 	public TurnRobot(double targetAngle) {
+//		this(targetAngle, false);
 		requires(Robot.kDriveTrain);
 		this.turnAngle = targetAngle;
 	}
@@ -51,10 +64,14 @@ public class TurnRobot extends Command {
 	protected void execute() {
 
 		double unscaledPower;
-
-		// System.out.println("exe_turn");
-		if (Math.abs(Robot.kDriveTrain.getYaw()) >= (Math.abs(turnAngle) - SLOW_ANGLE)) {
-			unscaledPower = SLOW_TURN_POWER;
+		
+		if(this.ignorePrecisionForSpeed == false) {
+			// System.out.println("exe_turn");
+			if (Math.abs(Robot.kDriveTrain.getYaw()) >= (Math.abs(turnAngle) - SLOW_ANGLE)) {
+				unscaledPower = SLOW_TURN_POWER;
+			} else {
+				unscaledPower = TURN_POWER;
+			}
 		} else {
 			unscaledPower = TURN_POWER;
 		}

@@ -20,7 +20,7 @@ public class SetHeightFromBottom extends Command {
 	private double startTime;
 	private double timeToRun;
 	public static final double timePerInch = 0.02;
-	public static final double liftPower = 0.95;
+	public static final double liftPower = 0.999999;
 
 	/**
 	 * 

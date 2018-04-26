@@ -10,6 +10,7 @@ package org.usfirst.frc.team3274.robot;
 import org.usfirst.frc.team3274.robot.commands.ArmLock;
 import org.usfirst.frc.team3274.robot.commands.DriveWithJoystick.DriveType;
 import org.usfirst.frc.team3274.robot.commands.Eject;
+import org.usfirst.frc.team3274.robot.commands.Eject.Speed;
 import org.usfirst.frc.team3274.robot.commands.IncreaseHeight;
 import org.usfirst.frc.team3274.robot.commands.Interrupt;
 import org.usfirst.frc.team3274.robot.commands.LowerClaw;
@@ -205,15 +206,18 @@ public class OI {
 		lBumper0.whileHeld(new ShiftDown());
 
 		// second driver
-		rBumper1.whenPressed(new IncreaseHeight());
-		rBumper1.whenReleased(new RunForkLift());
-		lBumper1.whenPressed(new ReduceHeight());
-		lBumper1.whenReleased(new RunForkLift());
+//		rBumper1.whenPressed(new IncreaseHeight());
+//		rBumper1.whenReleased(new RunForkLift());
+//		lBumper1.whenPressed(new ReduceHeight());
+//		lBumper1.whenReleased(new RunForkLift());
 		b1.whenPressed(new OpenClaw());
 		x1.whenPressed(new GrabAndSuck());
 		x1.whenReleased(new Interrupt(Robot.kClawIntake));
 		r31.whenPressed(new Eject());
 		r31.whenReleased(new Interrupt(Robot.kClawIntake));
+		rBumper1.whenPressed(new Eject(Speed.LOW));
+		rBumper1.whenReleased(new Interrupt(Robot.kClawIntake));
+		
 		// add Lift Control to Left Stick... NOPE
 		y1.whenPressed(new RaiseClaw());
 		y1.whenReleased(new Interrupt(Robot.kClawArm));

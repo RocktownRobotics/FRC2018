@@ -141,15 +141,13 @@ public class RobotMap {
 		/////////////////////////////
 
 		public static final double SCALE_RAISE_HEIGHT = 72; // inches
-		public static final double SWITCH_RAISE_HEIGHT = 5; // inches
+		public static final double SWITCH_RAISE_HEIGHT = 8; // inches //5
 
-		public static final double FORWARD_DISTANCE_TO_STARTPOINT = 10; // feet3jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj+3j+33-
-		public static final double SIDE_DISTANCE_TO_STARTPOINT = 21; // feet
-		
-		public static final double SIDE_DISTANCE_TO_SCALE = 19.5; // feet
-		
-		public static final double CROSS_FORWARD_DISTANCE_TO_SCALE = 4; // feet
-		public static final double SCALE_SAFE_BACKUP_DISTANCE = 0.5; // feet
+		public static final double FORWARD_DISTANCE_TO_STARTPOINT = 9.5; // feet
+		public static final double FORWARD_DISTANCE_TO_STARTPOINT_SWITCH = 9; // feet
+		public static final double FORWARD_DISTANCE_TO_STARTPOINT_SCALE = 11; // feet
+
+		public static final double SIDE_DISTANCE_TO_STARTPOINT = 12.18; // feet
 
 		public static final double CROSS_THE_LINE = 11; // feet
 
@@ -167,9 +165,9 @@ public class RobotMap {
 		public static final double MID_DISTANCE_TO_STARTPOINT = 3;//IMPORTANT***************************WAS 8*******
 
 		public static final double FORWARD_DISTANCE_TO_SWITCH_FROM_STARTPOINT = 1; // feet
-		public static final double SIDE_DISTANCE_TO_SWITCH_FROM_STARTPOINT = 1.8; // feet
+		public static final double SIDE_DISTANCE_TO_SWITCH_FROM_STARTPOINT = 3; // feet
 
-		public static final double FORWARD_DISTANCE_TO_SCALE_FROM_STARTPOINT = 13; // feet
+		public static final double FORWARD_DISTANCE_TO_SCALE_FROM_STARTPOINT = 7.6; // feet
 
 		//////////////////////////////
 		/// Put timing values here ///
@@ -178,7 +176,7 @@ public class RobotMap {
 		public static final double SUCK_DURATION = .75; // seconds
 		public static final double EJECT_DURATION = .75; // seconds
 
-		public static final double POS_TO_SWITCH_TIMEOUT = 2; // seconds
+		public static final double POS_TO_SWITCH_TIMEOUT = 0.85; // seconds
 		
 		public static final double CLAW_ARM_DROP_TIME = .61;
 
